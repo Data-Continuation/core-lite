@@ -10,15 +10,13 @@ Scan-only maintainer:
 - performs zero source mutations
 
 Classifier hardening:
-- workflow files are CANONICAL_OR_CONTROL, not ORPHAN_CANDIDATE
-- core_lite registry files are CANONICAL_OR_CONTROL, even when they discuss stubs
-- UPLOAD_MAP.txt and VERIFY_RESULT.txt are SUPPORT_ARTIFACT
-- Python files are classified as stubs only from executable structure:
-  pass-only functions, NotImplementedError raises, empty files, syntax errors,
-  or tiny placeholder-only files.
-- Python files are not classified as stubs merely because variable names,
-  regex constants, comments, or strings contain words like TODO, STUB,
-  PLACEHOLDER, or NOT IMPLEMENTED.
+- workflow files are CANONICAL_OR_CONTROL
+- core_lite registry files are CANONICAL_OR_CONTROL
+- repository config files are CANONICAL_OR_CONTROL
+- docs files are SUPPORT_ARTIFACT unless they are README.md
+- .gitkeep files are SUPPORT_ARTIFACT
+- src files are REAL unless they have direct stub or broken-reference evidence
+- Python stub classification uses executable AST evidence, not keyword matches in identifiers/comments/strings
 """
 
 from __future__ import annotations
@@ -47,7 +45,7 @@ CANONICAL_NAMES = {
     "requirements.txt",
 }
 
-SUPPORT_NAMES = {"UPLOAD_MAP.txt", "VERIFY_RESULT.txt"}
+SUPPORT_NAMES = {"UPLOAD_MAP.txt", "VERIFY_RESULT.txt", ".gitkeep"}
 
 STD_IMPORTS = {
     "argparse", "ast", "datetime", "hashlib", "io", "json", "os", "pathlib",
@@ -99,7 +97,7 @@ def skip(path: Path, root: Path, exclude_dirs: set[str]) -> bool:
 
 
 def is_text(path: Path) -> bool:
-    return path.suffix in TEXT_EXTENSIONS or path.name in CANONICAL_NAMES
+    return path.suffix in TEXT_EXTENSIONS or path.name in CANONICAL_NAMES or path.name in SUPPORT_NAMES
 
 
 def is_workflow(path_str: str) -> bool:
@@ -107,7 +105,19 @@ def is_workflow(path_str: str) -> bool:
 
 
 def is_control(path_str: str) -> bool:
-    return path_str.startswith("core_lite/") and path_str.endswith((".yml", ".yaml", ".json"))
+    return (
+        path_str.startswith("core_lite/")
+        or path_str.startswith("config/")
+        or path_str in {"README.md", "pyproject.toml", "package.json", "requirements.txt"}
+    )
+
+
+def is_support(path_str: str, path: Path) -> bool:
+    return (
+        path.name in SUPPORT_NAMES
+        or path_str.startswith("docs/")
+        or path_str.startswith("examples/")
+    )
 
 
 def read(path: Path) -> tuple[str, str | None]:
@@ -128,7 +138,6 @@ def python_stub_reasons(text: str) -> list[str]:
         return ["tiny placeholder content"]
 
     reasons: list[str] = []
-
     try:
         tree = ast.parse(text)
     except SyntaxError:
@@ -213,7 +222,6 @@ def local_ref_exists(ref: str, src: Path) -> bool:
 
 
 def find_refs(text: str, path: Path) -> list[str]:
-    # Do not inspect Python code strings/regexes for markdown/html references.
     if path.suffix == ".py":
         return []
 
@@ -305,9 +313,9 @@ def classify(root: Path, exclude_dirs: set[str]) -> list[dict[str, Any]]:
             files.append(item)
             continue
 
-        if path.name in SUPPORT_NAMES:
+        if is_support(path_str, path):
             item["class"] = "SUPPORT_ARTIFACT"
-            item["evidence"].append("support artifact for upload, verification, or operator use")
+            item["evidence"].append("support artifact for upload, verification, documentation, examples, or empty directory retention")
             files.append(item)
             continue
 
@@ -345,6 +353,7 @@ def classify(root: Path, exclude_dirs: set[str]) -> list[dict[str, Any]]:
             p = item["path"]
             if not (
                 p.startswith("tools/")
+                or p.startswith("src/")
                 or p.startswith("core_lite/")
                 or is_workflow(p)
                 or p.endswith("README.md")
