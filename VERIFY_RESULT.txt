@@ -1,58 +1,20 @@
 Assumptions:
-1. Bundle-only delivery is valid for later-stage StegVerse iPhone workflows.
-2. The problem is untracked bundle proliferation, not bundles themselves.
-3. The user-provided ZIP inventory signal is 869 items.
-4. This bundle adds registry/reporting only. It does not delete or mutate user ZIP files.
-5. YAML parsed observed_at as a date object, so the reporter now normalizes YAML values to JSON-safe types.
+1. Core-Lite is now clean and scan-only operation is verified.
+2. The next bounded move is to run Core-Lite against an existing debt-bearing repo, starting with StegVerse-Labs/footprint-auditor.
+3. The target repo scan must not commit to or mutate the target repository.
+4. The workflow writes reports and receipts only inside the ephemeral GitHub Actions workspace.
+5. Markdown outputs are uploaded as downloadable workflow artifacts.
 
 Done definition:
-1. python tools/validate_workstreams.py returns pass.
-2. python tools/bundle_registry_report.py --root . returns pass.
-3. Generated Markdown, JSON, and receipt outputs are produced.
-4. The workflow uploads bundle_registry.md as a downloadable artifact.
+1. Workflow has workflow_dispatch inputs for target_repository and target_ref.
+2. Default target repository is StegVerse-Labs/footprint-auditor.
+3. Workflow checks out Core-Lite and the target repository separately.
+4. Workflow validates Core-Lite workstreams.
+5. Workflow runs ecosystem_maintainer.py against the target checkout.
+6. Workflow runs auto_fix_eligibility.py against the target checkout.
+7. Workflow uploads both Markdown reports, both JSON reports, and both receipt logs.
+8. No source files in the target repo are committed or modified outside the temporary runner workspace.
 
-validate_workstreams stdout:
-Wrote reports/workstream_status.md
-Wrote reports/workstream_status.json
-Wrote receipts/workstream_receipts.jsonl
-Result: pass
-
-
-validate_workstreams stderr:
-Spreadsheet runtime warmup failed during python startup
-Traceback (most recent call last):
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/generated/interface/models.py", line 48821, in hydrate_crdt_from_proto
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/remote.py", line 747, in __call__
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/client.py", line 150, in call
-artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
-
-
-bundle_registry_report stdout:
-Wrote /mnt/data/core-lite-bundle-registry-supersession/reports/bundle_registry.md
-Wrote /mnt/data/core-lite-bundle-registry-supersession/reports/bundle_registry.json
-Wrote /mnt/data/core-lite-bundle-registry-supersession/receipts/bundle_registry_receipts.jsonl
-Result: pass
-Current bundles: 2
-Quarantine candidates: 7
-
-
-bundle_registry_report stderr:
-Spreadsheet runtime warmup failed during python startup
-Traceback (most recent call last):
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/generated/interface/models.py", line 48821, in hydrate_crdt_from_proto
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/remote.py", line 747, in __call__
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/client.py", line 150, in call
-artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
-
-
-Exit codes:
-validate_workstreams=0
-bundle_registry_report=0
+Files in this bundle:
+- github/workflows/target-repo-scan.yml
+- VERIFY_RESULT.txt
