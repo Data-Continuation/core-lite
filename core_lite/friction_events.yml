@@ -1,0 +1,144 @@
+version: 1
+
+metric:
+  name: Friction Avoided
+  short_name: FA
+  definition: Avoidable human recovery burden prevented by governed execution.
+  trust_severity_weights:
+    low: 1
+    medium: 2
+    high: 3
+    critical: 5
+
+failure_types:
+  - id: F-A1
+    name: New-artifact drift
+    category: artifact_architecture
+    prevented_by: [CONTINUITY_REGISTRY_CHECK, BLOCK_START_OVER, CREATE_NEW_REPO, CREATE_UNUSED_SCAFFOLD]
+    estimated_minutes_saved: 240
+    repeated_prompts_prevented: 30
+    manual_actions_prevented: 5
+    reruns_prevented: 0
+    trust_severity: high
+    evidence_note: Existing artifact not checked before proposing a new artifact.
+
+  - id: F-A2
+    name: Stub multiplication
+    category: artifact_architecture
+    prevented_by: [DETECT_STUB, DETECT_STUB_DEPENDENCY, AUTO_QUARANTINE_STUB, COMPLETE_LOW_RISK_STUB, CREATE_UNUSED_SCAFFOLD]
+    estimated_minutes_saved: 480
+    repeated_prompts_prevented: 55
+    manual_actions_prevented: 12
+    reruns_prevented: 0
+    trust_severity: high
+    evidence_note: Skeletons and placeholders create later cleanup debt.
+
+  - id: F-W1
+    name: Missing workflow dependency
+    category: workflow
+    prevented_by: [VERIFY_WORKFLOW_DEPENDENCIES, VERIFY_REPO]
+    estimated_minutes_saved: 25
+    repeated_prompts_prevented: 4
+    manual_actions_prevented: 2
+    reruns_prevented: 1
+    trust_severity: medium
+    evidence_note: Workflow called a Python script before installing PyYAML.
+
+  - id: F-W3
+    name: Hidden workflow path visibility failure
+    category: workflow
+    prevented_by: [VERIFY_WORKFLOW_PATH, DEFINE_UPLOAD_MAP]
+    estimated_minutes_saved: 30
+    repeated_prompts_prevented: 6
+    manual_actions_prevented: 3
+    reruns_prevented: 0
+    trust_severity: medium
+    evidence_note: iPhone Files hid a workflow folder whose actual name begins with a leading dot.
+
+  - id: F-B1
+    name: Source bundle polluted with generated artifacts
+    category: bundle_delivery
+    prevented_by: [VERIFY_BUNDLE_CONTENTS, VERIFY_SOURCE_ONLY_BUNDLE]
+    estimated_minutes_saved: 15
+    repeated_prompts_prevented: 3
+    manual_actions_prevented: 2
+    reruns_prevented: 0
+    trust_severity: medium
+    evidence_note: Source bundle included generated reports and receipts.
+
+  - id: F-B3
+    name: Path-display rule violation
+    category: bundle_delivery
+    prevented_by: [VERIFY_RESPONSE_CONSTRAINTS]
+    estimated_minutes_saved: 8
+    repeated_prompts_prevented: 2
+    manual_actions_prevented: 1
+    reruns_prevented: 0
+    trust_severity: medium
+    evidence_note: A path beginning with a leading dot was displayed directly.
+
+  - id: F-V3
+    name: Warning debt tolerated
+    category: verification
+    prevented_by: [VERIFY_BLOCK_REFERENCE, DEFINE_TRANSITION_BLOCK]
+    estimated_minutes_saved: 15
+    repeated_prompts_prevented: 4
+    manual_actions_prevented: 1
+    reruns_prevented: 1
+    trust_severity: medium
+    evidence_note: Registry passed with warnings before missing forbidden blocks were defined.
+
+  - id: F-X2
+    name: Over-conservative mutation block
+    category: mutation_execution
+    prevented_by: [AUTO_FIX_MECHANICAL, AUTO_QUARANTINE_STUB, GENERATE_ROLLBACK, VERIFY_REPO]
+    estimated_minutes_saved: 360
+    repeated_prompts_prevented: 35
+    manual_actions_prevented: 20
+    reruns_prevented: 0
+    trust_severity: high
+    evidence_note: Blocking all mutation pushes safe maintenance debt back to the user.
+
+  - id: F-M1
+    name: Context reset causes artifact replacement
+    category: memory_continuity
+    prevented_by: [CONTINUITY_REGISTRY_CHECK, BLOCK_START_OVER, CREATE_NEW_REPO]
+    estimated_minutes_saved: 420
+    repeated_prompts_prevented: 50
+    manual_actions_prevented: 10
+    reruns_prevented: 0
+    trust_severity: high
+    evidence_note: Existing artifacts lose continuity when new chats restart from concept.
+
+  - id: F-R1
+    name: Patch instead of full replacement
+    category: assistant_process
+    prevented_by: [VERIFY_RESPONSE_CONSTRAINTS]
+    estimated_minutes_saved: 30
+    repeated_prompts_prevented: 6
+    manual_actions_prevented: 4
+    reruns_prevented: 0
+    trust_severity: medium
+    evidence_note: Partial patches increase iPhone application and merge risk.
+
+  - id: F-C1
+    name: SMS treated as authority
+    category: communications_boundary
+    prevented_by: [PARSE_DECISION_CODE, MAP_ACTOR, DEFINE_AUTHORITY_BOUNDARY, DIRECT_EXECUTION_FROM_SMS]
+    estimated_minutes_saved: 60
+    repeated_prompts_prevented: 6
+    manual_actions_prevented: 3
+    reruns_prevented: 1
+    trust_severity: high
+    evidence_note: SMS must be a channel, not execution authority.
+
+  - id: F-T1
+    name: Formalism stays descriptive
+    category: theory_to_implementation
+    prevented_by: [DEFINE_TRANSITION_BLOCK, VERIFY_BLOCK_REFERENCE, CLASSIFY_TRANSITION_BLOCK]
+    estimated_minutes_saved: 180
+    repeated_prompts_prevented: 18
+    manual_actions_prevented: 5
+    reruns_prevented: 0
+    trust_severity: high
+    evidence_note: Transition table must become executable constraints, not only theory.

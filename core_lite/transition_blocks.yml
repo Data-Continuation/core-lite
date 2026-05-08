@@ -538,3 +538,101 @@ blocks:
       - human-review boundary decision exists before mutation
     receipt_type: transition.block_change_canonical_formalism_without_review
 
+  - id: MEASURE_FRICTION_AVOIDED
+    family: receipts
+    purpose: Measure avoidable human recovery burden prevented by governed execution.
+    allowed_when: [friction event registry exists]
+    allowed_mutation: [write friction avoided report, append friction avoided receipt]
+    forbidden_mutation: [mutate source files, execute remediation actions]
+    verification: [total estimates are computed, receipt exists]
+    receipt_type: transition.measure_friction_avoided
+
+  - id: VERIFY_WORKFLOW_DEPENDENCIES
+    family: verification
+    purpose: Verify workflow-called scripts have required dependencies installed before execution.
+    allowed_when: [workflow file exists]
+    allowed_mutation: [write dependency verification report]
+    forbidden_mutation: [run workflow without dependency check]
+    verification: [import requirements are mapped to install steps]
+    receipt_type: transition.verify_workflow_dependencies
+
+  - id: VERIFY_WORKFLOW_PATH
+    family: verification
+    purpose: Verify workflow files are visible for upload and located where GitHub Actions will recognize them.
+    allowed_when: [workflow file is included]
+    allowed_mutation: [write workflow path verification report, write upload mapping]
+    forbidden_mutation: [hide the only workflow copy in an iPhone-invisible path]
+    verification: [visible path and GitHub-recognized path are documented]
+    receipt_type: transition.verify_workflow_path
+
+  - id: VERIFY_BUNDLE_CONTENTS
+    family: verification
+    purpose: Verify source bundles contain only intended source files unless generated artifacts are explicitly requested.
+    allowed_when: [bundle path exists]
+    allowed_mutation: [write bundle content report]
+    forbidden_mutation: [include generated reports in source-only bundle, include generated receipts in source-only bundle]
+    verification: [source and generated files are separated]
+    receipt_type: transition.verify_bundle_contents
+
+  - id: VERIFY_ARTIFACT_UPLOAD
+    family: verification
+    purpose: Verify generated Markdown, JSON, and receipt outputs are uploaded as downloadable artifacts.
+    allowed_when: [workflow produces reports or receipts]
+    allowed_mutation: [write artifact upload verification report]
+    forbidden_mutation: [leave Markdown only in logs]
+    verification: [upload-artifact step includes required files]
+    receipt_type: transition.verify_artifact_upload
+
+  - id: VERIFY_RESPONSE_CONSTRAINTS
+    family: verification
+    purpose: Verify assistant output respects file, path, bundle, Markdown, and full-replacement constraints.
+    allowed_when: [response contains artifact instructions or file paths]
+    allowed_mutation: [write response-constraint report]
+    forbidden_mutation: [provide partial patches, display leading-dot paths without note, provide non-downloadable Markdown]
+    verification: [response constraints are checked before delivery]
+    receipt_type: transition.verify_response_constraints
+
+  - id: DEFINE_DONE_STATE
+    family: human_boundary
+    purpose: Define what done means before building or mutating.
+    allowed_when: [build or mutation task is initiated]
+    allowed_mutation: [write done definition]
+    forbidden_mutation: [build before done criteria are declared]
+    verification: [done criteria are explicit and testable]
+    receipt_type: transition.define_done_state
+
+  - id: CONTINUITY_REGISTRY_CHECK
+    family: observation
+    purpose: Check whether an existing artifact already serves a proposed role before suggesting or creating a new artifact.
+    allowed_when: [proposed action creates or names an artifact]
+    allowed_mutation: [write continuity check result]
+    forbidden_mutation: [propose replacement artifact before checking existing artifacts]
+    verification: [existing artifact decision is recorded]
+    receipt_type: transition.continuity_registry_check
+
+  - id: DEFINE_UPLOAD_MAP
+    family: verification
+    purpose: Define how iPhone-visible bundle paths map to GitHub-recognized repository paths.
+    allowed_when: [bundle includes workflow files]
+    allowed_mutation: [write upload map]
+    forbidden_mutation: [rely on hidden paths without visible mapping]
+    verification: [upload map exists]
+    receipt_type: transition.define_upload_map
+
+  - id: VERIFY_SOURCE_ONLY_BUNDLE
+    family: verification
+    purpose: Verify a source bundle is not polluted with generated runtime artifacts.
+    allowed_when: [source-only bundle is generated]
+    allowed_mutation: [write source-only verification report]
+    forbidden_mutation: [include generated reports, include generated receipts]
+    verification: [no generated report or receipt directory is present unless requested]
+    receipt_type: transition.verify_source_only_bundle
+
+  - id: VERIFY_CLASSIFIER_FALSE_POSITIVES
+    family: verification
+    purpose: Detect and reduce false-positive maintainer classifications before recommending mutation.
+    allowed_when: [maintainer classification report exists]
+    allowed_mutation: [write false-positive review report]
+    forbidden_mutation: [quarantine or complete files based only on low-confidence classifier signals]
+    verification: [false-positive-prone patterns are listed]
+    receipt_type: transition.verify_classifier_false_positives
