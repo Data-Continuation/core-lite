@@ -1,24 +1,25 @@
 Assumptions:
-1. footprint-auditor is clean under scan/auto-fix eligibility.
-2. The remaining issue is capability gap detection, not cleanup debt.
-3. This bundle adds capability gap planning only.
-4. No source mutation should occur.
+1. footprint-auditor has scanner, config, and operations docs seeded.
+2. classifier is placeholder-only and is the first capability to complete.
+3. This bundle adds classifier capability only.
+4. It does not modify scanner, config, README, docs, sanitizer, reporter, or existing workflows.
+5. The workflow path is visible for iPhone upload; place it into GitHub's Actions workflow folder.
 
 Done definition:
-1. python tools/validate_workstreams.py returns pass.
-2. python tools/capability_gap_plan.py --root . returns pass.
-3. Generated Markdown, JSON, and receipt outputs are produced.
-4. The target workflow runs maintainer scan, auto-fix eligibility, and capability gap planning against StegVerse-Labs/footprint-auditor.
-5. Mutation count remains 0.
+1. src/classifier/finding_classifier.py exists and provides FindingClassifier.
+2. src/classifier/__init__.py exports FindingClassifier, ClassificationResult, and SeverityRule.
+3. tests/test_finding_classifier.py covers keyword DENY, service identity DENY, allowed service identity, scanner-preclassified findings, and summary counts.
+4. github/workflows/classifier-tests.yml runs pytest.
+5. No source mutation outside intended classifier/test/workflow files.
 
-validate_workstreams stdout:
-Wrote reports/workstream_status.md
-Wrote reports/workstream_status.json
-Wrote receipts/workstream_receipts.jsonl
-Result: pass
+Local verification:
+python -m py_compile src/classifier/finding_classifier.py
+python -m pytest -q
+
+py_compile stdout:
 
 
-validate_workstreams stderr:
+py_compile stderr:
 Spreadsheet runtime warmup failed during python startup
 Traceback (most recent call last):
   File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
@@ -31,16 +32,12 @@ Traceback (most recent call last):
 artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
 
 
-capability_gap_plan stdout:
-Wrote /mnt/data/core-lite-capability-gap-plan/reports/capability_gap_plan.md
-Wrote /mnt/data/core-lite-capability-gap-plan/reports/capability_gap_plan.json
-Wrote /mnt/data/core-lite-capability-gap-plan/receipts/capability_gap_receipts.jsonl
-Result: pass
-Missing or placeholder capabilities: 8
-Mutations performed: 0
+pytest stdout:
+[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m                                                                    [100%][0m
+[32m[32m[1m5 passed[0m[32m in 0.42s[0m[0m
 
 
-capability_gap_plan stderr:
+pytest stderr:
 Spreadsheet runtime warmup failed during python startup
 Traceback (most recent call last):
   File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
@@ -54,5 +51,5 @@ artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty col
 
 
 Exit codes:
-validate_workstreams=0
-capability_gap_plan=0
+py_compile=0
+pytest=0
