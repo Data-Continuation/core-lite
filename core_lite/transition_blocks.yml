@@ -420,3 +420,121 @@ blocks:
     verification:
       - blocked reason is recorded
     receipt_type: transition.block_start_over
+
+  - id: CREATE_NEW_REPO
+    family: forbidden_high_risk
+    purpose: Prevent creating a new repository when the active workstream is to continue, complete, repair, or classify existing artifacts.
+    allowed_when:
+      - proposed action attempts to create a repository outside the active workstream completion path
+    allowed_mutation:
+      - write blocked-action receipt
+      - write pending boundary decision if user explicitly requested new repository creation
+    forbidden_mutation:
+      - create repository
+      - replace existing artifact with new repository
+      - move current task into a new repo without approval
+    verification:
+      - blocked reason is recorded
+    receipt_type: transition.block_create_new_repo
+
+  - id: DIRECT_REPO_MUTATION_FROM_LLM
+    family: forbidden_high_risk
+    purpose: Prevent model output from mutating repository files unless the mutation is routed through an allowed transition block.
+    allowed_when:
+      - model output proposes direct repository mutation
+    allowed_mutation:
+      - write blocked-action receipt
+      - convert model output into proposed transition for classification
+    forbidden_mutation:
+      - write model output directly to source files
+      - delete files from model output alone
+      - execute shell commands from model output alone
+    verification:
+      - proposed mutation is classified before any file change
+    receipt_type: transition.block_direct_repo_mutation_from_llm
+
+  - id: TRAIN_FOUNDATION_MODEL
+    family: forbidden_high_risk
+    purpose: Prevent the Headless LLM workstream from drifting into foundation-model training when the current goal is governed runtime construction.
+    allowed_when:
+      - proposed action attempts foundation-model training or fine-tuning outside an approved training workstream
+    allowed_mutation:
+      - write blocked-action receipt
+      - write future-work note if relevant
+    forbidden_mutation:
+      - start training job
+      - create model-training scaffold
+      - add training-data pipeline
+      - upload private ecosystem data for training
+    verification:
+      - blocked reason is recorded
+    receipt_type: transition.block_train_foundation_model
+
+  - id: BULK_MARKETING
+    family: forbidden_high_risk
+    purpose: Prevent communications workstreams from becoming marketing, campaign, or mass-messaging systems before governed communication controls exist.
+    allowed_when:
+      - proposed action attempts bulk, campaign, broadcast, or marketing messaging
+    allowed_mutation:
+      - write blocked-action receipt
+      - write pending boundary decision if explicitly requested
+    forbidden_mutation:
+      - send bulk messages
+      - create campaign workflow
+      - import contact list
+      - configure marketing provider flow
+    verification:
+      - blocked reason is recorded
+    receipt_type: transition.block_bulk_marketing
+
+  - id: UNBOUNDED_CHATBOT
+    family: forbidden_high_risk
+    purpose: Prevent communication channels from becoming unconstrained chatbots outside Core-Lite classification, receipts, and transition-block permissioning.
+    allowed_when:
+      - proposed action allows open-ended communication without workstream, thread, decision, or receipt constraints
+    allowed_mutation:
+      - write blocked-action receipt
+      - convert request into bounded communication event contract
+    forbidden_mutation:
+      - create unconstrained chatbot service
+      - allow free-form messages to execute actions
+      - bypass decision codes
+      - bypass receipts
+    verification:
+      - bounded event contract is recorded before implementation
+    receipt_type: transition.block_unbounded_chatbot
+
+  - id: MOVE_PERSONAL_NUMBER_TO_PUBLIC_ROLE
+    family: forbidden_high_risk
+    purpose: Prevent the personal carrier number from becoming a public, product, automation, or StegVerse command endpoint.
+    allowed_when:
+      - proposed action assigns a personal number to public or operational StegVerse use
+    allowed_mutation:
+      - write blocked-action receipt
+      - write channel-boundary note
+    forbidden_mutation:
+      - publish personal number
+      - assign personal number to SMS Bridge
+      - use personal number for product intake
+      - use personal number for repo automation commands
+    verification:
+      - personal number remains outside public and operational channel roles
+    receipt_type: transition.block_move_personal_number_to_public_role
+
+  - id: CHANGE_CANONICAL_FORMALISM_WITHOUT_REVIEW
+    family: forbidden_high_risk
+    purpose: Prevent canonical formalism definitions, axioms, theorem language, or repo identity from changing without explicit human review.
+    allowed_when:
+      - proposed action changes canonical formalism content without review
+    allowed_mutation:
+      - write blocked-action receipt
+      - write pending boundary decision
+    forbidden_mutation:
+      - change canonical definitions
+      - rename formalism families
+      - alter theorem or axiom language
+      - replace canonical repo content with generated content
+    verification:
+      - human-review boundary decision exists before mutation
+    receipt_type: transition.block_change_canonical_formalism_without_review
+
