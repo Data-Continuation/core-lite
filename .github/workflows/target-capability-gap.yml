@@ -1,0 +1,70 @@
+name: Core-Lite Target Repo Capability Gap
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_repository:
+        description: 'GitHub repository to scan, owner/repo'
+        required: true
+        default: 'StegVerse-Labs/footprint-auditor'
+      target_ref:
+        description: 'Branch, tag, or SHA to scan'
+        required: true
+        default: 'main'
+
+jobs:
+  capability-gap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Core-Lite
+        uses: actions/checkout@v4
+        with:
+          path: core-lite
+
+      - name: Check out target repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.target_repository }}
+          ref: ${{ inputs.target_ref }}
+          path: scan-target
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python -m pip install pyyaml
+
+      - name: Validate Core-Lite workstreams
+        working-directory: core-lite
+        run: python tools/validate_workstreams.py
+
+      - name: Scan target repository
+        working-directory: core-lite
+        run: python tools/ecosystem_maintainer.py --root ../scan-target
+
+      - name: Generate target auto-fix eligibility plan
+        working-directory: core-lite
+        run: python tools/auto_fix_eligibility.py --root ../scan-target
+
+      - name: Generate capability gap plan
+        working-directory: core-lite
+        run: python tools/capability_gap_plan.py --root ../scan-target
+
+      - name: Upload capability gap artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: core-lite-target-capability-gap
+          path: |
+            scan-target/reports/ecosystem_maintainer_scan.md
+            scan-target/reports/ecosystem_maintainer_scan.json
+            scan-target/reports/auto_fix_eligibility.md
+            scan-target/reports/auto_fix_eligibility.json
+            scan-target/reports/capability_gap_plan.md
+            scan-target/reports/capability_gap_plan.json
+            scan-target/receipts/ecosystem_maintainer_receipts.jsonl
+            scan-target/receipts/auto_fix_eligibility_receipts.jsonl
+            scan-target/receipts/capability_gap_receipts.jsonl
+          if-no-files-found: error
