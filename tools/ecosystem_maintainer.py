@@ -13,7 +13,12 @@ Classifier hardening:
 - workflow files are CANONICAL_OR_CONTROL, not ORPHAN_CANDIDATE
 - core_lite registry files are CANONICAL_OR_CONTROL, even when they discuss stubs
 - UPLOAD_MAP.txt and VERIFY_RESULT.txt are SUPPORT_ARTIFACT
-- Python comments and strings are ignored for stub keyword detection
+- Python files are classified as stubs only from executable structure:
+  pass-only functions, NotImplementedError raises, empty files, syntax errors,
+  or tiny placeholder-only files.
+- Python files are not classified as stubs merely because variable names,
+  regex constants, comments, or strings contain words like TODO, STUB,
+  PLACEHOLDER, or NOT IMPLEMENTED.
 """
 
 from __future__ import annotations
@@ -22,10 +27,8 @@ import argparse
 import ast
 import datetime as dt
 import hashlib
-import io
 import json
 import re
-import tokenize
 from pathlib import Path
 from typing import Any
 
@@ -51,13 +54,12 @@ STD_IMPORTS = {
     "re", "sys", "tokenize", "typing", "subprocess", "shutil", "zipfile",
 }
 
-STUB_PATTERNS = [
+TEXT_STUB_PATTERNS = [
     re.compile(r"\bTODO\b", re.I),
     re.compile(r"\bFIXME\b", re.I),
     re.compile(r"\bPLACEHOLDER\b", re.I),
     re.compile(r"\bSTUB\b", re.I),
     re.compile(r"\bNOT IMPLEMENTED\b", re.I),
-    re.compile(r"raise\s+NotImplementedError\b"),
 ]
 
 LOCAL_REF_PATTERNS = [
@@ -108,52 +110,6 @@ def is_control(path_str: str) -> bool:
     return path_str.startswith("core_lite/") and path_str.endswith((".yml", ".yaml", ".json"))
 
 
-def py_without_strings_comments(text: str) -> str:
-    out: list[str] = []
-    try:
-        for tok in tokenize.generate_tokens(io.StringIO(text).readline):
-            if tok.type in {tokenize.STRING, tokenize.COMMENT}:
-                out.append(" ")
-            else:
-                out.append(tok.string)
-    except tokenize.TokenError:
-        return text
-    return " ".join(out)
-
-
-def scan_text_for_stub(text: str, path: Path) -> tuple[bool, list[str]]:
-    stripped = text.strip()
-    if not stripped:
-        return True, ["empty file"]
-
-    scan_text = py_without_strings_comments(text) if path.suffix == ".py" else text
-    reasons = [f"matched stub pattern: {pat.pattern}" for pat in STUB_PATTERNS if pat.search(scan_text)]
-
-    if path.suffix == ".py":
-        try:
-            tree = ast.parse(text)
-            for node in ast.walk(tree):
-                if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
-                    if all(isinstance(stmt, ast.Pass) for stmt in node.body):
-                        reasons.append(f"function {node.name} only contains pass")
-                    if any(
-                        isinstance(stmt, ast.Raise)
-                        and (
-                            (isinstance(stmt.exc, ast.Call) and getattr(stmt.exc.func, "id", "") == "NotImplementedError")
-                            or (isinstance(stmt.exc, ast.Name) and stmt.exc.id == "NotImplementedError")
-                        )
-                        for stmt in node.body
-                    ):
-                        reasons.append(f"function {node.name} raises NotImplementedError")
-        except SyntaxError:
-            reasons.append("python syntax error")
-
-    if len(stripped) < 40 and stripped.lower() in {"todo", "placeholder", "stub", "not implemented"}:
-        reasons.append("tiny placeholder content")
-
-    return bool(reasons), reasons
-
-
 def read(path: Path) -> tuple[str, str | None]:
     try:
         return path.read_text(encoding="utf-8"), None
@@ -161,6 +117,84 @@ def read(path: Path) -> tuple[str, str | None]:
         return "", "non_utf8"
     except OSError as exc:
         return "", f"read_error:{exc}"
+
+
+def python_stub_reasons(text: str) -> list[str]:
+    stripped = text.strip()
+    if not stripped:
+        return ["empty file"]
+
+    if len(stripped) < 40 and stripped.lower() in {"todo", "placeholder", "stub", "not implemented"}:
+        return ["tiny placeholder content"]
+
+    reasons: list[str] = []
+
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return ["python syntax error"]
+
+    module_body = [
+        node for node in tree.body
+        if not isinstance(node, (ast.Import, ast.ImportFrom, ast.Expr))
+    ]
+    if module_body and all(isinstance(node, ast.Pass) for node in module_body):
+        reasons.append("module body only contains pass")
+
+    for node in ast.walk(tree):
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            body = [
+                stmt for stmt in node.body
+                if not (
+                    isinstance(stmt, ast.Expr)
+                    and isinstance(getattr(stmt, "value", None), ast.Constant)
+                    and isinstance(stmt.value.value, str)
+                )
+            ]
+
+            if not body:
+                reasons.append(f"function {node.name} has no executable body after docstring")
+                continue
+
+            if all(isinstance(stmt, ast.Pass) for stmt in body):
+                reasons.append(f"function {node.name} only contains pass")
+
+            if any(
+                isinstance(stmt, ast.Raise)
+                and (
+                    (
+                        isinstance(stmt.exc, ast.Call)
+                        and getattr(stmt.exc.func, "id", "") == "NotImplementedError"
+                    )
+                    or (
+                        isinstance(stmt.exc, ast.Name)
+                        and stmt.exc.id == "NotImplementedError"
+                    )
+                )
+                for stmt in body
+            ):
+                reasons.append(f"function {node.name} raises NotImplementedError")
+
+    return reasons
+
+
+def text_stub_reasons(text: str) -> list[str]:
+    stripped = text.strip()
+    if not stripped:
+        return ["empty file"]
+
+    reasons = [f"matched stub pattern: {pattern.pattern}" for pattern in TEXT_STUB_PATTERNS if pattern.search(text)]
+
+    if len(stripped) < 40 and stripped.lower() in {"todo", "placeholder", "stub", "not implemented"}:
+        reasons.append("tiny placeholder content")
+
+    return reasons
+
+
+def stub_reasons(text: str, path: Path) -> list[str]:
+    if path.suffix == ".py":
+        return python_stub_reasons(text)
+    return text_stub_reasons(text)
 
 
 def local_ref_exists(ref: str, src: Path) -> bool:
@@ -179,20 +213,23 @@ def local_ref_exists(ref: str, src: Path) -> bool:
 
 
 def find_refs(text: str, path: Path) -> list[str]:
-    search_text = py_without_strings_comments(text) if path.suffix == ".py" else text
+    # Do not inspect Python code strings/regexes for markdown/html references.
+    if path.suffix == ".py":
+        return []
+
     refs: set[str] = set()
-    for pat in LOCAL_REF_PATTERNS:
-        for m in pat.finditer(search_text):
-            value = m.group("path").strip()
-            if value and not value.startswith(("http://", "https://", "mailto:", "tel:", "#")) and not value.startswith("?P<"):
+    for pattern in LOCAL_REF_PATTERNS:
+        for match in pattern.finditer(text):
+            value = match.group("path").strip()
+            if value and not value.startswith(("http://", "https://", "mailto:", "tel:", "#")):
                 refs.add(value)
     return sorted(refs)
 
 
 def py_import_refs(text: str, root: Path) -> list[str]:
     refs: set[str] = set()
-    for m in PY_IMPORT_RE.finditer(text):
-        mod = m.group("frommod") or m.group("importmod") or ""
+    for match in PY_IMPORT_RE.finditer(text):
+        mod = match.group("frommod") or match.group("importmod") or ""
         top = mod.split(".", 1)[0]
         if not mod or top in STD_IMPORTS:
             continue
@@ -213,7 +250,11 @@ def build_inbound(files: list[dict[str, Any]]) -> dict[str, set[str]]:
         for ref_value in item.get("local_refs", []):
             clean = ref_value.split("#", 1)[0].split("?", 1)[0]
             base = (parent / clean).as_posix()
-            candidates = {base, base + ".md", base + ".py", base + ".js", base + ".ts", base + ".json", base + ".yml", base + ".yaml", base + ".html", f"{base}/index.html", f"{base}/README.md"}
+            candidates = {
+                base, base + ".md", base + ".py", base + ".js", base + ".ts",
+                base + ".json", base + ".yml", base + ".yaml", base + ".html",
+                f"{base}/index.html", f"{base}/README.md",
+            }
             for candidate in candidates & paths:
                 inbound[candidate].add(item["path"])
         for ref_value in item.get("python_import_refs", []):
@@ -270,11 +311,11 @@ def classify(root: Path, exclude_dirs: set[str]) -> list[dict[str, Any]]:
             files.append(item)
             continue
 
-        is_stub, reasons = scan_text_for_stub(text, path)
+        reasons = stub_reasons(text, path)
         if item["broken_refs"]:
             item["class"] = "BROKEN"
             item["evidence"].append(f"{len(item['broken_refs'])} broken local reference(s)")
-        elif is_stub:
+        elif reasons:
             item["class"] = "STUB"
             item["evidence"].extend(reasons)
         else:
@@ -302,7 +343,13 @@ def classify(root: Path, exclude_dirs: set[str]) -> list[dict[str, Any]]:
     for item in files:
         if item["class"] == "REAL" and not item["inbound_refs"]:
             p = item["path"]
-            if not (p.startswith("tools/") or p.startswith("core_lite/") or is_workflow(p) or p.endswith("README.md") or Path(p).name in CANONICAL_NAMES):
+            if not (
+                p.startswith("tools/")
+                or p.startswith("core_lite/")
+                or is_workflow(p)
+                or p.endswith("README.md")
+                or Path(p).name in CANONICAL_NAMES
+            ):
                 item["class"] = "ORPHAN_CANDIDATE"
                 item["evidence"].append("no inbound references found in scanned text files")
 
@@ -398,7 +445,13 @@ def to_markdown(report: dict[str, Any]) -> str:
             lines.append("- Inbound refs:")
             lines.extend(f"  - `{r}`" for r in item["inbound_refs"])
         lines.append("")
-    lines += ["## Receipt", "", f"- Receipt hash: `{report['receipt']['hash']}`", "- Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`", ""]
+    lines += [
+        "## Receipt",
+        "",
+        f"- Receipt hash: `{report['receipt']['hash']}`",
+        "- Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`",
+        "",
+    ]
     return "\n".join(lines)
 
 
