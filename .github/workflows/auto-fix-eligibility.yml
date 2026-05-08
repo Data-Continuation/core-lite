@@ -1,4 +1,4 @@
-name: Core-Lite Ecosystem Maintainer Scan
+name: Core-Lite Auto-Fix Eligibility
 
 on:
   workflow_dispatch:
@@ -6,12 +6,12 @@ on:
     paths:
       - 'core_lite/workstreams.yml'
       - 'core_lite/transition_blocks.yml'
-      - 'tools/validate_workstreams.py'
       - 'tools/ecosystem_maintainer.py'
-      - 'github/workflows/ecosystem-maintainer-scan.yml'
+      - 'tools/auto_fix_eligibility.py'
+      - 'github/workflows/auto-fix-eligibility.yml'
 
 jobs:
-  maintainer-scan:
+  auto-fix-eligibility:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,18 +23,24 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install dependencies
+        run: python -m pip install pyyaml
+
       - name: Validate workstreams
         run: python tools/validate_workstreams.py
 
       - name: Run ecosystem maintainer scan
         run: python tools/ecosystem_maintainer.py --root .
 
-      - name: Upload ecosystem maintainer artifacts
+      - name: Generate auto-fix eligibility plan
+        run: python tools/auto_fix_eligibility.py --root .
+
+      - name: Upload auto-fix eligibility artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: core-lite-ecosystem-maintainer-scan
+          name: core-lite-auto-fix-eligibility
           path: |
-            reports/ecosystem_maintainer_scan.md
-            reports/ecosystem_maintainer_scan.json
-            receipts/ecosystem_maintainer_receipts.jsonl
+            reports/auto_fix_eligibility.md
+            reports/auto_fix_eligibility.json
+            receipts/auto_fix_eligibility_receipts.jsonl
           if-no-files-found: error
