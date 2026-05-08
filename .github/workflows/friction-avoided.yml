@@ -1,0 +1,42 @@
+name: Core-Lite Friction Avoided
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'core_lite/friction_events.yml'
+      - 'core_lite/transition_blocks.yml'
+      - 'tools/measure_friction.py'
+      - 'github/workflows/friction-avoided.yml'
+
+jobs:
+  friction-avoided:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python -m pip install pyyaml
+
+      - name: Validate workstreams
+        run: python tools/validate_workstreams.py
+
+      - name: Generate friction avoided report
+        run: python tools/measure_friction.py --root .
+
+      - name: Upload friction avoided artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: core-lite-friction-avoided
+          path: |
+            reports/friction_avoided.md
+            reports/friction_avoided.json
+            receipts/friction_avoided_receipts.jsonl
+          if-no-files-found: error
