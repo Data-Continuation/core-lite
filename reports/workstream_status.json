@@ -1,0 +1,140 @@
+{
+  "generated_at": "2026-05-08T04:28:17+00:00",
+  "receipt": {
+    "error_count": 0,
+    "hash": "9e1b4f3954fb633b42225c1b0d1ffce435f3bcd42e1d63921f125a591e5f7f01",
+    "previous_hash": null,
+    "receipt_type": "core_lite.workstream_status",
+    "result": "pass",
+    "timestamp": "2026-05-08T04:28:17+00:00",
+    "transition_block_count": 27,
+    "warning_count": 8,
+    "workstream_count": 8
+  },
+  "summary": {
+    "error_count": 0,
+    "result": "pass",
+    "transition_block_count": 27,
+    "warning_count": 8,
+    "workstream_count": 8
+  },
+  "workstreams": [
+    {
+      "allowed_block_count": 11,
+      "done_when_count": 7,
+      "errors": [],
+      "forbidden_block_count": 5,
+      "goal": "Turn footprint-auditor into a usable privacy/security audit product without starting over.",
+      "human_review_boundary_count": 5,
+      "id": "W1",
+      "name": "footprint-auditor product hardening",
+      "next_action": "Run ecosystem maintainer scan against footprint-auditor and classify active files.",
+      "status": "active",
+      "warnings": [
+        "forbidden block is not defined in transition block registry: CREATE_NEW_REPO"
+      ]
+    },
+    {
+      "allowed_block_count": 12,
+      "done_when_count": 5,
+      "errors": [],
+      "forbidden_block_count": 4,
+      "goal": "Build the bounded autonomous maintainer that can classify, repair, quarantine, complete, and receipt repo maintenance work.",
+      "human_review_boundary_count": 4,
+      "id": "W2",
+      "name": "Core-Lite Ecosystem Maintainer",
+      "next_action": "Implement maintainer scan using existing transition blocks, not a new scaffold.",
+      "status": "active",
+      "warnings": []
+    },
+    {
+      "allowed_block_count": 5,
+      "done_when_count": 4,
+      "errors": [],
+      "forbidden_block_count": 3,
+      "goal": "Convert the transition periodic table into executable block constraints for Core-Lite.",
+      "human_review_boundary_count": 3,
+      "id": "W3",
+      "name": "Transition Periodic Table operational blocks",
+      "next_action": "Keep transition blocks executable and minimal enough for the maintainer to enforce.",
+      "status": "active",
+      "warnings": []
+    },
+    {
+      "allowed_block_count": 6,
+      "done_when_count": 5,
+      "errors": [],
+      "forbidden_block_count": 4,
+      "goal": "Create a governed LLM runtime that produces classified, receipted proposed transitions.",
+      "human_review_boundary_count": 3,
+      "id": "W4",
+      "name": "Core-Lite Headless LLM Service",
+      "next_action": "Remain design-captured until W2 and W3 can govern file creation.",
+      "status": "blocked",
+      "warnings": [
+        "forbidden block is not defined in transition block registry: DIRECT_REPO_MUTATION_FROM_LLM",
+        "forbidden block is not defined in transition block registry: TRAIN_FOUNDATION_MODEL"
+      ]
+    },
+    {
+      "allowed_block_count": 7,
+      "done_when_count": 5,
+      "errors": [],
+      "forbidden_block_count": 4,
+      "goal": "Route human/system communications through governed, receipted channels.",
+      "human_review_boundary_count": 4,
+      "id": "W5",
+      "name": "StegVerse Communications Service and SMS Bridge",
+      "next_action": "Capture event and receipt requirements only; do not create a service tree yet.",
+      "status": "blocked",
+      "warnings": [
+        "forbidden block is not defined in transition block registry: BULK_MARKETING",
+        "forbidden block is not defined in transition block registry: UNBOUNDED_CHATBOT"
+      ]
+    },
+    {
+      "allowed_block_count": 5,
+      "done_when_count": 5,
+      "errors": [],
+      "forbidden_block_count": 3,
+      "goal": "Preserve phone-number separation while preparing programmable SMS transport.",
+      "human_review_boundary_count": 4,
+      "id": "W6",
+      "name": "Google Voice and Twilio channel strategy",
+      "next_action": "Document channel roles and keep personal number outside operational StegVerse control.",
+      "status": "active",
+      "warnings": [
+        "forbidden block is not defined in transition block registry: BULK_MARKETING",
+        "forbidden block is not defined in transition block registry: MOVE_PERSONAL_NUMBER_TO_PUBLIC_ROLE"
+      ]
+    },
+    {
+      "allowed_block_count": 7,
+      "done_when_count": 5,
+      "errors": [],
+      "forbidden_block_count": 4,
+      "goal": "Keep public StegVerse pages, pricing, and demo links aligned without changing public claims blindly.",
+      "human_review_boundary_count": 4,
+      "id": "W7",
+      "name": "Site pricing and demo alignment",
+      "next_action": "Only fix mechanically obvious link or manifest mismatches unless public claim review is approved.",
+      "status": "active",
+      "warnings": []
+    },
+    {
+      "allowed_block_count": 7,
+      "done_when_count": 5,
+      "errors": [],
+      "forbidden_block_count": 4,
+      "goal": "Keep formalism repositories and tests aligned across canonical and test organizations.",
+      "human_review_boundary_count": 4,
+      "id": "W8",
+      "name": "Formalisms and formalism-tests continuity",
+      "next_action": "Track canonical/test repo mapping before creating or mutating formalism files.",
+      "status": "active",
+      "warnings": [
+        "forbidden block is not defined in transition block registry: CHANGE_CANONICAL_FORMALISM_WITHOUT_REVIEW"
+      ]
+    }
+  ]
+}
