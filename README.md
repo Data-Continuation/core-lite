@@ -104,3 +104,21 @@ This scan performs no source mutation. It classifies files and emits reports/rec
 
 The first mutation-capable version should only be added after scan output proves which transition block applies.
 
+## Friction Avoided Metric
+
+Run:
+
+```bash
+python tools/measure_friction.py --root .
+```
+
+It writes:
+
+```text
+reports/friction_avoided.md
+reports/friction_avoided.json
+receipts/friction_avoided_receipts.jsonl
+```
+
+This measures estimated hours saved, repeated prompts prevented, manual actions prevented, reruns prevented, and trust-friction score.
+

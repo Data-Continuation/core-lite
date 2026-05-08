@@ -1,13 +1,13 @@
 Assumptions:
-1. Previous uploaded workstream status passed with 0 errors and 0 warnings.
-2. W2 is the next bounded move.
-3. This bundle adds a scan-only ecosystem maintainer and no source mutation engine.
+1. Friction Avoided is now a Core-Lite metric, not just a discussion point.
+2. The metric is generated from core_lite/friction_events.yml and receipt-backed.
+3. This bundle adds the metric without creating SMS, LLM, communications, or service scaffolds.
 
 Done definition:
 1. python tools/validate_workstreams.py returns pass.
-2. python tools/ecosystem_maintainer.py --root . returns pass.
-3. Maintainer writes Markdown, JSON, and receipt outputs.
-4. Source mutation count remains 0.
+2. python tools/measure_friction.py --root . returns pass.
+3. The friction tool writes Markdown, JSON, and receipt outputs.
+4. Generated Markdown is uploaded by workflow as a downloadable artifact.
 
 validate_workstreams stdout:
 Wrote reports/workstream_status.md
@@ -29,15 +29,16 @@ Traceback (most recent call last):
 artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
 
 
-ecosystem_maintainer stdout:
-Wrote /mnt/data/core-lite-ecosystem-maintainer-scan/reports/ecosystem_maintainer_scan.md
-Wrote /mnt/data/core-lite-ecosystem-maintainer-scan/reports/ecosystem_maintainer_scan.json
-Wrote /mnt/data/core-lite-ecosystem-maintainer-scan/receipts/ecosystem_maintainer_receipts.jsonl
+measure_friction stdout:
+Wrote /mnt/data/core-lite-friction-avoided-metric/reports/friction_avoided.md
+Wrote /mnt/data/core-lite-friction-avoided-metric/reports/friction_avoided.json
+Wrote /mnt/data/core-lite-friction-avoided-metric/receipts/friction_avoided_receipts.jsonl
 Result: pass
-Mutations performed: 0
+Estimated hours saved: 31.05
+Repeated prompts prevented: 219
 
 
-ecosystem_maintainer stderr:
+measure_friction stderr:
 Spreadsheet runtime warmup failed during python startup
 Traceback (most recent call last):
   File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
@@ -52,4 +53,4 @@ artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty col
 
 Exit codes:
 validate_workstreams=0
-ecosystem_maintainer=0
+measure_friction=0

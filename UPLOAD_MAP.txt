@@ -1,3 +1,7 @@
-This bundle uses github/workflows/ecosystem-maintainer-scan.yml so it remains visible on iPhone.
+This bundle uses visible workflow paths under github/workflows.
 The leading dot has been removed inside the bundle.
-For GitHub Actions to recognize the workflow, place this workflow file in the repository's Actions workflow folder.
+For GitHub Actions to recognize the workflows, place each workflow file in the repository's Actions workflow folder.
+
+Visible bundle workflow files:
+- github/workflows/ecosystem-maintainer-scan.yml
+- github/workflows/friction-avoided.yml
