@@ -122,3 +122,40 @@ receipts/friction_avoided_receipts.jsonl
 
 This measures estimated hours saved, repeated prompts prevented, manual actions prevented, reruns prevented, and trust-friction score.
 
+## Bundle Registry
+
+Run:
+
+```bash
+python tools/bundle_registry_report.py --root .
+```
+
+It writes:
+
+```text
+reports/bundle_registry.md
+reports/bundle_registry.json
+receipts/bundle_registry_receipts.jsonl
+```
+
+The report tracks bundle status, supersession, failed/corrective bundle churn, current canonical bundles, and estimated handling friction from the observed ZIP inventory.
+
+## Auto-Fix Eligibility
+
+Run:
+
+```bash
+python tools/ecosystem_maintainer.py --root .
+python tools/auto_fix_eligibility.py --root .
+```
+
+It writes:
+
+```text
+reports/auto_fix_eligibility.md
+reports/auto_fix_eligibility.json
+receipts/auto_fix_eligibility_receipts.jsonl
+```
+
+The report classifies each scanned file into a next safe transition bucket without applying mutations.
+

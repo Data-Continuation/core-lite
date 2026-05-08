@@ -5,3 +5,5 @@ For GitHub Actions to recognize the workflows, place each workflow file in the r
 Visible bundle workflow files:
 - github/workflows/ecosystem-maintainer-scan.yml
 - github/workflows/friction-avoided.yml
+- github/workflows/bundle-registry.yml
+- github/workflows/auto-fix-eligibility.yml

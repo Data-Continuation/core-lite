@@ -1,20 +1,18 @@
 Assumptions:
-1. Core-Lite is now clean and scan-only operation is verified.
-2. The next bounded move is to run Core-Lite against an existing debt-bearing repo, starting with StegVerse-Labs/footprint-auditor.
-3. The target repo scan must not commit to or mutate the target repository.
-4. The workflow writes reports and receipts only inside the ephemeral GitHub Actions workspace.
-5. Markdown outputs are uploaded as downloadable workflow artifacts.
+1. The target repo scan worked but produced role-blind classifications.
+2. .gitkeep files are support artifacts, not binary unknowns.
+3. config files are control files.
+4. docs files are support artifacts.
+5. src files should not be marked orphan merely because no inbound text reference exists in a minimal repo.
+6. This bundle changes classification only; it does not add mutation.
 
 Done definition:
-1. Workflow has workflow_dispatch inputs for target_repository and target_ref.
-2. Default target repository is StegVerse-Labs/footprint-auditor.
-3. Workflow checks out Core-Lite and the target repository separately.
-4. Workflow validates Core-Lite workstreams.
-5. Workflow runs ecosystem_maintainer.py against the target checkout.
-6. Workflow runs auto_fix_eligibility.py against the target checkout.
-7. Workflow uploads both Markdown reports, both JSON reports, and both receipt logs.
-8. No source files in the target repo are committed or modified outside the temporary runner workspace.
-
-Files in this bundle:
-- github/workflows/target-repo-scan.yml
-- VERIFY_RESULT.txt
+1. Replace tools/ecosystem_maintainer.py.
+2. Rerun Core-Lite Target Repo Scan against StegVerse-Labs/footprint-auditor.
+3. Expected improvement:
+   - config/*.yaml => CANONICAL_OR_CONTROL
+   - docs/* => SUPPORT_ARTIFACT
+   - .gitkeep => SUPPORT_ARTIFACT
+   - src/scanner/commit_metadata.py => REAL unless direct stub/broken evidence exists
+4. Auto-fix eligibility should shift from HUMAN_REVIEW_REQUIRED noise toward NO_ACTION / DO_NOT_TOUCH.
+5. Source mutations remain 0.
