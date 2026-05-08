@@ -1,10 +1,10 @@
 Assumptions:
-1. The previous classifier-fix bundle was incomplete and only exposed VERIFY_RESULT.txt on iPhone.
-2. This replacement bundle contains the actual full tools/ecosystem_maintainer.py file.
-3. No other source files are included.
+1. The latest maintainer scan improved workflow/support classification.
+2. Remaining false positive: tools/ecosystem_maintainer.py still classified as STUB because Python identifier names/constants contain STUB.
+3. Python stub classification should use executable AST evidence only, not keyword matches in code identifiers, constants, strings, comments, or regex definitions.
 
 Done definition:
-1. Bundle contains tools/ecosystem_maintainer.py.
-2. Bundle contains VERIFY_RESULT.txt.
-3. tools/ecosystem_maintainer.py is a full drop-in file replacement.
-4. Expected next run: workflow/control files classify as CANONICAL_OR_CONTROL; upload/verify notes classify as SUPPORT_ARTIFACT; the maintainer script no longer classifies itself as STUB due only to detector strings.
+1. Replace tools/ecosystem_maintainer.py.
+2. Rerun Core-Lite Ecosystem Maintainer Scan.
+3. Expected result: tools/ecosystem_maintainer.py classifies as REAL unless it contains pass-only functions, NotImplementedError raises, syntax errors, empty content, or tiny placeholder-only content.
+4. Source mutations remain 0.
