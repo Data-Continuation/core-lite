@@ -159,3 +159,21 @@ receipts/auto_fix_eligibility_receipts.jsonl
 
 The report classifies each scanned file into a next safe transition bucket without applying mutations.
 
+## Capability Gap Plan
+
+Run against a repository root:
+
+```bash
+python tools/capability_gap_plan.py --root .
+```
+
+It writes:
+
+```text
+reports/capability_gap_plan.md
+reports/capability_gap_plan.json
+receipts/capability_gap_receipts.jsonl
+```
+
+The report detects when a repository is clean but underbuilt relative to its inferred product role.
+

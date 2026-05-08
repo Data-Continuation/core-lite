@@ -7,3 +7,4 @@ Visible bundle workflow files:
 - github/workflows/friction-avoided.yml
 - github/workflows/bundle-registry.yml
 - github/workflows/auto-fix-eligibility.yml
+- github/workflows/target-capability-gap.yml

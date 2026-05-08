@@ -1,18 +1,58 @@
 Assumptions:
-1. The target repo scan worked but produced role-blind classifications.
-2. .gitkeep files are support artifacts, not binary unknowns.
-3. config files are control files.
-4. docs files are support artifacts.
-5. src files should not be marked orphan merely because no inbound text reference exists in a minimal repo.
-6. This bundle changes classification only; it does not add mutation.
+1. footprint-auditor is clean under scan/auto-fix eligibility.
+2. The remaining issue is capability gap detection, not cleanup debt.
+3. This bundle adds capability gap planning only.
+4. No source mutation should occur.
 
 Done definition:
-1. Replace tools/ecosystem_maintainer.py.
-2. Rerun Core-Lite Target Repo Scan against StegVerse-Labs/footprint-auditor.
-3. Expected improvement:
-   - config/*.yaml => CANONICAL_OR_CONTROL
-   - docs/* => SUPPORT_ARTIFACT
-   - .gitkeep => SUPPORT_ARTIFACT
-   - src/scanner/commit_metadata.py => REAL unless direct stub/broken evidence exists
-4. Auto-fix eligibility should shift from HUMAN_REVIEW_REQUIRED noise toward NO_ACTION / DO_NOT_TOUCH.
-5. Source mutations remain 0.
+1. python tools/validate_workstreams.py returns pass.
+2. python tools/capability_gap_plan.py --root . returns pass.
+3. Generated Markdown, JSON, and receipt outputs are produced.
+4. The target workflow runs maintainer scan, auto-fix eligibility, and capability gap planning against StegVerse-Labs/footprint-auditor.
+5. Mutation count remains 0.
+
+validate_workstreams stdout:
+Wrote reports/workstream_status.md
+Wrote reports/workstream_status.json
+Wrote receipts/workstream_receipts.jsonl
+Result: pass
+
+
+validate_workstreams stderr:
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/generated/interface/models.py", line 48821, in hydrate_crdt_from_proto
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/remote.py", line 747, in __call__
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+
+
+capability_gap_plan stdout:
+Wrote /mnt/data/core-lite-capability-gap-plan/reports/capability_gap_plan.md
+Wrote /mnt/data/core-lite-capability-gap-plan/reports/capability_gap_plan.json
+Wrote /mnt/data/core-lite-capability-gap-plan/receipts/capability_gap_receipts.jsonl
+Result: pass
+Missing or placeholder capabilities: 8
+Mutations performed: 0
+
+
+capability_gap_plan stderr:
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/generated/interface/models.py", line 48821, in hydrate_crdt_from_proto
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/remote.py", line 747, in __call__
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+
+
+Exit codes:
+validate_workstreams=0
+capability_gap_plan=0
