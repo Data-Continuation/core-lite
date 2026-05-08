@@ -636,3 +636,58 @@ blocks:
     forbidden_mutation: [quarantine or complete files based only on low-confidence classifier signals]
     verification: [false-positive-prone patterns are listed]
     receipt_type: transition.verify_classifier_false_positives
+
+  - id: CANONICAL_BUNDLE_REGISTRY
+    family: verification
+    purpose: Maintain a canonical registry of generated bundles, their purpose, workstream, status, and supersession relationships.
+    allowed_when:
+      - bundle-only delivery is active
+      - bundle inventory or bundle event exists
+    allowed_mutation:
+      - write bundle registry entry
+      - update bundle status
+      - record supersession relationship
+    forbidden_mutation:
+      - delete local user ZIPs
+      - assume all ZIPs are failures
+      - create replacement bundle without supersession entry
+    verification:
+      - bundle id is unique
+      - bundle status is known
+      - supersession references resolve
+    receipt_type: transition.canonical_bundle_registry
+
+  - id: VERIFY_BUNDLE_SUPERSESSION
+    family: verification
+    purpose: Verify that superseded, failed, obsolete, current, and quarantine bundle states are explicit.
+    allowed_when:
+      - bundle registry exists
+    allowed_mutation:
+      - write bundle supersession report
+    forbidden_mutation:
+      - leave multiple current bundles for the same purpose without explanation
+      - mark bundle obsolete without registry evidence
+    verification:
+      - supersedes references resolve
+      - superseded_by references resolve
+      - current bundles are listed
+    receipt_type: transition.verify_bundle_supersession
+
+  - id: MEASURE_BUNDLE_CHURN_AVOIDED
+    family: receipts
+    purpose: Estimate handling friction avoided by reducing repeated, failed, superseded, or obsolete bundle churn.
+    allowed_when:
+      - bundle registry exists
+      - observed or tracked bundle count exists
+    allowed_mutation:
+      - write bundle churn report
+      - append bundle registry receipt
+    forbidden_mutation:
+      - delete bundles
+      - alter source code
+    verification:
+      - observed bundle count is recorded
+      - current bundles are listed
+      - quarantine candidates are listed
+    receipt_type: transition.measure_bundle_churn_avoided
+

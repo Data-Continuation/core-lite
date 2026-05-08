@@ -1,0 +1,219 @@
+version: 1
+
+registry:
+  name: Core-Lite Bundle Registry
+  purpose: >
+    Track StegVerse ZIP bundle inventory, canonical current bundles, supersession,
+    obsolete bundle churn, and estimated handling friction.
+  rule: Bundle-only delivery is valid. Untracked bundle proliferation is not.
+  observed_external_inventory:
+    source: user_ios_files_screenshot
+    folder_name: ZIPs
+    observed_item_count: 869
+    observed_at: 2026-05-08
+    note: >
+      The ZIPs folder count is a local inventory signal. Not every item is a
+      failure. The registry separates intentional bundle-only development from
+      avoidable corrective or obsolete bundle churn.
+
+defaults:
+  estimated_handling_minutes_per_bundle_low: 3
+  estimated_handling_minutes_per_bundle_likely: 6
+  estimated_handling_minutes_per_bundle_high: 10
+
+status_values:
+  - current
+  - superseded
+  - obsolete
+  - quarantine
+  - failed
+  - historical
+
+classes:
+  - productive_required
+  - versioned_development
+  - superseded_legitimate
+  - corrective_rework
+  - avoidable_failure_churn
+  - obsolete_unknown
+
+bundles:
+  - id: B-CORELITE-001
+    name: core-lite-parallel-transition-control.zip
+    workstream_id: W2
+    class: versioned_development
+    status: superseded
+    purpose: Initial parallel transition control surface.
+    supersedes: []
+    superseded_by: B-CORELITE-003
+    source_only: false
+    generated_artifacts_included: true
+    contains_markdown: true
+    verification_result: pass_with_cleanup_needed
+    notes: Included generated reports/receipts and needed iPhone-visible correction.
+
+  - id: B-CORELITE-002
+    name: core-lite-parallel-transition-control-source-only.zip
+    workstream_id: W2
+    class: corrective_rework
+    status: superseded
+    purpose: Remove generated reports and receipts from source bundle.
+    supersedes:
+      - B-CORELITE-001
+    superseded_by: B-CORELITE-003
+    source_only: true
+    generated_artifacts_included: false
+    contains_markdown: true
+    verification_result: superseded
+    notes: Corrected source/runtime artifact mixing but still carried hidden workflow path issue.
+
+  - id: B-CORELITE-003
+    name: core-lite-parallel-transition-control-iphone-visible.zip
+    workstream_id: W2
+    class: corrective_rework
+    status: superseded
+    purpose: Make workflow path visible on iPhone by using visible bundle path.
+    supersedes:
+      - B-CORELITE-002
+    superseded_by: B-CORELITE-004
+    source_only: true
+    generated_artifacts_included: false
+    contains_markdown: true
+    verification_result: pass
+    notes: Established visible workflow path convention.
+
+  - id: B-CORELITE-004
+    name: core-lite-transition-block-warning-fix.zip
+    workstream_id: W3
+    class: versioned_development
+    status: superseded
+    purpose: Add missing forbidden/high-risk transition blocks and reduce warnings to zero.
+    supersedes:
+      - B-CORELITE-003
+    superseded_by: B-CORELITE-005
+    source_only: true
+    generated_artifacts_included: false
+    contains_markdown: false
+    verification_result: pass
+    notes: Cleaned transition block registry warnings.
+
+  - id: B-CORELITE-005
+    name: core-lite-ecosystem-maintainer-scan.zip
+    workstream_id: W2
+    class: versioned_development
+    status: superseded
+    purpose: Add scan-only ecosystem maintainer.
+    supersedes:
+      - B-CORELITE-004
+    superseded_by: B-CORELITE-006
+    source_only: true
+    generated_artifacts_included: false
+    contains_markdown: true
+    verification_result: pass_local_then_ci_dependency_failure
+    notes: Introduced maintainer scan but workflow dependency was missing in active CI path.
+
+  - id: B-CORELITE-006
+    name: core-lite-ecosystem-maintainer-workflow-dependency-fix.zip
+    workstream_id: W2
+    class: corrective_rework
+    status: superseded
+    purpose: Install PyYAML before running validator in maintainer workflow.
+    supersedes:
+      - B-CORELITE-005
+    superseded_by: B-CORELITE-008
+    source_only: true
+    generated_artifacts_included: false
+    contains_markdown: false
+    verification_result: insufficient_alone
+    notes: Workflow-only fix was not robust enough because validator itself still depended on PyYAML availability.
+
+  - id: B-CORELITE-007
+    name: core-lite-friction-avoided-metric.zip
+    workstream_id: W2
+    class: versioned_development
+    status: superseded
+    purpose: Add Friction Avoided metric.
+    supersedes:
+      - B-CORELITE-006
+    superseded_by: B-CORELITE-008
+    source_only: true
+    generated_artifacts_included: false
+    contains_markdown: true
+    verification_result: pass
+    notes: Friction metric generated 31.05 estimated hours saved and 219 repeated prompts prevented.
+
+  - id: B-CORELITE-008
+    name: core-lite-pyyaml-repeat-failure-hardening.zip
+    workstream_id: W2
+    class: corrective_rework
+    status: superseded
+    purpose: Harden validator against repeated PyYAML missing dependency failure.
+    supersedes:
+      - B-CORELITE-006
+      - B-CORELITE-007
+    superseded_by: B-CORELITE-010
+    source_only: true
+    generated_artifacts_included: false
+    contains_markdown: false
+    verification_result: pass
+    notes: Validator self-installs PyYAML if missing.
+
+  - id: B-CORELITE-009
+    name: core-lite-maintainer-classifier-false-positive-fix.zip
+    workstream_id: W2
+    class: corrective_rework
+    status: failed
+    purpose: Intended to fix classifier false positives.
+    supersedes:
+      - B-CORELITE-008
+    superseded_by: B-CORELITE-010
+    source_only: true
+    generated_artifacts_included: false
+    contains_markdown: false
+    verification_result: failed_bundle_content
+    notes: Bundle exposed only VERIFY_RESULT.txt and was unusable.
+
+  - id: B-CORELITE-010
+    name: core-lite-maintainer-classifier-false-positive-fix-v2.zip
+    workstream_id: W2
+    class: corrective_rework
+    status: superseded
+    purpose: Provide actual maintainer classifier false-positive fix.
+    supersedes:
+      - B-CORELITE-009
+    superseded_by: B-CORELITE-011
+    source_only: true
+    generated_artifacts_included: false
+    contains_markdown: false
+    verification_result: partial_pass
+    notes: Fixed workflow/support false positives but Python scanner still classified itself as STUB.
+
+  - id: B-CORELITE-011
+    name: core-lite-maintainer-python-stub-classifier-fix.zip
+    workstream_id: W2
+    class: corrective_rework
+    status: current
+    purpose: Fix Python stub classifier to avoid keyword false positives.
+    supersedes:
+      - B-CORELITE-010
+    superseded_by: null
+    source_only: true
+    generated_artifacts_included: false
+    contains_markdown: false
+    verification_result: pass
+    notes: Latest maintainer scan shows STUB 0, ORPHAN_CANDIDATE 0, BROKEN 0.
+
+  - id: B-CORELITE-012
+    name: core-lite-bundle-registry-supersession.zip
+    workstream_id: W2
+    class: versioned_development
+    status: current
+    purpose: Add bundle registry and supersession reporting.
+    supersedes:
+      - B-CORELITE-011
+    superseded_by: null
+    source_only: true
+    generated_artifacts_included: false
+    contains_markdown: true
+    verification_result: pending_user_run
+    notes: Introduces canonical bundle tracking and bundle churn metrics.

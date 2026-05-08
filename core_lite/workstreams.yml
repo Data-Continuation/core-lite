@@ -51,6 +51,9 @@ workstreams:
       - WRITE_RECEIPT
       - MEASURE_FRICTION_AVOIDED
       - VERIFY_CLASSIFIER_FALSE_POSITIVES
+      - CANONICAL_BUNDLE_REGISTRY
+      - VERIFY_BUNDLE_SUPERSESSION
+      - MEASURE_BUNDLE_CHURN_AVOIDED
       - ASK_BOUNDARY_DECISION
     human_review_required_for:
       - deleting non-empty files
