@@ -691,3 +691,35 @@ blocks:
       - quarantine candidates are listed
     receipt_type: transition.measure_bundle_churn_avoided
 
+  - id: PLAN_AUTO_FIX_ELIGIBILITY
+    family: verification
+    purpose: Classify maintainer findings into safe next-action buckets before allowing any mutation.
+    allowed_when:
+      - ecosystem maintainer scan report exists
+    allowed_mutation:
+      - write auto-fix eligibility report
+      - append auto-fix eligibility receipt
+    forbidden_mutation:
+      - mutate source files
+      - quarantine files
+      - complete stubs
+      - delete files
+    verification:
+      - every scanned file receives a recommended bucket
+      - mutation count remains zero
+    receipt_type: transition.plan_auto_fix_eligibility
+
+  - id: VERIFY_MUTATION_READINESS
+    family: verification
+    purpose: Verify whether a proposed mutation is auto-eligible, review-required, or forbidden before execution.
+    allowed_when:
+      - auto-fix eligibility report exists
+    allowed_mutation:
+      - write mutation readiness report
+    forbidden_mutation:
+      - execute mutation
+      - bypass human-review boundaries
+    verification:
+      - mutation readiness is classified before action
+    receipt_type: transition.verify_mutation_readiness
+

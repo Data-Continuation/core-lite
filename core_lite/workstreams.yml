@@ -54,6 +54,8 @@ workstreams:
       - CANONICAL_BUNDLE_REGISTRY
       - VERIFY_BUNDLE_SUPERSESSION
       - MEASURE_BUNDLE_CHURN_AVOIDED
+      - PLAN_AUTO_FIX_ELIGIBILITY
+      - VERIFY_MUTATION_READINESS
       - ASK_BOUNDARY_DECISION
     human_review_required_for:
       - deleting non-empty files
