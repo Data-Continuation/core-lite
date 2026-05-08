@@ -1,56 +1,15 @@
 Assumptions:
-1. Friction Avoided is now a Core-Lite metric, not just a discussion point.
-2. The metric is generated from core_lite/friction_events.yml and receipt-backed.
-3. This bundle adds the metric without creating SMS, LLM, communications, or service scaffolds.
+1. The latest maintainer scan passed, but the classifier produced false positives.
+2. Workflow files should be control files, not orphan candidates.
+3. Core-Lite registry files should not be treated as stub-like just because they discuss stubs.
+4. The maintainer script should not classify itself as a stub because it contains stub-detection terms in strings or regex patterns.
+5. Upload and verification notes are support artifacts, not orphan candidates.
 
 Done definition:
-1. python tools/validate_workstreams.py returns pass.
-2. python tools/measure_friction.py --root . returns pass.
-3. The friction tool writes Markdown, JSON, and receipt outputs.
-4. Generated Markdown is uploaded by workflow as a downloadable artifact.
-
-validate_workstreams stdout:
-Wrote reports/workstream_status.md
-Wrote reports/workstream_status.json
-Wrote receipts/workstream_receipts.jsonl
-Result: pass
-
-
-validate_workstreams stderr:
-Spreadsheet runtime warmup failed during python startup
-Traceback (most recent call last):
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/generated/interface/models.py", line 48821, in hydrate_crdt_from_proto
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/remote.py", line 747, in __call__
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/client.py", line 150, in call
-artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
-
-
-measure_friction stdout:
-Wrote /mnt/data/core-lite-friction-avoided-metric/reports/friction_avoided.md
-Wrote /mnt/data/core-lite-friction-avoided-metric/reports/friction_avoided.json
-Wrote /mnt/data/core-lite-friction-avoided-metric/receipts/friction_avoided_receipts.jsonl
-Result: pass
-Estimated hours saved: 31.05
-Repeated prompts prevented: 219
-
-
-measure_friction stderr:
-Spreadsheet runtime warmup failed during python startup
-Traceback (most recent call last):
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/generated/interface/models.py", line 48821, in hydrate_crdt_from_proto
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/remote.py", line 747, in __call__
-  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/client.py", line 150, in call
-artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
-
-
-Exit codes:
-validate_workstreams=0
-measure_friction=0
+1. Replace tools/ecosystem_maintainer.py with the hardened classifier.
+2. Rerun Core-Lite Ecosystem Maintainer Scan.
+3. Expected improvement:
+   - workflow files classify as CANONICAL_OR_CONTROL
+   - tools/ecosystem_maintainer.py no longer classifies as STUB merely because it contains detection terms
+   - UPLOAD_MAP.txt and VERIFY_RESULT.txt classify as SUPPORT_ARTIFACT
+4. Source mutations remain 0.
