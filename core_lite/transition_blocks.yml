@@ -1,0 +1,422 @@
+version: 1
+
+families:
+  observation: 0xx
+  classification: 1xx
+  mechanical_mutation: 2xx
+  completion: 3xx
+  verification: 4xx
+  receipts: 5xx
+  human_boundary: 6xx
+  communications: 7xx
+  forbidden_high_risk: 9xx
+
+blocks:
+  - id: OBSERVE_REPO
+    family: observation
+    purpose: Inspect repository files, manifests, workflows, and links without mutation.
+    allowed_when:
+      - repository path exists
+      - scan target is inside the repository
+    allowed_mutation: []
+    forbidden_mutation:
+      - modify files
+      - delete files
+      - create service folders
+    verification:
+      - scan result exists
+    receipt_type: transition.observe_repo
+
+  - id: CLASSIFY_ARTIFACT
+    family: classification
+    purpose: Classify files or artifacts by reality state.
+    allowed_when:
+      - artifact was observed
+    allowed_mutation:
+      - write classification report
+    forbidden_mutation:
+      - change classified artifact
+      - delete classified artifact
+    verification:
+      - every classified artifact has a class
+      - every classification has an evidence note
+    receipt_type: transition.classify_artifact
+
+  - id: DETECT_STUB
+    family: classification
+    purpose: Identify placeholder, TODO-only, mock-only, pass-through, or nonfunctional files.
+    allowed_when:
+      - artifact was observed
+    allowed_mutation:
+      - write stub finding
+    forbidden_mutation:
+      - delete stub without a separate approved block
+      - complete stub without a separate completion block
+    verification:
+      - stub evidence is recorded
+    receipt_type: transition.detect_stub
+
+  - id: DETECT_STUB_DEPENDENCY
+    family: classification
+    purpose: Identify files that appear real but depend on stubbed behavior elsewhere.
+    allowed_when:
+      - dependency map exists
+      - stub finding exists
+    allowed_mutation:
+      - write stub dependency finding
+    forbidden_mutation:
+      - modify dependent file without completion or repair block
+    verification:
+      - dependency edge is recorded
+    receipt_type: transition.detect_stub_dependency
+
+  - id: MAP_DEPENDENCY
+    family: observation
+    purpose: Map imports, links, workflow references, package scripts, and declared dependencies.
+    allowed_when:
+      - repository path exists
+    allowed_mutation:
+      - write dependency map report
+    forbidden_mutation:
+      - install dependencies
+      - rewrite imports
+    verification:
+      - dependency map exists
+    receipt_type: transition.map_dependency
+
+  - id: AUTO_FIX_MECHANICAL
+    family: mechanical_mutation
+    purpose: Apply safe, mechanical, reversible changes when evidence is unambiguous.
+    allowed_when:
+      - target file is not canonical
+      - target file is not public-claim-bearing unless fix is link-only
+      - mutation is reversible
+      - rollback entry can be generated
+    allowed_mutation:
+      - fix obviously broken local links
+      - normalize obvious script/report path mismatches
+      - create missing report directories
+      - remove duplicate generated outputs when clearly generated
+    forbidden_mutation:
+      - change product meaning
+      - change canonical formalism language
+      - change pricing
+      - change deployment behavior
+      - delete non-empty files
+    verification:
+      - changed files are listed
+      - rollback entry exists
+      - validator still passes
+    receipt_type: transition.auto_fix_mechanical
+
+  - id: AUTO_QUARANTINE_STUB
+    family: mechanical_mutation
+    purpose: Move or mark inactive stubs so active repo paths no longer rely on fake infrastructure.
+    allowed_when:
+      - file is classified as STUB
+      - file has no active import or public canonical role
+      - rollback path can be generated
+    allowed_mutation:
+      - move inactive stub to quarantine path
+      - write quarantine manifest
+      - mark inactive stub in report
+    forbidden_mutation:
+      - permanently delete file
+      - quarantine canonical artifact
+      - quarantine public page without review
+      - quarantine deployment file without review
+    verification:
+      - dependency graph still resolves
+      - quarantine manifest exists
+      - rollback manifest exists
+    receipt_type: transition.auto_quarantine_stub
+
+  - id: COMPLETE_LOW_RISK_STUB
+    family: completion
+    purpose: Replace a low-risk placeholder with a minimal working implementation when intended behavior is explicit.
+    allowed_when:
+      - file is classified as STUB
+      - intended behavior is documented nearby
+      - implementation is local and bounded
+      - no public claim or canonical definition changes
+    allowed_mutation:
+      - replace placeholder logic with minimal working logic
+      - wire declared script to existing tool
+      - generate report from existing scan data
+    forbidden_mutation:
+      - invent new product architecture
+      - add unused service tree
+      - change formalism definitions
+      - add provider credentials
+      - deploy
+    verification:
+      - syntax check passes
+      - declared command runs
+      - generated output exists if required
+    receipt_type: transition.complete_low_risk_stub
+
+  - id: GENERATE_ROLLBACK
+    family: mechanical_mutation
+    purpose: Produce a rollback manifest for any bounded mutation.
+    allowed_when:
+      - mutation plan exists
+    allowed_mutation:
+      - write rollback manifest
+    forbidden_mutation:
+      - mutate target files
+    verification:
+      - rollback manifest includes every changed path
+    receipt_type: transition.generate_rollback
+
+  - id: VERIFY_REPO
+    family: verification
+    purpose: Run available syntax, manifest, workflow, and report checks.
+    allowed_when:
+      - repository path exists
+    allowed_mutation:
+      - write verification report
+    forbidden_mutation:
+      - change files to make checks pass
+    verification:
+      - verification result exists
+    receipt_type: transition.verify_repo
+
+  - id: VERIFY_PUBLIC_LINKS
+    family: verification
+    purpose: Verify public page links and site navigation targets when site files are present.
+    allowed_when:
+      - site files are present
+    allowed_mutation:
+      - write link report
+    forbidden_mutation:
+      - change public claims
+      - change domain routing
+    verification:
+      - link report exists
+    receipt_type: transition.verify_public_links
+
+  - id: VERIFY_BLOCK_REFERENCE
+    family: verification
+    purpose: Ensure workstreams reference only defined transition blocks.
+    allowed_when:
+      - transition block registry exists
+      - workstream registry exists
+    allowed_mutation:
+      - write validation report
+    forbidden_mutation:
+      - change registries
+    verification:
+      - all block references resolve
+    receipt_type: transition.verify_block_reference
+
+  - id: WRITE_RECEIPT
+    family: receipts
+    purpose: Write a receipt for observed, classified, mutated, verified, or human-reviewed transitions.
+    allowed_when:
+      - event has a timestamp
+      - event has a workstream or block reference
+    allowed_mutation:
+      - append receipt to receipt log
+    forbidden_mutation:
+      - rewrite previous receipt entries
+    verification:
+      - receipt entry exists
+    receipt_type: transition.write_receipt
+
+  - id: ASK_BOUNDARY_DECISION
+    family: human_boundary
+    purpose: Ask the user only when a transition reaches a product, canonical, security, deletion, or irreversible boundary.
+    allowed_when:
+      - proposed action requires human review
+    allowed_mutation:
+      - write pending decision
+      - write decision report
+    forbidden_mutation:
+      - execute the pending action
+    verification:
+      - pending decision has allowed replies
+    receipt_type: transition.ask_boundary_decision
+
+  - id: TASK_INGEST
+    family: observation
+    purpose: Normalize a user task into a bounded workstream event.
+    allowed_when:
+      - task text exists
+    allowed_mutation:
+      - write normalized task event
+    forbidden_mutation:
+      - execute task directly
+    verification:
+      - normalized event exists
+    receipt_type: transition.task_ingest
+
+  - id: BUILD_PROVIDER_ADAPTER
+    family: completion
+    purpose: Build a minimal model-provider adapter only when the Headless LLM workstream is unblocked.
+    allowed_when:
+      - workstream permits provider adapter build
+      - provider contract is explicit
+    allowed_mutation:
+      - create or modify provider adapter file
+    forbidden_mutation:
+      - train foundation model
+      - add unused providers
+      - store secrets in repo
+    verification:
+      - adapter can be imported
+      - adapter has no hardcoded secret
+    receipt_type: transition.build_provider_adapter
+
+  - id: CLASSIFY_OUTPUT
+    family: classification
+    purpose: Classify model or system output before it becomes effect-capable.
+    allowed_when:
+      - output exists
+    allowed_mutation:
+      - write classification result
+    forbidden_mutation:
+      - execute model output
+    verification:
+      - classification is one of allowed routing classes
+    receipt_type: transition.classify_output
+
+  - id: DEFINE_TRANSITION_BLOCK
+    family: completion
+    purpose: Add or refine executable transition block definitions.
+    allowed_when:
+      - block purpose is explicit
+      - allowed and forbidden mutations are specified
+    allowed_mutation:
+      - add transition block definition
+      - refine transition block metadata
+    forbidden_mutation:
+      - add high-risk mutation block without review
+      - change canonical formalism language without review
+    verification:
+      - block validates against schema
+    receipt_type: transition.define_transition_block
+
+  - id: CLASSIFY_TRANSITION_BLOCK
+    family: classification
+    purpose: Assign a transition block to a family and risk tier.
+    allowed_when:
+      - transition block exists
+    allowed_mutation:
+      - write block classification
+    forbidden_mutation:
+      - change block behavior
+    verification:
+      - block family is known
+    receipt_type: transition.classify_transition_block
+
+  - id: RECEIVE_MESSAGE
+    family: communications
+    purpose: Receive an inbound communication event without granting it execution authority.
+    allowed_when:
+      - message payload exists
+    allowed_mutation:
+      - write inbound message event
+    forbidden_mutation:
+      - execute message instruction
+    verification:
+      - inbound event is normalized
+    receipt_type: transition.receive_message
+
+  - id: NORMALIZE_MESSAGE
+    family: communications
+    purpose: Normalize provider-specific communication payloads into StegVerse events.
+    allowed_when:
+      - inbound or outbound message exists
+    allowed_mutation:
+      - write normalized message event
+    forbidden_mutation:
+      - approve action from provider data alone
+    verification:
+      - normalized event has channel, actor, body, and timestamp
+    receipt_type: transition.normalize_message
+
+  - id: MAP_ACTOR
+    family: communications
+    purpose: Map a communication sender or channel to a known actor role.
+    allowed_when:
+      - sender or channel identifier exists
+    allowed_mutation:
+      - write actor mapping result
+    forbidden_mutation:
+      - create new high-trust actor without review
+    verification:
+      - actor confidence is recorded
+    receipt_type: transition.map_actor
+
+  - id: PARSE_DECISION_CODE
+    family: communications
+    purpose: Parse decision codes from constrained human replies.
+    allowed_when:
+      - inbound message body exists
+    allowed_mutation:
+      - write parsed command event
+    forbidden_mutation:
+      - execute command
+    verification:
+      - command and decision code are recorded
+    receipt_type: transition.parse_decision_code
+
+  - id: SEND_MESSAGE
+    family: communications
+    purpose: Send a bounded outbound message through an approved channel.
+    allowed_when:
+      - recipient role is known
+      - channel is approved for the message class
+      - message body is bounded
+    allowed_mutation:
+      - send message through provider
+      - write outbound receipt
+    forbidden_mutation:
+      - send bulk marketing
+      - send secrets
+      - send unapproved production authorization prompts
+    verification:
+      - delivery attempt receipt exists
+    receipt_type: transition.send_message
+
+  - id: CLASSIFY_CHANNEL
+    family: communications
+    purpose: Classify a communication channel by role, trust level, and allowed use.
+    allowed_when:
+      - channel identifier exists
+    allowed_mutation:
+      - write channel classification
+    forbidden_mutation:
+      - publish channel
+      - grant execution authority
+    verification:
+      - channel role is recorded
+    receipt_type: transition.classify_channel
+
+  - id: DEFINE_AUTHORITY_BOUNDARY
+    family: human_boundary
+    purpose: Define what a channel, actor, workstream, or transition block is not allowed to do.
+    allowed_when:
+      - boundary target exists
+    allowed_mutation:
+      - write authority boundary
+    forbidden_mutation:
+      - execute bounded action
+    verification:
+      - forbidden actions are recorded
+    receipt_type: transition.define_authority_boundary
+
+  - id: BLOCK_START_OVER
+    family: forbidden_high_risk
+    purpose: Prevent replacing an existing artifact with a new artifact when the task is to continue, complete, or repair.
+    allowed_when:
+      - proposed action attempts restart
+    allowed_mutation:
+      - write blocked-action receipt
+    forbidden_mutation:
+      - create replacement repo
+      - create replacement service
+      - discard existing artifact
+    verification:
+      - blocked reason is recorded
+    receipt_type: transition.block_start_over

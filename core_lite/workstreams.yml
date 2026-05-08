@@ -1,0 +1,272 @@
+version: 1
+
+policy:
+  name: Core-Lite Parallel Governed Continuation
+  description: >
+    Active StegVerse workstreams may advance in parallel only when each
+    workstream has a goal, a done definition, allowed transition blocks,
+    forbidden transition blocks, and explicit human-review boundaries.
+  global_forbidden_blocks:
+    - START_OVER
+    - CREATE_UNUSED_SCAFFOLD
+    - DIRECT_EXECUTION_FROM_SMS
+    - DELETE_CANONICAL_ARTIFACT
+    - DEPLOY
+    - ROTATE_SECRET
+    - CHANGE_DNS
+    - MOVE_FUNDS
+  default_human_review_required_for:
+    - deleting non-empty files
+    - changing public claims
+    - renaming product artifacts
+    - changing canonical formalism language
+    - changing security posture
+    - changing deployment behavior
+    - creating new repositories
+    - creating new service trees
+
+workstreams:
+  - id: W1
+    name: footprint-auditor product hardening
+    status: active
+    goal: Turn footprint-auditor into a usable privacy/security audit product without starting over.
+    done_when:
+      - repository files are classified by reality state
+      - stubs and stub-dependent files are identified
+      - safe mechanical fixes are applied
+      - inactive stubs are quarantined or marked
+      - downloadable report is generated
+      - receipts are emitted
+      - remaining boundary decisions are listed
+    allowed_blocks:
+      - OBSERVE_REPO
+      - CLASSIFY_ARTIFACT
+      - DETECT_STUB
+      - DETECT_STUB_DEPENDENCY
+      - MAP_DEPENDENCY
+      - AUTO_FIX_MECHANICAL
+      - AUTO_QUARANTINE_STUB
+      - COMPLETE_LOW_RISK_STUB
+      - VERIFY_REPO
+      - WRITE_RECEIPT
+      - ASK_BOUNDARY_DECISION
+    human_review_required_for:
+      - deleting non-empty files
+      - changing public product claims
+      - changing canonical repo purpose
+      - changing deployment behavior
+      - moving files linked from public pages
+    forbidden_blocks:
+      - START_OVER
+      - CREATE_NEW_REPO
+      - CREATE_UNUSED_SCAFFOLD
+      - DELETE_CANONICAL_ARTIFACT
+      - DEPLOY
+    next_action: Run ecosystem maintainer scan against footprint-auditor and classify active files.
+
+  - id: W2
+    name: Core-Lite Ecosystem Maintainer
+    status: active
+    goal: Build the bounded autonomous maintainer that can classify, repair, quarantine, complete, and receipt repo maintenance work.
+    done_when:
+      - maintainer scans a repo
+      - files are classified as real, stub, stub-dependent, orphan, broken, duplicate, promote, quarantine, or delete-candidate
+      - safe auto-fix actions are separated from human-review actions
+      - rollback manifest is generated
+      - receipts are emitted for scan, mutation, rollback, and verification
+    allowed_blocks:
+      - OBSERVE_REPO
+      - CLASSIFY_ARTIFACT
+      - DETECT_STUB
+      - DETECT_STUB_DEPENDENCY
+      - MAP_DEPENDENCY
+      - AUTO_FIX_MECHANICAL
+      - AUTO_QUARANTINE_STUB
+      - COMPLETE_LOW_RISK_STUB
+      - GENERATE_ROLLBACK
+      - VERIFY_REPO
+      - WRITE_RECEIPT
+      - ASK_BOUNDARY_DECISION
+    human_review_required_for:
+      - deleting files
+      - changing canonical artifacts
+      - changing public claims
+      - modifying deployment behavior
+    forbidden_blocks:
+      - START_OVER
+      - CREATE_UNUSED_SCAFFOLD
+      - DELETE_CANONICAL_ARTIFACT
+      - DEPLOY
+    next_action: Implement maintainer scan using existing transition blocks, not a new scaffold.
+
+  - id: W3
+    name: Transition Periodic Table operational blocks
+    status: active
+    goal: Convert the transition periodic table into executable block constraints for Core-Lite.
+    done_when:
+      - first maintenance transition blocks are defined
+      - each block has allowed conditions, permitted mutations, forbidden mutations, verification, and receipt type
+      - block IDs can be referenced by workstreams
+      - validator confirms workstreams only reference defined blocks
+    allowed_blocks:
+      - DEFINE_TRANSITION_BLOCK
+      - CLASSIFY_TRANSITION_BLOCK
+      - VERIFY_BLOCK_REFERENCE
+      - WRITE_RECEIPT
+      - ASK_BOUNDARY_DECISION
+    human_review_required_for:
+      - adding high-risk mutation blocks
+      - changing formalism definitions
+      - changing block family semantics
+    forbidden_blocks:
+      - START_OVER
+      - CREATE_UNUSED_SCAFFOLD
+      - DEPLOY
+    next_action: Keep transition blocks executable and minimal enough for the maintainer to enforce.
+
+  - id: W4
+    name: Core-Lite Headless LLM Service
+    status: blocked
+    blocked_reason: Must not scaffold until transition blocks and the maintainer control surface are active.
+    goal: Create a governed LLM runtime that produces classified, receipted proposed transitions.
+    done_when:
+      - task intake works
+      - model provider adapter works
+      - output classification works
+      - receipts are written
+      - no direct mutation occurs without transition-block approval
+    allowed_blocks:
+      - TASK_INGEST
+      - BUILD_PROVIDER_ADAPTER
+      - CLASSIFY_OUTPUT
+      - WRITE_RECEIPT
+      - VERIFY_REPO
+      - ASK_BOUNDARY_DECISION
+    human_review_required_for:
+      - choosing production model provider
+      - enabling mutation from model output
+      - adding autonomous execution
+    forbidden_blocks:
+      - TRAIN_FOUNDATION_MODEL
+      - START_OVER
+      - CREATE_UNUSED_SCAFFOLD
+      - DIRECT_REPO_MUTATION_FROM_LLM
+    next_action: Remain design-captured until W2 and W3 can govern file creation.
+
+  - id: W5
+    name: StegVerse Communications Service and SMS Bridge
+    status: blocked
+    blocked_reason: Must not scaffold until Core-Lite event, receipt, and transition-block permissioning exists.
+    goal: Route human/system communications through governed, receipted channels.
+    done_when:
+      - inbound SMS event normalizes
+      - outbound SMS sends
+      - reply maps to decision code
+      - communication receipt is emitted
+      - Core-Lite receives normalized event
+    allowed_blocks:
+      - RECEIVE_MESSAGE
+      - NORMALIZE_MESSAGE
+      - MAP_ACTOR
+      - PARSE_DECISION_CODE
+      - SEND_MESSAGE
+      - WRITE_RECEIPT
+      - ASK_BOUNDARY_DECISION
+    human_review_required_for:
+      - enabling approval over SMS
+      - enabling outbound production messages
+      - connecting public numbers
+      - adding provider-specific production credentials
+    forbidden_blocks:
+      - BULK_MARKETING
+      - UNBOUNDED_CHATBOT
+      - DIRECT_EXECUTION_FROM_SMS
+      - CREATE_UNUSED_SCAFFOLD
+    next_action: Capture event and receipt requirements only; do not create a service tree yet.
+
+  - id: W6
+    name: Google Voice and Twilio channel strategy
+    status: active
+    goal: Preserve phone-number separation while preparing programmable SMS transport.
+    done_when:
+      - personal carrier number remains private
+      - Google Voice numbers are role-assigned
+      - Twilio is treated as programmable transport only
+      - no provider has execution authority
+      - communication channel decisions are recorded
+    allowed_blocks:
+      - CLASSIFY_CHANNEL
+      - MAP_ACTOR
+      - DEFINE_AUTHORITY_BOUNDARY
+      - WRITE_RECEIPT
+      - ASK_BOUNDARY_DECISION
+    human_review_required_for:
+      - publishing phone numbers
+      - assigning owner-control channels
+      - enabling approval commands
+      - connecting production SMS provider
+    forbidden_blocks:
+      - DIRECT_EXECUTION_FROM_SMS
+      - MOVE_PERSONAL_NUMBER_TO_PUBLIC_ROLE
+      - BULK_MARKETING
+    next_action: Document channel roles and keep personal number outside operational StegVerse control.
+
+  - id: W7
+    name: Site pricing and demo alignment
+    status: active
+    goal: Keep public StegVerse pages, pricing, and demo links aligned without changing public claims blindly.
+    done_when:
+      - site links resolve
+      - pricing source of truth is clear
+      - public claims are succinct and accurate
+      - broken references are fixed
+      - downloadable receipts or reports exist for changes
+    allowed_blocks:
+      - OBSERVE_REPO
+      - CLASSIFY_ARTIFACT
+      - MAP_DEPENDENCY
+      - AUTO_FIX_MECHANICAL
+      - VERIFY_PUBLIC_LINKS
+      - WRITE_RECEIPT
+      - ASK_BOUNDARY_DECISION
+    human_review_required_for:
+      - changing pricing
+      - changing public claims
+      - changing product positioning
+      - changing domain routing
+    forbidden_blocks:
+      - START_OVER
+      - DELETE_CANONICAL_ARTIFACT
+      - CHANGE_DNS
+      - DEPLOY
+    next_action: Only fix mechanically obvious link or manifest mismatches unless public claim review is approved.
+
+  - id: W8
+    name: Formalisms and formalism-tests continuity
+    status: active
+    goal: Keep formalism repositories and tests aligned across canonical and test organizations.
+    done_when:
+      - each formalism has a canonical repo target
+      - each formalism has a corresponding test repo target
+      - generated files do not replace canonical definitions
+      - tests reference canonical definitions correctly
+      - receipts record alignment checks
+    allowed_blocks:
+      - OBSERVE_REPO
+      - CLASSIFY_ARTIFACT
+      - MAP_DEPENDENCY
+      - VERIFY_BLOCK_REFERENCE
+      - VERIFY_REPO
+      - WRITE_RECEIPT
+      - ASK_BOUNDARY_DECISION
+    human_review_required_for:
+      - changing definitions
+      - renaming formalisms
+      - adding new formalism families
+      - changing theorem or axiom language
+    forbidden_blocks:
+      - START_OVER
+      - DELETE_CANONICAL_ARTIFACT
+      - CREATE_UNUSED_SCAFFOLD
+      - CHANGE_CANONICAL_FORMALISM_WITHOUT_REVIEW
+    next_action: Track canonical/test repo mapping before creating or mutating formalism files.
