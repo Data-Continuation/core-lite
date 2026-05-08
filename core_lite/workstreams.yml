@@ -56,6 +56,8 @@ workstreams:
       - MEASURE_BUNDLE_CHURN_AVOIDED
       - PLAN_AUTO_FIX_ELIGIBILITY
       - VERIFY_MUTATION_READINESS
+      - DETECT_CAPABILITY_GAP
+      - PLAN_CAPABILITY_COMPLETION
       - ASK_BOUNDARY_DECISION
     human_review_required_for:
       - deleting non-empty files

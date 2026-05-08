@@ -723,3 +723,38 @@ blocks:
       - mutation readiness is classified before action
     receipt_type: transition.verify_mutation_readiness
 
+  - id: DETECT_CAPABILITY_GAP
+    family: classification
+    purpose: Detect when a repository is clean but underbuilt relative to its declared or inferred product role.
+    allowed_when:
+      - repository scan has completed
+      - repository role signals exist
+    allowed_mutation:
+      - write capability gap report
+      - append capability gap receipt
+    forbidden_mutation:
+      - create missing files
+      - modify source files
+      - delete placeholder directories
+    verification:
+      - every expected capability receives a status
+      - mutation count remains zero
+    receipt_type: transition.detect_capability_gap
+
+  - id: PLAN_CAPABILITY_COMPLETION
+    family: verification
+    purpose: Plan the bounded completion of a missing or placeholder-only capability without applying the change.
+    allowed_when:
+      - capability gap report exists
+      - missing or placeholder capability exists
+    allowed_mutation:
+      - write capability completion plan
+    forbidden_mutation:
+      - implement capability
+      - create service scaffold
+      - mutate target repository
+    verification:
+      - completion candidate is tied to an expected capability
+      - human-review boundary is preserved
+    receipt_type: transition.plan_capability_completion
+
