@@ -11,10 +11,7 @@ This script is intentionally small and real:
 - writes reports/workstream_status.json
 - appends receipts/workstream_receipts.jsonl
 
-Hardening:
-- If PyYAML is missing in CI, the script installs it once and continues.
-  This prevents the repeated workflow failure where validation runs before
-  dependency installation.
+It does not mutate repository source files.
 """
 
 from __future__ import annotations
@@ -22,23 +19,17 @@ from __future__ import annotations
 import argparse
 import datetime as _dt
 import hashlib
-import importlib
 import json
-import subprocess
 import sys
 from pathlib import Path
 from typing import Any
 
-
-def _load_yaml_module():
-    try:
-        return importlib.import_module("yaml")
-    except ImportError:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "pyyaml"])
-        return importlib.import_module("yaml")
-
-
-yaml = _load_yaml_module()
+try:
+    import yaml
+except ImportError as exc:
+    raise SystemExit(
+        "Missing dependency: PyYAML. Install with: python -m pip install pyyaml"
+    ) from exc
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -78,11 +69,6 @@ def utc_now() -> str:
     return _dt.datetime.now(_dt.UTC).isoformat(timespec="seconds")
 
 
-def stable_hash(payload: Any) -> str:
-    encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
-    return hashlib.sha256(encoded).hexdigest()
-
-
 def load_yaml(path: Path) -> dict[str, Any]:
     if not path.exists():
         raise FileNotFoundError(f"Required file not found: {path.relative_to(ROOT)}")
@@ -91,6 +77,11 @@ def load_yaml(path: Path) -> dict[str, Any]:
     if not isinstance(data, dict):
         raise ValueError(f"YAML root must be a mapping: {path.relative_to(ROOT)}")
     return data
+
+
+def stable_hash(payload: Any) -> str:
+    encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
 
 
 def get_defined_blocks(blocks_doc: dict[str, Any]) -> dict[str, dict[str, Any]]:
@@ -197,7 +188,9 @@ def build_markdown_report(report: dict[str, Any]) -> str:
     lines.append("")
     lines.append("## Operating Rule")
     lines.append("")
-    lines.append("Any idea may be captured as a workstream. Only block-authorized transitions may mutate the repo.")
+    lines.append(
+        "Any idea may be captured as a workstream. Only block-authorized transitions may mutate the repo."
+    )
     lines.append("")
     lines.append("## Workstreams")
     lines.append("")
@@ -234,7 +227,7 @@ def build_markdown_report(report: dict[str, Any]) -> str:
     lines.append("## Receipts")
     lines.append("")
     lines.append(f"- Receipt hash: `{report['receipt']['hash']}`")
-    lines.append("- Receipt path: `receipts/workstream_receipts.jsonl`")
+    lines.append(f"- Receipt path: `receipts/workstream_receipts.jsonl`")
     lines.append("")
     return "\n".join(lines)
 
@@ -262,7 +255,10 @@ def append_receipt(report: dict[str, Any]) -> dict[str, Any]:
         "previous_hash": previous_hash,
     }
     receipt_hash = stable_hash(receipt_payload)
-    receipt = {**receipt_payload, "hash": receipt_hash}
+    receipt = {
+        **receipt_payload,
+        "hash": receipt_hash,
+    }
 
     with RECEIPTS_PATH.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(receipt, sort_keys=True) + "\n")
@@ -336,8 +332,14 @@ def validate() -> tuple[dict[str, Any], int]:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Validate Core-Lite workstreams and generate status artifacts.")
-    parser.add_argument("--json", action="store_true", help="Print the generated JSON report to stdout.")
+    parser = argparse.ArgumentParser(
+        description="Validate Core-Lite workstreams and generate status artifacts."
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Print the generated JSON report to stdout.",
+    )
     args = parser.parse_args()
 
     try:
