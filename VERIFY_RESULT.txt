@@ -1,0 +1,55 @@
+Assumptions:
+1. Previous uploaded workstream status passed with 0 errors and 0 warnings.
+2. W2 is the next bounded move.
+3. This bundle adds a scan-only ecosystem maintainer and no source mutation engine.
+
+Done definition:
+1. python tools/validate_workstreams.py returns pass.
+2. python tools/ecosystem_maintainer.py --root . returns pass.
+3. Maintainer writes Markdown, JSON, and receipt outputs.
+4. Source mutation count remains 0.
+
+validate_workstreams stdout:
+Wrote reports/workstream_status.md
+Wrote reports/workstream_status.json
+Wrote receipts/workstream_receipts.jsonl
+Result: pass
+
+
+validate_workstreams stderr:
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/generated/interface/models.py", line 48821, in hydrate_crdt_from_proto
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/remote.py", line 747, in __call__
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+
+
+ecosystem_maintainer stdout:
+Wrote /mnt/data/core-lite-ecosystem-maintainer-scan/reports/ecosystem_maintainer_scan.md
+Wrote /mnt/data/core-lite-ecosystem-maintainer-scan/reports/ecosystem_maintainer_scan.json
+Wrote /mnt/data/core-lite-ecosystem-maintainer-scan/receipts/ecosystem_maintainer_receipts.jsonl
+Result: pass
+Mutations performed: 0
+
+
+ecosystem_maintainer stderr:
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/generated/interface/models.py", line 48821, in hydrate_crdt_from_proto
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/remote.py", line 747, in __call__
+  File "/tmp/tmp.9eeVjt35CN/artifact_tool_v2-2.7.5/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
+
+
+Exit codes:
+validate_workstreams=0
+ecosystem_maintainer=0

@@ -1,0 +1,3 @@
+This bundle uses github/workflows/ecosystem-maintainer-scan.yml so it remains visible on iPhone.
+The leading dot has been removed inside the bundle.
+For GitHub Actions to recognize the workflow, place this workflow file in the repository's Actions workflow folder.

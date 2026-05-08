@@ -83,3 +83,24 @@ Core-Lite does not decide freely what kind of work it is doing.
 Core-Lite is bound to user-selected transition blocks.
 
 Any new idea may be captured as a workstream, but only block-authorized transitions may mutate the repo.
+
+## Ecosystem Maintainer Scan
+
+The next working W2 control is:
+
+```bash
+python tools/ecosystem_maintainer.py --root .
+```
+
+It writes:
+
+```text
+reports/ecosystem_maintainer_scan.md
+reports/ecosystem_maintainer_scan.json
+receipts/ecosystem_maintainer_receipts.jsonl
+```
+
+This scan performs no source mutation. It classifies files and emits reports/receipts so the next transition can be selected safely.
+
+The first mutation-capable version should only be added after scan output proves which transition block applies.
+
