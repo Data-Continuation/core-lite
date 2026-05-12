@@ -1,7 +1,7 @@
 {
   "schema": "stegverse_ingest_manifest.v1",
-  "bundle_id": "core-lite-v0.5-iosnoperiod-bridge",
-  "bundle_version": "0.5.0",
+  "bundle_id": "core-lite-v0.6-executable-ingestion-transitions",
+  "bundle_version": "0.6.0",
   "target_repo": "Data-Continuation/core-lite",
   "priority": "Critical",
   "bundle_family": "core-lite",
@@ -9,7 +9,7 @@
     "mode": "versioning",
     "family": "core-lite"
   },
-  "purpose": "Add an iOS-safe iosnoperiod bridge for restoring leading-period files and workflows.",
+  "purpose": "Add executable master hash event validation tied to ingestion transition IDs, hash identity types, and versioned validation rules.",
   "install_policy": {
     "default_action": "overwrite_declared_files_only",
     "preserve_runtime_artifacts": true,
@@ -18,23 +18,28 @@
   },
   "files": [
     {
-      "path": "core_lite/iosnoperiod.py",
+      "path": "core_lite/master_hash_events.py",
       "class": "source",
       "action": "overwrite"
     },
     {
-      "path": "templates/install-iosnoperiod.yml",
-      "class": "template",
+      "path": "schemas/master_hash_event.schema.json",
+      "class": "schema",
       "action": "overwrite"
     },
     {
-      "path": ".github/workflows/install-iosnoperiod.yml",
-      "class": "workflow",
+      "path": "schemas/hash_identity_types.json",
+      "class": "schema_data",
       "action": "overwrite"
     },
     {
-      "path": "iosnoperiod/github/workflows/install-iosnoperiod.yml",
-      "class": "iosnoperiod_mirror",
+      "path": "schemas/validation_rules.json",
+      "class": "schema_data",
+      "action": "overwrite"
+    },
+    {
+      "path": "docs/core-lite-v0.6-executable-ingestion-transitions.md",
+      "class": "documentation",
       "action": "overwrite"
     },
     {
@@ -43,24 +48,31 @@
       "action": "overwrite"
     },
     {
-      "path": "docs/core-lite-v0.5-iosnoperiod-bridge.md",
-      "class": "documentation",
-      "action": "overwrite"
-    },
-    {
       "path": ".stegverse/ingest_manifest.json",
       "class": "ingest_manifest",
       "action": "read_before_install"
+    },
+    {
+      "path": "iosnoperiod/stegverse/ingest_manifest.json",
+      "class": "iosnoperiod_mirror",
+      "action": "overwrite"
     }
   ],
   "iosnoperiod_mappings": [
     {
-      "canonical_path": ".github/workflows/install-iosnoperiod.yml",
-      "iosnoperiod_path": "iosnoperiod/github/workflows/install-iosnoperiod.yml"
-    },
-    {
       "canonical_path": ".stegverse/ingest_manifest.json",
       "iosnoperiod_path": "iosnoperiod/stegverse/ingest_manifest.json"
     }
+  ],
+  "generated_outputs": [
+    ".stegverse/master_hash_records.jsonl",
+    ".stegverse/master_hash_validation_report.json"
+  ],
+  "done_criteria": [
+    "Hash identity types are defined.",
+    "Versioned validation rules are defined.",
+    "Master hash event schema is defined.",
+    "master_hash_events.py validates events against transition_id requirements.",
+    "SDK and sandbox source-known entrypoint handling is represented in validation rules."
   ]
 }
