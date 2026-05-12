@@ -1,7 +1,7 @@
 {
   "schema": "stegverse_ingest_manifest.v1",
-  "bundle_id": "core-lite-v0.8-source-state-index",
-  "bundle_version": "0.8.0",
+  "bundle_id": "core-lite-v0.8.1-wire-source-state-index",
+  "bundle_version": "0.8.1",
   "target_repo": "Data-Continuation/core-lite",
   "priority": "Critical",
   "bundle_family": "core-lite",
@@ -19,7 +19,7 @@
     "ALLOW_QUEUE",
     "ALLOW_INSTALL"
   ],
-  "purpose": "Add source state index for latest validated source, local chain validity, parent link validity, and scoped ALLOW state.",
+  "purpose": "Wire source state index generation into the Core-Lite CLI run path.",
   "install_policy": {
     "default_action": "overwrite_declared_files_only",
     "preserve_runtime_artifacts": true,
@@ -28,17 +28,12 @@
   },
   "files": [
     {
-      "path": "core_lite/source_state_index.py",
+      "path": "core_lite/cli.py",
       "class": "source",
       "action": "overwrite"
     },
     {
-      "path": "schemas/source_state_index.schema.json",
-      "class": "schema",
-      "action": "overwrite"
-    },
-    {
-      "path": "docs/core-lite-v0.8-source-state-index.md",
+      "path": "docs/core-lite-v0.8.1-wire-source-state-index.md",
       "class": "documentation",
       "action": "overwrite"
     },
@@ -65,14 +60,14 @@
     }
   ],
   "generated_outputs": [
-    ".stegverse/source_state_index.json"
+    ".stegverse/source_state_index.json",
+    "core_lite_run_summary.json",
+    ".stegverse/receipts/core_lite_receipts.jsonl"
   ],
   "done_criteria": [
-    "Source state index schema is defined.",
-    "source_state_index.py can read .stegverse/master_hash_records.jsonl.",
-    "source_state_index.py identifies latest validated source by scope.",
-    "source_state_index.py checks local chain continuity.",
-    "source_state_index.py checks parent links known locally.",
-    "source_state_index.py produces allow_status by scope."
+    "cli.py imports generate_source_state_index.",
+    "cli.py writes source_state_index fields into run summary.",
+    "cli.py emits source_state_index_generated receipt.",
+    "cli.py fails when local chain continuity is invalid."
   ]
 }
