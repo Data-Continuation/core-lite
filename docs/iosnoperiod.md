@@ -14,6 +14,7 @@ Examples:
 
 ```text
 iosnoperiod/github/workflows/core-lite-intake.yml -> .github/workflows/core-lite-intake.yml
+iosnoperiod/stegverse/core-lite.json -> .stegverse/core-lite.json
 iosnoperiod/stegverse/ingest_manifest.json -> .stegverse/ingest_manifest.json
 iosnoperiod/incoming/gitkeep -> incoming/.gitkeep
 ```
