@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StegVerse ingest manifest",
+  "type": "object",
+  "required": [
+    "schema",
+    "bundle_id",
+    "target_repo",
+    "files"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string"
+    },
+    "bundle_id": {
+      "type": "string"
+    },
+    "bundle_version": {
+      "type": "string"
+    },
+    "target_repo": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "install_policy": {
+      "type": "object"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "class",
+          "action"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "class": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
