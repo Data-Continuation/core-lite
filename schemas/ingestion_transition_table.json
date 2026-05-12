@@ -1,7 +1,7 @@
 {
   "schema": "stegverse_ingestion_transition_table.v1",
   "table_id": "core-lite-ingestion-transition-table",
-  "version": "0.4.0",
+  "version": "0.9.0",
   "canonical_claim": "Ingestion is not file transfer. Ingestion is a governed transition sequence where every artifact, action, outcome, and generated artifact must remain hash-linked, authority-matched, locally recorded, and upward-reconcilable.",
   "outcomes": [
     "ALLOW",
@@ -29,33 +29,6 @@
     "CONFIRM_UPSTREAM",
     "DEFER_CONFIRMATION"
   ],
-  "entrypoint_classes": [
-    {
-      "class": "user_entrypoint_and_master_records_endpoint",
-      "parent_event_hash_required": false,
-      "requires_master_records_ingestion": true,
-      "allowed_sources": [
-        "user",
-        "sdk",
-        "sandbox",
-        "manual_upload",
-        "repo_workflow"
-      ]
-    },
-    {
-      "class": "master_records_endpoint_only",
-      "parent_event_hash_required": true,
-      "requires_master_records_ingestion": true,
-      "allowed_sources": [
-        "master_records",
-        "org_core_lite",
-        "repo_shim",
-        "destination_repo",
-        "task_runner",
-        "peer_engine"
-      ]
-    }
-  ],
   "transition_classes": [
     {
       "transition_id": "INGEST-ENTRY-USER-001",
@@ -73,11 +46,6 @@
         "ALLOW",
         "QUARANTINE",
         "FAIL_CLOSED"
-      ],
-      "fail_closed_conditions": [
-        "missing_bundle_hash",
-        "missing_manifest_hash",
-        "unauthorized_origin"
       ]
     },
     {
@@ -96,12 +64,6 @@
         "ALLOW",
         "QUARANTINE",
         "FAIL_CLOSED"
-      ],
-      "fail_closed_conditions": [
-        "missing_parent_event_hash",
-        "event_hash_not_found",
-        "bundle_hash_mismatch",
-        "manifest_hash_mismatch"
       ]
     },
     {
@@ -116,26 +78,6 @@
       "allowed_outcomes": [
         "ALLOW",
         "SUPERSEDE",
-        "FAIL_CLOSED"
-      ],
-      "ordering": [
-        "Critical",
-        "Medium",
-        "Low",
-        "NonCritical"
-      ]
-    },
-    {
-      "transition_id": "INGEST-QUARANTINE-001",
-      "transition_name": "quarantine_unverified_artifact",
-      "family": "quarantine",
-      "required_fields": [
-        "bundle_hash",
-        "reason"
-      ],
-      "allowed_outcomes": [
-        "QUARANTINE",
-        "DEFER_CONFIRMATION",
         "FAIL_CLOSED"
       ]
     },
@@ -156,81 +98,6 @@
       ]
     },
     {
-      "transition_id": "INGEST-PARTIAL-001",
-      "transition_name": "partial_install_resolution",
-      "family": "installation_recovery",
-      "required_fields": [
-        "installed_files",
-        "failed_files",
-        "rollback_policy"
-      ],
-      "allowed_outcomes": [
-        "ROLLBACK",
-        "FORWARD_REPAIR",
-        "FAIL_CLOSED"
-      ]
-    },
-    {
-      "transition_id": "INGEST-SUPERSEDE-001",
-      "transition_name": "supersede_prior_queued_versions",
-      "family": "succession",
-      "required_fields": [
-        "bundle_family",
-        "bundle_version",
-        "supersedes"
-      ],
-      "allowed_outcomes": [
-        "SUPERSEDE",
-        "FAIL_CLOSED"
-      ]
-    },
-    {
-      "transition_id": "INGEST-FORK-001",
-      "transition_name": "fork_or_hash_mismatch_detection",
-      "family": "hash_integrity",
-      "required_fields": [
-        "event_hash",
-        "bundle_hash",
-        "manifest_hash"
-      ],
-      "allowed_outcomes": [
-        "FORK_DETECTED",
-        "HASH_MISMATCH",
-        "FAIL_CLOSED"
-      ]
-    },
-    {
-      "transition_id": "INGEST-AUTHORITY-001",
-      "transition_name": "authority_escalation_detection",
-      "family": "authority",
-      "required_fields": [
-        "entrypoint_class",
-        "priority",
-        "requested_scope"
-      ],
-      "allowed_outcomes": [
-        "ALLOW",
-        "AUTHORITY_ESCALATION_REJECTED",
-        "FAIL_CLOSED"
-      ]
-    },
-    {
-      "transition_id": "INGEST-ROUTE-001",
-      "transition_name": "cross_org_or_repo_route",
-      "family": "routing",
-      "required_fields": [
-        "origin_engine",
-        "destination_engine",
-        "target_repo"
-      ],
-      "allowed_outcomes": [
-        "ROUTE_NATIVE",
-        "ROUTE_PEER",
-        "ROUTE_REPO_ONLY",
-        "ROUTE_REJECTED"
-      ]
-    },
-    {
       "transition_id": "INGEST-CONFIRM-001",
       "transition_name": "outcome_confirmation_upstream",
       "family": "confirmation",
@@ -245,67 +112,6 @@
         "DEFER_CONFIRMATION",
         "STALE_PENDING",
         "ESCALATE"
-      ]
-    },
-    {
-      "transition_id": "INGEST-STALE-001",
-      "transition_name": "stale_pending_resolution",
-      "family": "timeout",
-      "required_fields": [
-        "event_hash",
-        "routed_at",
-        "timeout_policy"
-      ],
-      "allowed_outcomes": [
-        "STALE_PENDING",
-        "RETRY",
-        "ESCALATE",
-        "FAIL_CLOSED"
-      ]
-    },
-    {
-      "transition_id": "INGEST-PROMOTE-001",
-      "transition_name": "runtime_artifact_promotion",
-      "family": "promotion",
-      "required_fields": [
-        "artifact_hash",
-        "promotion_basis",
-        "destination_path"
-      ],
-      "allowed_outcomes": [
-        "PROMOTE_TO_CANONICAL",
-        "FAIL_CLOSED"
-      ]
-    },
-    {
-      "transition_id": "INGEST-REVOKE-001",
-      "transition_name": "revocation_invalidation_remediation",
-      "family": "revocation",
-      "required_fields": [
-        "event_hash",
-        "installed_file_hashes",
-        "revocation_reason"
-      ],
-      "allowed_outcomes": [
-        "REVOKE",
-        "INVALIDATE",
-        "REMEDIATE",
-        "FAIL_CLOSED"
-      ]
-    },
-    {
-      "transition_id": "INGEST-TASK-001",
-      "transition_name": "declared_task_execution",
-      "family": "task_execution",
-      "required_fields": [
-        "task_id",
-        "command_hash",
-        "expected_outputs"
-      ],
-      "allowed_outcomes": [
-        "ALLOW",
-        "FAIL_CLOSED",
-        "CONFIRM_UPSTREAM"
       ]
     }
   ]

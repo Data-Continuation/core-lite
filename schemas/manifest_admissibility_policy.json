@@ -1,8 +1,6 @@
 {
   "schema": "stegverse_manifest_admissibility_policy.v1",
-  "version": "0.7.0",
-  "purpose": "Validate bundle manifests before install action.",
-  "canonical_rule": "Manifest declares requested processing. Core-lite policy decides admissible processing.",
+  "version": "0.9.0",
   "entrypoint_classes": {
     "user_entrypoint_and_master_records_endpoint": {
       "parent_event_hash_required": false,
@@ -71,18 +69,6 @@
         "ALLOW_PEER_ROUTE"
       ]
     },
-    "master_records": {
-      "max_priority_without_confirmation": "Critical",
-      "allowed_scopes": [
-        "ALLOW_QUEUE",
-        "ALLOW_ROUTE",
-        "ALLOW_INSTALL",
-        "ALLOW_CONFIRM",
-        "ALLOW_PROMOTE",
-        "ALLOW_RELEASE_PAYLOAD"
-      ],
-      "disallowed_scopes": []
-    },
     "org_core_lite": {
       "max_priority_without_confirmation": "Critical",
       "allowed_scopes": [
@@ -95,37 +81,19 @@
         "ALLOW_RELEASE_PAYLOAD"
       ]
     },
-    "repo_shim": {
-      "max_priority_without_confirmation": "Medium",
+    "master_records": {
+      "max_priority_without_confirmation": "Critical",
       "allowed_scopes": [
         "ALLOW_QUEUE",
-        "ALLOW_CONFIRM"
-      ],
-      "disallowed_scopes": [
-        "ALLOW_PEER_ROUTE",
-        "ALLOW_RELEASE_PAYLOAD",
-        "ALLOW_PROMOTE"
-      ]
-    },
-    "peer_engine": {
-      "max_priority_without_confirmation": "Medium",
-      "allowed_scopes": [
-        "ALLOW_QUEUE",
-        "ALLOW_ROUTE"
-      ],
-      "disallowed_scopes": [
+        "ALLOW_ROUTE",
         "ALLOW_INSTALL",
-        "ALLOW_RELEASE_PAYLOAD",
-        "ALLOW_PROMOTE"
-      ]
+        "ALLOW_CONFIRM",
+        "ALLOW_PROMOTE",
+        "ALLOW_RELEASE_PAYLOAD"
+      ],
+      "disallowed_scopes": []
     }
   },
-  "priority_order": [
-    "Critical",
-    "Medium",
-    "Low",
-    "NonCritical"
-  ],
   "scoped_allow_values": [
     "ALLOW_OBSERVE",
     "ALLOW_QUEUE",

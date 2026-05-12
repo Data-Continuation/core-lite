@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "StegVerse ingest manifest",
+  "title": "StegVerse source state index",
   "type": "object",
   "required": [
     "schema",
-    "bundle_id",
-    "target_repo",
-    "files"
+    "generated_at",
+    "repository",
+    "latest_validated_sources"
   ]
 }

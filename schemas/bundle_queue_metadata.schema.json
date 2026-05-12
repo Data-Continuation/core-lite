@@ -1,45 +1,5 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "StegVerse bundle queue metadata",
-  "type": "object",
-  "properties": {
-    "priority": {
-      "type": "string",
-      "enum": [
-        "Critical",
-        "Medium",
-        "Low",
-        "NonCritical"
-      ]
-    },
-    "bundle_family": {
-      "type": "string"
-    },
-    "succession": {
-      "oneOf": [
-        {
-          "type": "string",
-          "enum": [
-            "versioning",
-            "supersede"
-          ]
-        },
-        {
-          "type": "object",
-          "properties": {
-            "mode": {
-              "type": "string",
-              "enum": [
-                "versioning",
-                "supersede"
-              ]
-            },
-            "family": {
-              "type": "string"
-            }
-          }
-        }
-      ]
-    }
-  }
+  "type": "object"
 }

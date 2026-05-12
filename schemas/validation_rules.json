@@ -1,42 +1,7 @@
 {
   "schema": "stegverse_validation_rules.v1",
-  "version": "0.6.0",
+  "version": "0.9.0",
   "validation_direction": "bottom_to_top_and_top_to_bottom",
   "canonical_rule": "Only the most recent validated source may produce ALLOW.",
-  "rules": [
-    {
-      "rule_id": "VR-ALLOW-001",
-      "decision": "ALLOW",
-      "requires": [
-        "transition_id is recognized",
-        "required fields are present",
-        "hash identity types are valid",
-        "event is the most recent validated source"
-      ]
-    },
-    {
-      "rule_id": "VR-OFFLINE-001",
-      "decision": "REVIEW_REQUIRED",
-      "requires": [
-        "offline, unreachable, or power-interrupted sources require review before trusted resumption"
-      ]
-    },
-    {
-      "rule_id": "VR-SDK-SANDBOX-001",
-      "decision": "ALLOW_OR_QUARANTINE",
-      "requires": [
-        "source is sdk or sandbox",
-        "entrypoint_class is user_entrypoint_and_master_records_endpoint",
-        "missing required hashes trigger quarantine as mild failure"
-      ]
-    },
-    {
-      "rule_id": "VR-QUARANTINE-001",
-      "decision": "QUARANTINE",
-      "requires": [
-        "artifact follows the same ingestion path",
-        "artifact does not install into source state"
-      ]
-    }
-  ]
+  "rules": []
 }

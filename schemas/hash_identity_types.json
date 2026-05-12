@@ -1,6 +1,6 @@
 {
   "schema": "stegverse_hash_identity_types.v1",
-  "version": "0.6.0",
+  "version": "0.9.0",
   "identity_types": [
     {
       "type": "bundle_hash",
@@ -8,27 +8,27 @@
     },
     {
       "type": "manifest_hash",
-      "purpose": "Identifies declared intent and install policy."
+      "purpose": "Identifies declared intent."
     },
     {
       "type": "file_hash",
-      "purpose": "Identifies an individual file payload at a declared path."
+      "purpose": "Identifies individual file payload."
     },
     {
       "type": "event_hash",
-      "purpose": "Identifies a custody/action transition event."
+      "purpose": "Identifies custody/action event."
     },
     {
       "type": "receipt_hash",
-      "purpose": "Identifies proof emitted for an event or action."
+      "purpose": "Identifies proof for event/action."
     },
     {
       "type": "state_hash",
-      "purpose": "Identifies a reconstructed or observed system state."
+      "purpose": "Identifies reconstructed/observed state."
     },
     {
       "type": "fingerprint_hash",
-      "purpose": "Identifies observed posture/topology/CGE fingerprint."
+      "purpose": "Identifies observed posture/topology."
     }
   ]
 }

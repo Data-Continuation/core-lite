@@ -8,25 +8,5 @@
     "entrypoint_classes",
     "source_authority",
     "scoped_allow_values"
-  ],
-  "properties": {
-    "schema": {
-      "const": "stegverse_manifest_admissibility_policy.v1"
-    },
-    "version": {
-      "type": "string"
-    },
-    "entrypoint_classes": {
-      "type": "object"
-    },
-    "source_authority": {
-      "type": "object"
-    },
-    "scoped_allow_values": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    }
-  }
+  ]
 }

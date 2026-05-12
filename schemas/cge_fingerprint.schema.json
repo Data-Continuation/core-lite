@@ -8,31 +8,5 @@
     "repository",
     "fingerprint_hash",
     "status"
-  ],
-  "properties": {
-    "schema": {
-      "const": "stegverse_cge_fingerprint.v1"
-    },
-    "generated_at": {
-      "type": "string"
-    },
-    "repository": {
-      "type": "string"
-    },
-    "org": {
-      "type": "string"
-    },
-    "fingerprint_hash": {
-      "type": "string"
-    },
-    "status": {
-      "type": "string"
-    },
-    "drift_flags": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    }
-  }
+  ]
 }

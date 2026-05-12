@@ -11,49 +11,5 @@
     "outcome",
     "identity_hashes",
     "validation_rule_version"
-  ],
-  "properties": {
-    "schema": {
-      "const": "stegverse_master_hash_event.v1"
-    },
-    "event_hash": {
-      "type": "string"
-    },
-    "parent_event_hash": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "previous_local_event_hash": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "transition_id": {
-      "type": "string"
-    },
-    "layer": {
-      "type": "string"
-    },
-    "source": {
-      "type": "string"
-    },
-    "entrypoint_class": {
-      "type": "string"
-    },
-    "outcome": {
-      "type": "string"
-    },
-    "identity_hashes": {
-      "type": "object"
-    },
-    "validation_rule_version": {
-      "type": "string"
-    },
-    "confirmation_status": {
-      "type": "string"
-    }
-  }
+  ]
 }
