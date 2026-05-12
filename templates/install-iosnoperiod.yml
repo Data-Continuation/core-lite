@@ -1,0 +1,70 @@
+name: Install iosnoperiod Files
+
+on:
+  workflow_dispatch:
+    inputs:
+      overwrite:
+        description: "Overwrite existing restored files"
+        required: false
+        default: "true"
+  push:
+    branches:
+      - main
+    paths:
+      - "iosnoperiod/**"
+      - "iosnoperiod.md"
+      - ".github/workflows/install-iosnoperiod.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  install-iosnoperiod:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check out core-lite
+        uses: actions/checkout@v4
+        with:
+          repository: Data-Continuation/core-lite
+          path: _core_lite
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Restore iosnoperiod files
+        run: |
+          OVERWRITE="${{ github.event.inputs.overwrite || 'true' }}"
+          if [ "$OVERWRITE" = "true" ]; then
+            python _core_lite/core_lite/iosnoperiod.py --repo-root . --overwrite
+          else
+            python _core_lite/core_lite/iosnoperiod.py --repo-root .
+          fi
+
+      - name: Commit restored files
+        run: |
+          if git diff --quiet --cached && git diff --quiet; then
+            echo "No iosnoperiod files restored."
+            exit 0
+          fi
+
+          git config user.name "StegVerse Bot"
+          git config user.email "builder@stegverse.org"
+
+          git add -A
+          git commit -m "restore iosnoperiod files"
+          git push
+
+      - name: Upload restore report
+        uses: actions/upload-artifact@v4
+        with:
+          name: iosnoperiod-restore-report
+          path: iosnoperiod_restore_report.json
+          if-no-files-found: warn
