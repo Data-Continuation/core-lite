@@ -1,0 +1,66 @@
+{
+  "schema": "stegverse_ingest_manifest.v1",
+  "bundle_id": "core-lite-v0.5-iosnoperiod-bridge",
+  "bundle_version": "0.5.0",
+  "target_repo": "Data-Continuation/core-lite",
+  "priority": "Critical",
+  "bundle_family": "core-lite",
+  "succession": {
+    "mode": "versioning",
+    "family": "core-lite"
+  },
+  "purpose": "Add an iOS-safe iosnoperiod bridge for restoring leading-period files and workflows.",
+  "install_policy": {
+    "default_action": "overwrite_declared_files_only",
+    "preserve_runtime_artifacts": true,
+    "preserve_unlisted_files": true,
+    "fail_on_unclassified_files": true
+  },
+  "files": [
+    {
+      "path": "core_lite/iosnoperiod.py",
+      "class": "source",
+      "action": "overwrite"
+    },
+    {
+      "path": "templates/install-iosnoperiod.yml",
+      "class": "template",
+      "action": "overwrite"
+    },
+    {
+      "path": ".github/workflows/install-iosnoperiod.yml",
+      "class": "workflow",
+      "action": "overwrite"
+    },
+    {
+      "path": "iosnoperiod/github/workflows/install-iosnoperiod.yml",
+      "class": "iosnoperiod_mirror",
+      "action": "overwrite"
+    },
+    {
+      "path": "iosnoperiod.md",
+      "class": "documentation",
+      "action": "overwrite"
+    },
+    {
+      "path": "docs/core-lite-v0.5-iosnoperiod-bridge.md",
+      "class": "documentation",
+      "action": "overwrite"
+    },
+    {
+      "path": ".stegverse/ingest_manifest.json",
+      "class": "ingest_manifest",
+      "action": "read_before_install"
+    }
+  ],
+  "iosnoperiod_mappings": [
+    {
+      "canonical_path": ".github/workflows/install-iosnoperiod.yml",
+      "iosnoperiod_path": "iosnoperiod/github/workflows/install-iosnoperiod.yml"
+    },
+    {
+      "canonical_path": ".stegverse/ingest_manifest.json",
+      "iosnoperiod_path": "iosnoperiod/stegverse/ingest_manifest.json"
+    }
+  ]
+}
