@@ -5,6 +5,11 @@ import json
 from pathlib import Path
 from typing import Dict, Any, List
 
+try:
+    from .manifest_admissibility import validate_manifest_admissibility
+except ImportError:
+    from manifest_admissibility import validate_manifest_admissibility
+
 
 MANIFEST_PATH = ".stegverse/ingest_manifest.json"
 
@@ -56,7 +61,12 @@ def all_bundle_files(staging_root: Path) -> List[str]:
     return sorted(paths)
 
 
-def validate_manifest(manifest: Dict[str, Any], context: Dict[str, str], staging_root: Path) -> Dict[str, Any]:
+def validate_manifest(
+    manifest: Dict[str, Any],
+    context: Dict[str, str],
+    staging_root: Path,
+    repo_root: Path | None = None,
+) -> Dict[str, Any]:
     target = manifest.get("target_repo", "any")
     current = context["repository"]
 
@@ -79,6 +89,18 @@ def validate_manifest(manifest: Dict[str, Any], context: Dict[str, str], staging
     if fail_on_unclassified and unclassified:
         raise ValueError(f"unclassified files in bundle: {unclassified}")
 
+    admissibility = None
+    if repo_root is not None:
+        admissibility = validate_manifest_admissibility(repo_root, manifest, staging_root)
+        report_path = repo_root / ".stegverse" / "manifest_admissibility_report.json"
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            json.dumps(admissibility, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+        if not admissibility.get("success"):
+            raise ValueError(f"manifest admissibility failed: {admissibility.get('errors', [])}")
+
     return {
         "target_repo": target,
         "current_repo": current,
@@ -86,4 +108,5 @@ def validate_manifest(manifest: Dict[str, Any], context: Dict[str, str], staging
         "bundle_file_count": len(bundle_files),
         "unclassified": unclassified,
         "excluded_patterns": excluded,
+        "manifest_admissibility": admissibility,
     }

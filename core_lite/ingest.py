@@ -95,7 +95,7 @@ def process_bundle(repo_root: Path, zip_path: Path, policy: Dict[str, Any], cont
             archive.extractall(staging_root)
 
         manifest = load_bundle_manifest(staging_root)
-        validation = validate_manifest(manifest, context, staging_root)
+        validation = validate_manifest(manifest, context, staging_root, repo_root=repo_root)
         installed = install_declared_files(repo_root, staging_root, manifest)
 
         destination = move_zip(zip_path, success_dir)
@@ -110,6 +110,8 @@ def process_bundle(repo_root: Path, zip_path: Path, policy: Dict[str, Any], cont
                 "target_repo": manifest.get("target_repo", ""),
                 "priority": manifest.get("priority", "Low"),
                 "succession": manifest.get("succession", "versioning"),
+                "entrypoint": manifest.get("entrypoint", {}),
+                "requested_allow_scopes": manifest.get("requested_allow_scopes", []),
             },
             "validation": validation,
             "installed": installed,
@@ -177,6 +179,13 @@ def ingest_incoming(repo_root: Path) -> Dict[str, Any]:
         json.dumps(queue_plan, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
+
+    append_receipt(repo_root, {
+        "type": "queue_planned",
+        "queue_plan_path": "core_lite_queue_plan.json",
+        "counts": queue_plan.get("counts", {}),
+        "success": True,
+    })
 
     receipts: List[Dict[str, Any]] = []
 
