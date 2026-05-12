@@ -1,0 +1,78 @@
+{
+  "schema": "stegverse_ingest_manifest.v1",
+  "bundle_id": "core-lite-v0.8-source-state-index",
+  "bundle_version": "0.8.0",
+  "target_repo": "Data-Continuation/core-lite",
+  "priority": "Critical",
+  "bundle_family": "core-lite",
+  "succession": {
+    "mode": "versioning",
+    "family": "core-lite"
+  },
+  "entrypoint": {
+    "class": "master_records_endpoint_only",
+    "source": "org_core_lite",
+    "parent_event_hash": "sha256:bootstrap-local-core-lite-upgrade",
+    "authority_confirmation": "local_core_lite_upgrade"
+  },
+  "requested_allow_scopes": [
+    "ALLOW_QUEUE",
+    "ALLOW_INSTALL"
+  ],
+  "purpose": "Add source state index for latest validated source, local chain validity, parent link validity, and scoped ALLOW state.",
+  "install_policy": {
+    "default_action": "overwrite_declared_files_only",
+    "preserve_runtime_artifacts": true,
+    "preserve_unlisted_files": true,
+    "fail_on_unclassified_files": true
+  },
+  "files": [
+    {
+      "path": "core_lite/source_state_index.py",
+      "class": "source",
+      "action": "overwrite"
+    },
+    {
+      "path": "schemas/source_state_index.schema.json",
+      "class": "schema",
+      "action": "overwrite"
+    },
+    {
+      "path": "docs/core-lite-v0.8-source-state-index.md",
+      "class": "documentation",
+      "action": "overwrite"
+    },
+    {
+      "path": "iosnoperiod.md",
+      "class": "documentation",
+      "action": "overwrite"
+    },
+    {
+      "path": ".stegverse/ingest_manifest.json",
+      "class": "ingest_manifest",
+      "action": "read_before_install"
+    },
+    {
+      "path": "iosnoperiod/stegverse/ingest_manifest.json",
+      "class": "iosnoperiod_mirror",
+      "action": "overwrite"
+    }
+  ],
+  "iosnoperiod_mappings": [
+    {
+      "canonical_path": ".stegverse/ingest_manifest.json",
+      "iosnoperiod_path": "iosnoperiod/stegverse/ingest_manifest.json"
+    }
+  ],
+  "generated_outputs": [
+    ".stegverse/source_state_index.json"
+  ],
+  "done_criteria": [
+    "Source state index schema is defined.",
+    "source_state_index.py can read .stegverse/master_hash_records.jsonl.",
+    "source_state_index.py identifies latest validated source by scope.",
+    "source_state_index.py checks local chain continuity.",
+    "source_state_index.py checks parent links known locally.",
+    "source_state_index.py produces allow_status by scope."
+  ]
+}
