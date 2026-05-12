@@ -1,0 +1,141 @@
+{
+  "schema": "stegverse_manifest_admissibility_policy.v1",
+  "version": "0.7.0",
+  "purpose": "Validate bundle manifests before install action.",
+  "canonical_rule": "Manifest declares requested processing. Core-lite policy decides admissible processing.",
+  "entrypoint_classes": {
+    "user_entrypoint_and_master_records_endpoint": {
+      "parent_event_hash_required": false,
+      "allowed_sources": [
+        "user",
+        "sdk",
+        "sandbox",
+        "manual_upload",
+        "repo_workflow"
+      ],
+      "requires_master_records_ingestion": true,
+      "default_unverified_outcome": "QUARANTINE"
+    },
+    "master_records_endpoint_only": {
+      "parent_event_hash_required": true,
+      "allowed_sources": [
+        "master_records",
+        "org_core_lite",
+        "repo_shim",
+        "destination_repo",
+        "task_runner",
+        "peer_engine"
+      ],
+      "requires_master_records_ingestion": true,
+      "default_unverified_outcome": "FAIL_CLOSED"
+    }
+  },
+  "source_authority": {
+    "user": {
+      "max_priority_without_confirmation": "Low",
+      "allowed_scopes": [
+        "ALLOW_QUEUE",
+        "ALLOW_QUARANTINE"
+      ],
+      "disallowed_scopes": [
+        "ALLOW_INSTALL",
+        "ALLOW_PROMOTE",
+        "ALLOW_RELEASE_PAYLOAD",
+        "ALLOW_PEER_ROUTE"
+      ]
+    },
+    "sdk": {
+      "max_priority_without_confirmation": "Low",
+      "allowed_scopes": [
+        "ALLOW_QUEUE",
+        "ALLOW_QUARANTINE"
+      ],
+      "disallowed_scopes": [
+        "ALLOW_INSTALL",
+        "ALLOW_PROMOTE",
+        "ALLOW_RELEASE_PAYLOAD",
+        "ALLOW_PEER_ROUTE"
+      ]
+    },
+    "sandbox": {
+      "max_priority_without_confirmation": "Medium",
+      "allowed_scopes": [
+        "ALLOW_QUEUE",
+        "ALLOW_QUARANTINE",
+        "ALLOW_REPAIR_CANDIDATE"
+      ],
+      "disallowed_scopes": [
+        "ALLOW_INSTALL",
+        "ALLOW_PROMOTE",
+        "ALLOW_RELEASE_PAYLOAD",
+        "ALLOW_PEER_ROUTE"
+      ]
+    },
+    "master_records": {
+      "max_priority_without_confirmation": "Critical",
+      "allowed_scopes": [
+        "ALLOW_QUEUE",
+        "ALLOW_ROUTE",
+        "ALLOW_INSTALL",
+        "ALLOW_CONFIRM",
+        "ALLOW_PROMOTE",
+        "ALLOW_RELEASE_PAYLOAD"
+      ],
+      "disallowed_scopes": []
+    },
+    "org_core_lite": {
+      "max_priority_without_confirmation": "Critical",
+      "allowed_scopes": [
+        "ALLOW_QUEUE",
+        "ALLOW_ROUTE",
+        "ALLOW_INSTALL",
+        "ALLOW_CONFIRM"
+      ],
+      "disallowed_scopes": [
+        "ALLOW_RELEASE_PAYLOAD"
+      ]
+    },
+    "repo_shim": {
+      "max_priority_without_confirmation": "Medium",
+      "allowed_scopes": [
+        "ALLOW_QUEUE",
+        "ALLOW_CONFIRM"
+      ],
+      "disallowed_scopes": [
+        "ALLOW_PEER_ROUTE",
+        "ALLOW_RELEASE_PAYLOAD",
+        "ALLOW_PROMOTE"
+      ]
+    },
+    "peer_engine": {
+      "max_priority_without_confirmation": "Medium",
+      "allowed_scopes": [
+        "ALLOW_QUEUE",
+        "ALLOW_ROUTE"
+      ],
+      "disallowed_scopes": [
+        "ALLOW_INSTALL",
+        "ALLOW_RELEASE_PAYLOAD",
+        "ALLOW_PROMOTE"
+      ]
+    }
+  },
+  "priority_order": [
+    "Critical",
+    "Medium",
+    "Low",
+    "NonCritical"
+  ],
+  "scoped_allow_values": [
+    "ALLOW_OBSERVE",
+    "ALLOW_QUEUE",
+    "ALLOW_ROUTE",
+    "ALLOW_INSTALL",
+    "ALLOW_CONFIRM",
+    "ALLOW_PROMOTE",
+    "ALLOW_RELEASE_PAYLOAD",
+    "ALLOW_QUARANTINE",
+    "ALLOW_REPAIR_CANDIDATE"
+  ],
+  "iosnoperiod_required_for_leading_period_paths": true
+}
