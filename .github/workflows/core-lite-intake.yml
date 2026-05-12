@@ -1,0 +1,83 @@
+name: Core-Lite Intake
+
+on:
+  workflow_dispatch:
+    inputs:
+      task_id:
+        description: "Optional declared task id to run after ingestion"
+        required: false
+        default: ""
+  push:
+    branches:
+      - main
+    paths:
+      - "incoming/**"
+      - ".stegverse/core-lite.json"
+      - "tools/tasks/**"
+      - "tools/rules/**"
+      - ".github/workflows/core-lite-intake.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  core-lite-intake:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out target repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check out core-lite
+        uses: actions/checkout@v4
+        with:
+          repository: Data-Continuation/core-lite
+          path: _core_lite
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run core-lite
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TASK_ID="${{ github.event.inputs.task_id || '' }}"
+
+          if [ -n "$TASK_ID" ]; then
+            python _core_lite/core_lite/cli.py run --repo-root . --task-id "$TASK_ID"
+          else
+            python _core_lite/core_lite/cli.py run --repo-root .
+          fi
+
+      - name: Commit core-lite changes
+        if: github.event_name != 'pull_request'
+        run: |
+          if git diff --quiet --cached && git diff --quiet; then
+            echo "No core-lite changes to commit."
+            exit 0
+          fi
+
+          git config user.name "StegVerse Bot"
+          git config user.email "builder@stegverse.org"
+
+          git add -A
+          git commit -m "run core-lite intake"
+          git push
+
+      - name: Upload core-lite artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: core-lite-artifacts
+          path: |
+            core_lite_ingest_report.json
+            core_lite_run_summary.json
+            declared_task_report.json
+            .stegverse/org_registry.json
+            .stegverse/receipts/core_lite_receipts.jsonl
+            legacy/ingested-bundles/**
+            legacy/failed-bundles/**
+          if-no-files-found: warn
