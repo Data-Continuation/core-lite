@@ -1,7 +1,7 @@
 {
   "schema": "stegverse_ingest_manifest.v1",
-  "bundle_id": "core-lite-v0.6-executable-ingestion-transitions",
-  "bundle_version": "0.6.0",
+  "bundle_id": "core-lite-v0.7-manifest-admissibility-enforcement",
+  "bundle_version": "0.7.0",
   "target_repo": "Data-Continuation/core-lite",
   "priority": "Critical",
   "bundle_family": "core-lite",
@@ -9,7 +9,17 @@
     "mode": "versioning",
     "family": "core-lite"
   },
-  "purpose": "Add executable master hash event validation tied to ingestion transition IDs, hash identity types, and versioned validation rules.",
+  "entrypoint": {
+    "class": "master_records_endpoint_only",
+    "source": "org_core_lite",
+    "parent_event_hash": "sha256:bootstrap-local-core-lite-upgrade",
+    "authority_confirmation": "local_core_lite_upgrade"
+  },
+  "requested_allow_scopes": [
+    "ALLOW_QUEUE",
+    "ALLOW_INSTALL"
+  ],
+  "purpose": "Add manifest admissibility enforcement for entrypoint class, source type, priority authority, scoped ALLOW, and iosnoperiod completeness.",
   "install_policy": {
     "default_action": "overwrite_declared_files_only",
     "preserve_runtime_artifacts": true,
@@ -18,27 +28,22 @@
   },
   "files": [
     {
-      "path": "core_lite/master_hash_events.py",
+      "path": "core_lite/manifest_admissibility.py",
       "class": "source",
       "action": "overwrite"
     },
     {
-      "path": "schemas/master_hash_event.schema.json",
+      "path": "schemas/manifest_admissibility_policy.json",
+      "class": "schema_data",
+      "action": "overwrite"
+    },
+    {
+      "path": "schemas/manifest_admissibility_policy.schema.json",
       "class": "schema",
       "action": "overwrite"
     },
     {
-      "path": "schemas/hash_identity_types.json",
-      "class": "schema_data",
-      "action": "overwrite"
-    },
-    {
-      "path": "schemas/validation_rules.json",
-      "class": "schema_data",
-      "action": "overwrite"
-    },
-    {
-      "path": "docs/core-lite-v0.6-executable-ingestion-transitions.md",
+      "path": "docs/core-lite-v0.7-manifest-admissibility-enforcement.md",
       "class": "documentation",
       "action": "overwrite"
     },
@@ -65,14 +70,14 @@
     }
   ],
   "generated_outputs": [
-    ".stegverse/master_hash_records.jsonl",
-    ".stegverse/master_hash_validation_report.json"
+    ".stegverse/manifest_admissibility_report.json"
   ],
   "done_criteria": [
-    "Hash identity types are defined.",
-    "Versioned validation rules are defined.",
-    "Master hash event schema is defined.",
-    "master_hash_events.py validates events against transition_id requirements.",
-    "SDK and sandbox source-known entrypoint handling is represented in validation rules."
+    "Manifest admissibility policy is defined.",
+    "Manifest admissibility validator exists.",
+    "Entry point class and source type are checked.",
+    "Priority authority is checked.",
+    "Requested ALLOW scopes are checked.",
+    "iosnoperiod completeness is checked for leading-period paths."
   ]
 }
