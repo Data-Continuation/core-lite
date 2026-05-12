@@ -1,7 +1,7 @@
 {
   "schema": "stegverse_ingest_manifest.v1",
-  "bundle_id": "core-lite-v0.7.1-wire-manifest-admissibility",
-  "bundle_version": "0.7.1",
+  "bundle_id": "core-lite-v0.8-source-state-index",
+  "bundle_version": "0.8.0",
   "target_repo": "Data-Continuation/core-lite",
   "priority": "Critical",
   "bundle_family": "core-lite",
@@ -19,7 +19,7 @@
     "ALLOW_QUEUE",
     "ALLOW_INSTALL"
   ],
-  "purpose": "Wire manifest admissibility enforcement into core-lite ingestion before install action.",
+  "purpose": "Add source state index for latest validated source, local chain validity, parent link validity, and scoped ALLOW state.",
   "install_policy": {
     "default_action": "overwrite_declared_files_only",
     "preserve_runtime_artifacts": true,
@@ -28,17 +28,17 @@
   },
   "files": [
     {
-      "path": "core_lite/manifest.py",
+      "path": "core_lite/source_state_index.py",
       "class": "source",
       "action": "overwrite"
     },
     {
-      "path": "core_lite/ingest.py",
-      "class": "source",
+      "path": "schemas/source_state_index.schema.json",
+      "class": "schema",
       "action": "overwrite"
     },
     {
-      "path": "docs/core-lite-v0.7.1-wire-manifest-admissibility.md",
+      "path": "docs/core-lite-v0.8-source-state-index.md",
       "class": "documentation",
       "action": "overwrite"
     },
@@ -65,14 +65,14 @@
     }
   ],
   "generated_outputs": [
-    ".stegverse/manifest_admissibility_report.json",
-    "core_lite_queue_plan.json",
-    "core_lite_ingest_report.json"
+    ".stegverse/source_state_index.json"
   ],
   "done_criteria": [
-    "Manifest admissibility is called before install_declared_files.",
-    "Failed admissibility prevents installation.",
-    "manifest_admissibility_report.json is written.",
-    "queue_planned receipt is emitted."
+    "Source state index schema is defined.",
+    "source_state_index.py can read .stegverse/master_hash_records.jsonl.",
+    "source_state_index.py identifies latest validated source by scope.",
+    "source_state_index.py checks local chain continuity.",
+    "source_state_index.py checks parent links known locally.",
+    "source_state_index.py produces allow_status by scope."
   ]
 }
