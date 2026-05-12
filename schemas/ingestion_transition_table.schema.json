@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StegVerse ingestion transition table",
+  "type": "object",
+  "required": [
+    "schema",
+    "table_id",
+    "version",
+    "transition_classes"
+  ],
+  "properties": {
+    "schema": {
+      "const": "stegverse_ingestion_transition_table.v1"
+    },
+    "table_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "transition_classes": {
+      "type": "array"
+    }
+  }
+}
