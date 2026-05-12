@@ -1,0 +1,11 @@
+{
+  "schema": "stegverse_core_lite_policy.v1",
+  "core_lite_version": "0.1.0",
+  "repo_id": "any",
+  "incoming_dir": "incoming",
+  "success_dir": "legacy/ingested-bundles",
+  "failed_dir": "legacy/failed-bundles",
+  "registry_path": ".stegverse/org_registry.json",
+  "default_task_manifest": "tools/tasks/formalism_tests_tasks.json",
+  "run_tasks_after_ingest": true
+}
