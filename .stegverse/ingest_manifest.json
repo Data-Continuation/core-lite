@@ -1,7 +1,7 @@
 {
   "schema": "stegverse_ingest_manifest.v1",
-  "bundle_id": "core-lite-v0.7-manifest-admissibility-enforcement",
-  "bundle_version": "0.7.0",
+  "bundle_id": "core-lite-v0.7.1-wire-manifest-admissibility",
+  "bundle_version": "0.7.1",
   "target_repo": "Data-Continuation/core-lite",
   "priority": "Critical",
   "bundle_family": "core-lite",
@@ -19,7 +19,7 @@
     "ALLOW_QUEUE",
     "ALLOW_INSTALL"
   ],
-  "purpose": "Add manifest admissibility enforcement for entrypoint class, source type, priority authority, scoped ALLOW, and iosnoperiod completeness.",
+  "purpose": "Wire manifest admissibility enforcement into core-lite ingestion before install action.",
   "install_policy": {
     "default_action": "overwrite_declared_files_only",
     "preserve_runtime_artifacts": true,
@@ -28,22 +28,17 @@
   },
   "files": [
     {
-      "path": "core_lite/manifest_admissibility.py",
+      "path": "core_lite/manifest.py",
       "class": "source",
       "action": "overwrite"
     },
     {
-      "path": "schemas/manifest_admissibility_policy.json",
-      "class": "schema_data",
+      "path": "core_lite/ingest.py",
+      "class": "source",
       "action": "overwrite"
     },
     {
-      "path": "schemas/manifest_admissibility_policy.schema.json",
-      "class": "schema",
-      "action": "overwrite"
-    },
-    {
-      "path": "docs/core-lite-v0.7-manifest-admissibility-enforcement.md",
+      "path": "docs/core-lite-v0.7.1-wire-manifest-admissibility.md",
       "class": "documentation",
       "action": "overwrite"
     },
@@ -70,14 +65,14 @@
     }
   ],
   "generated_outputs": [
-    ".stegverse/manifest_admissibility_report.json"
+    ".stegverse/manifest_admissibility_report.json",
+    "core_lite_queue_plan.json",
+    "core_lite_ingest_report.json"
   ],
   "done_criteria": [
-    "Manifest admissibility policy is defined.",
-    "Manifest admissibility validator exists.",
-    "Entry point class and source type are checked.",
-    "Priority authority is checked.",
-    "Requested ALLOW scopes are checked.",
-    "iosnoperiod completeness is checked for leading-period paths."
+    "Manifest admissibility is called before install_declared_files.",
+    "Failed admissibility prevents installation.",
+    "manifest_admissibility_report.json is written.",
+    "queue_planned receipt is emitted."
   ]
 }
