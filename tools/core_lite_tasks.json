@@ -1,0 +1,6 @@
+{
+  "name": "core-lite declared tasks",
+  "version": "0.9.0",
+  "description": "Default no-op task manifest for empty core-lite repo installation.",
+  "tasks": []
+}
