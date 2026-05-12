@@ -7,15 +7,10 @@ on:
         description: "Optional declared task id to run after ingestion"
         required: false
         default: ""
-  push:
-    branches:
-      - main
-    paths:
-      - "incoming/**"
-      - ".stegverse/core-lite.json"
-      - "tools/tasks/**"
-      - "tools/rules/**"
-      - ".github/workflows/core-lite-intake.yml"
+      skip_tasks:
+        description: "Set to true to ingest only and skip declared tasks"
+        required: false
+        default: "true"
 
 permissions:
   contents: write
@@ -25,16 +20,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out target repository
+      - name: Check out repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Check out core-lite
-        uses: actions/checkout@v4
-        with:
-          repository: Data-Continuation/core-lite
-          path: _core_lite
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -46,23 +35,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TASK_ID="${{ github.event.inputs.task_id || '' }}"
-          if [ -n "$TASK_ID" ]; then
-            python _core_lite/core_lite/cli.py run --repo-root . --task-id "$TASK_ID"
-          else
-            python _core_lite/core_lite/cli.py run --repo-root .
-          fi
+          SKIP_TASKS="${{ github.event.inputs.skip_tasks || 'true' }}"
+          CMD="python core_lite/cli.py run --repo-root ."
+          if [ -n "$TASK_ID" ]; then CMD="$CMD --task-id $TASK_ID"; fi
+          if [ "$SKIP_TASKS" = "true" ]; then CMD="$CMD --skip-tasks"; fi
+          echo "$CMD"
+          eval "$CMD"
 
-      - name: Commit core-lite changes
-        if: github.event_name != 'pull_request'
+      - name: Commit core-lite results
         run: |
           if git diff --quiet --cached && git diff --quiet; then
             echo "No core-lite changes to commit."
             exit 0
           fi
-
           git config user.name "StegVerse Bot"
           git config user.email "builder@stegverse.org"
-
           git add -A
           git commit -m "run core-lite intake"
           git push
@@ -72,9 +59,9 @@ jobs:
         with:
           name: core-lite-artifacts
           path: |
+            core_lite_queue_plan.json
             core_lite_ingest_report.json
             core_lite_run_summary.json
-            declared_task_report.json
-            .stegverse/org_registry.json
-            .stegverse/receipts/core_lite_receipts.jsonl
+            .stegverse/**
+            legacy/**
           if-no-files-found: warn
