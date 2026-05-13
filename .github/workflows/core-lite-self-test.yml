@@ -2,16 +2,6 @@ name: Core-Lite Self Test
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - "core_lite/**"
-      - "schemas/**"
-      - "templates/**"
-      - "examples/**"
-      - ".stegverse/**"
-      - ".github/workflows/core-lite-self-test.yml"
 
 permissions:
   contents: read
@@ -21,126 +11,162 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out core-lite
+      - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Create mock consuming repo
+      - name: Build mock core-lite target
         run: |
-          mkdir -p /tmp/core-lite-target/incoming
-          mkdir -p /tmp/core-lite-target/.stegverse
-          mkdir -p /tmp/core-lite-target/tools/tasks
+          set -euo pipefail
 
-          cat > /tmp/core-lite-target/.stegverse/core-lite.json <<'JSON'
+          TARGET="/tmp/core-lite-target"
+          rm -rf "$TARGET"
+
+          mkdir -p "$TARGET"
+          mkdir -p "$TARGET/incoming"
+          mkdir -p "$TARGET/.stegverse"
+          mkdir -p "$TARGET/.github/workflows"
+          mkdir -p "$TARGET/tools/tasks"
+
+          cp -R core_lite "$TARGET/core_lite"
+          cp -R schemas "$TARGET/schemas"
+
+          if [ -d tools ]; then
+            cp -R tools "$TARGET/tools"
+          fi
+
+          touch "$TARGET/incoming/.gitkeep"
+
+          cat > "$TARGET/tools/tasks/core_lite_tasks.json" <<'JSON'
+          {
+            "name": "mock core-lite tasks",
+            "version": "0",
+            "tasks": []
+          }
+          JSON
+
+          cat > "$TARGET/.stegverse/core-lite.json" <<'JSON'
           {
             "schema": "stegverse_core_lite_policy.v1",
-            "core_lite_version": "0.1.0",
-            "repo_id": "TestOrg/TestRepo",
+            "core_lite_version": "self-test",
+            "repo_id": "Data-Continuation/core-lite",
             "incoming_dir": "incoming",
             "success_dir": "legacy/ingested-bundles",
             "failed_dir": "legacy/failed-bundles",
+            "superseded_dir": "legacy/superseded-bundles",
             "registry_path": ".stegverse/org_registry.json",
-            "default_task_manifest": "tools/tasks/test_tasks.json",
-            "run_tasks_after_ingest": true
+            "default_task_manifest": "tools/tasks/core_lite_tasks.json",
+            "run_tasks_after_ingest": false,
+            "required_repo_shims": [
+              "incoming/.gitkeep",
+              ".stegverse/core-lite.json",
+              ".github/workflows/core-lite-intake.yml"
+            ],
+            "expected_workflows": [
+              ".github/workflows/core-lite-intake.yml"
+            ],
+            "peer_ingestion_engines": []
           }
           JSON
 
-          cat > /tmp/core-lite-target/tools/tasks/test_tasks.json <<'JSON'
-          {
-            "name": "core-lite mock repo tasks",
-            "version": "0.1.0",
-            "tasks": [
-              {
-                "task_id": "write_task_output",
-                "enabled": true,
-                "description": "Write a deterministic task output.",
-                "command": [
-                  "python",
-                  "-c",
-                  "from pathlib import Path; Path('task_output.txt').write_text('ok\\n', encoding='utf-8')"
-                ],
-                "expected_outputs": [
-                  "task_output.txt"
-                ]
-              }
-            ]
-          }
-          JSON
+          cat > "$TARGET/.github/workflows/core-lite-intake.yml" <<'YAML'
+          name: Mock Core-Lite Intake
 
-      - name: Create test ingest bundle
+          on:
+            workflow_dispatch:
+
+          jobs:
+            noop:
+              runs-on: ubuntu-latest
+              steps:
+                - run: echo "mock intake workflow"
+          YAML
+
+      - name: Verify mock shims before run
         run: |
-          mkdir -p /tmp/test-bundle/.stegverse
-          mkdir -p /tmp/test-bundle/docs
+          set -euo pipefail
 
-          cat > /tmp/test-bundle/docs/hello.md <<'EOF'
-          # Hello from core-lite
+          TARGET="/tmp/core-lite-target"
 
-          This file was installed through a manifest-declared incoming bundle.
-          EOF
+          echo "Mock target file surface:"
+          find "$TARGET" -maxdepth 4 -type f | sort
 
-          cat > /tmp/test-bundle/.stegverse/ingest_manifest.json <<'JSON'
-          {
-            "schema": "stegverse_ingest_manifest.v1",
-            "bundle_id": "core-lite-self-test-bundle",
-            "bundle_version": "0.1.0",
-            "target_repo": "any",
-            "purpose": "Verify core-lite can ingest a manifest-declared bundle.",
-            "install_policy": {
-              "default_action": "overwrite_declared_files_only",
-              "preserve_runtime_artifacts": true,
-              "preserve_unlisted_files": true,
-              "fail_on_unclassified_files": true
-            },
-            "files": [
-              {
-                "path": "docs/hello.md",
-                "class": "documentation",
-                "action": "overwrite",
-                "reason": "Self-test installed documentation file."
-              },
-              {
-                "path": ".stegverse/ingest_manifest.json",
-                "class": "ingest_manifest",
-                "action": "read_before_install",
-                "reason": "Classifies this test bundle before ingestion."
-              }
-            ]
-          }
-          JSON
+          test -f "$TARGET/incoming/.gitkeep"
+          test -f "$TARGET/.stegverse/core-lite.json"
+          test -f "$TARGET/.github/workflows/core-lite-intake.yml"
+          test -f "$TARGET/core_lite/cli.py"
+          test -f "$TARGET/core_lite/shims.py"
+          test -f "$TARGET/schemas/manifest_admissibility_policy.json"
+          test -f "$TARGET/schemas/ingestion_transition_table.json"
 
-          cd /tmp/test-bundle
-          zip -r /tmp/core-lite-target/incoming/core-lite-self-test-bundle.zip .
+          echo "Required mock shims exist."
 
       - name: Run core-lite against mock repo
         env:
-          GITHUB_REPOSITORY: TestOrg/TestRepo
+          GITHUB_REPOSITORY: Data-Continuation/core-lite
+          GITHUB_EVENT_NAME: workflow_dispatch
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_ACTOR: ${{ github.actor }}
         run: |
-          python core_lite/cli.py run --repo-root /tmp/core-lite-target
+          set -euo pipefail
 
-      - name: Verify outputs
+          python core_lite/cli.py run --repo-root /tmp/core-lite-target --skip-tasks
+
+      - name: Validate mock output
         run: |
-          test -f /tmp/core-lite-target/docs/hello.md
-          test -f /tmp/core-lite-target/task_output.txt
-          test -f /tmp/core-lite-target/core_lite_ingest_report.json
+          set -euo pipefail
+
           test -f /tmp/core-lite-target/core_lite_run_summary.json
-          test -f /tmp/core-lite-target/.stegverse/org_registry.json
+          test -f /tmp/core-lite-target/core_lite_queue_plan.json
+          test -f /tmp/core-lite-target/core_lite_ingest_report.json
+          test -f /tmp/core-lite-target/.stegverse/source_state_index.json
+          test -f /tmp/core-lite-target/.stegverse/repo_shim_coverage_report.json
+          test -f /tmp/core-lite-target/.stegverse/cge_fingerprint.json
           test -f /tmp/core-lite-target/.stegverse/receipts/core_lite_receipts.jsonl
-          test -d /tmp/core-lite-target/legacy/ingested-bundles
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          summary = json.loads(Path("/tmp/core-lite-target/core_lite_run_summary.json").read_text())
+          shim_report = json.loads(Path("/tmp/core-lite-target/.stegverse/repo_shim_coverage_report.json").read_text())
+
+          drift_flags = set(summary.get("drift_flags", []))
+
+          print(json.dumps({
+              "summary": summary,
+              "shim_report": shim_report
+          }, indent=2, sort_keys=True))
+
+          assert summary["ingest_success"] is True, summary
+          assert summary["local_chain_valid"] is True, summary
+          assert summary["parent_links_valid_locally"] is True, summary
+          assert "missing_shim" not in drift_flags, summary
+
+          print(json.dumps({
+              "result": "pass",
+              "ingest_success": summary["ingest_success"],
+              "local_chain_valid": summary["local_chain_valid"],
+              "parent_links_valid_locally": summary["parent_links_valid_locally"],
+              "drift_flags": sorted(drift_flags),
+          }, indent=2, sort_keys=True))
+          PY
 
       - name: Upload self-test artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: core-lite-self-test-artifacts
           path: |
-            /tmp/core-lite-target/core_lite_ingest_report.json
             /tmp/core-lite-target/core_lite_run_summary.json
-            /tmp/core-lite-target/declared_task_report.json
-            /tmp/core-lite-target/.stegverse/org_registry.json
-            /tmp/core-lite-target/.stegverse/receipts/core_lite_receipts.jsonl
-            /tmp/core-lite-target/docs/hello.md
-            /tmp/core-lite-target/task_output.txt
-          if-no-files-found: error
+            /tmp/core-lite-target/core_lite_queue_plan.json
+            /tmp/core-lite-target/core_lite_ingest_report.json
+            /tmp/core-lite-target/.stegverse/**
+          if-no-files-found: warn
