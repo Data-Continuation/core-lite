@@ -36,25 +36,67 @@ jobs:
         run: |
           TASK_ID="${{ github.event.inputs.task_id || '' }}"
           SKIP_TASKS="${{ github.event.inputs.skip_tasks || 'true' }}"
+
           CMD="python core_lite/cli.py run --repo-root ."
-          if [ -n "$TASK_ID" ]; then CMD="$CMD --task-id $TASK_ID"; fi
-          if [ "$SKIP_TASKS" = "true" ]; then CMD="$CMD --skip-tasks"; fi
+
+          if [ -n "$TASK_ID" ]; then
+            CMD="$CMD --task-id $TASK_ID"
+          fi
+
+          if [ "$SKIP_TASKS" = "true" ]; then
+            CMD="$CMD --skip-tasks"
+          fi
+
           echo "$CMD"
           eval "$CMD"
 
+      - name: Prepare commit
+        run: |
+          set -euo pipefail
+
+          # Runtime Python cache must never be committed.
+          find . -type d -name "__pycache__" -prune -exec rm -rf {} +
+          find . -type f -name "*.pyc" -delete
+
+          # The default GITHUB_TOKEN cannot update workflow files.
+          # If a bundle changed workflows, stop clearly before attempting push.
+          if git status --porcelain | grep -E '^[ MARCUD?]{1,2} \.github/workflows/' >/dev/null; then
+            echo "::error::Core-Lite changed one or more workflow files under .github/workflows/."
+            echo "::error::GitHub rejects workflow file updates made by the default GITHUB_TOKEN."
+            echo "::error::Apply the workflow file manually, or rerun with a token/app that has workflows permission."
+            echo ""
+            echo "Changed workflow files:"
+            git status --porcelain | grep -E '^[ MARCUD?]{1,2} \.github/workflows/' || true
+            exit 1
+          fi
+
       - name: Commit core-lite results
         run: |
+          set -euo pipefail
+
           if git diff --quiet --cached && git diff --quiet; then
             echo "No core-lite changes to commit."
             exit 0
           fi
+
           git config user.name "StegVerse Bot"
           git config user.email "builder@stegverse.org"
+
           git add -A
+          git reset -- "core_lite/__pycache__" || true
+          git reset -- "**/__pycache__" || true
+          git reset -- "*.pyc" || true
+
+          if git diff --quiet --cached; then
+            echo "Only ignored/runtime files changed. Nothing to commit."
+            exit 0
+          fi
+
           git commit -m "run core-lite intake"
           git push
 
       - name: Upload core-lite artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: core-lite-artifacts
@@ -62,6 +104,18 @@ jobs:
             core_lite_queue_plan.json
             core_lite_ingest_report.json
             core_lite_run_summary.json
-            .stegverse/**
-            legacy/**
+            declared_task_report.json
+            iosnoperiod_restore_report.json
+            .stegverse/org_registry.json
+            .stegverse/ingestion_topology_registry.json
+            .stegverse/repo_shim_coverage_report.json
+            .stegverse/cge_fingerprint.json
+            .stegverse/source_state_index.json
+            .stegverse/manifest_admissibility_report.json
+            .stegverse/master_hash_validation_report.json
+            .stegverse/master_hash_records.jsonl
+            .stegverse/receipts/core_lite_receipts.jsonl
+            legacy/ingested-bundles/**
+            legacy/failed-bundles/**
+            legacy/superseded-bundles/**
           if-no-files-found: warn
