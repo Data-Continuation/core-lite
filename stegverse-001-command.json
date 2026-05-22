@@ -1,0 +1,50 @@
+{
+  "active_transition": {
+    "name": "Core-Lite Recorded Ingestion + CGE + Sandbox Result Return",
+    "steps": [
+      "incoming_bundle_detected",
+      "manifest_validated",
+      "cge_precheck",
+      "sandbox_experiment",
+      "sandbox_result",
+      "cge_result_classification",
+      "report_returned",
+      "receipt_emitted",
+      "STOP"
+    ]
+  },
+  "actor": "StegVerse-001",
+  "allowed_scope": [
+    "inspect_workflows",
+    "inspect_cli_contract",
+    "inspect_cge_contract",
+    "inspect_ingest_contract",
+    "inspect_sandbox_contract",
+    "inspect_receipt_contract",
+    "inspect_incoming_behavior",
+    "inspect_task_manifests",
+    "return_plan",
+    "emit_report",
+    "emit_receipt"
+  ],
+  "forbidden_scope": [
+    "install",
+    "deploy",
+    "promote",
+    "production_activation",
+    "node_status",
+    "finco_eligibility",
+    "workflow_widening",
+    "incoming_bundle_submission",
+    "direct_file_mutation",
+    "self_accreditation"
+  ],
+  "generated_at": "2026-05-22T22:23:31.008133+00:00",
+  "goal": "Determine the working core-lite contract that enables incoming bundle ingestion, CGE governance, sandbox evaluation, returned report, receipt chain, and STOP.",
+  "instruction_id": "stegverse-001-determine-core-lite-working-contract-001",
+  "mode": "initialization",
+  "schema": "stegverse_worker_instruction.v1",
+  "stop_condition": "Return a working-structure report, minimal plan, and receipt. Do not patch files.",
+  "target_repo": "Data-Continuation/core-lite",
+  "transition": "determine_core_lite_working_contract"
+}
