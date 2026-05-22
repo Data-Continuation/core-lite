@@ -1,0 +1,7 @@
+{
+  "generated_at": "2026-05-22T22:23:31.008133+00:00",
+  "goal": "Create an operational instruction channel for StegVerse-001 to determine the working core-lite contract and return a plan.",
+  "schema": "stegverse_001_worker_instruction_channel_bundle_report.v1",
+  "success": true,
+  "task_id": "stegverse001_determine_core_lite_working_contract"
+}
