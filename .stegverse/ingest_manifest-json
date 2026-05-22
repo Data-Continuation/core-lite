@@ -1,0 +1,37 @@
+{
+  "allowed_bundle_manifest_names": [
+    "bundle_manifest.json",
+    "manifest.json"
+  ],
+  "allowed_candidate_roots": [
+    "payload/",
+    "docs/",
+    "schemas/",
+    "tests/fixtures/"
+  ],
+  "allowed_decisions": [
+    "ALLOW_SANDBOX",
+    "REVIEW_REQUIRED",
+    "DENY",
+    "FAIL_CLOSED"
+  ],
+  "default_result": "REVIEW_REQUIRED",
+  "forbidden_actions": [
+    "install",
+    "execute",
+    "deploy",
+    "promote",
+    "self_accredit"
+  ],
+  "generated_at": "2026-05-22T21:11:43.351151+00:00",
+  "install_authority": false,
+  "policy_id": "core_lite_recorded_ingestion_cge_sandbox_policy",
+  "production_authority": false,
+  "protected_prefixes": [
+    ".github/workflows/",
+    "github/workflows/",
+    ".stegverse/",
+    "iosnoperiod/github/workflows/"
+  ],
+  "schema": "stegverse_core_lite_ingest_manifest.v1"
+}

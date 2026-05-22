@@ -1,0 +1,23 @@
+{
+  "authority": {
+    "finco_eligibility": false,
+    "founder_operator_review_required": true,
+    "install_authority": false,
+    "node_status": false,
+    "production_authority": false
+  },
+  "boundary": [
+    "Discovery observes.",
+    "Ingestion receives candidate bundles.",
+    "CGE decides whether sandbox evaluation is admissible.",
+    "Sandbox evaluates without installing.",
+    "CGE classifies sandbox result.",
+    "Reports and receipts are returned.",
+    "No binding installation occurs in this gate."
+  ],
+  "capability_goal": "recorded_ingestion_cge_sandbox_loop",
+  "generated_at": "2026-05-22T21:11:43.351151+00:00",
+  "mode": "initialization",
+  "package": "core-lite",
+  "schema": "stegverse_core_lite_identity.v1"
+}
