@@ -1,0 +1,141 @@
+{
+  "boundary": [
+    "Ingestion received candidate bundle.",
+    "CGE evaluated admissibility for sandbox only.",
+    "Sandbox ran without installation.",
+    "CGE classified sandbox result.",
+    "Founder/operator review remains required before any install gate."
+  ],
+  "bundle": {
+    "actor": "StegVerse-001-initialization",
+    "bundle_dir": "tests/fixtures/sample_ingest_bundle",
+    "bundle_id": "sample-core-lite-ingestion-sandbox-loop-001",
+    "manifest_hash": "94cdf003c6d49dd3632eaf5aa8be185f61d0d9d989140461a87d8f938bc4f3bb",
+    "manifest_path": "tests/fixtures/sample_ingest_bundle/bundle_manifest.json",
+    "purpose": "Verify bundle ingestion, CGE precheck, sandbox evaluation, returned report, and receipt chain without installation."
+  },
+  "cge_precheck": {
+    "basis": "bundle manifest is admissible for sandbox evaluation only",
+    "decision": "ALLOW_SANDBOX",
+    "details": {
+      "declared_path_count": 1
+    },
+    "severity": "low"
+  },
+  "final_decision": {
+    "basis": "sandbox completed; founder/operator review required before any install gate",
+    "decision": "REVIEW_REQUIRED",
+    "details": {
+      "evaluated_file_count": 1,
+      "install_authority": false
+    },
+    "severity": "low"
+  },
+  "finco_eligibility": false,
+  "generated_at": "2026-05-22T21:11:51.762894+00:00",
+  "install_performed": false,
+  "node_status": false,
+  "production_authority": false,
+  "receipt_path": "receipts/current/core-lite-ingestion-sandbox-loop/receipts.jsonl",
+  "receipts": [
+    {
+      "actor": "StegVerse-001-initialization",
+      "basis": "candidate bundle submitted to core-lite ingestion",
+      "decision": "RECEIVED",
+      "event_type": "bundle_submitted",
+      "generated_at": "2026-05-22T21:11:51.760433+00:00",
+      "input_hash": "94cdf003c6d49dd3632eaf5aa8be185f61d0d9d989140461a87d8f938bc4f3bb",
+      "metadata": {
+        "bundle_dir": "tests/fixtures/sample_ingest_bundle",
+        "manifest_path": "tests/fixtures/sample_ingest_bundle/bundle_manifest.json"
+      },
+      "output_hash": null,
+      "previous_receipt_hash": null,
+      "receipt_hash": "aab5187d5904e84c4fd9b68a60ce47f929315182ba6654533d09f1add76e0ccb",
+      "schema": "stegverse_core_lite_event_receipt.v1"
+    },
+    {
+      "actor": "core-lite-cge",
+      "basis": "bundle manifest is admissible for sandbox evaluation only",
+      "decision": "ALLOW_SANDBOX",
+      "event_type": "cge_precheck_decision",
+      "generated_at": "2026-05-22T21:11:51.760971+00:00",
+      "input_hash": "94cdf003c6d49dd3632eaf5aa8be185f61d0d9d989140461a87d8f938bc4f3bb",
+      "metadata": {
+        "basis": "bundle manifest is admissible for sandbox evaluation only",
+        "decision": "ALLOW_SANDBOX",
+        "details": {
+          "declared_path_count": 1
+        },
+        "severity": "low"
+      },
+      "output_hash": null,
+      "previous_receipt_hash": "aab5187d5904e84c4fd9b68a60ce47f929315182ba6654533d09f1add76e0ccb",
+      "receipt_hash": "72f88b1cdded54b4717e726ff0a3395500fc77f4f2dc51aef1b338d031497cb9",
+      "schema": "stegverse_core_lite_event_receipt.v1"
+    },
+    {
+      "actor": "core-lite-sandbox",
+      "basis": "sandbox evaluated candidate bundle without installation",
+      "decision": "SANDBOX_COMPLETED",
+      "event_type": "sandbox_completed",
+      "generated_at": "2026-05-22T21:11:51.762050+00:00",
+      "input_hash": "94cdf003c6d49dd3632eaf5aa8be185f61d0d9d989140461a87d8f938bc4f3bb",
+      "metadata": {
+        "install_performed": false
+      },
+      "output_hash": "0667ff5a7a3769599c4da857da1deb87021b8665269d73fd937a0d2515812a22",
+      "previous_receipt_hash": "72f88b1cdded54b4717e726ff0a3395500fc77f4f2dc51aef1b338d031497cb9",
+      "receipt_hash": "7c05042019aeceeebfb62d2037e2a5b72377880ac47db4870f58232dd1b924ca",
+      "schema": "stegverse_core_lite_event_receipt.v1"
+    },
+    {
+      "actor": "core-lite-cge",
+      "basis": "sandbox completed; founder/operator review required before any install gate",
+      "decision": "REVIEW_REQUIRED",
+      "event_type": "cge_result_classification",
+      "generated_at": "2026-05-22T21:11:51.762481+00:00",
+      "input_hash": "0667ff5a7a3769599c4da857da1deb87021b8665269d73fd937a0d2515812a22",
+      "metadata": {
+        "basis": "sandbox completed; founder/operator review required before any install gate",
+        "decision": "REVIEW_REQUIRED",
+        "details": {
+          "evaluated_file_count": 1,
+          "install_authority": false
+        },
+        "severity": "low"
+      },
+      "output_hash": null,
+      "previous_receipt_hash": "7c05042019aeceeebfb62d2037e2a5b72377880ac47db4870f58232dd1b924ca",
+      "receipt_hash": "08ed0e69625428ca7c784d2e061212816e900439c6974809a50c5cbdd2e86a02",
+      "schema": "stegverse_core_lite_event_receipt.v1"
+    }
+  ],
+  "sandbox_result": {
+    "boundary": [
+      "Sandbox evaluated declared files only.",
+      "Sandbox did not install.",
+      "Sandbox did not execute candidate files.",
+      "Founder/operator review remains required."
+    ],
+    "errors": [],
+    "evaluated_file_count": 1,
+    "evaluated_files": [
+      {
+        "action": "sandbox_only",
+        "path": "payload/sample.txt",
+        "protected": false,
+        "sha256": "8c7fe5b6713d176f40680fac7d7ca59d3b1c1fa175ab5da2753f51e0ee16dbf2",
+        "size": 189,
+        "type": "candidate_file"
+      }
+    ],
+    "install_performed": false,
+    "missing_declared_paths": [],
+    "protected_paths": [],
+    "schema": "stegverse_core_lite_sandbox_result.v1",
+    "success": true
+  },
+  "schema": "stegverse_core_lite_recorded_ingestion_sandbox_loop_report.v1",
+  "success": true
+}
