@@ -1,6 +1,24 @@
 {
-  "name": "core-lite declared tasks",
-  "version": "0.9.0",
-  "description": "Default no-op task manifest for empty core-lite repo installation.",
-  "tasks": []
+  "manifest_name": "core lite recorded ingestion cge sandbox loop tasks",
+  "manifest_version": "0.1.0",
+  "schema": "stegverse_declared_task_manifest.v1",
+  "tasks": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "core_lite.ingest",
+        "--bundle",
+        "tests/fixtures/sample_ingest_bundle"
+      ],
+      "description": "Run minimal recorded ingestion, CGE precheck, sandbox evaluation, CGE result classification, and returned report/receipt.",
+      "enabled": true,
+      "expected_outputs": [
+        "reports/current/core-lite-ingestion-sandbox-loop/report.json",
+        "reports/current/core-lite-ingestion-sandbox-loop/report.md",
+        "receipts/current/core-lite-ingestion-sandbox-loop/receipts.jsonl"
+      ],
+      "task_id": "core_lite_recorded_ingestion_sandbox_loop"
+    }
+  ]
 }
