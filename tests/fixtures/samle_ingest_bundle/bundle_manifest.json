@@ -1,0 +1,13 @@
+{
+  "actor": "StegVerse-001-initialization",
+  "bundle_id": "sample-core-lite-ingestion-sandbox-loop-001",
+  "declared_paths": [
+    {
+      "action": "sandbox_only",
+      "path": "payload/sample.txt",
+      "type": "candidate_file"
+    }
+  ],
+  "purpose": "Verify bundle ingestion, CGE precheck, sandbox evaluation, returned report, and receipt chain without installation.",
+  "schema": "stegverse_ingest_bundle.v1"
+}
