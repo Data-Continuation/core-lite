@@ -1,0 +1,53 @@
+{
+  "$id": "stegverse_worker_instruction.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "actor": {
+      "type": "string"
+    },
+    "allowed_scope": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "forbidden_scope": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "instruction_id": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "stegverse_worker_instruction.v1"
+    },
+    "stop_condition": {
+      "type": "string"
+    },
+    "target_repo": {
+      "type": "string"
+    },
+    "transition": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "instruction_id",
+    "actor",
+    "mode",
+    "transition",
+    "target_repo",
+    "allowed_scope",
+    "forbidden_scope",
+    "stop_condition"
+  ],
+  "title": "StegVerse Worker Instruction",
+  "type": "object"
+}
