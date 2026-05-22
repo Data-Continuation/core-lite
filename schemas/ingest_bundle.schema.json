@@ -1,0 +1,54 @@
+{
+  "$id": "stegverse_ingest_bundle.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "actor": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "bundle_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "declared_paths": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "action": {
+            "type": "string"
+          },
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "purpose": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema": {
+      "const": "stegverse_ingest_bundle.v1"
+    }
+  },
+  "required": [
+    "schema",
+    "bundle_id",
+    "purpose",
+    "actor",
+    "declared_paths"
+  ],
+  "title": "StegVerse Ingest Bundle Manifest",
+  "type": "object"
+}
