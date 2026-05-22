@@ -1,0 +1,9 @@
+{
+  "generated_at": "2026-05-22T21:11:43.351151+00:00",
+  "goal": "bundle ingestion -> CGE -> sandbox experiment -> returned report/receipt",
+  "install_authority": false,
+  "production_authority": false,
+  "schema": "stegverse_core_lite_recorded_ingestion_cge_sandbox_loop_bundle_report.v1",
+  "success": true,
+  "task_id": "core_lite_recorded_ingestion_sandbox_loop"
+}
