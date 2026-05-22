@@ -1,101 +1,250 @@
 from __future__ import annotations
-import json, shutil, zipfile
+
+import argparse
+import hashlib
+import json
+from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List
-try:
-    from .context import detect_context
-    from .manifest import load_bundle_manifest, validate_manifest
-    from .paths import ensure_dir, safe_join, utc_stamp
-    from .queue import plan_incoming_bundles
-    from .receipts import append_receipt
-except ImportError:
-    from context import detect_context
-    from manifest import load_bundle_manifest, validate_manifest
-    from paths import ensure_dir, safe_join, utc_stamp
-    from queue import plan_incoming_bundles
-    from receipts import append_receipt
+from typing import Any
 
-def load_core_policy(repo_root: Path) -> Dict[str, Any]:
-    path = repo_root / ".stegverse" / "core-lite.json"
-    if not path.exists():
-        return {"incoming_dir": "incoming", "success_dir": "legacy/ingested-bundles", "failed_dir": "legacy/failed-bundles", "superseded_dir": "legacy/superseded-bundles", "default_task_manifest": "tools/tasks/core_lite_tasks.json", "run_tasks_after_ingest": False}
-    return json.loads(path.read_text(encoding="utf-8"))
+from core_lite.cge import classify_sandbox_result, precheck_manifest
+from core_lite.receipts import ReceiptRecorder
+from core_lite.sandbox import run_sandbox
 
-def install_declared_files(repo_root: Path, staging_root: Path, manifest: Dict[str, Any]) -> List[Dict[str, str]]:
-    installed: List[Dict[str, str]] = []
-    for item in manifest.get("files", []):
-        if not isinstance(item, dict): raise ValueError("manifest file entries must be objects")
-        rel = item.get("path")
-        action = item.get("action", "overwrite")
-        if not isinstance(rel, str) or not rel: raise ValueError("manifest file entry missing path")
-        if action == "read_before_install": continue
-        if action not in {"overwrite", "merge_or_replace_with_review"}: raise ValueError(f"unsupported install action for {rel}: {action}")
-        source = staging_root / rel
-        if not source.exists() or not source.is_file(): raise FileNotFoundError(f"declared file missing from bundle: {rel}")
-        destination = safe_join(repo_root, rel)
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(source, destination)
-        installed.append({"path": rel, "action": action, "class": str(item.get("class", ""))})
-    return installed
 
-def move_zip(zip_path: Path, destination_dir: Path) -> Path:
-    destination_dir.mkdir(parents=True, exist_ok=True)
-    destination = destination_dir / zip_path.name
-    if destination.exists(): destination = destination_dir / f"{utc_stamp()}-{zip_path.name}"
-    shutil.move(str(zip_path), str(destination))
-    return destination
+REPORT_DIR = Path("reports/current/core-lite-ingestion-sandbox-loop")
+RECEIPT_DIR = Path("receipts/current/core-lite-ingestion-sandbox-loop")
+REPORT_JSON = REPORT_DIR / "report.json"
+REPORT_MD = REPORT_DIR / "report.md"
+RECEIPTS = RECEIPT_DIR / "receipts.jsonl"
 
-def process_bundle(repo_root: Path, zip_path: Path, policy: Dict[str, Any], context: Dict[str, str]) -> Dict[str, Any]:
-    staging_root = repo_root / ".core-lite-staging" / f"{zip_path.stem}-{utc_stamp()}"
-    ensure_dir(staging_root)
-    success_dir = ensure_dir(repo_root / policy.get("success_dir", "legacy/ingested-bundles"))
-    failed_dir = ensure_dir(repo_root / policy.get("failed_dir", "legacy/failed-bundles"))
-    try:
-        with zipfile.ZipFile(zip_path, "r") as archive: archive.extractall(staging_root)
-        manifest = load_bundle_manifest(staging_root)
-        validation = validate_manifest(manifest, context, staging_root, repo_root=repo_root)
-        installed = install_declared_files(repo_root, staging_root, manifest)
-        destination = move_zip(zip_path, success_dir)
-        receipt = {"type": "bundle_ingested", "bundle": zip_path.name, "moved_to": destination.relative_to(repo_root).as_posix(), "manifest": {"bundle_id": manifest.get("bundle_id", ""), "bundle_version": manifest.get("bundle_version", ""), "target_repo": manifest.get("target_repo", ""), "priority": manifest.get("priority", "Low"), "succession": manifest.get("succession", "versioning"), "entrypoint": manifest.get("entrypoint", {}), "requested_allow_scopes": manifest.get("requested_allow_scopes", [])}, "validation": validation, "installed": installed, "success": True}
-        append_receipt(repo_root, receipt)
-        return receipt
-    except Exception as exc:
-        destination = move_zip(zip_path, failed_dir) if zip_path.exists() else failed_dir
-        receipt = {"type": "bundle_failed", "bundle": zip_path.name, "moved_to": destination.relative_to(repo_root).as_posix() if isinstance(destination, Path) else "", "error": str(exc), "success": False}
-        append_receipt(repo_root, receipt)
-        return receipt
-    finally:
-        if staging_root.exists(): shutil.rmtree(staging_root)
 
-def move_superseded_bundle(repo_root: Path, zip_path: Path, policy: Dict[str, Any], queue_entry: Dict[str, Any]) -> Dict[str, Any]:
-    destination = move_zip(zip_path, ensure_dir(repo_root / policy.get("superseded_dir", "legacy/superseded-bundles")))
-    receipt = {"type": "bundle_superseded", "bundle": zip_path.name, "moved_to": destination.relative_to(repo_root).as_posix(), "queue_entry": queue_entry, "success": True}
-    append_receipt(repo_root, receipt)
-    return receipt
+def canonical_json(value: dict[str, Any]) -> str:
+    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
 
-def move_unreadable_bundle(repo_root: Path, zip_path: Path, policy: Dict[str, Any], error: str) -> Dict[str, Any]:
-    destination = move_zip(zip_path, ensure_dir(repo_root / policy.get("failed_dir", "legacy/failed-bundles")))
-    receipt = {"type": "bundle_failed_manifest_read", "bundle": zip_path.name, "moved_to": destination.relative_to(repo_root).as_posix(), "error": error, "success": False}
-    append_receipt(repo_root, receipt)
-    return receipt
 
-def ingest_incoming(repo_root: Path) -> Dict[str, Any]:
-    context = detect_context(repo_root)
-    policy = load_core_policy(repo_root)
-    incoming_dir = ensure_dir(repo_root / policy.get("incoming_dir", "incoming"))
-    queue_plan = plan_incoming_bundles(incoming_dir)
-    (repo_root / "core_lite_queue_plan.json").write_text(json.dumps(queue_plan, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    append_receipt(repo_root, {"type": "queue_planned", "queue_plan_path": "core_lite_queue_plan.json", "counts": queue_plan.get("counts", {}), "success": True})
-    receipts: List[Dict[str, Any]] = []
-    for entry in queue_plan["failed_to_read"]:
-        path = Path(entry["path"])
-        if path.exists(): receipts.append(move_unreadable_bundle(repo_root, path, policy, entry["error"]))
-    for entry in queue_plan["superseded"]:
-        path = Path(entry["path"])
-        if path.exists(): receipts.append(move_superseded_bundle(repo_root, path, policy, entry))
-    for entry in queue_plan["process"]:
-        path = Path(entry["path"])
-        if path.exists(): receipts.append(process_bundle(repo_root, path, policy, context))
-    report = {"schema": "stegverse_core_lite_ingest_report.v2", "queue_plan_path": "core_lite_queue_plan.json", "bundle_count": len(queue_plan["process"]), "superseded_count": len(queue_plan["superseded"]), "failed_to_read_count": len(queue_plan["failed_to_read"]), "success": all(r.get("success") for r in receipts if r.get("type") != "bundle_failed_manifest_read") and not queue_plan["failed_to_read"], "receipts": receipts}
-    (repo_root / "core_lite_ingest_report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+def hash_dict(value: dict[str, Any]) -> str:
+    return hashlib.sha256(canonical_json(value).encode("utf-8")).hexdigest()
+
+
+def load_manifest(bundle_dir: Path) -> tuple[dict[str, Any], Path]:
+    for name in ("bundle_manifest.json", "manifest.json"):
+        candidate = bundle_dir / name
+        if candidate.exists() and candidate.is_file():
+            return json.loads(candidate.read_text(encoding="utf-8")), candidate
+    raise FileNotFoundError("bundle_manifest.json or manifest.json not found")
+
+
+def write_markdown_report(report: dict[str, Any]) -> None:
+    lines = [
+        "# Core-Lite Recorded Ingestion + CGE + Sandbox Loop Report",
+        "",
+        "## Status",
+        "",
+        "```text",
+        f"success: {str(report['success']).lower()}",
+        f"final_decision: {report['final_decision']['decision']}",
+        f"bundle_id: {report['bundle'].get('bundle_id')}",
+        "install_performed: false",
+        "```",
+        "",
+        "## Boundary",
+        "",
+        "```text",
+        "Bundle entered ingestion.",
+        "CGE precheck evaluated the manifest.",
+        "Sandbox evaluated without install.",
+        "CGE classified the sandbox result.",
+        "Founder/operator review remains required.",
+        "```",
+        "",
+        "## CGE Precheck",
+        "",
+        "```text",
+        f"decision: {report['cge_precheck']['decision']}",
+        f"basis: {report['cge_precheck']['basis']}",
+        "```",
+        "",
+        "## CGE Result Classification",
+        "",
+        "```text",
+        f"decision: {report['final_decision']['decision']}",
+        f"basis: {report['final_decision']['basis']}",
+        "```",
+        "",
+        "## Evaluated Files",
+        "",
+    ]
+
+    evaluated = report.get("sandbox_result", {}).get("evaluated_files", [])
+    if evaluated:
+        for item in evaluated:
+            lines.append(f"- `{item['path']}` sha256=`{item['sha256']}`")
+    else:
+        lines.append("No files evaluated.")
+
+    lines.extend(
+        [
+            "",
+            "## Receipt Chain",
+            "",
+            "```text",
+            f"receipt_path: {report['receipt_path']}",
+            f"receipt_count: {len(report['receipts'])}",
+            "```",
+        ]
+    )
+
+    REPORT_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def run_ingestion(bundle: str | Path) -> dict[str, Any]:
+    bundle_dir = Path(bundle)
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    RECEIPT_DIR.mkdir(parents=True, exist_ok=True)
+
+    recorder = ReceiptRecorder(RECEIPTS)
+
+    manifest, manifest_path = load_manifest(bundle_dir)
+    manifest_hash = hash_dict(manifest)
+
+    receipts = []
+    receipts.append(
+        recorder.record(
+            event_type="bundle_submitted",
+            actor=manifest.get("actor", "unknown"),
+            decision="RECEIVED",
+            basis="candidate bundle submitted to core-lite ingestion",
+            input_hash=manifest_hash,
+            metadata={"bundle_dir": str(bundle_dir), "manifest_path": str(manifest_path)},
+        )
+    )
+
+    precheck = precheck_manifest(manifest)
+    receipts.append(
+        recorder.record(
+            event_type="cge_precheck_decision",
+            actor="core-lite-cge",
+            decision=precheck.decision,
+            basis=precheck.basis,
+            input_hash=manifest_hash,
+            metadata=precheck.to_dict(),
+        )
+    )
+
+    sandbox_result: dict[str, Any] | None = None
+    final_decision = precheck
+
+    if precheck.decision in {"ALLOW_SANDBOX", "REVIEW_REQUIRED"}:
+        sandbox_result = run_sandbox(bundle_dir, manifest)
+        sandbox_hash = hash_dict(sandbox_result)
+        receipts.append(
+            recorder.record(
+                event_type="sandbox_completed",
+                actor="core-lite-sandbox",
+                decision="SANDBOX_COMPLETED" if sandbox_result.get("success") else "SANDBOX_FAILED",
+                basis="sandbox evaluated candidate bundle without installation",
+                input_hash=manifest_hash,
+                output_hash=sandbox_hash,
+                metadata={"install_performed": False},
+            )
+        )
+
+        final_decision = classify_sandbox_result(sandbox_result)
+        receipts.append(
+            recorder.record(
+                event_type="cge_result_classification",
+                actor="core-lite-cge",
+                decision=final_decision.decision,
+                basis=final_decision.basis,
+                input_hash=sandbox_hash,
+                metadata=final_decision.to_dict(),
+            )
+        )
+    else:
+        sandbox_result = {
+            "schema": "stegverse_core_lite_sandbox_result.v1",
+            "success": False,
+            "install_performed": False,
+            "evaluated_file_count": 0,
+            "evaluated_files": [],
+            "protected_paths": [],
+            "missing_declared_paths": [],
+            "errors": ["CGE precheck did not allow sandbox evaluation."],
+        }
+
+    success = final_decision.decision in {"REVIEW_REQUIRED", "ALLOW_SANDBOX"}
+
+    report = {
+        "schema": "stegverse_core_lite_recorded_ingestion_sandbox_loop_report.v1",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "success": success,
+        "bundle": {
+            "bundle_dir": str(bundle_dir),
+            "manifest_path": str(manifest_path),
+            "bundle_id": manifest.get("bundle_id"),
+            "purpose": manifest.get("purpose"),
+            "actor": manifest.get("actor"),
+            "manifest_hash": manifest_hash,
+        },
+        "cge_precheck": precheck.to_dict(),
+        "sandbox_result": sandbox_result,
+        "final_decision": final_decision.to_dict(),
+        "install_performed": False,
+        "production_authority": False,
+        "node_status": False,
+        "finco_eligibility": False,
+        "receipt_path": str(RECEIPTS),
+        "receipts": receipts,
+        "boundary": [
+            "Ingestion received candidate bundle.",
+            "CGE evaluated admissibility for sandbox only.",
+            "Sandbox ran without installation.",
+            "CGE classified sandbox result.",
+            "Founder/operator review remains required before any install gate.",
+        ],
+    }
+
+    REPORT_JSON.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_markdown_report(report)
+
+    recorder.record(
+        event_type="report_returned",
+        actor="core-lite-ingest",
+        decision=final_decision.decision,
+        basis="reviewable report and receipt chain returned to founder/operator",
+        output_hash=hash_dict(report),
+        metadata={"report": str(REPORT_JSON), "markdown_report": str(REPORT_MD)},
+    )
+
     return report
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Run core-lite recorded ingestion + CGE + sandbox loop.")
+    parser.add_argument("--bundle", default="tests/fixtures/sample_ingest_bundle", help="Path to ingestible bundle directory.")
+    args = parser.parse_args()
+
+    try:
+        report = run_ingestion(args.bundle)
+    except Exception as exc:
+        REPORT_DIR.mkdir(parents=True, exist_ok=True)
+        RECEIPT_DIR.mkdir(parents=True, exist_ok=True)
+        failure = {
+            "schema": "stegverse_core_lite_recorded_ingestion_sandbox_loop_report.v1",
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "success": False,
+            "error": type(exc).__name__,
+            "basis": str(exc),
+            "install_performed": False,
+        }
+        REPORT_JSON.write_text(json.dumps(failure, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        print(json.dumps(failure, indent=2, sort_keys=True))
+        return 1
+
+    print(json.dumps(report, indent=2, sort_keys=True))
+    return 0 if report.get("success") else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
