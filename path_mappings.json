@@ -1,0 +1,8 @@
+{
+  "generated_at": "2026-05-22T21:11:43.351151+00:00",
+  "mappings": {
+    ".stegverse/core-lite.json": "iosnoperiod/stegverse/core-lite-json",
+    ".stegverse/ingest_manifest.json": "iosnoperiod/stegverse/ingest_manifest-json"
+  },
+  "schema": "stegverse_iosnoperiod_mapping.v1"
+}
