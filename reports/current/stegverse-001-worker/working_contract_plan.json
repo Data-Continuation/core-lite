@@ -1,0 +1,54 @@
+{
+  "actor": "StegVerse-001",
+  "blockers": [
+    {
+      "basis": "Required transition surface not observed: incoming_bundle_detected",
+      "items": [
+        "incoming_bundle_detected"
+      ],
+      "type": "missing_transition_surface"
+    },
+    {
+      "basis": "Required transition surface not observed: manifest_validation_surface",
+      "items": [
+        "manifest_validation_surface"
+      ],
+      "type": "missing_transition_surface"
+    },
+    {
+      "basis": "Required transition surface not observed: cge_surface",
+      "items": [
+        "cge_surface"
+      ],
+      "type": "missing_transition_surface"
+    },
+    {
+      "basis": "Required transition surface not observed: sandbox_surface",
+      "items": [
+        "sandbox_surface"
+      ],
+      "type": "missing_transition_surface"
+    },
+    {
+      "basis": "Required transition surface not observed: receipt_surface",
+      "items": [
+        "receipt_surface"
+      ],
+      "type": "missing_transition_surface"
+    }
+  ],
+  "decision": "RETURN_PLAN_ONLY",
+  "generated_at": "2026-05-22T22:23:43.690118+00:00",
+  "implementation_rule": "Apply only the minimal change required by observed working-structure blockers, then STOP.",
+  "incoming_submission_authority": false,
+  "install_authority": false,
+  "next_admissible_change": {
+    "basis": "One or more required surfaces are absent.",
+    "classification": "surface_completion",
+    "target": "minimal_missing_transition_surface"
+  },
+  "production_authority": false,
+  "schema": "stegverse_001_working_contract_plan.v1",
+  "transition": "Core-Lite Recorded Ingestion + CGE + Sandbox Result Return",
+  "workflow_change_authority": false
+}

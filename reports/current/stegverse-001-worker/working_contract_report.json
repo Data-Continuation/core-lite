@@ -1,0 +1,132 @@
+{
+  "actor": "StegVerse-001",
+  "blockers": [
+    {
+      "basis": "Required transition surface not observed: incoming_bundle_detected",
+      "items": [
+        "incoming_bundle_detected"
+      ],
+      "type": "missing_transition_surface"
+    },
+    {
+      "basis": "Required transition surface not observed: manifest_validation_surface",
+      "items": [
+        "manifest_validation_surface"
+      ],
+      "type": "missing_transition_surface"
+    },
+    {
+      "basis": "Required transition surface not observed: cge_surface",
+      "items": [
+        "cge_surface"
+      ],
+      "type": "missing_transition_surface"
+    },
+    {
+      "basis": "Required transition surface not observed: sandbox_surface",
+      "items": [
+        "sandbox_surface"
+      ],
+      "type": "missing_transition_surface"
+    },
+    {
+      "basis": "Required transition surface not observed: receipt_surface",
+      "items": [
+        "receipt_surface"
+      ],
+      "type": "missing_transition_surface"
+    }
+  ],
+  "cge_exports": [],
+  "decision": "PLAN_RETURNED",
+  "generated_at": "2026-05-22T22:23:43.690118+00:00",
+  "goal": "Determine the working core-lite contract that enables incoming bundle ingestion, CGE governance, sandbox evaluation, returned report, receipt chain, and STOP.",
+  "instruction_hash": "57d45cae459a7156a70549a5a47336d1970db0e68949ad5d7eaec0b9b4428997",
+  "missing_cge_exports": [],
+  "mode": "initialization",
+  "observed_import_needs": [],
+  "python_contracts": {
+    "cge": {
+      "classes": [],
+      "exists": false,
+      "functions": [],
+      "import_from": [],
+      "parse_error": null,
+      "path": "core_lite/cge.py",
+      "sha256": null
+    },
+    "cli": {
+      "classes": [],
+      "exists": false,
+      "functions": [],
+      "import_from": [],
+      "parse_error": null,
+      "path": "core_lite/cli.py",
+      "sha256": null
+    },
+    "ingest": {
+      "classes": [],
+      "exists": false,
+      "functions": [],
+      "import_from": [],
+      "parse_error": null,
+      "path": "core_lite/ingest.py",
+      "sha256": null
+    },
+    "receipts": {
+      "classes": [],
+      "exists": false,
+      "functions": [],
+      "import_from": [],
+      "parse_error": null,
+      "path": "core_lite/receipts.py",
+      "sha256": null
+    },
+    "sandbox": {
+      "classes": [],
+      "exists": false,
+      "functions": [],
+      "import_from": [],
+      "parse_error": null,
+      "path": "core_lite/sandbox.py",
+      "sha256": null
+    }
+  },
+  "root": "/mnt/data/stegverse_001_worker_instruction_channel_bundle",
+  "schema": "stegverse_001_working_contract_report.v1",
+  "stop_condition": "Return a working-structure report, minimal plan, and receipt. Do not patch files.",
+  "success": true,
+  "surfaces": {
+    "incoming_exists": false,
+    "receipts_current_exists": true,
+    "reports_current_exists": true,
+    "task_manifests": [
+      {
+        "commands": [
+          [
+            "python",
+            "tools/stegverse001_worker.py"
+          ]
+        ],
+        "parse_error": null,
+        "path": "tools/tasks/stegverse001_worker_tasks.json",
+        "sha256": "48a9cacab451e0d281524f0b78a970ea1fbbc2bcc8ffc3dddeb21883aee93334",
+        "task_ids": [
+          "stegverse001_determine_core_lite_working_contract"
+        ]
+      }
+    ],
+    "workflows": []
+  },
+  "target_repo": "Data-Continuation/core-lite",
+  "transition": "determine_core_lite_working_contract",
+  "transition_requirements": {
+    "cge_surface": false,
+    "current_receipt_surface": true,
+    "current_report_surface": true,
+    "incoming_bundle_detected": false,
+    "manifest_validation_surface": false,
+    "receipt_surface": false,
+    "sandbox_surface": false
+  }
+}
