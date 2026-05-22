@@ -1,0 +1,4 @@
+Sample core-lite ingestion sandbox payload.
+
+This file is intentionally harmless.
+It exists only to verify recorded ingestion, CGE, sandbox evaluation, report return, and receipt emission.
