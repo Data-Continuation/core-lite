@@ -33,11 +33,12 @@ jobs:
       - name: Run core-lite
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYTHONPATH: ${{ github.workspace }}
         run: |
           TASK_ID="${{ github.event.inputs.task_id || '' }}"
           SKIP_TASKS="${{ github.event.inputs.skip_tasks || 'true' }}"
 
-          CMD="python core_lite/cli.py run --repo-root ."
+          CMD="python -m core_lite.cli run --repo-root ."
 
           if [ -n "$TASK_ID" ]; then
             CMD="$CMD --task-id $TASK_ID"
