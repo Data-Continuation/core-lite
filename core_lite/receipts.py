@@ -65,6 +65,7 @@ class ReceiptRecorder:
         self.previous_receipt_hash = receipt["receipt_hash"]
         return receipt
 
+
 def append_receipt(repo_root: Path | str = ".", receipt: dict[str, Any] | None = None, **metadata: Any) -> dict[str, Any]:
     root = Path(repo_root)
     recorder = ReceiptRecorder(root / ".stegverse" / "receipts" / "core_lite_receipts.jsonl")
@@ -74,8 +75,11 @@ def append_receipt(repo_root: Path | str = ".", receipt: dict[str, Any] | None =
     if metadata:
         payload = {**payload, **metadata}
     return recorder.record(
-        event_type=str(payload.get("event_type", "core_lite_cli_receipt")),
+        event_type=str(payload.get("event_type", payload.get("type", "core_lite_cli_receipt"))),
+        actor=str(payload.get("actor", "core-lite")),
         decision=str(payload.get("decision", "RECORDED")),
         basis=str(payload.get("basis", "Core-Lite CLI receipt recorded.")),
+        input_hash=payload.get("input_hash"),
+        output_hash=payload.get("output_hash"),
         metadata=payload,
     )
