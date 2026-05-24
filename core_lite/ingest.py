@@ -3,6 +3,9 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import shutil
+import tempfile
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -35,7 +38,46 @@ def load_manifest(bundle_dir: Path) -> tuple[dict[str, Any], Path]:
     raise FileNotFoundError("bundle_manifest.json or manifest.json not found")
 
 
-def write_markdown_report(report: dict[str, Any]) -> None:
+def _safe_extract_zip(zip_path: Path, destination: Path) -> None:
+    destination.mkdir(parents=True, exist_ok=True)
+    destination_root = destination.resolve()
+
+    with zipfile.ZipFile(zip_path, "r") as archive:
+        for member in archive.infolist():
+            member_path = destination / member.filename
+            resolved = member_path.resolve()
+            if destination_root != resolved and destination_root not in resolved.parents:
+                raise ValueError(f"zip member escapes extraction root: {member.filename}")
+        archive.extractall(destination)
+
+
+def _prepare_bundle_dir(bundle: str | Path, repo_root: Path) -> tuple[Path, dict[str, Any]]:
+    bundle_path = Path(bundle)
+    if not bundle_path.is_absolute():
+        bundle_path = repo_root / bundle_path
+
+    source = {
+        "submitted_bundle_path": bundle_path.as_posix(),
+        "submitted_bundle_type": "directory" if bundle_path.is_dir() else "file",
+        "extracted": False,
+    }
+
+    if bundle_path.is_dir():
+        return bundle_path, source
+
+    if bundle_path.is_file() and bundle_path.suffix.lower() == ".zip":
+        extract_parent = Path(tempfile.mkdtemp(prefix="core_lite_ingest_", dir=tempfile.gettempdir()))
+        extract_dir = extract_parent / bundle_path.stem
+        _safe_extract_zip(bundle_path, extract_dir)
+        source["submitted_bundle_type"] = "zip"
+        source["extracted"] = True
+        source["extracted_bundle_path"] = extract_dir.as_posix()
+        return extract_dir, source
+
+    raise ValueError(f"incoming bundle must be a directory or .zip file: {bundle_path}")
+
+
+def write_markdown_report(report: dict[str, Any], report_md: Path = REPORT_MD) -> None:
     lines = [
         "# Core-Lite Recorded Ingestion + CGE + Sandbox Loop Report",
         "",
@@ -95,15 +137,23 @@ def write_markdown_report(report: dict[str, Any]) -> None:
         ]
     )
 
-    REPORT_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    report_md.parent.mkdir(parents=True, exist_ok=True)
+    report_md.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def run_ingestion(bundle: str | Path) -> dict[str, Any]:
-    bundle_dir = Path(bundle)
-    REPORT_DIR.mkdir(parents=True, exist_ok=True)
-    RECEIPT_DIR.mkdir(parents=True, exist_ok=True)
+def run_ingestion(bundle: str | Path, repo_root: Path | str = ".") -> dict[str, Any]:
+    root = Path(repo_root).resolve()
+    report_dir = root / REPORT_DIR
+    receipt_dir = root / RECEIPT_DIR
+    report_json = root / REPORT_JSON
+    report_md = root / REPORT_MD
+    receipts_path = root / RECEIPTS
 
-    recorder = ReceiptRecorder(RECEIPTS)
+    report_dir.mkdir(parents=True, exist_ok=True)
+    receipt_dir.mkdir(parents=True, exist_ok=True)
+
+    bundle_dir, bundle_source = _prepare_bundle_dir(bundle, root)
+    recorder = ReceiptRecorder(receipts_path)
 
     manifest, manifest_path = load_manifest(bundle_dir)
     manifest_hash = hash_dict(manifest)
@@ -116,7 +166,11 @@ def run_ingestion(bundle: str | Path) -> dict[str, Any]:
             decision="RECEIVED",
             basis="candidate bundle submitted to core-lite ingestion",
             input_hash=manifest_hash,
-            metadata={"bundle_dir": str(bundle_dir), "manifest_path": str(manifest_path)},
+            metadata={
+                "bundle_dir": str(bundle_dir),
+                "manifest_path": str(manifest_path),
+                **bundle_source,
+            },
         )
     )
 
@@ -186,6 +240,7 @@ def run_ingestion(bundle: str | Path) -> dict[str, Any]:
             "purpose": manifest.get("purpose"),
             "actor": manifest.get("actor"),
             "manifest_hash": manifest_hash,
+            **bundle_source,
         },
         "cge_precheck": precheck.to_dict(),
         "sandbox_result": sandbox_result,
@@ -194,7 +249,7 @@ def run_ingestion(bundle: str | Path) -> dict[str, Any]:
         "production_authority": False,
         "node_status": False,
         "finco_eligibility": False,
-        "receipt_path": str(RECEIPTS),
+        "receipt_path": str(receipts_path.relative_to(root)),
         "receipts": receipts,
         "boundary": [
             "Ingestion received candidate bundle.",
@@ -205,8 +260,8 @@ def run_ingestion(bundle: str | Path) -> dict[str, Any]:
         ],
     }
 
-    REPORT_JSON.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    write_markdown_report(report)
+    report_json.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_markdown_report(report, report_md)
 
     recorder.record(
         event_type="report_returned",
@@ -214,7 +269,7 @@ def run_ingestion(bundle: str | Path) -> dict[str, Any]:
         decision=final_decision.decision,
         basis="reviewable report and receipt chain returned to founder/operator",
         output_hash=hash_dict(report),
-        metadata={"report": str(REPORT_JSON), "markdown_report": str(REPORT_MD)},
+        metadata={"report": str(report_json.relative_to(root)), "markdown_report": str(report_md.relative_to(root))},
     )
 
     return report
@@ -223,13 +278,18 @@ def run_ingestion(bundle: str | Path) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run core-lite recorded ingestion + CGE + sandbox loop.")
     parser.add_argument("--bundle", default="tests/fixtures/sample_ingest_bundle", help="Path to ingestible bundle directory.")
+    parser.add_argument("--repo-root", default=".", help="Repository root for output reports and receipts.")
     args = parser.parse_args()
 
     try:
-        report = run_ingestion(args.bundle)
+        report = run_ingestion(args.bundle, repo_root=args.repo_root)
     except Exception as exc:
-        REPORT_DIR.mkdir(parents=True, exist_ok=True)
-        RECEIPT_DIR.mkdir(parents=True, exist_ok=True)
+        root = Path(args.repo_root).resolve()
+        report_dir = root / REPORT_DIR
+        receipt_dir = root / RECEIPT_DIR
+        report_json = root / REPORT_JSON
+        report_dir.mkdir(parents=True, exist_ok=True)
+        receipt_dir.mkdir(parents=True, exist_ok=True)
         failure = {
             "schema": "stegverse_core_lite_recorded_ingestion_sandbox_loop_report.v1",
             "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -238,16 +298,13 @@ def main() -> int:
             "basis": str(exc),
             "install_performed": False,
         }
-        REPORT_JSON.write_text(json.dumps(failure, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        report_json.write_text(json.dumps(failure, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         print(json.dumps(failure, indent=2, sort_keys=True))
         return 1
 
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0 if report.get("success") else 1
 
-
-if __name__ == "__main__":
-    raise SystemExit(main())
 
 def load_core_policy(repo_root: Path | str = ".") -> dict[str, Any]:
     root = Path(repo_root)
@@ -281,7 +338,7 @@ def load_core_policy(repo_root: Path | str = ".") -> dict[str, Any]:
 
 
 def ingest_incoming(repo_root: Path | str = ".", *, task_id: str = "", skip_tasks: bool = False) -> dict[str, Any]:
-    root = Path(repo_root)
+    root = Path(repo_root).resolve()
     incoming = root / "incoming"
 
     if not incoming.exists():
@@ -300,7 +357,7 @@ def ingest_incoming(repo_root: Path | str = ".", *, task_id: str = "", skip_task
         (root / "core_lite_ingest_report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         return report
 
-    bundles = sorted([path for path in incoming.iterdir() if path.is_file()])
+    bundles = sorted([path for path in incoming.iterdir() if path.is_dir() or (path.is_file() and path.suffix.lower() == ".zip")])
     if not bundles:
         report = {
             "schema": "stegverse_core_lite_ingest_incoming_report.v1",
@@ -334,3 +391,7 @@ def ingest_incoming(repo_root: Path | str = ".", *, task_id: str = "", skip_task
     }
     (root / "core_lite_ingest_report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return report
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
