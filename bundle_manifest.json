@@ -1,27 +1,27 @@
 {
   "assumptions": [
-    "The workflow failure is caused by append_receipt not passing actor to ReceiptRecorder.record.",
-    "The minimum operational repair is a full replacement of core_lite/receipts.py.",
+    "The observed failure is caused by run_ingestion lacking a repo_root parameter.",
+    "Incoming bundles may be ZIP files or directories.",
     "No workflow changes are required."
   ],
-  "bundle_name": "core_lite_receipt_actor_fix",
+  "bundle_name": "core_lite_ingest_repo_root_fix",
   "canonical_paths_with_leading_period": [],
   "done_means": [
-    "ReceiptRecorder.record is always called with actor.",
-    "Legacy receipt payloads using type map to event_type.",
-    "Receipt contract tests pass.",
-    "Core-Lite Intake can move beyond the observed actor TypeError."
+    "run_ingestion accepts repo_root.",
+    "ingest_incoming no longer raises unexpected keyword argument repo_root.",
+    "Incoming ZIP bundles can be evaluated in sandbox.",
+    "Reports and receipts write under the repository root.",
+    "Install authority remains false."
   ],
   "files": [
-    "core_lite/receipts.py",
-    "tests/test_receipts_append_contract.py",
-    "docs/bundles/CORE_LITE_RECEIPT_ACTOR_FIX.md",
+    "core_lite/ingest.py",
+    "tests/test_ingest_incoming_contract.py",
+    "docs/bundles/CORE_LITE_INGEST_REPO_ROOT_FIX.md",
     "iosnoperiod.md",
-    "bundle_manifest.json",
     "BUILD_VERIFICATION.json"
   ],
   "iosnoperiod_required": false,
-  "purpose": "Fix Core-Lite Intake receipt recording by supplying the required actor argument and adding receipt contract tests.",
+  "purpose": "Fix Core-Lite Intake by making run_ingestion accept repo_root and allowing incoming ZIP or directory bundles to be sandbox evaluated without installation.",
   "schema": "stegverse_bundle_manifest.v1",
   "target_repository": "Data-Continuation/core-lite"
 }
