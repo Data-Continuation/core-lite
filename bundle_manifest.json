@@ -1,0 +1,27 @@
+{
+  "assumptions": [
+    "The workflow failure is caused by append_receipt not passing actor to ReceiptRecorder.record.",
+    "The minimum operational repair is a full replacement of core_lite/receipts.py.",
+    "No workflow changes are required."
+  ],
+  "bundle_name": "core_lite_receipt_actor_fix",
+  "canonical_paths_with_leading_period": [],
+  "done_means": [
+    "ReceiptRecorder.record is always called with actor.",
+    "Legacy receipt payloads using type map to event_type.",
+    "Receipt contract tests pass.",
+    "Core-Lite Intake can move beyond the observed actor TypeError."
+  ],
+  "files": [
+    "core_lite/receipts.py",
+    "tests/test_receipts_append_contract.py",
+    "docs/bundles/CORE_LITE_RECEIPT_ACTOR_FIX.md",
+    "iosnoperiod.md",
+    "bundle_manifest.json",
+    "BUILD_VERIFICATION.json"
+  ],
+  "iosnoperiod_required": false,
+  "purpose": "Fix Core-Lite Intake receipt recording by supplying the required actor argument and adding receipt contract tests.",
+  "schema": "stegverse_bundle_manifest.v1",
+  "target_repository": "Data-Continuation/core-lite"
+}
