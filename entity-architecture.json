@@ -1,0 +1,157 @@
+{
+  "schema": "stegverse.entity_architecture.v1",
+  "version": "0.1.0",
+  "title": "StegVerse Organizational AI Entity Architecture",
+  "root_entities": [
+    {
+      "entity_id": "StegVerse-001",
+      "operational_name": "DC",
+      "canonical_name": "Data-Continuation",
+      "entity_class": "root_governance",
+      "authority_type": "continuity_authority",
+      "canonical_repo": "StegVerse-001/core-lite",
+      "status": "planned_operational_root",
+      "primary_question": "Can this state, bundle, event, or record be continued, reconstructed, and carried forward?",
+      "can_decide": [
+        "continuity_status",
+        "receipt_chain_completeness",
+        "reconstruction_path_status",
+        "pending_canonical_review",
+        "supersession_pointer"
+      ],
+      "cannot_decide_alone": [
+        "canonical_ecosystem_state",
+        "final_transition_authority",
+        "unrestricted_entity_authority"
+      ],
+      "requires_receipts": true,
+      "requires_mr_recognition": true
+    },
+    {
+      "entity_id": "StegVerse-002",
+      "operational_name": "MR",
+      "canonical_name": "master-records",
+      "entity_class": "root_governance",
+      "authority_type": "canonical_record_authority",
+      "canonical_repo": "StegVerse-002/core-lite",
+      "status": "planned_operational_root",
+      "primary_question": "Is this state, bundle, event, or record authoritative within the ecosystem?",
+      "can_decide": [
+        "canonical_status",
+        "entity_registration",
+        "receipt_chain_validity",
+        "recognized_ecosystem_state",
+        "active_deprecated_quarantined_or_superseded_status"
+      ],
+      "cannot_decide_alone": [
+        "raw_continuity_preservation",
+        "operational_execution",
+        "admissibility_without_formalism_result"
+      ],
+      "requires_dc_continuity": true,
+      "requires_receipts": true
+    }
+  ],
+  "second_layer_entities": [
+    {
+      "sequence_id": "003",
+      "operational_name": "Sandbox",
+      "public_name": "StegVerse-Sandbox",
+      "authority_type": "pre_execution_consequence_review",
+      "primary_question": "What happens if this transition is allowed to bind?"
+    },
+    {
+      "sequence_id": "004",
+      "operational_name": "AE",
+      "public_name": "StegVerse-AE",
+      "authority_type": "top_level_admissibility_formalism",
+      "primary_question": "Is this transition admissible for the entity, boundary, reality, and observer-state it affects?"
+    },
+    {
+      "sequence_id": "005",
+      "operational_name": "Labs",
+      "public_name": "StegVerse-Labs",
+      "authority_type": "public_experiment_and_demo_surface",
+      "primary_question": "How do we make the ecosystem visible, testable, and understandable?"
+    },
+    {
+      "sequence_id": "006",
+      "operational_name": "SDK",
+      "public_name": "StegVerse-SDK",
+      "authority_type": "developer_integration_surface",
+      "primary_question": "How does an outside developer, researcher, company, or institution integrate StegVerse governance into their system?"
+    },
+    {
+      "sequence_id": "007",
+      "operational_name": "TVC",
+      "public_name": "StegVerse-TVC",
+      "authority_type": "ephemeral_credential_authority",
+      "primary_question": "Is this entity allowed to use this credential, for this purpose, inside this time window?"
+    },
+    {
+      "sequence_id": "008",
+      "operational_name": "StegDB",
+      "public_name": "StegVerse-DB",
+      "authority_type": "structured_ecosystem_metadata",
+      "primary_question": "What exists, where is it, what depends on it, and how does it relate to the rest of the ecosystem?"
+    },
+    {
+      "sequence_id": "009",
+      "operational_name": "StegBrain",
+      "public_name": "StegVerse-Brain",
+      "authority_type": "ecosystem_health_and_coordination_intelligence",
+      "primary_question": "Is the ecosystem healthy, coherent, and ready for the next transition?"
+    },
+    {
+      "sequence_id": "010",
+      "operational_name": "StegOps",
+      "public_name": "StegVerse-Ops",
+      "authority_type": "governed_operational_execution",
+      "primary_question": "What action should be performed, under what authority, with what receipt, and after what review?"
+    }
+  ],
+  "shared_decision_vocabulary": [
+    "ALLOW",
+    "DENY",
+    "HOLD",
+    "FAIL_CLOSED",
+    "ESCALATE",
+    "QUARANTINE",
+    "SUPERSEDE",
+    "DEPRECATE",
+    "RECONSTRUCT",
+    "REQUEST_REVIEW"
+  ],
+  "dc_mr_handshake": {
+    "dc_emits": {
+      "schema": "stegverse.dc.event.v1",
+      "event_id": "event_hash",
+      "source": "repo/org/user/entity",
+      "artifact_type": "bundle | receipt | state | test | doc",
+      "continuity_status": "preserved | incomplete | broken | superseded | quarantined",
+      "receipt_chain": [],
+      "reconstruction_path": [],
+      "dc_decision": "CONTINUE | HOLD | QUARANTINE | REQUEST_RECONSTRUCTION"
+    },
+    "mr_returns": {
+      "schema": "stegverse.mr.decision.v1",
+      "event_id": "event_hash",
+      "canonical_status": "canonical | pending | rejected | superseded | deprecated",
+      "mr_decision": "RECOGNIZE | HOLD | REJECT | SUPERSEDE | DEPRECATE",
+      "authority_basis": "receipt_chain | formalism_result | governance_record",
+      "required_next_action": "none | reconstruct | sandbox | formalism_review | human_review"
+    }
+  },
+  "implementation_phases": [
+    "root_pair_identity",
+    "sandbox_attachment",
+    "ae_attachment",
+    "public_and_developer_surfaces",
+    "operational_layer"
+  ],
+  "recommended_first_bundles": [
+    "stegverse-001-dc-root-entity-bundle.zip",
+    "stegverse-002-mr-root-entity-bundle.zip",
+    "stegverse-entity-architecture-reference-bundle.zip"
+  ]
+}

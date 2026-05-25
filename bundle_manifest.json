@@ -1,27 +1,40 @@
 {
-  "assumptions": [
-    "The observed failure is caused by run_ingestion lacking a repo_root parameter.",
-    "Incoming bundles may be ZIP files or directories.",
-    "No workflow changes are required."
-  ],
-  "bundle_name": "core_lite_ingest_repo_root_fix",
-  "canonical_paths_with_leading_period": [],
-  "done_means": [
-    "run_ingestion accepts repo_root.",
-    "ingest_incoming no longer raises unexpected keyword argument repo_root.",
-    "Incoming ZIP bundles can be evaluated in sandbox.",
-    "Reports and receipts write under the repository root.",
-    "Install authority remains false."
-  ],
+  "schema": "stegverse.bundle_manifest.v1",
+  "bundle_name": "stegverse_entity_architecture_readme_bundle",
+  "version": "0.1.0",
+  "created_utc": "2026-05-25T03:30:33Z",
+  "purpose": "Document the StegVerse organizational AI entity architecture in human-readable and machine-readable form.",
   "files": [
-    "core_lite/ingest.py",
-    "tests/test_ingest_incoming_contract.py",
-    "docs/bundles/CORE_LITE_INGEST_REPO_ROOT_FIX.md",
-    "iosnoperiod.md",
-    "BUILD_VERIFICATION.json"
+    {
+      "path": "README.md",
+      "type": "human_readable_markdown",
+      "description": "Primary README documenting the StegVerse organizational AI entity architecture."
+    },
+    {
+      "path": "entity-architecture.json",
+      "type": "machine_readable_json",
+      "description": "Extracted machine-readable architecture object."
+    },
+    {
+      "path": "bundle_manifest.json",
+      "type": "manifest",
+      "description": "Bundle manifest for the README package."
+    }
   ],
-  "iosnoperiod_required": false,
-  "purpose": "Fix Core-Lite Intake by making run_ingestion accept repo_root and allowing incoming ZIP or directory bundles to be sandbox evaluated without installation.",
-  "schema": "stegverse_bundle_manifest.v1",
-  "target_repository": "Data-Continuation/core-lite"
+  "recommended_canonical_placement": "StegVerse-002/core-lite",
+  "fallback_placement": "StegVerse-001/core-lite",
+  "hashes": [
+    {
+      "path": "README.md",
+      "sha256": "67c1f9e3cdf5ff493d595bb6de3840dda0676661cafbfc1abd10a2e0ef1f4cba"
+    },
+    {
+      "path": "entity-architecture.json",
+      "sha256": "16c0ce6bdf93e6a40940b8bfc0a68c45d5a182ddf816553e4898c56d2e17a062"
+    },
+    {
+      "path": "bundle_manifest.json",
+      "sha256": "497565599207b013ac0806373d1c9ecca3f2bf325d6ed762b172eca03f05deac"
+    }
+  ]
 }
