@@ -299,31 +299,56 @@ def write_markdown(report: dict[str, Any], plan: dict[str, Any]) -> None:
 
 
 def main() -> int:
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="StegVerse-001 working-contract determination worker. "
+        "Inspects a target core-lite repo and returns a plan + receipt, then STOPs. "
+        "Does not mutate the target."
+    )
+    parser.add_argument(
+        "--root",
+        default=".",
+        help="Path to the target repo to inspect (e.g. a checkout of "
+        "Data-Continuation/core-lite). Defaults to the current directory.",
+    )
+    parser.add_argument(
+        "--instruction",
+        default=str(INSTRUCTION_PATH),
+        help="Path to the governed instruction JSON. Defaults to "
+        f"{INSTRUCTION_PATH.as_posix()}.",
+    )
+    args = parser.parse_args()
+
+    target_root = Path(args.root)
+    instruction_path = Path(args.instruction)
+
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     RECEIPT_DIR.mkdir(parents=True, exist_ok=True)
 
-    if not INSTRUCTION_PATH.exists():
+    if not instruction_path.exists():
         failure = {
             "schema": "stegverse_001_working_contract_report.v1",
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "success": False,
             "error": "missing_instruction",
-            "missing": INSTRUCTION_PATH.as_posix(),
+            "missing": instruction_path.as_posix(),
         }
         REPORT_JSON.write_text(json.dumps(failure, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         print(json.dumps(failure, indent=2, sort_keys=True))
         return 1
 
-    instruction = json.loads(INSTRUCTION_PATH.read_text(encoding="utf-8"))
+    instruction = json.loads(instruction_path.read_text(encoding="utf-8"))
     receipts = ReceiptChain(RECEIPTS)
-    receipts.record("instruction_received", "RECEIVED", "StegVerse-001 instruction channel received current command.", {"instruction_hash": hash_dict(instruction)})
+    receipts.record("instruction_received", "RECEIVED", "StegVerse-001 instruction channel received current command.", {"instruction_hash": hash_dict(instruction), "target_root": target_root.as_posix()})
 
-    report, plan = determine(Path("."), instruction)
+    report, plan = determine(target_root, instruction)
+    report["inspected_root"] = target_root.as_posix()
     REPORT_JSON.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     PLAN_JSON.write_text(json.dumps(plan, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     write_markdown(report, plan)
 
-    receipts.record("working_contract_determined", "PLAN_RETURNED", "StegVerse-001 returned working contract report and plan, then stopped.", {"report": REPORT_JSON.as_posix(), "plan": PLAN_JSON.as_posix(), "blocker_count": len(report["blockers"])})
+    receipts.record("working_contract_determined", "PLAN_RETURNED", "StegVerse-001 returned working contract report and plan, then stopped.", {"report": REPORT_JSON.as_posix(), "plan": PLAN_JSON.as_posix(), "blocker_count": len(report["blockers"]), "target_root": target_root.as_posix()})
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0
 
