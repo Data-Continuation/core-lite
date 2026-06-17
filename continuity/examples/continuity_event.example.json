@@ -1,0 +1,14 @@
+{
+  "schema": "stegverse.continuity_event.v1",
+  "event_id": "example-event-001",
+  "event_type": "artifact_observed",
+  "source_path": "incoming/example.json",
+  "source_sha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "created_at_utc": "2026-06-17T00:00:00Z",
+  "actor": "Data-Continuation/core-lite",
+  "disposition": "accepted_for_review",
+  "evidence_ref": "reports/current/example-event-001.json",
+  "notes": [
+    "Example only. This event is review evidence, not final authority."
+  ]
+}
