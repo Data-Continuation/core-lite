@@ -1,0 +1,24 @@
+{
+  "schema": "core_lite.stegclaw_target_intake.v1",
+  "target_repo": "Data-Continuation/core-lite",
+  "upstream_repo": "Data-Continuation/StegClaw",
+  "role": [
+    "ingestion_target",
+    "cge_runtime_target"
+  ],
+  "required_artifacts": [
+    "standing_envelope.json",
+    "standing_receipt.json",
+    "ingestion_candidate.json",
+    "ingestion_candidate_receipt.json",
+    "outbound_envelope.json",
+    "outbound_receipt.json",
+    "live_integration_manifest.json"
+  ],
+  "local_rules": {
+    "requires_workstream_binding": true,
+    "requires_transition_block": true,
+    "runtime_connector_installed": false
+  },
+  "decision": "INTAKE_DECLARED"
+}
