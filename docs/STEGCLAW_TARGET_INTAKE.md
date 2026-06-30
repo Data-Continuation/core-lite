@@ -35,10 +35,22 @@ The validator writes:
 reports/stegclaw_target_intake.json
 ```
 
+## Workflow artifact coverage
+
+The workflow path is displayed here without the leading dot: `github/workflows/workstream-status.yml`. The actual path is `.github/workflows/workstream-status.yml`.
+
+The workflow now runs the StegClaw intake validator and uploads:
+
+```text
+reports/stegclaw_target_intake.json
+```
+
+inside the `core-lite-workstream-status` artifact.
+
 ## Boundary
 
 This intake declaration is local-only. It validates that the expected StegClaw handoff artifacts are named and that Core-Lite rules still require workstream binding and transition-block binding before any later runtime connector is added.
 
 ## Next step
 
-Add workflow artifact coverage after the local intake validator is stable.
+Inspect the next visible `core-lite-workstream-status` workflow artifact and confirm the StegClaw intake report is present.
