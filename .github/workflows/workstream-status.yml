@@ -6,7 +6,9 @@ on:
     paths:
       - 'core_lite/workstreams.yml'
       - 'core_lite/transition_blocks.yml'
+      - 'core_lite/stegclaw_target_intake.json'
       - 'tools/validate_workstreams.py'
+      - 'tools/validate_stegclaw_intake.py'
       - '.github/workflows/workstream-status.yml'
 
 jobs:
@@ -28,6 +30,9 @@ jobs:
       - name: Validate workstreams
         run: python tools/validate_workstreams.py
 
+      - name: Validate StegClaw intake
+        run: python tools/validate_stegclaw_intake.py
+
       - name: Upload workstream status artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -36,4 +41,5 @@ jobs:
             reports/workstream_status.md
             reports/workstream_status.json
             receipts/workstream_receipts.jsonl
+            reports/stegclaw_target_intake.json
           if-no-files-found: error
