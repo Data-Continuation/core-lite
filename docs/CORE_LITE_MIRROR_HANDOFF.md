@@ -5,7 +5,7 @@ This file is the source of truth for continuing `Data-Continuation/core-lite` wo
 ## Current version
 
 ```text
-0.2.0-stegclaw-target-intake-installed
+0.3.0-stegclaw-target-intake-workflow-covered
 ```
 
 ## Current status
@@ -14,6 +14,7 @@ This file is the source of truth for continuing `Data-Continuation/core-lite` wo
 MIRROR_HANDOFF_PRESENT
 STEGCLAW_TARGET_INTAKE_DECLARED
 STEGCLAW_TARGET_INTAKE_VALIDATOR_PRESENT
+STEGCLAW_TARGET_INTAKE_WORKFLOW_COVERED
 LOCAL_ONLY
 ```
 
@@ -30,8 +31,11 @@ docs/STEGCLAW_TARGET_INTAKE.md
 core_lite/stegclaw_target_intake.json
 tools/validate_stegclaw_intake.py
 docs/STEGCLAW_TARGET_INTAKE.md
+github/workflows/workstream-status.yml
 ```
+
+Path note: `github/workflows/workstream-status.yml` is displayed without the leading dot. The actual path is `.github/workflows/workstream-status.yml`.
 
 ## Next build candidate
 
-Add workflow artifact coverage for the StegClaw target intake validator.
+Inspect a visible `core-lite-workstream-status` artifact and confirm it contains `reports/stegclaw_target_intake.json`.
