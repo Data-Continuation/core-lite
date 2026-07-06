@@ -4,11 +4,9 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'core_lite/workstreams.yml'
-      - 'core_lite/transition_blocks.yml'
-      - 'core_lite/stegclaw_target_intake.json'
-      - 'tools/validate_workstreams.py'
-      - 'tools/validate_stegclaw_intake.py'
+      - 'core_lite/**'
+      - 'tools/**'
+      - 'docs/CORE_LITE_MIRROR_HANDOFF.md'
       - '.github/workflows/workstream-status.yml'
 
 jobs:
@@ -33,7 +31,22 @@ jobs:
       - name: Validate StegClaw intake
         run: python tools/validate_stegclaw_intake.py
 
-      - name: Upload workstream status artifacts
+      - name: Run ecosystem maintainer scan
+        run: python tools/ecosystem_maintainer.py --root .
+
+      - name: Run auto-fix eligibility planner
+        run: python tools/auto_fix_eligibility.py --root .
+
+      - name: Run friction avoided metric
+        run: python tools/measure_friction.py --root .
+
+      - name: Run bundle registry report
+        run: python tools/bundle_registry_report.py --root .
+
+      - name: Run capability gap plan
+        run: python tools/capability_gap_plan.py --root .
+
+      - name: Upload workstream and management artifacts
         uses: actions/upload-artifact@v4
         with:
           name: core-lite-workstream-status
@@ -42,4 +55,19 @@ jobs:
             reports/workstream_status.json
             receipts/workstream_receipts.jsonl
             reports/stegclaw_target_intake.json
+            reports/ecosystem_maintainer_scan.md
+            reports/ecosystem_maintainer_scan.json
+            receipts/ecosystem_maintainer_receipts.jsonl
+            reports/auto_fix_eligibility.md
+            reports/auto_fix_eligibility.json
+            receipts/auto_fix_eligibility_receipts.jsonl
+            reports/friction_avoided.md
+            reports/friction_avoided.json
+            receipts/friction_avoided_receipts.jsonl
+            reports/bundle_registry.md
+            reports/bundle_registry.json
+            receipts/bundle_registry_receipts.jsonl
+            reports/capability_gap_plan.md
+            reports/capability_gap_plan.json
+            receipts/capability_gap_receipts.jsonl
           if-no-files-found: error
