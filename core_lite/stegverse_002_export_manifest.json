@@ -1,0 +1,39 @@
+{
+  "schema": "stegverse.core_lite.stegverse_002_export_manifest.v1",
+  "version": "0.5.0-002-export-manifest",
+  "source_repo": "Data-Continuation/core-lite",
+  "destination_repo": "StegVerse-002/core-lite",
+  "artifact_name": "core-lite-workstream-status",
+  "purpose": "Export StegVerse-001 management reports as candidate evidence for StegVerse-002 management package intake.",
+  "authority": {
+    "candidate_evidence_only": true,
+    "canonical_authority": false,
+    "broad_authority": false,
+    "may_bind_destination_repo_state": false
+  },
+  "required_reports": [
+    "reports/ecosystem_maintainer_scan.json",
+    "reports/auto_fix_eligibility.json",
+    "reports/friction_avoided.json",
+    "reports/bundle_registry.json",
+    "reports/capability_gap_plan.json"
+  ],
+  "required_receipts": [
+    "receipts/ecosystem_maintainer_receipts.jsonl",
+    "receipts/auto_fix_eligibility_receipts.jsonl",
+    "receipts/friction_avoided_receipts.jsonl",
+    "receipts/bundle_registry_receipts.jsonl",
+    "receipts/capability_gap_receipts.jsonl"
+  ],
+  "destination_intake": {
+    "policy": "StegVerse-002/core-lite::config/management_package_intake_policy.json",
+    "pending_result": "MANAGEMENT_PACKAGE_INTAKE_PENDING_001_ARTIFACT",
+    "accepted_result": "MANAGEMENT_PACKAGE_CANDIDATE_EVIDENCE_ACCEPTED"
+  },
+  "export_result_when_complete": "STEGVERSE_002_EXPORT_PACKAGE_DECLARED",
+  "notes": [
+    "This manifest does not grant authority.",
+    "This manifest does not mutate StegVerse-002/core-lite.",
+    "This manifest defines the handoff package contract only."
+  ]
+}
