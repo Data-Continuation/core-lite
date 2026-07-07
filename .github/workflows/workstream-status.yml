@@ -46,6 +46,9 @@ jobs:
       - name: Run capability gap plan
         run: python tools/capability_gap_plan.py --root .
 
+      - name: Validate StegVerse-002 export package
+        run: python tools/validate_stegverse_002_export.py --root .
+
       - name: Upload workstream and management artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -70,4 +73,7 @@ jobs:
             reports/capability_gap_plan.md
             reports/capability_gap_plan.json
             receipts/capability_gap_receipts.jsonl
+            reports/stegverse_002_export_manifest.md
+            reports/stegverse_002_export_manifest.json
+            receipts/stegverse_002_export_receipts.jsonl
           if-no-files-found: error
