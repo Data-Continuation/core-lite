@@ -9,6 +9,9 @@ on:
       - 'docs/CORE_LITE_MIRROR_HANDOFF.md'
       - '.github/workflows/workstream-status.yml'
 
+permissions:
+  contents: write
+
 jobs:
   validate-workstreams:
     runs-on: ubuntu-latest
@@ -48,6 +51,19 @@ jobs:
 
       - name: Validate StegVerse-002 export package
         run: python tools/validate_stegverse_002_export.py --root .
+
+      - name: Publish management reports and receipts
+        run: |
+          set -euo pipefail
+          git config user.name "Data-Continuation Core-Lite Manager"
+          git config user.email "core-lite-manager@data-continuation"
+          git add -A reports/ receipts/ || true
+          if git diff --staged --quiet; then
+            echo "No generated management reports changed."
+          else
+            git commit -m "core-lite: publish generated management package"
+            git push
+          fi
 
       - name: Upload workstream and management artifacts
         uses: actions/upload-artifact@v4
