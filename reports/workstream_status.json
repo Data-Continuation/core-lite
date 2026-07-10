@@ -1,26 +1,26 @@
 {
-  "generated_at": "2026-05-08T04:28:17+00:00",
+  "generated_at": "2026-07-10T14:14:48+00:00",
   "receipt": {
     "error_count": 0,
-    "hash": "9e1b4f3954fb633b42225c1b0d1ffce435f3bcd42e1d63921f125a591e5f7f01",
-    "previous_hash": null,
+    "hash": "08e65cd4e601e11ca60533c2b9b7f37695f5dfa3fc3493e48d4b6334748bc88e",
+    "previous_hash": "9e1b4f3954fb633b42225c1b0d1ffce435f3bcd42e1d63921f125a591e5f7f01",
     "receipt_type": "core_lite.workstream_status",
     "result": "pass",
-    "timestamp": "2026-05-08T04:28:17+00:00",
-    "transition_block_count": 27,
-    "warning_count": 8,
+    "timestamp": "2026-07-10T14:14:48+00:00",
+    "transition_block_count": 52,
+    "warning_count": 0,
     "workstream_count": 8
   },
   "summary": {
     "error_count": 0,
     "result": "pass",
-    "transition_block_count": 27,
-    "warning_count": 8,
+    "transition_block_count": 52,
+    "warning_count": 0,
     "workstream_count": 8
   },
   "workstreams": [
     {
-      "allowed_block_count": 11,
+      "allowed_block_count": 20,
       "done_when_count": 7,
       "errors": [],
       "forbidden_block_count": 5,
@@ -30,9 +30,7 @@
       "name": "footprint-auditor product hardening",
       "next_action": "Run ecosystem maintainer scan against footprint-auditor and classify active files.",
       "status": "active",
-      "warnings": [
-        "forbidden block is not defined in transition block registry: CREATE_NEW_REPO"
-      ]
+      "warnings": []
     },
     {
       "allowed_block_count": 12,
@@ -71,10 +69,7 @@
       "name": "Core-Lite Headless LLM Service",
       "next_action": "Remain design-captured until W2 and W3 can govern file creation.",
       "status": "blocked",
-      "warnings": [
-        "forbidden block is not defined in transition block registry: DIRECT_REPO_MUTATION_FROM_LLM",
-        "forbidden block is not defined in transition block registry: TRAIN_FOUNDATION_MODEL"
-      ]
+      "warnings": []
     },
     {
       "allowed_block_count": 7,
@@ -87,10 +82,7 @@
       "name": "StegVerse Communications Service and SMS Bridge",
       "next_action": "Capture event and receipt requirements only; do not create a service tree yet.",
       "status": "blocked",
-      "warnings": [
-        "forbidden block is not defined in transition block registry: BULK_MARKETING",
-        "forbidden block is not defined in transition block registry: UNBOUNDED_CHATBOT"
-      ]
+      "warnings": []
     },
     {
       "allowed_block_count": 5,
@@ -103,10 +95,7 @@
       "name": "Google Voice and Twilio channel strategy",
       "next_action": "Document channel roles and keep personal number outside operational StegVerse control.",
       "status": "active",
-      "warnings": [
-        "forbidden block is not defined in transition block registry: BULK_MARKETING",
-        "forbidden block is not defined in transition block registry: MOVE_PERSONAL_NUMBER_TO_PUBLIC_ROLE"
-      ]
+      "warnings": []
     },
     {
       "allowed_block_count": 7,
@@ -132,9 +121,7 @@
       "name": "Formalisms and formalism-tests continuity",
       "next_action": "Track canonical/test repo mapping before creating or mutating formalism files.",
       "status": "active",
-      "warnings": [
-        "forbidden block is not defined in transition block registry: CHANGE_CANONICAL_FORMALISM_WITHOUT_REVIEW"
-      ]
+      "warnings": []
     }
   ]
 }

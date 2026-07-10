@@ -1,0 +1,12 @@
+{
+  "decision": "ALLOW",
+  "missing_required_artifacts": [],
+  "role": [
+    "ingestion_target",
+    "cge_runtime_target"
+  ],
+  "schema": "core_lite.stegclaw_target_intake_report.v1",
+  "target_repo": "Data-Continuation/core-lite",
+  "upstream_repo": "Data-Continuation/StegClaw",
+  "validation_errors": []
+}

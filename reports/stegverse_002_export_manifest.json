@@ -1,0 +1,50 @@
+{
+  "artifact_name": "core-lite-workstream-status",
+  "authority": {
+    "broad_authority": false,
+    "candidate_evidence_only": true,
+    "canonical_authority": false,
+    "may_bind_destination_repo_state": false
+  },
+  "destination_intake": {
+    "accepted_result": "MANAGEMENT_PACKAGE_CANDIDATE_EVIDENCE_ACCEPTED",
+    "pending_result": "MANAGEMENT_PACKAGE_INTAKE_PENDING_001_ARTIFACT",
+    "policy": "StegVerse-002/core-lite::config/management_package_intake_policy.json"
+  },
+  "destination_repo": "StegVerse-002/core-lite",
+  "generated_at": "2026-07-10T14:14:48+00:00",
+  "missing_required_receipts": [],
+  "missing_required_reports": [],
+  "mutation_count": 0,
+  "receipt": {
+    "candidate_evidence_only": true,
+    "destination_repo": "StegVerse-002/core-lite",
+    "hash": "6ffdfc7e22a4e32a073e1425788cac5c3db920888312021540de121b923cf130",
+    "may_bind_destination_repo_state": false,
+    "missing_required_receipt_count": 0,
+    "missing_required_report_count": 0,
+    "previous_hash": null,
+    "result": "STEGVERSE_002_EXPORT_PACKAGE_DECLARED",
+    "schema": "stegverse.core_lite.stegverse_002_export_receipt.v1",
+    "source_repo": "Data-Continuation/core-lite",
+    "version": "0.5.0-002-export-manifest"
+  },
+  "required_receipts": [
+    "receipts/ecosystem_maintainer_receipts.jsonl",
+    "receipts/auto_fix_eligibility_receipts.jsonl",
+    "receipts/friction_avoided_receipts.jsonl",
+    "receipts/bundle_registry_receipts.jsonl",
+    "receipts/capability_gap_receipts.jsonl"
+  ],
+  "required_reports": [
+    "reports/ecosystem_maintainer_scan.json",
+    "reports/auto_fix_eligibility.json",
+    "reports/friction_avoided.json",
+    "reports/bundle_registry.json",
+    "reports/capability_gap_plan.json"
+  ],
+  "result": "STEGVERSE_002_EXPORT_PACKAGE_DECLARED",
+  "schema": "stegverse.core_lite.stegverse_002_export_manifest_validation.v1",
+  "source_repo": "Data-Continuation/core-lite",
+  "version": "0.5.0-002-export-manifest"
+}

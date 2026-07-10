@@ -1,0 +1,1006 @@
+{
+  "decisions": [
+    {
+      "mutation_allowed_now": false,
+      "path": ".github/workflows/auto-fix-eligibility.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": ".github/workflows/bundle-registry.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": ".github/workflows/core-lite-intake.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": ".github/workflows/core-lite-self-test.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": ".github/workflows/ecosystem-maintainer-scan.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": ".github/workflows/friction-avoided.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": ".github/workflows/install-iosnoperiod.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": ".github/workflows/target-capability-gap.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": ".github/workflows/target-repo-scan.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": ".github/workflows/workstream-status.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": ".stegverse/core-lite-json",
+      "reason": "unrecognized or unsupported class: BINARY_OR_UNKNOWN",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "BINARY_OR_UNKNOWN"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": ".stegverse/core-lite.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": ".stegverse/ingest_manifest-json",
+      "reason": "unrecognized or unsupported class: BINARY_OR_UNKNOWN",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "BINARY_OR_UNKNOWN"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": ".stegverse/ingest_manifest.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "BUILD_VERIFICATION.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "CONTINUITY_POLICY.md",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "README-Add.md",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "README.md",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "RECONSTRUCTION_POLICY.md",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "UPLOAD_MAP.txt",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "VERIFY_RESULT.txt",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "bundle_manifest.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "continuity/README.md",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "continuity/examples/continuity_event.example.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "continuity/schemas/continuity_event.schema.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "continuity/scripts/validate_continuity_event.py",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/__init__.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/bundle_registry.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/cge.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/cli.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/context.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/friction_events.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/ingest.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/ingestion_transition_table.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/iosnoperiod.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/manifest.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/manifest_admissibility.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/master_hash_events.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/paths.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/queue.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/receipts.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/registry.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/sandbox.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/shims.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/source_state_index.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/stegclaw_target_intake.json",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/stegverse_002_export_manifest.json",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/tasks.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/topology.py",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/transition_blocks.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/workstreams.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/CORE_LITE_MIRROR_HANDOFF.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/README-a001.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/README.md",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/STEGCLAW_TARGET_INTAKE.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/bundles/CORE_LITE_INGEST_REPO_ROOT_FIX.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/bundles/CORE_LITE_RECEIPT_ACTOR_FIX.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/bundles/core-lite-recorded-ingestion-cge-sandbox-loop-README.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/bundles/stegverse-001-worker-instruction-channel-README.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/core-lite-empty-repo-install-v0.9.0.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/core-lite-v0.2-org-topology-cge.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/core-lite-v0.3-bundle-queue-protocol.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/core-lite-v0.4-ingestion-transition-table.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/core-lite-v0.5-iosnoperiod-bridge.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/core-lite-v0.6-executable-ingestion-transitions.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/core-lite-v0.7-manifest-admissibility-enforcement.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/core-lite-v0.7.1-wire-manifest-admissibility.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/core-lite-v0.8-source-state-index.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/core-lite-v0.8.1-wire-source-state-index.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "docs/iosnoperiod.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "entity-architecture.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "incoming/.gitkeep",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "incoming/core-lite-v0.9.1-self-test-mock-shim-fix-bundle.zip",
+      "reason": "unrecognized or unsupported class: BINARY_OR_UNKNOWN",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "BINARY_OR_UNKNOWN"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "ingest_manifest.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "instructions/current/stegverse-001-command.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "path_mappings.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "schemas/bundle_queue_metadata.schema.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "schemas/cge_fingerprint.schema.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "schemas/hash_identity_types.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "schemas/ingest_bundle.schema.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "schemas/ingest_manifest.schema.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "schemas/ingestion_transition_table.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "schemas/ingestion_transition_table.schema.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "schemas/manifest_admissibility_policy.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "schemas/manifest_admissibility_policy.schema.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "schemas/master_hash_event.schema.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "schemas/source_state_index.schema.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "schemas/stegverse_worker_instruction.schema.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "schemas/task_manifest.schema.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "schemas/validation_rules.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "templates/core-lite-intake.yml",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "templates/core-lite.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "templates/install-iosnoperiod.yml",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "tests/fixtures/sample_ingest_bundle/bundle_manifest.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "tests/fixtures/sample_ingest_bundle/payload/sample.txt",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "tests/test_ingest_incoming_contract.py",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "tests/test_receipts_append_contract.py",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "tools/auto_fix_eligibility.py",
+      "reason": "real file with no maintainer finding",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "REAL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "tools/bundle_registry_report.py",
+      "reason": "real file with no maintainer finding",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "REAL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "tools/capability_gap_plan.py",
+      "reason": "real file with no maintainer finding",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "REAL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "tools/ecosystem_maintainer.py",
+      "reason": "real file with no maintainer finding",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "REAL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "tools/measure_friction.py",
+      "reason": "real file with no maintainer finding",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "REAL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "tools/stegverse001_worker.py",
+      "reason": "real file with no maintainer finding",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "REAL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "tools/tasks/core_lite_tasks.json",
+      "reason": "real file with no maintainer finding",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "REAL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "tools/validate_stegclaw_intake.py",
+      "reason": "real file with no maintainer finding",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "REAL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "tools/validate_stegverse_002_export.py",
+      "reason": "real file with no maintainer finding",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "REAL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "tools/validate_workstreams.py",
+      "reason": "real file with no maintainer finding",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "REAL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "verification.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    }
+  ],
+  "generated_at": "2026-07-10T14:14:48+00:00",
+  "receipt": {
+    "auto_fix_eligible_count": 0,
+    "auto_quarantine_eligible_count": 0,
+    "complete_stub_eligible_count": 0,
+    "do_not_touch_count": 38,
+    "file_count": 108,
+    "hash": "b0e0263c3c2b54672fccc50e1a0d1d2a1edc3f8fc9fbeda2db66c4222326b03a",
+    "human_review_required_count": 39,
+    "mutation_count": 0,
+    "previous_hash": null,
+    "receipt_type": "core_lite.auto_fix_eligibility",
+    "result": "pass",
+    "timestamp": "2026-07-10T14:14:48+00:00"
+  },
+  "source_scan_generated_at": "2026-07-10T14:14:48+00:00",
+  "summary": {
+    "bucket_counts": {
+      "DO_NOT_TOUCH": 38,
+      "HUMAN_REVIEW_REQUIRED": 39,
+      "NO_ACTION": 31
+    },
+    "file_count": 108,
+    "mutation_count": 0,
+    "result": "pass",
+    "transition_block_counts": {
+      "ASK_BOUNDARY_DECISION": 41,
+      "AUTO_QUARANTINE_STUB": 36
+    }
+  }
+}

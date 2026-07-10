@@ -1,0 +1,1492 @@
+{
+  "files": [
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".github/workflows/auto-fix-eligibility.yml",
+      "python_import_refs": [],
+      "size_bytes": 1277
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".github/workflows/bundle-registry.yml",
+      "python_import_refs": [],
+      "size_bytes": 1098
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".github/workflows/core-lite-intake.yml",
+      "python_import_refs": [],
+      "size_bytes": 3941
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".github/workflows/core-lite-self-test.yml",
+      "python_import_refs": [],
+      "size_bytes": 5704
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".github/workflows/ecosystem-maintainer-scan.yml",
+      "python_import_refs": [],
+      "size_bytes": 1110
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".github/workflows/friction-avoided.yml",
+      "python_import_refs": [],
+      "size_bytes": 1095
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".github/workflows/install-iosnoperiod.yml",
+      "python_import_refs": [],
+      "size_bytes": 1784
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".github/workflows/target-capability-gap.yml",
+      "python_import_refs": [],
+      "size_bytes": 2287
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".github/workflows/target-repo-scan.yml",
+      "python_import_refs": [],
+      "size_bytes": 1944
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".github/workflows/workstream-status.yml",
+      "python_import_refs": [],
+      "size_bytes": 3166
+    },
+    {
+      "broken_refs": [],
+      "class": "BINARY_OR_UNKNOWN",
+      "evidence": [
+        "non-text or unsupported extension"
+      ],
+      "extension": "",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".stegverse/core-lite-json",
+      "python_import_refs": [],
+      "size_bytes": 740
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".stegverse/core-lite.json",
+      "python_import_refs": [],
+      "size_bytes": 1754
+    },
+    {
+      "broken_refs": [],
+      "class": "BINARY_OR_UNKNOWN",
+      "evidence": [
+        "non-text or unsupported extension"
+      ],
+      "extension": "",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".stegverse/ingest_manifest-json",
+      "python_import_refs": [],
+      "size_bytes": 822
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".stegverse/ingest_manifest.json",
+      "python_import_refs": [],
+      "size_bytes": 11294
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "BUILD_VERIFICATION.json",
+      "python_import_refs": [],
+      "size_bytes": 1553
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "CONTINUITY_POLICY.md",
+      "python_import_refs": [],
+      "size_bytes": 788
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "README-Add.md",
+      "python_import_refs": [],
+      "size_bytes": 30118
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "README.md",
+      "python_import_refs": [],
+      "size_bytes": 4556
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "RECONSTRUCTION_POLICY.md",
+      "python_import_refs": [],
+      "size_bytes": 740
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".txt",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "UPLOAD_MAP.txt",
+      "python_import_refs": [],
+      "size_bytes": 482
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".txt",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "VERIFY_RESULT.txt",
+      "python_import_refs": [],
+      "size_bytes": 888
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "bundle_manifest.json",
+      "python_import_refs": [],
+      "size_bytes": 1330
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "continuity/README.md",
+      "python_import_refs": [],
+      "size_bytes": 1265
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "continuity/examples/continuity_event.example.json",
+      "python_import_refs": [],
+      "size_bytes": 532
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "continuity/schemas/continuity_event.schema.json",
+      "python_import_refs": [],
+      "size_bytes": 1084
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "continuity/scripts/validate_continuity_event.py",
+      "python_import_refs": [],
+      "size_bytes": 1627
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/__init__.py",
+      "python_import_refs": [],
+      "size_bytes": 58
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/bundle_registry.yml",
+      "python_import_refs": [],
+      "size_bytes": 7179
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [
+        "core_lite/ingest.py"
+      ],
+      "local_refs": [],
+      "path": "core_lite/cge.py",
+      "python_import_refs": [],
+      "size_bytes": 5402
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/cli.py",
+      "python_import_refs": [],
+      "size_bytes": 5235
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/context.py",
+      "python_import_refs": [],
+      "size_bytes": 1363
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/friction_events.yml",
+      "python_import_refs": [],
+      "size_bytes": 5013
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [
+        "tests/test_ingest_incoming_contract.py"
+      ],
+      "local_refs": [],
+      "path": "core_lite/ingest.py",
+      "python_import_refs": [
+        "core_lite/cge.py",
+        "core_lite/receipts.py",
+        "core_lite/sandbox.py"
+      ],
+      "size_bytes": 14642
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/ingestion_transition_table.py",
+      "python_import_refs": [],
+      "size_bytes": 2136
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/iosnoperiod.py",
+      "python_import_refs": [],
+      "size_bytes": 2649
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/manifest.py",
+      "python_import_refs": [],
+      "size_bytes": 3436
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/manifest_admissibility.py",
+      "python_import_refs": [],
+      "size_bytes": 7190
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/master_hash_events.py",
+      "python_import_refs": [],
+      "size_bytes": 5501
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/paths.py",
+      "python_import_refs": [],
+      "size_bytes": 641
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/queue.py",
+      "python_import_refs": [],
+      "size_bytes": 4556
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [
+        "core_lite/ingest.py",
+        "tests/test_receipts_append_contract.py"
+      ],
+      "local_refs": [],
+      "path": "core_lite/receipts.py",
+      "python_import_refs": [],
+      "size_bytes": 3101
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/registry.py",
+      "python_import_refs": [],
+      "size_bytes": 3803
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [
+        "core_lite/ingest.py"
+      ],
+      "local_refs": [],
+      "path": "core_lite/sandbox.py",
+      "python_import_refs": [],
+      "size_bytes": 2406
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/shims.py",
+      "python_import_refs": [],
+      "size_bytes": 2767
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/source_state_index.py",
+      "python_import_refs": [],
+      "size_bytes": 5489
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/stegclaw_target_intake.json",
+      "python_import_refs": [],
+      "size_bytes": 653
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/stegverse_002_export_manifest.json",
+      "python_import_refs": [],
+      "size_bytes": 1579
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/tasks.py",
+      "python_import_refs": [],
+      "size_bytes": 2383
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/topology.py",
+      "python_import_refs": [],
+      "size_bytes": 2042
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/transition_blocks.yml",
+      "python_import_refs": [],
+      "size_bytes": 28617
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/workstreams.yml",
+      "python_import_refs": [],
+      "size_bytes": 9894
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/CORE_LITE_MIRROR_HANDOFF.md",
+      "python_import_refs": [],
+      "size_bytes": 3130
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/README-a001.md",
+      "python_import_refs": [],
+      "size_bytes": 2643
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/README.md",
+      "python_import_refs": [],
+      "size_bytes": 606
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/STEGCLAW_TARGET_INTAKE.md",
+      "python_import_refs": [],
+      "size_bytes": 1210
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/bundles/CORE_LITE_INGEST_REPO_ROOT_FIX.md",
+      "python_import_refs": [],
+      "size_bytes": 2068
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/bundles/CORE_LITE_RECEIPT_ACTOR_FIX.md",
+      "python_import_refs": [],
+      "size_bytes": 1851
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/bundles/core-lite-recorded-ingestion-cge-sandbox-loop-README.md",
+      "python_import_refs": [],
+      "size_bytes": 2747
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/bundles/stegverse-001-worker-instruction-channel-README.md",
+      "python_import_refs": [],
+      "size_bytes": 2273
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/core-lite-empty-repo-install-v0.9.0.md",
+      "python_import_refs": [],
+      "size_bytes": 927
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/core-lite-v0.2-org-topology-cge.md",
+      "python_import_refs": [],
+      "size_bytes": 1177
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/core-lite-v0.3-bundle-queue-protocol.md",
+      "python_import_refs": [],
+      "size_bytes": 1538
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/core-lite-v0.4-ingestion-transition-table.md",
+      "python_import_refs": [],
+      "size_bytes": 1089
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/core-lite-v0.5-iosnoperiod-bridge.md",
+      "python_import_refs": [],
+      "size_bytes": 740
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/core-lite-v0.6-executable-ingestion-transitions.md",
+      "python_import_refs": [],
+      "size_bytes": 1147
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/core-lite-v0.7-manifest-admissibility-enforcement.md",
+      "python_import_refs": [],
+      "size_bytes": 1394
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/core-lite-v0.7.1-wire-manifest-admissibility.md",
+      "python_import_refs": [],
+      "size_bytes": 1048
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/core-lite-v0.8-source-state-index.md",
+      "python_import_refs": [],
+      "size_bytes": 782
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/core-lite-v0.8.1-wire-source-state-index.md",
+      "python_import_refs": [],
+      "size_bytes": 752
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/iosnoperiod.md",
+      "python_import_refs": [],
+      "size_bytes": 831
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "entity-architecture.json",
+      "python_import_refs": [],
+      "size_bytes": 5697
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": "",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "incoming/.gitkeep",
+      "python_import_refs": [],
+      "size_bytes": 1
+    },
+    {
+      "broken_refs": [],
+      "class": "BINARY_OR_UNKNOWN",
+      "evidence": [
+        "non-text or unsupported extension"
+      ],
+      "extension": ".zip",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "incoming/core-lite-v0.9.1-self-test-mock-shim-fix-bundle.zip",
+      "python_import_refs": [],
+      "size_bytes": 5646
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "ingest_manifest.json",
+      "python_import_refs": [],
+      "size_bytes": 2355
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "instructions/current/stegverse-001-command.json",
+      "python_import_refs": [],
+      "size_bytes": 1557
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "path_mappings.json",
+      "python_import_refs": [],
+      "size_bytes": 283
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/bundle_queue_metadata.schema.json",
+      "python_import_refs": [],
+      "size_bytes": 130
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/cge_fingerprint.schema.json",
+      "python_import_refs": [],
+      "size_bytes": 234
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/hash_identity_types.json",
+      "python_import_refs": [],
+      "size_bytes": 770
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/ingest_bundle.schema.json",
+      "python_import_refs": [],
+      "size_bytes": 1071
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/ingest_manifest.schema.json",
+      "python_import_refs": [],
+      "size_bytes": 207
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/ingestion_transition_table.json",
+      "python_import_refs": [],
+      "size_bytes": 3034
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/ingestion_transition_table.schema.json",
+      "python_import_refs": [],
+      "size_bytes": 226
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/manifest_admissibility_policy.json",
+      "python_import_refs": [],
+      "size_bytes": 2673
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/manifest_admissibility_policy.schema.json",
+      "python_import_refs": [],
+      "size_bytes": 264
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/master_hash_event.schema.json",
+      "python_import_refs": [],
+      "size_bytes": 295
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/source_state_index.schema.json",
+      "python_import_refs": [],
+      "size_bytes": 231
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/stegverse_worker_instruction.schema.json",
+      "python_import_refs": [],
+      "size_bytes": 996
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/task_manifest.schema.json",
+      "python_import_refs": [],
+      "size_bytes": 155
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/validation_rules.json",
+      "python_import_refs": [],
+      "size_bytes": 226
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "templates/core-lite-intake.yml",
+      "python_import_refs": [],
+      "size_bytes": 1884
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "templates/core-lite.json",
+      "python_import_refs": [],
+      "size_bytes": 1699
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "templates/install-iosnoperiod.yml",
+      "python_import_refs": [],
+      "size_bytes": 1784
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tests/fixtures/sample_ingest_bundle/bundle_manifest.json",
+      "python_import_refs": [],
+      "size_bytes": 420
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".txt",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tests/fixtures/sample_ingest_bundle/payload/sample.txt",
+      "python_import_refs": [],
+      "size_bytes": 189
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tests/test_ingest_incoming_contract.py",
+      "python_import_refs": [
+        "core_lite/ingest.py"
+      ],
+      "size_bytes": 2257
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tests/test_receipts_append_contract.py",
+      "python_import_refs": [
+        "core_lite/receipts.py"
+      ],
+      "size_bytes": 1819
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tools/auto_fix_eligibility.py",
+      "python_import_refs": [],
+      "size_bytes": 12316
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tools/bundle_registry_report.py",
+      "python_import_refs": [],
+      "size_bytes": 12804
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tools/capability_gap_plan.py",
+      "python_import_refs": [],
+      "size_bytes": 14907
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tools/ecosystem_maintainer.py",
+      "python_import_refs": [],
+      "size_bytes": 18406
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tools/measure_friction.py",
+      "python_import_refs": [],
+      "size_bytes": 9335
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tools/stegverse001_worker.py",
+      "python_import_refs": [],
+      "size_bytes": 14119
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tools/tasks/core_lite_tasks.json",
+      "python_import_refs": [],
+      "size_bytes": 827
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tools/validate_stegclaw_intake.py",
+      "python_import_refs": [],
+      "size_bytes": 1658
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tools/validate_stegverse_002_export.py",
+      "python_import_refs": [],
+      "size_bytes": 6249
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tools/validate_workstreams.py",
+      "python_import_refs": [],
+      "size_bytes": 12609
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "verification.json",
+      "python_import_refs": [],
+      "size_bytes": 1856
+    }
+  ],
+  "generated_at": "2026-07-10T14:14:48+00:00",
+  "receipt": {
+    "class_counts": {
+      "BINARY_OR_UNKNOWN": 3,
+      "CANONICAL_OR_CONTROL": 38,
+      "ORPHAN_CANDIDATE": 36,
+      "REAL": 10,
+      "SUPPORT_ARTIFACT": 21
+    },
+    "file_count": 108,
+    "hash": "702450bc434b736265938171bfc4ccd4d0b36a2b6fddc8cbe11c1f208bb27115",
+    "mutation_count": 0,
+    "previous_hash": null,
+    "receipt_type": "core_lite.ecosystem_maintainer_scan",
+    "result": "pass",
+    "target_root": "/home/runner/work/core-lite/core-lite",
+    "timestamp": "2026-07-10T14:14:48+00:00"
+  },
+  "summary": {
+    "class_counts": {
+      "BINARY_OR_UNKNOWN": 3,
+      "CANONICAL_OR_CONTROL": 38,
+      "ORPHAN_CANDIDATE": 36,
+      "REAL": 10,
+      "SUPPORT_ARTIFACT": 21
+    },
+    "file_count": 108,
+    "mutation_count": 0,
+    "result": "pass"
+  },
+  "target_root": "/home/runner/work/core-lite/core-lite"
+}

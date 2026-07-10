@@ -1,13 +1,13 @@
 # Core-Lite Workstream Status
 
-Generated: `2026-05-08T04:28:17+00:00`
+Generated: `2026-07-10T14:14:48+00:00`
 
 ## Summary
 
 - Workstreams: `8`
-- Transition blocks: `27`
+- Transition blocks: `52`
 - Errors: `0`
-- Warnings: `8`
+- Warnings: `0`
 - Result: `pass`
 
 ## Operating Rule
@@ -21,13 +21,12 @@ Any idea may be captured as a workstream. Only block-authorized transitions may 
 - Status: `active`
 - Goal: Turn footprint-auditor into a usable privacy/security audit product without starting over.
 - Next action: Run ecosystem maintainer scan against footprint-auditor and classify active files.
-- Allowed blocks: `11`
+- Allowed blocks: `20`
 - Forbidden blocks: `5`
 - Done criteria: `7`
 - Human-review boundaries: `5`
 
-Warnings:
-- forbidden block is not defined in transition block registry: CREATE_NEW_REPO
+Validation: pass
 
 ### W2 — Core-Lite Ecosystem Maintainer
 
@@ -63,9 +62,7 @@ Validation: pass
 - Done criteria: `5`
 - Human-review boundaries: `3`
 
-Warnings:
-- forbidden block is not defined in transition block registry: DIRECT_REPO_MUTATION_FROM_LLM
-- forbidden block is not defined in transition block registry: TRAIN_FOUNDATION_MODEL
+Validation: pass
 
 ### W5 — StegVerse Communications Service and SMS Bridge
 
@@ -77,9 +74,7 @@ Warnings:
 - Done criteria: `5`
 - Human-review boundaries: `4`
 
-Warnings:
-- forbidden block is not defined in transition block registry: BULK_MARKETING
-- forbidden block is not defined in transition block registry: UNBOUNDED_CHATBOT
+Validation: pass
 
 ### W6 — Google Voice and Twilio channel strategy
 
@@ -91,9 +86,7 @@ Warnings:
 - Done criteria: `5`
 - Human-review boundaries: `4`
 
-Warnings:
-- forbidden block is not defined in transition block registry: BULK_MARKETING
-- forbidden block is not defined in transition block registry: MOVE_PERSONAL_NUMBER_TO_PUBLIC_ROLE
+Validation: pass
 
 ### W7 — Site pricing and demo alignment
 
@@ -117,10 +110,9 @@ Validation: pass
 - Done criteria: `5`
 - Human-review boundaries: `4`
 
-Warnings:
-- forbidden block is not defined in transition block registry: CHANGE_CANONICAL_FORMALISM_WITHOUT_REVIEW
+Validation: pass
 
 ## Receipts
 
-- Receipt hash: `9e1b4f3954fb633b42225c1b0d1ffce435f3bcd42e1d63921f125a591e5f7f01`
+- Receipt hash: `08e65cd4e601e11ca60533c2b9b7f37695f5dfa3fc3493e48d4b6334748bc88e`
 - Receipt path: `receipts/workstream_receipts.jsonl`

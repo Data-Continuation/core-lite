@@ -1,0 +1,437 @@
+{
+  "bundles": [
+    {
+      "class": "versioned_development",
+      "contains_markdown": true,
+      "generated_artifacts_included": true,
+      "id": "B-CORELITE-001",
+      "name": "core-lite-parallel-transition-control.zip",
+      "notes": "Included generated reports/receipts and needed iPhone-visible correction.",
+      "purpose": "Initial parallel transition control surface.",
+      "source_only": false,
+      "status": "superseded",
+      "superseded_by": "B-CORELITE-003",
+      "supersedes": [],
+      "verification_result": "pass_with_cleanup_needed",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "corrective_rework",
+      "contains_markdown": true,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-002",
+      "name": "core-lite-parallel-transition-control-source-only.zip",
+      "notes": "Corrected source/runtime artifact mixing but still carried hidden workflow path issue.",
+      "purpose": "Remove generated reports and receipts from source bundle.",
+      "source_only": true,
+      "status": "superseded",
+      "superseded_by": "B-CORELITE-003",
+      "supersedes": [
+        "B-CORELITE-001"
+      ],
+      "verification_result": "superseded",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "corrective_rework",
+      "contains_markdown": true,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-003",
+      "name": "core-lite-parallel-transition-control-iphone-visible.zip",
+      "notes": "Established visible workflow path convention.",
+      "purpose": "Make workflow path visible on iPhone by using visible bundle path.",
+      "source_only": true,
+      "status": "superseded",
+      "superseded_by": "B-CORELITE-004",
+      "supersedes": [
+        "B-CORELITE-002"
+      ],
+      "verification_result": "pass",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "versioned_development",
+      "contains_markdown": false,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-004",
+      "name": "core-lite-transition-block-warning-fix.zip",
+      "notes": "Cleaned transition block registry warnings.",
+      "purpose": "Add missing forbidden/high-risk transition blocks and reduce warnings to zero.",
+      "source_only": true,
+      "status": "superseded",
+      "superseded_by": "B-CORELITE-005",
+      "supersedes": [
+        "B-CORELITE-003"
+      ],
+      "verification_result": "pass",
+      "workstream_id": "W3"
+    },
+    {
+      "class": "versioned_development",
+      "contains_markdown": true,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-005",
+      "name": "core-lite-ecosystem-maintainer-scan.zip",
+      "notes": "Introduced maintainer scan but workflow dependency was missing in active CI path.",
+      "purpose": "Add scan-only ecosystem maintainer.",
+      "source_only": true,
+      "status": "superseded",
+      "superseded_by": "B-CORELITE-006",
+      "supersedes": [
+        "B-CORELITE-004"
+      ],
+      "verification_result": "pass_local_then_ci_dependency_failure",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "corrective_rework",
+      "contains_markdown": false,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-006",
+      "name": "core-lite-ecosystem-maintainer-workflow-dependency-fix.zip",
+      "notes": "Workflow-only fix was not robust enough because validator itself still depended on PyYAML availability.",
+      "purpose": "Install PyYAML before running validator in maintainer workflow.",
+      "source_only": true,
+      "status": "superseded",
+      "superseded_by": "B-CORELITE-008",
+      "supersedes": [
+        "B-CORELITE-005"
+      ],
+      "verification_result": "insufficient_alone",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "versioned_development",
+      "contains_markdown": true,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-007",
+      "name": "core-lite-friction-avoided-metric.zip",
+      "notes": "Friction metric generated 31.05 estimated hours saved and 219 repeated prompts prevented.",
+      "purpose": "Add Friction Avoided metric.",
+      "source_only": true,
+      "status": "superseded",
+      "superseded_by": "B-CORELITE-008",
+      "supersedes": [
+        "B-CORELITE-006"
+      ],
+      "verification_result": "pass",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "corrective_rework",
+      "contains_markdown": false,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-008",
+      "name": "core-lite-pyyaml-repeat-failure-hardening.zip",
+      "notes": "Validator self-installs PyYAML if missing.",
+      "purpose": "Harden validator against repeated PyYAML missing dependency failure.",
+      "source_only": true,
+      "status": "superseded",
+      "superseded_by": "B-CORELITE-010",
+      "supersedes": [
+        "B-CORELITE-006",
+        "B-CORELITE-007"
+      ],
+      "verification_result": "pass",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "corrective_rework",
+      "contains_markdown": false,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-009",
+      "name": "core-lite-maintainer-classifier-false-positive-fix.zip",
+      "notes": "Bundle exposed only VERIFY_RESULT.txt and was unusable.",
+      "purpose": "Intended to fix classifier false positives.",
+      "source_only": true,
+      "status": "failed",
+      "superseded_by": "B-CORELITE-010",
+      "supersedes": [
+        "B-CORELITE-008"
+      ],
+      "verification_result": "failed_bundle_content",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "corrective_rework",
+      "contains_markdown": false,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-010",
+      "name": "core-lite-maintainer-classifier-false-positive-fix-v2.zip",
+      "notes": "Fixed workflow/support false positives but Python scanner still classified itself as STUB.",
+      "purpose": "Provide actual maintainer classifier false-positive fix.",
+      "source_only": true,
+      "status": "superseded",
+      "superseded_by": "B-CORELITE-011",
+      "supersedes": [
+        "B-CORELITE-009"
+      ],
+      "verification_result": "partial_pass",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "corrective_rework",
+      "contains_markdown": false,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-011",
+      "name": "core-lite-maintainer-python-stub-classifier-fix.zip",
+      "notes": "Latest maintainer scan shows STUB 0, ORPHAN_CANDIDATE 0, BROKEN 0.",
+      "purpose": "Fix Python stub classifier to avoid keyword false positives.",
+      "source_only": true,
+      "status": "current",
+      "superseded_by": null,
+      "supersedes": [
+        "B-CORELITE-010"
+      ],
+      "verification_result": "pass",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "versioned_development",
+      "contains_markdown": true,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-012",
+      "name": "core-lite-bundle-registry-supersession.zip",
+      "notes": "Introduces canonical bundle tracking and bundle churn metrics.",
+      "purpose": "Add bundle registry and supersession reporting.",
+      "source_only": true,
+      "status": "current",
+      "superseded_by": null,
+      "supersedes": [
+        "B-CORELITE-011"
+      ],
+      "verification_result": "pending_user_run",
+      "workstream_id": "W2"
+    }
+  ],
+  "current_bundles": [
+    {
+      "class": "corrective_rework",
+      "contains_markdown": false,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-011",
+      "name": "core-lite-maintainer-python-stub-classifier-fix.zip",
+      "notes": "Latest maintainer scan shows STUB 0, ORPHAN_CANDIDATE 0, BROKEN 0.",
+      "purpose": "Fix Python stub classifier to avoid keyword false positives.",
+      "source_only": true,
+      "status": "current",
+      "superseded_by": null,
+      "supersedes": [
+        "B-CORELITE-010"
+      ],
+      "verification_result": "pass",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "versioned_development",
+      "contains_markdown": true,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-012",
+      "name": "core-lite-bundle-registry-supersession.zip",
+      "notes": "Introduces canonical bundle tracking and bundle churn metrics.",
+      "purpose": "Add bundle registry and supersession reporting.",
+      "source_only": true,
+      "status": "current",
+      "superseded_by": null,
+      "supersedes": [
+        "B-CORELITE-011"
+      ],
+      "verification_result": "pending_user_run",
+      "workstream_id": "W2"
+    }
+  ],
+  "errors": [],
+  "failed_bundles": [
+    {
+      "class": "corrective_rework",
+      "contains_markdown": false,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-009",
+      "name": "core-lite-maintainer-classifier-false-positive-fix.zip",
+      "notes": "Bundle exposed only VERIFY_RESULT.txt and was unusable.",
+      "purpose": "Intended to fix classifier false positives.",
+      "source_only": true,
+      "status": "failed",
+      "superseded_by": "B-CORELITE-010",
+      "supersedes": [
+        "B-CORELITE-008"
+      ],
+      "verification_result": "failed_bundle_content",
+      "workstream_id": "W2"
+    }
+  ],
+  "generated_at": "2026-07-10T14:14:48+00:00",
+  "quarantine_candidates": [
+    {
+      "class": "corrective_rework",
+      "contains_markdown": true,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-002",
+      "name": "core-lite-parallel-transition-control-source-only.zip",
+      "notes": "Corrected source/runtime artifact mixing but still carried hidden workflow path issue.",
+      "purpose": "Remove generated reports and receipts from source bundle.",
+      "source_only": true,
+      "status": "superseded",
+      "superseded_by": "B-CORELITE-003",
+      "supersedes": [
+        "B-CORELITE-001"
+      ],
+      "verification_result": "superseded",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "corrective_rework",
+      "contains_markdown": true,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-003",
+      "name": "core-lite-parallel-transition-control-iphone-visible.zip",
+      "notes": "Established visible workflow path convention.",
+      "purpose": "Make workflow path visible on iPhone by using visible bundle path.",
+      "source_only": true,
+      "status": "superseded",
+      "superseded_by": "B-CORELITE-004",
+      "supersedes": [
+        "B-CORELITE-002"
+      ],
+      "verification_result": "pass",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "corrective_rework",
+      "contains_markdown": false,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-006",
+      "name": "core-lite-ecosystem-maintainer-workflow-dependency-fix.zip",
+      "notes": "Workflow-only fix was not robust enough because validator itself still depended on PyYAML availability.",
+      "purpose": "Install PyYAML before running validator in maintainer workflow.",
+      "source_only": true,
+      "status": "superseded",
+      "superseded_by": "B-CORELITE-008",
+      "supersedes": [
+        "B-CORELITE-005"
+      ],
+      "verification_result": "insufficient_alone",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "corrective_rework",
+      "contains_markdown": false,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-008",
+      "name": "core-lite-pyyaml-repeat-failure-hardening.zip",
+      "notes": "Validator self-installs PyYAML if missing.",
+      "purpose": "Harden validator against repeated PyYAML missing dependency failure.",
+      "source_only": true,
+      "status": "superseded",
+      "superseded_by": "B-CORELITE-010",
+      "supersedes": [
+        "B-CORELITE-006",
+        "B-CORELITE-007"
+      ],
+      "verification_result": "pass",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "corrective_rework",
+      "contains_markdown": false,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-009",
+      "name": "core-lite-maintainer-classifier-false-positive-fix.zip",
+      "notes": "Bundle exposed only VERIFY_RESULT.txt and was unusable.",
+      "purpose": "Intended to fix classifier false positives.",
+      "source_only": true,
+      "status": "failed",
+      "superseded_by": "B-CORELITE-010",
+      "supersedes": [
+        "B-CORELITE-008"
+      ],
+      "verification_result": "failed_bundle_content",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "corrective_rework",
+      "contains_markdown": false,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-010",
+      "name": "core-lite-maintainer-classifier-false-positive-fix-v2.zip",
+      "notes": "Fixed workflow/support false positives but Python scanner still classified itself as STUB.",
+      "purpose": "Provide actual maintainer classifier false-positive fix.",
+      "source_only": true,
+      "status": "superseded",
+      "superseded_by": "B-CORELITE-011",
+      "supersedes": [
+        "B-CORELITE-009"
+      ],
+      "verification_result": "partial_pass",
+      "workstream_id": "W2"
+    },
+    {
+      "class": "corrective_rework",
+      "contains_markdown": false,
+      "generated_artifacts_included": false,
+      "id": "B-CORELITE-011",
+      "name": "core-lite-maintainer-python-stub-classifier-fix.zip",
+      "notes": "Latest maintainer scan shows STUB 0, ORPHAN_CANDIDATE 0, BROKEN 0.",
+      "purpose": "Fix Python stub classifier to avoid keyword false positives.",
+      "source_only": true,
+      "status": "current",
+      "superseded_by": null,
+      "supersedes": [
+        "B-CORELITE-010"
+      ],
+      "verification_result": "pass",
+      "workstream_id": "W2"
+    }
+  ],
+  "receipt": {
+    "bundle_count": 12,
+    "current_count": 2,
+    "estimated_handling_hours_likely": 86.9,
+    "failed_count": 1,
+    "hash": "7d690527460246050103ac5c67d14ee75e01f136f59eb9be0ab3da7f77929e08",
+    "observed_external_zip_count": 869,
+    "obsolete_count": 0,
+    "previous_hash": null,
+    "receipt_type": "core_lite.bundle_registry",
+    "result": "pass",
+    "superseded_count": 9,
+    "timestamp": "2026-07-10T14:14:48+00:00"
+  },
+  "registry": {
+    "name": "Core-Lite Bundle Registry",
+    "observed_external_inventory": {
+      "folder_name": "ZIPs",
+      "note": "The ZIPs folder count is a local inventory signal. Not every item is a failure. The registry separates intentional bundle-only development from avoidable corrective or obsolete bundle churn.\n",
+      "observed_at": "2026-05-08",
+      "observed_item_count": 869,
+      "source": "user_ios_files_screenshot"
+    },
+    "purpose": "Track StegVerse ZIP bundle inventory, canonical current bundles, supersession, obsolete bundle churn, and estimated handling friction.\n",
+    "rule": "Bundle-only delivery is valid. Untracked bundle proliferation is not."
+  },
+  "summary": {
+    "bundle_count": 12,
+    "class_counts": {
+      "corrective_rework": 7,
+      "versioned_development": 5
+    },
+    "contains_markdown_count": 6,
+    "corrective_or_avoidable_count": 7,
+    "current_bundle_count": 2,
+    "error_count": 0,
+    "estimated_handling_hours_high": 144.83,
+    "estimated_handling_hours_likely": 86.9,
+    "estimated_handling_hours_low": 43.45,
+    "failed_bundle_count": 1,
+    "generated_artifacts_included_count": 1,
+    "observed_external_zip_count": 869,
+    "quarantine_candidate_count": 7,
+    "result": "pass",
+    "source_only_count": 11,
+    "status_counts": {
+      "current": 2,
+      "failed": 1,
+      "superseded": 9
+    }
+  }
+}

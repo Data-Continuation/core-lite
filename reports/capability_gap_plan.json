@@ -1,0 +1,187 @@
+{
+  "capabilities": [
+    {
+      "capability_id": "scanner",
+      "description": "Repository scanning / metadata extraction",
+      "evidence": [
+        "signal hit(s): src/scanner, scanner, scan, commit_metadata"
+      ],
+      "implementation_files": [],
+      "missing": [
+        "expected path missing: src/scanner"
+      ],
+      "recommended_transition_block": "PLAN_CAPABILITY_COMPLETION",
+      "risk": "high",
+      "status": "signaled_missing"
+    },
+    {
+      "capability_id": "classifier",
+      "description": "Finding classification and severity classification",
+      "evidence": [
+        "signal hit(s): src/classifier, classifier, severity_rules, severity"
+      ],
+      "implementation_files": [],
+      "missing": [
+        "expected path missing: src/classifier"
+      ],
+      "recommended_transition_block": "PLAN_CAPABILITY_COMPLETION",
+      "risk": "high",
+      "status": "signaled_missing"
+    },
+    {
+      "capability_id": "sanitizer",
+      "description": "Sanitization / remediation planning",
+      "evidence": [
+        "signal hit(s): src/sanitizer, sanitizer, sanitize, redact"
+      ],
+      "implementation_files": [],
+      "missing": [
+        "expected path missing: src/sanitizer"
+      ],
+      "recommended_transition_block": "PLAN_CAPABILITY_COMPLETION",
+      "risk": "high",
+      "status": "signaled_missing"
+    },
+    {
+      "capability_id": "reporter",
+      "description": "Markdown/JSON report generation",
+      "evidence": [
+        "signal hit(s): src/reporter, reporter, report, reports"
+      ],
+      "implementation_files": [],
+      "missing": [
+        "expected path missing: src/reporter"
+      ],
+      "recommended_transition_block": "PLAN_CAPABILITY_COMPLETION",
+      "risk": "high",
+      "status": "signaled_missing"
+    },
+    {
+      "capability_id": "config",
+      "description": "Configuration registry and rule configuration",
+      "evidence": [
+        "signal hit(s): config/, config, ecosystems.yaml, severity_rules.yaml"
+      ],
+      "implementation_files": [],
+      "missing": [
+        "expected path missing: config/ecosystems.yaml",
+        "expected path missing: config/severity_rules.yaml"
+      ],
+      "recommended_transition_block": "PLAN_CAPABILITY_COMPLETION",
+      "risk": "high",
+      "status": "signaled_missing"
+    },
+    {
+      "capability_id": "operations_docs",
+      "description": "Operator workflow and usage documentation",
+      "evidence": [
+        "signal hit(s): docs/OPERATIONS.md, operations, usage"
+      ],
+      "implementation_files": [],
+      "missing": [
+        "expected path missing: docs/OPERATIONS.md"
+      ],
+      "recommended_transition_block": "PLAN_CAPABILITY_COMPLETION",
+      "risk": "high",
+      "status": "signaled_missing"
+    },
+    {
+      "capability_id": "cli_or_entrypoint",
+      "description": "Executable command entrypoint for local or CI operation",
+      "evidence": [
+        "signal hit(s): cli, main, __main__, argparse, click, typer"
+      ],
+      "implementation_files": [],
+      "missing": [],
+      "recommended_transition_block": "PLAN_CAPABILITY_COMPLETION",
+      "risk": "high",
+      "status": "signaled_missing"
+    },
+    {
+      "capability_id": "tests",
+      "description": "Automated tests for scanner/classifier/sanitizer/reporter behavior",
+      "evidence": [
+        "signal hit(s): tests/, pytest, unittest",
+        "expected path exists: tests",
+        "implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_ingest_incoming_contract.py, tests/test_receipts_append_contract.py"
+      ],
+      "implementation_files": [
+        "tests/fixtures/sample_ingest_bundle/bundle_manifest.json",
+        "tests/fixtures/sample_ingest_bundle/payload/sample.txt",
+        "tests/test_ingest_incoming_contract.py",
+        "tests/test_receipts_append_contract.py"
+      ],
+      "missing": [],
+      "recommended_transition_block": "NO_ACTION",
+      "risk": "low",
+      "status": "implemented_or_seeded"
+    },
+    {
+      "capability_id": "workflow",
+      "description": "GitHub Actions workflow for running product checks",
+      "evidence": [
+        "signal hit(s): .github/workflows, github/workflows",
+        "expected path exists: .github/workflows",
+        "implementation file(s): .github/workflows/auto-fix-eligibility.yml, .github/workflows/bundle-registry.yml, .github/workflows/core-lite-intake.yml, .github/workflows/core-lite-self-test.yml, .github/workflows/ecosystem-maintainer-scan.yml, .github/workflows/friction-avoided.yml, .github/workflows/install-iosnoperiod.yml, .github/workflows/target-capability-gap.yml"
+      ],
+      "implementation_files": [
+        ".github/workflows/auto-fix-eligibility.yml",
+        ".github/workflows/bundle-registry.yml",
+        ".github/workflows/core-lite-intake.yml",
+        ".github/workflows/core-lite-self-test.yml",
+        ".github/workflows/ecosystem-maintainer-scan.yml",
+        ".github/workflows/friction-avoided.yml",
+        ".github/workflows/install-iosnoperiod.yml",
+        ".github/workflows/target-capability-gap.yml",
+        ".github/workflows/target-repo-scan.yml",
+        ".github/workflows/workstream-status.yml"
+      ],
+      "missing": [
+        "expected path missing: github/workflows"
+      ],
+      "recommended_transition_block": "NO_ACTION",
+      "risk": "low",
+      "status": "implemented_or_seeded"
+    }
+  ],
+  "generated_at": "2026-07-10T14:14:48+00:00",
+  "receipt": {
+    "capability_count": 9,
+    "hash": "9631ca8d681c93e265ca2eade322b80f2f2dbd9af63a502e53302b399700b898",
+    "implemented_or_seeded_count": 2,
+    "missing_or_placeholder_count": 7,
+    "mutation_count": 0,
+    "previous_hash": null,
+    "receipt_type": "core_lite.capability_gap_plan",
+    "repo_role": "core-lite",
+    "result": "pass",
+    "timestamp": "2026-07-10T14:14:48+00:00"
+  },
+  "repo_role": {
+    "confidence": "high",
+    "role": "core-lite",
+    "scores": {
+      "core-lite": 1481,
+      "footprint-auditor": 107,
+      "formalism": 53
+    }
+  },
+  "summary": {
+    "capability_count": 9,
+    "directory_count": 21,
+    "file_count": 108,
+    "implemented_or_seeded_count": 2,
+    "missing_or_placeholder_count": 7,
+    "mutation_count": 0,
+    "result": "pass",
+    "risk_counts": {
+      "high": 7,
+      "low": 2
+    },
+    "status_counts": {
+      "implemented_or_seeded": 2,
+      "signaled_missing": 7
+    }
+  },
+  "target_root": "/home/runner/work/core-lite/core-lite"
+}
