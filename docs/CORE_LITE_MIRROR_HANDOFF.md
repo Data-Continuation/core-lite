@@ -5,7 +5,7 @@ This file is the source of truth for continuing `Data-Continuation/core-lite` wo
 ## Current version
 
 ```text
-0.5.0-stegverse-002-export-package-covered
+0.6.0-management-package-published-to-repo
 ```
 
 ## Current status
@@ -23,6 +23,7 @@ CAPABILITY_GAP_PLAN_PRESENT
 STEGVERSE_002_EXPORT_MANIFEST_PRESENT
 STEGVERSE_002_EXPORT_VALIDATOR_PRESENT
 STEGVERSE_002_EXPORT_WORKFLOW_COVERED
+MANAGEMENT_REPORTS_PUBLISHED_TO_REPOSITORY
 ECOSYSTEM_MANAGEMENT_WORKFLOW_COVERED
 LOCAL_AND_CI
 ```
@@ -60,40 +61,39 @@ Path note: `github/workflows/workstream-status.yml` is displayed without the lea
 
 ## Current activation goal
 
-`Data-Continuation/core-lite` is the StegVerse-001 parallel workstream and ecosystem management verifier. It now declares and validates the management artifact package required by `StegVerse-002/core-lite` management package intake.
+`Data-Continuation/core-lite` is the StegVerse-001 parallel workstream and ecosystem management verifier. It now generates and commits the management report package required by `StegVerse-002/core-lite` management package intake.
 
-Expected workflow artifact: `core-lite-workstream-status`
-
-Expected included outputs:
+The stable workflow now:
 
 ```text
-reports/workstream_status.md
-reports/workstream_status.json
-receipts/workstream_receipts.jsonl
-reports/stegclaw_target_intake.json
-reports/ecosystem_maintainer_scan.md
+1. Generates management reports and receipts.
+2. Commits reports/ and receipts/ to the default branch when changed.
+3. Uploads the same package as workflow artifact core-lite-workstream-status.
+```
+
+This removes the previous dependency on manual artifact download for 002 intake.
+
+## Published package paths
+
+```text
 reports/ecosystem_maintainer_scan.json
-receipts/ecosystem_maintainer_receipts.jsonl
-reports/auto_fix_eligibility.md
 reports/auto_fix_eligibility.json
-receipts/auto_fix_eligibility_receipts.jsonl
-reports/friction_avoided.md
 reports/friction_avoided.json
-receipts/friction_avoided_receipts.jsonl
-reports/bundle_registry.md
 reports/bundle_registry.json
-receipts/bundle_registry_receipts.jsonl
-reports/capability_gap_plan.md
 reports/capability_gap_plan.json
-receipts/capability_gap_receipts.jsonl
-reports/stegverse_002_export_manifest.md
 reports/stegverse_002_export_manifest.json
+receipts/ecosystem_maintainer_receipts.jsonl
+receipts/auto_fix_eligibility_receipts.jsonl
+receipts/friction_avoided_receipts.jsonl
+receipts/bundle_registry_receipts.jsonl
+receipts/capability_gap_receipts.jsonl
 receipts/stegverse_002_export_receipts.jsonl
 ```
 
 ## Destination intake
 
 ```text
+StegVerse-002/core-lite::incoming/data_continuation_core_lite/
 StegVerse-002/core-lite::config/management_package_intake_policy.json
 ```
 
@@ -105,4 +105,4 @@ MANAGEMENT_PACKAGE_CANDIDATE_EVIDENCE_ACCEPTED
 
 ## Next build candidate
 
-Inspect or retrieve the workflow-produced `core-lite-workstream-status` artifact and use `reports/stegverse_002_export_manifest.json` plus the required management reports as the handoff input to `StegVerse-002/core-lite`.
+After the workflow publishes the generated files, mirror the required reports into `StegVerse-002/core-lite/incoming/data_continuation_core_lite/reports/`, run declared task `sv002.management_package.intake`, and synthesize candidate management actions.
