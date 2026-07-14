@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "questions": {
+      "items": {
+        "properties": {
+          "evidence_refs": {"items": {"type": "string"}, "type": "array"},
+          "owner": {"type": "string"},
+          "question": {"type": "string"},
+          "question_id": {"type": "string"},
+          "status": {
+            "enum": ["missing", "pending", "supporting", "contradictory", "inaccessible", "resolved"]
+          }
+        },
+        "required": ["question_id", "question", "status", "evidence_refs", "owner"],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "record_id": {"type": "string"},
+    "schema_version": {"const": "1.0"}
+  },
+  "required": ["schema_version", "record_id", "questions"],
+  "title": "Evidence Matrix",
+  "type": "object"
+}
