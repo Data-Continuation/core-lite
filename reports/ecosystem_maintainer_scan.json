@@ -645,7 +645,7 @@
       "local_refs": [],
       "path": "core_lite/tasks/relationship_conditioned_execution.json",
       "python_import_refs": [],
-      "size_bytes": 3124
+      "size_bytes": 3855
     },
     {
       "broken_refs": [],
@@ -698,6 +698,19 @@
       "path": "core_lite/workstreams.yml",
       "python_import_refs": [],
       "size_bytes": 9894
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/ADVERSARIAL_AI_EXECUTION_MODEL.md",
+      "python_import_refs": [],
+      "size_bytes": 7574
     },
     {
       "broken_refs": [],
@@ -1556,23 +1569,23 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T04:18:43+00:00",
+  "generated_at": "2026-07-14T04:23:38+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
       "CANONICAL_OR_CONTROL": 39,
       "ORPHAN_CANDIDATE": 39,
       "REAL": 11,
-      "SUPPORT_ARTIFACT": 23
+      "SUPPORT_ARTIFACT": 24
     },
-    "file_count": 115,
-    "hash": "464313b4626f3ceb5e87b1228173736fc27c143150ff54e51e0915d324dadcfe",
+    "file_count": 116,
+    "hash": "57c7673b3f92da52cc4d6b6bc132627993a611a3da4cbcbd5ff5dd6d7e4bf71d",
     "mutation_count": 0,
-    "previous_hash": "4499863a9e69b4645108234db7b54a1145bda790c03c1e1aa2097bb4ec70d472",
+    "previous_hash": "464313b4626f3ceb5e87b1228173736fc27c143150ff54e51e0915d324dadcfe",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T04:18:43+00:00"
+    "timestamp": "2026-07-14T04:23:38+00:00"
   },
   "summary": {
     "class_counts": {
@@ -1580,9 +1593,9 @@
       "CANONICAL_OR_CONTROL": 39,
       "ORPHAN_CANDIDATE": 39,
       "REAL": 11,
-      "SUPPORT_ARTIFACT": 23
+      "SUPPORT_ARTIFACT": 24
     },
-    "file_count": 115,
+    "file_count": 116,
     "mutation_count": 0,
     "result": "pass"
   },

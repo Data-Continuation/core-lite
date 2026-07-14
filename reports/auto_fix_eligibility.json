@@ -470,6 +470,15 @@
     },
     {
       "mutation_allowed_now": false,
+      "path": "docs/ADVERSARIAL_AI_EXECUTION_MODEL.md",
+      "reason": "support artifact should be kept unless superseded by bundle registry policy",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "SUPPORT_ARTIFACT"
+    },
+    {
+      "mutation_allowed_now": false,
       "path": "docs/CORE_LITE_MIRROR_HANDOFF.md",
       "reason": "support artifact should be kept unless superseded by bundle registry policy",
       "recommended_bucket": "NO_ACTION",
@@ -1036,29 +1045,29 @@
       "source_class": "ORPHAN_CANDIDATE"
     }
   ],
-  "generated_at": "2026-07-14T04:18:43+00:00",
+  "generated_at": "2026-07-14T04:23:38+00:00",
   "receipt": {
     "auto_fix_eligible_count": 0,
     "auto_quarantine_eligible_count": 0,
     "complete_stub_eligible_count": 0,
     "do_not_touch_count": 39,
-    "file_count": 115,
-    "hash": "83067d4dead8baa13094c2260fb196ac11ff3ce75a6950edb24c55e4fd305c8d",
+    "file_count": 116,
+    "hash": "e56858b7ab35389a53982a9f54abc87444866bbba5a27daee8a10ff75b52e2e0",
     "human_review_required_count": 42,
     "mutation_count": 0,
-    "previous_hash": "b6f9715bb50059c207c175dbb68ffc5bc73bd93d99eb2b0ea9c2d4ba26e4f918",
+    "previous_hash": "83067d4dead8baa13094c2260fb196ac11ff3ce75a6950edb24c55e4fd305c8d",
     "receipt_type": "core_lite.auto_fix_eligibility",
     "result": "pass",
-    "timestamp": "2026-07-14T04:18:43+00:00"
+    "timestamp": "2026-07-14T04:23:38+00:00"
   },
-  "source_scan_generated_at": "2026-07-14T04:18:43+00:00",
+  "source_scan_generated_at": "2026-07-14T04:23:38+00:00",
   "summary": {
     "bucket_counts": {
       "DO_NOT_TOUCH": 39,
       "HUMAN_REVIEW_REQUIRED": 42,
-      "NO_ACTION": 34
+      "NO_ACTION": 35
     },
-    "file_count": 115,
+    "file_count": 116,
     "mutation_count": 0,
     "result": "pass",
     "transition_block_counts": {

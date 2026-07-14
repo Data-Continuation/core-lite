@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T04:18:43+00:00`
+Generated: `2026-07-14T04:23:38+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,7 +14,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `115`
+- Files scanned: `116`
 - Result: `pass`
 - Mutations performed: `0`
 
@@ -24,7 +24,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - CANONICAL_OR_CONTROL: `39`
 - ORPHAN_CANDIDATE: `39`
 - REAL: `11`
-- SUPPORT_ARTIFACT: `23`
+- SUPPORT_ARTIFACT: `24`
 
 ## Recommended Next Transition Blocks
 
@@ -373,7 +373,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### core_lite/tasks/relationship_conditioned_execution.json
 
 - Class: `CANONICAL_OR_CONTROL`
-- Size: `3124` bytes
+- Size: `3855` bytes
 - Evidence:
   - canonical/control file
 
@@ -404,6 +404,13 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - Size: `9894` bytes
 - Evidence:
   - canonical/control file
+
+### docs/ADVERSARIAL_AI_EXECUTION_MODEL.md
+
+- Class: `SUPPORT_ARTIFACT`
+- Size: `7574` bytes
+- Evidence:
+  - support artifact for upload, verification, documentation, examples, or empty directory retention
 
 ### docs/CORE_LITE_MIRROR_HANDOFF.md
 
@@ -793,5 +800,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `464313b4626f3ceb5e87b1228173736fc27c143150ff54e51e0915d324dadcfe`
+- Receipt hash: `57c7673b3f92da52cc4d6b6bc132627993a611a3da4cbcbd5ff5dd6d7e4bf71d`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`

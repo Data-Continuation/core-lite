@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T04:18:43+00:00`
-Source scan generated: `2026-07-14T04:18:43+00:00`
+Generated: `2026-07-14T04:23:38+00:00`
+Source scan generated: `2026-07-14T04:23:38+00:00`
 
 ## Done Definition
 
@@ -14,14 +14,14 @@ Source scan generated: `2026-07-14T04:18:43+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `115`
+- Files evaluated: `116`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
 - DO_NOT_TOUCH: `39`
 - HUMAN_REVIEW_REQUIRED: `42`
-- NO_ACTION: `34`
+- NO_ACTION: `35`
 
 ## Transition Block Counts
 
@@ -497,6 +497,15 @@ Source scan generated: `2026-07-14T04:18:43+00:00`
 - Mutation allowed now: `False`
 - Requires human review: `True`
 - Reason: canonical/control file requires explicit boundary review before mutation
+
+### docs/ADVERSARIAL_AI_EXECUTION_MODEL.md
+
+- Source class: `SUPPORT_ARTIFACT`
+- Recommended bucket: `NO_ACTION`
+- Recommended transition block: `None`
+- Mutation allowed now: `False`
+- Requires human review: `False`
+- Reason: support artifact should be kept unless superseded by bundle registry policy
 
 ### docs/CORE_LITE_MIRROR_HANDOFF.md
 
@@ -1067,5 +1076,5 @@ Source scan generated: `2026-07-14T04:18:43+00:00`
 
 ## Receipt
 
-- Receipt hash: `83067d4dead8baa13094c2260fb196ac11ff3ce75a6950edb24c55e4fd305c8d`
+- Receipt hash: `e56858b7ab35389a53982a9f54abc87444866bbba5a27daee8a10ff75b52e2e0`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`
