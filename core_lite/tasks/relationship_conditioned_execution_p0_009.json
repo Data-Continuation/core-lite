@@ -1,0 +1,65 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-009",
+  "title": "Automate sandbox evidence retention and reconstruction index",
+  "status": "WAITING_AUTOMATED_PREDECESSOR",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "owner": "core_lite_management_workflow",
+  "activation_dependency": {
+    "task_id": "RCE-P0-008",
+    "required_status": "COMPLETE",
+    "required_evidence": "receipts/rce_p0_008_authoritative_validation.json",
+    "satisfied": false
+  },
+  "goal": "Create and continuously verify a compact reconstruction index for every authoritative RCE receipt, report, active sandbox file, lease record, lifecycle record, and archived candidate without deleting evidence or granting production authority.",
+  "required_outputs": [
+    "tools/index_relationship_conditioned_execution_evidence.py",
+    "tests/test_index_relationship_conditioned_execution_evidence.py",
+    "reports/rce_p0_009_reconstruction_index.json",
+    "receipts/rce_p0_009_authoritative_validation.json"
+  ],
+  "acceptance_criteria": [
+    "P0-008 authoritative receipt is present and true",
+    "all authoritative receipts P0-001 through P0-008 are indexed when present",
+    "each indexed file records path sha256 byte count and evidence class",
+    "active sandbox lifecycle staging and lease records are indexed",
+    "archived sandbox candidates are indexed without deletion",
+    "reconstruction index is deterministic for unchanged evidence",
+    "missing or changed indexed evidence fails closed",
+    "production and external destinations remain prohibited",
+    "manual_actions_required remains empty"
+  ],
+  "invariants": [
+    "evidence_is_not_deleted",
+    "deterministic_reconstruction_index",
+    "hash_and_size_bound",
+    "sandbox_only",
+    "no_production_destination",
+    "no_external_destination_mutation",
+    "no_autonomous_execution_authority",
+    "manual_actions_required_is_empty"
+  ],
+  "blocked_by": [
+    "RCE-P0-008 authoritative lease receipt not yet persisted"
+  ],
+  "manual_actions_required": [],
+  "permitted_scope": [
+    "evidence indexing",
+    "hash and byte verification",
+    "reconstruction pointers",
+    "reports",
+    "receipts",
+    "automatic task-state persistence"
+  ],
+  "prohibited_scope": [
+    "evidence deletion",
+    "production installation",
+    "external destination mutation",
+    "autonomous execution",
+    "human-harm authorization",
+    "real-world target data",
+    "weapons enablement",
+    "cyber exploitation instructions"
+  ]
+}
