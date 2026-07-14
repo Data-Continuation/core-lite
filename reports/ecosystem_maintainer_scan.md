@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T04:43:24+00:00`
+Generated: `2026-07-14T04:43:45+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -422,7 +422,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### docs/CORE_LITE_MIRROR_HANDOFF.md
 
 - Class: `SUPPORT_ARTIFACT`
-- Size: `5859` bytes
+- Size: `6884` bytes
 - Evidence:
   - support artifact for upload, verification, documentation, examples, or empty directory retention
 
@@ -807,5 +807,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `aa5a3f5cb4d3ebb08b8208a87ebd22d08af4d66deb44dbc7a4c3fef5f4f6d5b4`
+- Receipt hash: `bebab257a3b855286763346179ad72dee2d641ecd76950f58556bd9a829195d8`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`
