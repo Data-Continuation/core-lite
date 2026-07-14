@@ -1,0 +1,93 @@
+name: RCE P0-014 Continuity Checkpoint Candidate
+
+on:
+  workflow_run:
+    workflows:
+      - "Core-Lite Workstream Status"
+    types:
+      - completed
+  schedule:
+    - cron: "47 * * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - "receipts/rce_p0_013_authoritative_validation.json"
+      - "tools/build_relationship_conditioned_execution_checkpoint.py"
+      - "tests/test_build_relationship_conditioned_execution_checkpoint.py"
+      - "core_lite/tasks/relationship_conditioned_execution_p0_014.json"
+      - ".github/workflows/rce-p0-014-checkpoint.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rce-p0-014-main
+  cancel-in-progress: false
+
+jobs:
+  build-checkpoint:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install test dependency
+        run: python -m pip install --upgrade pip pytest
+
+      - name: Verify checkpoint implementation
+        id: tests
+        continue-on-error: true
+        run: python -m pytest -q tests/test_build_relationship_conditioned_execution_checkpoint.py
+
+      - name: Build continuity checkpoint candidate
+        id: checkpoint
+        continue-on-error: true
+        run: python tools/build_relationship_conditioned_execution_checkpoint.py
+
+      - name: Persist checkpoint state
+        if: always()
+        run: |
+          set -euo pipefail
+          git config user.name "Data-Continuation Core-Lite Manager"
+          git config user.email "core-lite-manager@data-continuation"
+          git add -A \
+            reports/rce_p0_014_checkpoint_candidate.json \
+            receipts/rce_p0_014_authoritative_validation.json \
+            core_lite/tasks/relationship_conditioned_execution_p0_014.json \
+            sandbox/publication_candidates/relationship_conditioned_execution/checkpoint.json || true
+          if git diff --staged --quiet; then
+            echo "No checkpoint state changed."
+          else
+            git commit -m "core-lite: publish RCE checkpoint state [core-lite-managed-state]"
+            git push
+          fi
+
+      - name: Upload checkpoint evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rce-p0-014-continuity-checkpoint
+          path: |
+            reports/rce_p0_014_checkpoint_candidate.json
+            receipts/rce_p0_014_authoritative_validation.json
+            core_lite/tasks/relationship_conditioned_execution_p0_014.json
+            sandbox/publication_candidates/relationship_conditioned_execution/checkpoint.json
+          if-no-files-found: warn
+
+      - name: Enforce checkpoint result
+        if: ${{ steps.tests.outcome != 'success' || steps.checkpoint.outcome != 'success' }}
+        run: |
+          echo "RCE-P0-014 failed closed after preserving available evidence."
+          exit 1
