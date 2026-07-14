@@ -109,7 +109,7 @@ The prior ZIPs are unvalidated scaffolding and must not be ingested as productio
 
 ```text
 docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md
-schemas/relationship_conditioned_human_decISION_POLICY.schema.json
+schemas/relationship_conditioned_human_decision_policy.schema.json
 samples/relationship_conditioned_human_decision_policy.example.json
 tools/validate_relationship_conditioned_human_decision_policy.py
 tests/test_relationship_conditioned_human_decision_policy.py
