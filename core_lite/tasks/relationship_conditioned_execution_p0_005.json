@@ -1,0 +1,52 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-005",
+  "title": "Automatically stage validated RCE candidate into sandbox intake",
+  "status": "WAITING_AUTOMATED_PREDECESSOR",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "owner": "github_actions:rce-p0-004-reconstruction-review",
+  "activation_dependency": {
+    "task_id": "RCE-P0-004",
+    "required_status": "COMPLETE",
+    "required_evidence": "receipts/rce_p0_004_authoritative_validation.json",
+    "required_decision": "ALLOW_CANDIDATE_INTAKE",
+    "satisfied": false
+  },
+  "goal": "Stage only the independently reconstructed, validated candidate package into a non-production sandbox intake path and emit chained staging evidence without destination or production mutation.",
+  "required_outputs": [
+    "tools/stage_relationship_conditioned_execution_sandbox.py",
+    "tests/test_stage_relationship_conditioned_execution_sandbox.py",
+    "sandbox/intake/relationship_conditioned_execution/staging_manifest.json",
+    "receipts/rce_p0_005_authoritative_validation.json"
+  ],
+  "invariants": [
+    "sandbox_only",
+    "candidate_evidence_only",
+    "no_production_destination",
+    "no_autonomous_execution_authority",
+    "source_and_reconstruction_receipts_required",
+    "fail_closed_on_any_hash_or_authority_mismatch",
+    "manual_actions_required_is_empty"
+  ],
+  "blocked_by": [
+    "RCE-P0-004 authoritative ALLOW_CANDIDATE_INTAKE receipt not yet persisted"
+  ],
+  "manual_actions_required": [],
+  "permitted_scope": [
+    "sandbox staging",
+    "copying validated candidate evidence",
+    "hash verification",
+    "receipt chaining",
+    "automatic state persistence"
+  ],
+  "prohibited_scope": [
+    "production installation",
+    "external destination mutation",
+    "autonomous execution",
+    "human-harm authorization",
+    "real-world target data",
+    "weapons enablement",
+    "cyber exploitation instructions"
+  ]
+}
