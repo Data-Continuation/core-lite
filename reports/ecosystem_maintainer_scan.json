@@ -102,7 +102,7 @@
       "local_refs": [],
       "path": ".github/workflows/rce-p0-001-validation.yml",
       "python_import_refs": [],
-      "size_bytes": 4331
+      "size_bytes": 4310
     },
     {
       "broken_refs": [],
@@ -658,7 +658,7 @@
       "local_refs": [],
       "path": "core_lite/tasks/relationship_conditioned_execution.json",
       "python_import_refs": [],
-      "size_bytes": 4600
+      "size_bytes": 3772
     },
     {
       "broken_refs": [],
@@ -801,7 +801,7 @@
       "local_refs": [],
       "path": "docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md",
       "python_import_refs": [],
-      "size_bytes": 7203
+      "size_bytes": 6395
     },
     {
       "broken_refs": [],
@@ -1695,7 +1695,7 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T05:10:29+00:00",
+  "generated_at": "2026-07-14T05:18:12+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
@@ -1705,13 +1705,13 @@
       "SUPPORT_ARTIFACT": 25
     },
     "file_count": 125,
-    "hash": "6648cfd97edcea04ecc7df2c155308fcefcdf2aff0abfaf920217a248464b2d1",
+    "hash": "a927eaa58952fc7eae2e0dc511ae338e438f11514d28506aa364da6dd03d40a8",
     "mutation_count": 0,
-    "previous_hash": "ebdc43c07e931030407d574aa57561a025db726b11f3f40257be0dd441fa421a",
+    "previous_hash": "6648cfd97edcea04ecc7df2c155308fcefcdf2aff0abfaf920217a248464b2d1",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T05:10:29+00:00"
+    "timestamp": "2026-07-14T05:18:12+00:00"
   },
   "summary": {
     "class_counts": {
