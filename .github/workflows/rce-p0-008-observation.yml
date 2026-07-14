@@ -1,0 +1,155 @@
+name: RCE P0-008 Destination Acknowledgement Observation
+
+on:
+  push:
+    branches: [main, stegops/rce-handoff-clean]
+    paths:
+      - "config/rce_destination_acknowledgement_watch.json"
+      - "tools/observe_rce_destination_acknowledgement.py"
+      - "notifications/relationship_conditioned_execution/candidate_available.json"
+      - "exports/relationship_conditioned_execution/candidate_envelope.json"
+      - "receipts/rce_p0_007_authoritative_validation.json"
+      - ".github/workflows/rce-p0-008-observation.yml"
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rce-p0-008-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  observe:
+    if: ${{ !contains(github.event.head_commit.message || '', '[rce-p0-008-state]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check predecessor evidence
+        id: dependency
+        run: |
+          if test -f receipts/rce_p0_007_authoritative_validation.json && \
+             test -f notifications/relationship_conditioned_execution/candidate_available.json && \
+             test -f exports/relationship_conditioned_execution/candidate_envelope.json; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Observe destination acknowledgement
+        if: steps.dependency.outputs.ready == 'true'
+        run: python tools/observe_rce_destination_acknowledgement.py
+
+      - name: Validate observation boundaries
+        if: steps.dependency.outputs.ready == 'true'
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('reports/rce_p0_008_destination_acknowledgement.json')
+          r = json.loads(p.read_text())
+          assert r['observation_state'] in {
+              'PENDING_DESTINATION_ACKNOWLEDGEMENT',
+              'DESTINATION_ACKNOWLEDGEMENT_OBSERVED',
+          }
+          assert r['destination_acceptance_claimed'] is False
+          assert r['destination_mutation_performed'] is False
+          assert r['production_installation_authority'] is False
+          assert r['autonomous_execution_authority'] is False
+          assert r['manual_actions_required'] == []
+          if r['observation_state'] == 'DESTINATION_ACKNOWLEDGEMENT_OBSERVED':
+              assert r['destination_receipt_observed'] is True
+              assert r['acknowledgement_valid'] is True
+          else:
+              assert r['destination_receipt_observed'] is False
+          PY
+
+      - name: Persist observation state
+        if: steps.dependency.outputs.ready == 'true'
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_number }}
+          RUN_SHA: ${{ github.sha }}
+        run: |
+          python - <<'PY'
+          import hashlib, json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          report_path = Path('reports/rce_p0_008_destination_acknowledgement.json')
+          report = json.loads(report_path.read_text())
+          receipt = {
+              'schema': 'stegverse.validation.receipt.v1',
+              'task_id': 'RCE-P0-008',
+              'validation_class': 'GITHUB_ACTIONS_DESTINATION_ACKNOWLEDGEMENT_OBSERVATION',
+              'authoritative_completion_evidence': report['observation_state'] == 'DESTINATION_ACKNOWLEDGEMENT_OBSERVED',
+              'observation_state': report['observation_state'],
+              'destination_receipt_observed': report['destination_receipt_observed'],
+              'destination_acceptance_claimed': False,
+              'destination_mutation_performed': False,
+              'report_sha256': hashlib.sha256(report_path.read_bytes()).hexdigest(),
+              'run_id': os.environ['RUN_ID'],
+              'run_number': os.environ['RUN_NUMBER'],
+              'commit_sha': os.environ['RUN_SHA'],
+              'observed_at': datetime.now(timezone.utc).isoformat(),
+              'manual_actions_required': [],
+          }
+          Path('receipts').mkdir(exist_ok=True)
+          Path('receipts/rce_p0_008_authoritative_validation.json').write_text(
+              json.dumps(receipt, indent=2, sort_keys=True) + '\n'
+          )
+          task_path = Path('core_lite/tasks/relationship_conditioned_execution_p0_008.json')
+          task = json.loads(task_path.read_text())
+          task['status'] = (
+              'COMPLETE' if receipt['authoritative_completion_evidence']
+              else 'ACTIVE_MONITORING_PENDING_DESTINATION_ACKNOWLEDGEMENT'
+          )
+          task['latest_observation'] = {
+              'state': report['observation_state'],
+              'receipt': 'receipts/rce_p0_008_authoritative_validation.json',
+              'manual_actions_required': [],
+          }
+          if receipt['authoritative_completion_evidence']:
+              task['successor_task'] = 'RCE-P0-009'
+              successor = {
+                  'schema': 'stegverse.core_lite.task.v1',
+                  'task_id': 'RCE-P0-009',
+                  'title': 'Observe destination-owned intake decision',
+                  'status': 'DECLARED_WAITING_FOR_DESTINATION_DECISION',
+                  'priority': 'P0',
+                  'owner_repo': 'Data-Continuation/core-lite',
+                  'owner': 'github_actions:rce-p0-009-destination-decision-observer',
+                  'activation_dependency': {
+                      'task_id': 'RCE-P0-008',
+                      'required_status': 'COMPLETE',
+                      'required_evidence': 'receipts/rce_p0_008_authoritative_validation.json',
+                      'satisfied': True,
+                  },
+                  'manual_actions_required': [],
+                  'destination_mutation_authority': False,
+              }
+              Path('core_lite/tasks/relationship_conditioned_execution_p0_009.json').write_text(
+                  json.dumps(successor, indent=2, sort_keys=True) + '\n'
+              )
+          task_path.write_text(json.dumps(task, indent=2, sort_keys=True) + '\n')
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/rce_p0_008_destination_acknowledgement.json \
+                  receipts/rce_p0_008_authoritative_validation.json \
+                  core_lite/tasks/relationship_conditioned_execution_p0_008.json \
+                  core_lite/tasks/relationship_conditioned_execution_p0_009.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: persist RCE P0-008 observation [rce-p0-008-state]"
+            git push
+          fi
