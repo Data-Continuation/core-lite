@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "candidate_id": "sandbox-stale-001",
+  "action": {
+    "name": "publish_non_sensitive_validation_report",
+    "class": "report",
+    "reversible": true,
+    "severe_human_harm_possible": false,
+    "sandbox_only": true
+  },
+  "live_state": {
+    "observed_at": "2026-07-14T04:00:00Z",
+    "age_seconds": 3600,
+    "max_age_seconds": 300,
+    "sufficient": true
+  },
+  "authority": {
+    "state": "valid",
+    "source_refs": ["policy:rce-p0-001", "delegation:sandbox-report-publisher"],
+    "scope": ["publish_non_sensitive_validation_report"],
+    "rederived_at_commit": true
+  },
+  "effects": {
+    "predicted_domains": ["sandbox_reporting"],
+    "authorized_domains": ["sandbox_reporting"],
+    "collateral_resolved": true
+  },
+  "denial": {
+    "reachable": true,
+    "mechanisms": ["cancel_before_publish"]
+  },
+  "trajectory": {
+    "sequence_id": "sandbox-sequence-stale-001",
+    "governability_preserved": true
+  },
+  "recoverability": {
+    "preserved": true,
+    "rollback_ref": "rollback:sandbox-stale-001"
+  },
+  "traceability": {
+    "record_required": true,
+    "integrity_protected": true,
+    "receipt_ref": "receipt:sandbox-stale-001"
+  },
+  "declared_decision": "DENY"
+}
