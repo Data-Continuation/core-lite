@@ -1172,6 +1172,15 @@
     },
     {
       "mutation_allowed_now": false,
+      "path": "tools/stage_relationship_conditioned_execution_candidate.py",
+      "reason": "real file with no maintainer finding",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "REAL"
+    },
+    {
+      "mutation_allowed_now": false,
       "path": "tools/stegverse001_worker.py",
       "reason": "real file with no maintainer finding",
       "recommended_bucket": "NO_ACTION",
@@ -1252,29 +1261,29 @@
       "source_class": "ORPHAN_CANDIDATE"
     }
   ],
-  "generated_at": "2026-07-14T06:56:16+00:00",
+  "generated_at": "2026-07-14T06:56:38+00:00",
   "receipt": {
     "auto_fix_eligible_count": 0,
     "auto_quarantine_eligible_count": 0,
     "complete_stub_eligible_count": 0,
     "do_not_touch_count": 47,
-    "file_count": 139,
-    "hash": "d56d31b39b01c148d1a962258fc3cfda805580a37d8bac50219235ebaeed32e0",
+    "file_count": 140,
+    "hash": "ed1867bfcffa3948613d0145c37ac37eb9e9362a15631e86e579686a21b0b30a",
     "human_review_required_count": 52,
     "mutation_count": 0,
-    "previous_hash": "1bd7f1ad533dde1f56e629b18db34d7d7153e2ce6a5e370d17f86b8b609036f1",
+    "previous_hash": "d56d31b39b01c148d1a962258fc3cfda805580a37d8bac50219235ebaeed32e0",
     "receipt_type": "core_lite.auto_fix_eligibility",
     "result": "pass",
-    "timestamp": "2026-07-14T06:56:16+00:00"
+    "timestamp": "2026-07-14T06:56:38+00:00"
   },
-  "source_scan_generated_at": "2026-07-14T06:56:16+00:00",
+  "source_scan_generated_at": "2026-07-14T06:56:38+00:00",
   "summary": {
     "bucket_counts": {
       "DO_NOT_TOUCH": 47,
       "HUMAN_REVIEW_REQUIRED": 52,
-      "NO_ACTION": 40
+      "NO_ACTION": 41
     },
-    "file_count": 139,
+    "file_count": 140,
     "mutation_count": 0,
     "result": "pass",
     "transition_block_counts": {
