@@ -2,14 +2,15 @@
   "schema": "stegverse.core_lite.task.v1",
   "task_id": "RCE-P0-002",
   "title": "Create canonical execution-candidate manifest and sandbox fixtures",
-  "status": "PREPARED_NOT_ACTIVATED",
+  "status": "ACTIVE_PENDING_AUTHORITATIVE_VALIDATION",
   "priority": "P0",
   "owner_repo": "Data-Continuation/core-lite",
   "source_handoff": "docs/CORE_LITE_MIRROR_HANDOFF.md",
   "activation_dependency": {
     "task_id": "RCE-P0-001",
     "required_status": "COMPLETE",
-    "required_evidence": "authoritative GitHub Actions or direct-checkout validation receipt with authoritative_completion_evidence=true"
+    "required_evidence": "receipts/rce_p0_001_authoritative_validation.json",
+    "satisfied": true
   },
   "goal": "Translate commit-time admissibility requirements into a deterministic, non-operational manifest, harmless sandbox fixtures, validator, and focused tests.",
   "outputs": [
@@ -19,10 +20,12 @@
     "samples/execution_candidate_manifest.stale_state.example.json",
     "samples/execution_candidate_manifest.scope_leakage.example.json",
     "tools/validate_execution_candidate_manifest.py",
-    "tests/test_execution_candidate_manifest.py"
+    "tests/test_execution_candidate_manifest.py",
+    ".github/workflows/rce-p0-002-validation.yml"
   ],
   "outputs_present": true,
-  "activation_allowed": false,
+  "activation_allowed": true,
+  "activated_at": "2026-07-14T05:17:14.297110+00:00",
   "prepared_invariants": [
     "allow_requires_reversible_non_severe_sandbox_action",
     "stale_state_denies",
@@ -37,7 +40,8 @@
     "traceability_must_be_integrity_protected"
   ],
   "validation": {
-    "status": "PENDING_ACTIVATION",
+    "status": "PENDING_AUTHORITATIVE_CI",
+    "workflow": ".github/workflows/rce-p0-002-validation.yml",
     "commands": [
       "python tools/validate_execution_candidate_manifest.py samples/execution_candidate_manifest.allow.example.json",
       "python tools/validate_execution_candidate_manifest.py samples/execution_candidate_manifest.stale_state.example.json",
@@ -46,10 +50,9 @@
     ]
   },
   "blocked_by": [
-    "RCE-P0-001 authoritative workflow run requires repository approval or a successful pull-request-triggered rerun",
-    "RCE-P0-001 authoritative validation receipt missing"
+    "authoritative RCE-P0-002 validation receipt missing"
   ],
-  "required_next_event": "Repository maintainer approves the pending Actions run for PR #2 or causes a successful pull-request-triggered RCE P0-001 Validation run; the receipt artifact is preserved and authoritative_completion_evidence=true is verified",
+  "required_next_event": "RCE P0-002 Validation executes successfully; its receipt artifact is preserved and authoritative_completion_evidence=true is verified",
   "permitted_scope": [
     "schema",
     "harmless sandbox fixtures",
