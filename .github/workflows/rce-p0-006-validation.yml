@@ -1,0 +1,111 @@
+name: RCE P0-006 Candidate Envelope
+
+on:
+  push:
+    branches: [main, stegops/rce-handoff-clean]
+    paths:
+      - "receipts/rce_p0_005_authoritative_validation.json"
+      - "staging/relationship_conditioned_execution/**"
+      - "tools/build_rce_candidate_intake_envelope.py"
+      - "tests/test_build_rce_candidate_intake_envelope.py"
+      - "core_lite/tasks/relationship_conditioned_execution_p0_006.json"
+      - ".github/workflows/rce-p0-006-validation.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  candidate-envelope:
+    if: ${{ !contains(github.event.head_commit.message, '[rce-p0-006-state]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install pytest
+      - name: Detect predecessor evidence
+        id: dependency
+        run: |
+          if test -f receipts/rce_p0_005_authoritative_validation.json && test -f staging/relationship_conditioned_execution/staging_manifest.json; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Wait automatically
+        if: steps.dependency.outputs.ready != 'true'
+        run: echo "RCE-P0-006 waiting for authoritative P0-005 evidence"
+      - name: Run focused tests
+        if: steps.dependency.outputs.ready == 'true'
+        run: python -m pytest -q tests/test_build_rce_candidate_intake_envelope.py
+      - name: Build candidate envelope
+        if: steps.dependency.outputs.ready == 'true'
+        run: python tools/build_rce_candidate_intake_envelope.py > envelope-output.json
+      - name: Persist authoritative state
+        if: steps.dependency.outputs.ready == 'true'
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_number }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          python - <<'PY'
+          import hashlib, json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          envelope_path = Path('exports/relationship_conditioned_execution/candidate_envelope.json')
+          envelope = json.loads(envelope_path.read_text())
+          report = {
+            'schema': 'stegverse.rce.candidate_envelope_report.v1',
+            'task_id': 'RCE-P0-006',
+            'decision': 'CANDIDATE_ENVELOPE_DECLARED',
+            'candidate_envelope': str(envelope_path),
+            'candidate_envelope_sha256': hashlib.sha256(envelope_path.read_bytes()).hexdigest(),
+            'destination_mutation_performed': False,
+            'destination_acceptance_claimed': False,
+            'manual_actions_required': []
+          }
+          Path('reports').mkdir(exist_ok=True)
+          Path('receipts').mkdir(exist_ok=True)
+          Path('reports/rce_p0_006_candidate_envelope.json').write_text(json.dumps(report, indent=2, sort_keys=True)+'\n')
+          receipt = {
+            'schema': 'stegverse.validation.receipt.v1',
+            'task_id': 'RCE-P0-006',
+            'validation_class': 'GITHUB_ACTIONS_AUTHORITATIVE_VALIDATION',
+            'authoritative_completion_evidence': True,
+            'run_id': int(os.environ['RUN_ID']),
+            'run_number': int(os.environ['RUN_NUMBER']),
+            'commit_sha': os.environ['COMMIT_SHA'],
+            'observed_at': datetime.now(timezone.utc).isoformat(),
+            'outcomes': {'focused_tests':'success','candidate_envelope':'success'},
+            'manual_actions_required': []
+          }
+          Path('receipts/rce_p0_006_authoritative_validation.json').write_text(json.dumps(receipt, indent=2, sort_keys=True)+'\n')
+          task_path = Path('core_lite/tasks/relationship_conditioned_execution_p0_006.json')
+          task = json.loads(task_path.read_text())
+          task['status'] = 'COMPLETE'
+          task['validation'] = receipt
+          task['completed_at'] = receipt['observed_at']
+          task['successor_task'] = 'RCE-P0-007'
+          task_path.write_text(json.dumps(task, indent=2, sort_keys=True)+'\n')
+          next_path = Path('core_lite/tasks/relationship_conditioned_execution_p0_007.json')
+          if not next_path.exists():
+            next_path.write_text(json.dumps({
+              'schema':'stegverse.core_lite.task.v1',
+              'task_id':'RCE-P0-007',
+              'title':'Publish destination-observable candidate notification without destination mutation',
+              'status':'DECLARED',
+              'priority':'P0',
+              'owner_repo':'Data-Continuation/core-lite',
+              'activation_dependency':{'task_id':'RCE-P0-006','required_status':'COMPLETE','satisfied':True},
+              'manual_actions_required':[],
+              'prohibited_scope':['destination mutation','destination acceptance claim','production installation','autonomous execution']
+            }, indent=2, sort_keys=True)+'\n')
+          PY
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add exports/relationship_conditioned_execution/candidate_envelope.json reports/rce_p0_006_candidate_envelope.json receipts/rce_p0_006_authoritative_validation.json core_lite/tasks/relationship_conditioned_execution_p0_006.json core_lite/tasks/relationship_conditioned_execution_p0_007.json
+          git diff --cached --quiet || git commit -m "chore: persist RCE P0-006 state [rce-p0-006-state]"
+          git push
