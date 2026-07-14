@@ -1,0 +1,65 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-007",
+  "title": "Automate sandbox lifecycle and supersession",
+  "status": "ACTIVE",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "owner": "core_lite_management_workflow",
+  "activation_dependency": {
+    "task_id": "RCE-P0-006",
+    "required_status": "COMPLETE",
+    "required_evidence": "receipts/rce_p0_006_authoritative_validation.json",
+    "required_decision": "CUSTODY_AND_REPLAY_VERIFIED",
+    "satisfied": true
+  },
+  "goal": "Maintain one authoritative sandbox candidate, prevent downgrade or silent replacement, archive superseded evidence deterministically, and emit lifecycle receipts without production or external destination mutation.",
+  "required_outputs": [
+    "tools/manage_relationship_conditioned_execution_lifecycle.py",
+    "tests/test_manage_relationship_conditioned_execution_lifecycle.py",
+    "reports/rce_p0_007_lifecycle.json",
+    "receipts/rce_p0_007_authoritative_validation.json",
+    "sandbox/intake/relationship_conditioned_execution/lifecycle_state.json"
+  ],
+  "acceptance_criteria": [
+    "P0-006 authoritative receipt is present and true",
+    "active package identity and version are recorded",
+    "same-version reconciliation is idempotent",
+    "version downgrade is denied",
+    "same-version content drift is denied",
+    "newer version supersedes only after authoritative custody verification",
+    "superseded evidence is archived under a sandbox-only path",
+    "production and external destinations remain prohibited",
+    "manual_actions_required remains empty"
+  ],
+  "invariants": [
+    "single_authoritative_sandbox_candidate",
+    "no_version_downgrade",
+    "no_silent_same_version_replacement",
+    "supersession_requires_authoritative_custody",
+    "sandbox_only",
+    "no_production_destination",
+    "no_external_destination_mutation",
+    "manual_actions_required_is_empty"
+  ],
+  "blocked_by": [],
+  "manual_actions_required": [],
+  "permitted_scope": [
+    "sandbox lifecycle state",
+    "supersession decisions",
+    "sandbox archival",
+    "hash verification",
+    "reports",
+    "receipts",
+    "automatic task-state persistence"
+  ],
+  "prohibited_scope": [
+    "production installation",
+    "external destination mutation",
+    "autonomous execution",
+    "human-harm authorization",
+    "real-world target data",
+    "weapons enablement",
+    "cyber exploitation instructions"
+  ]
+}
