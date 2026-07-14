@@ -1,0 +1,67 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-002",
+  "title": "Create canonical execution-candidate manifest and sandbox fixtures",
+  "status": "PREPARED_NOT_ACTIVATED",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "source_handoff": "docs/CORE_LITE_MIRROR_HANDOFF.md",
+  "activation_dependency": {
+    "task_id": "RCE-P0-001",
+    "required_status": "COMPLETE",
+    "required_evidence": "authoritative GitHub Actions or direct-checkout validation receipt with authoritative_completion_evidence=true"
+  },
+  "goal": "Translate commit-time admissibility requirements into a deterministic, non-operational manifest, harmless sandbox fixtures, validator, and focused tests.",
+  "outputs": [
+    "docs/RCE_P0_002_MANIFEST_AND_FIXTURES.md",
+    "schemas/execution_candidate_manifest.schema.json",
+    "samples/execution_candidate_manifest.allow.example.json",
+    "samples/execution_candidate_manifest.stale_state.example.json",
+    "samples/execution_candidate_manifest.scope_leakage.example.json",
+    "tools/validate_execution_candidate_manifest.py",
+    "tests/test_execution_candidate_manifest.py"
+  ],
+  "outputs_present": true,
+  "activation_allowed": false,
+  "prepared_invariants": [
+    "allow_requires_reversible_non_severe_sandbox_action",
+    "stale_state_denies",
+    "insufficient_state_abstains",
+    "missing_or_conflicting_authority_escalates",
+    "authority_must_be_rederived_at_commit",
+    "effects_must_remain_within_authorized_domains",
+    "collateral_must_be_resolved",
+    "denial_must_be_reachable",
+    "trajectory_must_preserve_governability",
+    "recoverability_must_be_preserved",
+    "traceability_must_be_integrity_protected"
+  ],
+  "validation": {
+    "status": "PENDING_ACTIVATION",
+    "commands": [
+      "python tools/validate_execution_candidate_manifest.py samples/execution_candidate_manifest.allow.example.json",
+      "python tools/validate_execution_candidate_manifest.py samples/execution_candidate_manifest.stale_state.example.json",
+      "python tools/validate_execution_candidate_manifest.py samples/execution_candidate_manifest.scope_leakage.example.json",
+      "python -m pytest -q tests/test_execution_candidate_manifest.py"
+    ]
+  },
+  "blocked_by": [
+    "RCE-P0-001 authoritative workflow run requires repository approval",
+    "RCE-P0-001 authoritative validation receipt missing"
+  ],
+  "permitted_scope": [
+    "schema",
+    "harmless sandbox fixtures",
+    "validators",
+    "tests",
+    "receipts"
+  ],
+  "prohibited_scope": [
+    "real-world target data",
+    "target selection logic",
+    "weapons enablement",
+    "strike routing or evasion",
+    "cyber exploitation instructions",
+    "autonomous harmful execution"
+  ]
+}
