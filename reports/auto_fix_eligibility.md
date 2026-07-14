@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T04:11:05+00:00`
-Source scan generated: `2026-07-14T04:11:05+00:00`
+Generated: `2026-07-14T04:16:26+00:00`
+Source scan generated: `2026-07-14T04:16:26+00:00`
 
 ## Done Definition
 
@@ -14,19 +14,19 @@ Source scan generated: `2026-07-14T04:11:05+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `110`
+- Files evaluated: `114`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
 - DO_NOT_TOUCH: `39`
-- HUMAN_REVIEW_REQUIRED: `39`
-- NO_ACTION: `32`
+- HUMAN_REVIEW_REQUIRED: `41`
+- NO_ACTION: `34`
 
 ## Transition Block Counts
 
 - ASK_BOUNDARY_DECISION: `42`
-- AUTO_QUARANTINE_STUB: `36`
+- AUTO_QUARANTINE_STUB: `38`
 
 ## Decisions
 
@@ -534,6 +534,15 @@ Source scan generated: `2026-07-14T04:11:05+00:00`
 - Requires human review: `False`
 - Reason: support artifact should be kept unless superseded by bundle registry policy
 
+### docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md
+
+- Source class: `SUPPORT_ARTIFACT`
+- Recommended bucket: `NO_ACTION`
+- Recommended transition block: `None`
+- Mutation allowed now: `False`
+- Requires human review: `False`
+- Reason: support artifact should be kept unless superseded by bundle registry policy
+
 ### docs/STEGCLAW_TARGET_INTAKE.md
 
 - Source class: `SUPPORT_ARTIFACT`
@@ -732,6 +741,15 @@ Source scan generated: `2026-07-14T04:11:05+00:00`
 - Requires human review: `True`
 - Reason: orphan candidates are not auto-quarantined without review
 
+### samples/relationship_conditioned_human_decision_policy.example.json
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
 ### schemas/bundle_queue_metadata.schema.json
 
 - Source class: `ORPHAN_CANDIDATE`
@@ -814,6 +832,15 @@ Source scan generated: `2026-07-14T04:11:05+00:00`
 - Reason: orphan candidates are not auto-quarantined without review
 
 ### schemas/master_hash_event.schema.json
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
+### schemas/relationship_conditioned_human_decision_policy.schema.json
 
 - Source class: `ORPHAN_CANDIDATE`
 - Recommended bucket: `HUMAN_REVIEW_REQUIRED`
@@ -984,6 +1011,15 @@ Source scan generated: `2026-07-14T04:11:05+00:00`
 - Requires human review: `False`
 - Reason: real file with no maintainer finding
 
+### tools/validate_relationship_conditioned_human_decision_policy.py
+
+- Source class: `REAL`
+- Recommended bucket: `NO_ACTION`
+- Recommended transition block: `None`
+- Mutation allowed now: `False`
+- Requires human review: `False`
+- Reason: real file with no maintainer finding
+
 ### tools/validate_stegclaw_intake.py
 
 - Source class: `REAL`
@@ -1022,5 +1058,5 @@ Source scan generated: `2026-07-14T04:11:05+00:00`
 
 ## Receipt
 
-- Receipt hash: `e7f5c3fe35a37cb4f3d57bc0c95aeb149267a84f9385218b1ddabf6473fb6fb9`
+- Receipt hash: `7e58c6a183b3746b13864e679f7794cb1f1f0663e6b0819c2c58d4ce4568febc`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`

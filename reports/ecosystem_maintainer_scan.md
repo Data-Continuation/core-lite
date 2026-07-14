@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T04:11:05+00:00`
+Generated: `2026-07-14T04:16:26+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,7 +14,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `110`
+- Files scanned: `114`
 - Result: `pass`
 - Mutations performed: `0`
 
@@ -22,9 +22,9 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - BINARY_OR_UNKNOWN: `3`
 - CANONICAL_OR_CONTROL: `39`
-- ORPHAN_CANDIDATE: `36`
-- REAL: `10`
-- SUPPORT_ARTIFACT: `22`
+- ORPHAN_CANDIDATE: `38`
+- REAL: `11`
+- SUPPORT_ARTIFACT: `23`
 
 ## Recommended Next Transition Blocks
 
@@ -433,6 +433,13 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - Evidence:
   - support artifact for upload, verification, documentation, examples, or empty directory retention
 
+### docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md
+
+- Class: `SUPPORT_ARTIFACT`
+- Size: `6389` bytes
+- Evidence:
+  - support artifact for upload, verification, documentation, examples, or empty directory retention
+
 ### docs/STEGCLAW_TARGET_INTAKE.md
 
 - Class: `SUPPORT_ARTIFACT`
@@ -584,6 +591,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - text file with no stub or broken-reference signal
   - no inbound references found in scanned text files
 
+### samples/relationship_conditioned_human_decision_policy.example.json
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `1500` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
 ### schemas/bundle_queue_metadata.schema.json
 
 - Class: `ORPHAN_CANDIDATE`
@@ -660,6 +675,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Class: `ORPHAN_CANDIDATE`
 - Size: `295` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
+### schemas/relationship_conditioned_human_decision_policy.schema.json
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `4786` bytes
 - Evidence:
   - text file with no stub or broken-reference signal
   - no inbound references found in scanned text files
@@ -762,5 +785,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `bdbb802d75a63aa57b367e3eab57a6c2f560beb286e33268f35d7ba4dd93acdf`
+- Receipt hash: `628524de07fba97b26a8230c7adb0af6041672d700f66725c5def1c8e6be75a3`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`
