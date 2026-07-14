@@ -1,0 +1,16 @@
+{
+  "schema": "stegverse.rce.destination_acknowledgement_watch.v1",
+  "task_id": "RCE-P0-008",
+  "source_repo": "Data-Continuation/core-lite",
+  "destination_repo": "StegVerse-002/core-lite",
+  "candidate_notification": "notifications/relationship_conditioned_execution/candidate_available.json",
+  "candidate_envelope": "exports/relationship_conditioned_execution/candidate_envelope.json",
+  "acknowledgement_url": "https://raw.githubusercontent.com/StegVerse-002/core-lite/main/incoming/data_continuation_core_lite/relationship_conditioned_execution/acknowledgement.json",
+  "required_acknowledgement_schema": "stegverse.rce.destination_acknowledgement.v1",
+  "required_candidate_state": "CANDIDATE_RECEIVED_FOR_EVALUATION",
+  "absence_state": "PENDING_DESTINATION_ACKNOWLEDGEMENT",
+  "destination_acceptance_implied": false,
+  "production_installation_authority": false,
+  "autonomous_execution_authority": false,
+  "manual_actions_required": []
+}
