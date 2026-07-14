@@ -1781,7 +1781,7 @@
       "local_refs": [],
       "path": "tools/stage_relationship_conditioned_execution_candidate.py",
       "python_import_refs": [],
-      "size_bytes": 5918
+      "size_bytes": 6408
     },
     {
       "broken_refs": [],
@@ -1908,7 +1908,7 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T06:56:38+00:00",
+  "generated_at": "2026-07-14T06:57:21+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
@@ -1918,13 +1918,13 @@
       "SUPPORT_ARTIFACT": 25
     },
     "file_count": 140,
-    "hash": "fab9061325fdbb111d5fe354a4c352d0dd325f6872a21afc454bc8fd0897c244",
+    "hash": "76ec27256a99e7f7b2bb2bda04760119ebc9159f61c6bf7f04b91d746fae965e",
     "mutation_count": 0,
-    "previous_hash": "bcdd8f5036d4526583b91883890b8fa9ff31083d99c5e462da4a6a9b3df1e2ef",
+    "previous_hash": "fab9061325fdbb111d5fe354a4c352d0dd325f6872a21afc454bc8fd0897c244",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T06:56:38+00:00"
+    "timestamp": "2026-07-14T06:57:21+00:00"
   },
   "summary": {
     "class_counts": {

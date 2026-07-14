@@ -1261,22 +1261,22 @@
       "source_class": "ORPHAN_CANDIDATE"
     }
   ],
-  "generated_at": "2026-07-14T06:56:38+00:00",
+  "generated_at": "2026-07-14T06:57:21+00:00",
   "receipt": {
     "auto_fix_eligible_count": 0,
     "auto_quarantine_eligible_count": 0,
     "complete_stub_eligible_count": 0,
     "do_not_touch_count": 47,
     "file_count": 140,
-    "hash": "ed1867bfcffa3948613d0145c37ac37eb9e9362a15631e86e579686a21b0b30a",
+    "hash": "1143847fa2eb651aa2de546c0f82ef92e066735a0b3ab47850412e4cd0039323",
     "human_review_required_count": 52,
     "mutation_count": 0,
-    "previous_hash": "d56d31b39b01c148d1a962258fc3cfda805580a37d8bac50219235ebaeed32e0",
+    "previous_hash": "ed1867bfcffa3948613d0145c37ac37eb9e9362a15631e86e579686a21b0b30a",
     "receipt_type": "core_lite.auto_fix_eligibility",
     "result": "pass",
-    "timestamp": "2026-07-14T06:56:38+00:00"
+    "timestamp": "2026-07-14T06:57:21+00:00"
   },
-  "source_scan_generated_at": "2026-07-14T06:56:38+00:00",
+  "source_scan_generated_at": "2026-07-14T06:57:21+00:00",
   "summary": {
     "bucket_counts": {
       "DO_NOT_TOUCH": 47,
