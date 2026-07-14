@@ -1,6 +1,6 @@
 # Core-Lite Capability Gap Plan
 
-Generated: `2026-07-14T05:37:31+00:00`
+Generated: `2026-07-14T05:38:35+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -17,7 +17,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Role: `core-lite`
 - Confidence: `high`
-- Scores: `{'footprint-auditor': 107, 'core-lite': 1611, 'formalism': 55}`
+- Scores: `{'footprint-auditor': 107, 'core-lite': 1613, 'formalism': 55}`
 
 ## Summary
 
@@ -150,5 +150,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `60513b0ee371710ad9871858afe769811321651fe89e01e128a8b81da1dd21bd`
+- Receipt hash: `74e2577e3b552e33d01db5010a2ec47d536f1af10c3889d02f2993a43b0a0b46`
 - Receipt path: `receipts/capability_gap_receipts.jsonl`
