@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T05:29:30+00:00`
-Source scan generated: `2026-07-14T05:29:30+00:00`
+Generated: `2026-07-14T05:29:43+00:00`
+Source scan generated: `2026-07-14T05:29:43+00:00`
 
 ## Done Definition
 
@@ -14,14 +14,14 @@ Source scan generated: `2026-07-14T05:29:30+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `135`
+- Files evaluated: `136`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
 - DO_NOT_TOUCH: `45`
 - HUMAN_REVIEW_REQUIRED: `51`
-- NO_ACTION: `39`
+- NO_ACTION: `40`
 
 ## Transition Block Counts
 
@@ -1164,6 +1164,15 @@ Source scan generated: `2026-07-14T05:29:30+00:00`
 - Requires human review: `False`
 - Reason: real file with no maintainer finding
 
+### tools/reconstruct_relationship_conditioned_execution_bundle.py
+
+- Source class: `REAL`
+- Recommended bucket: `NO_ACTION`
+- Recommended transition block: `None`
+- Mutation allowed now: `False`
+- Requires human review: `False`
+- Reason: real file with no maintainer finding
+
 ### tools/stegverse001_worker.py
 
 - Source class: `REAL`
@@ -1247,5 +1256,5 @@ Source scan generated: `2026-07-14T05:29:30+00:00`
 
 ## Receipt
 
-- Receipt hash: `68b05c1e8a586a5bbb47847b86d1b4dd3368e8fff15b3e83fb11c05cd281e172`
+- Receipt hash: `6d6746ec276c2575c6a42324eaa5be73f25bfaec320d67e9c9172ab78aeea134`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`
