@@ -1,4 +1,3 @@
-import copy
 import hashlib
 import json
 from pathlib import Path
@@ -6,9 +5,6 @@ from pathlib import Path
 import pytest
 
 from tools.stage_relationship_conditioned_execution_sandbox import StagingError, stage
-
-
-PACKAGE_FILES = ("bundle_manifest.json", "install_plan.json", "source_inventory.json")
 
 
 def _write_json(path: Path, value: dict) -> None:
@@ -23,12 +19,15 @@ def _fixture_root(tmp_path: Path) -> Path:
     _write_json(
         bundle / "bundle_manifest.json",
         {
-            "authority": {
-                "candidate_evidence_only": True,
-                "autonomous_execution_authority": False,
-                "human_harm_authority": False,
-            },
+            "schema": "stegverse.rce.bundle_manifest.v1",
+            "package_id": "relationship-conditioned-execution",
+            "package_version": "1.0.0-sandbox-candidate",
+            "sandbox_only": True,
+            "candidate_evidence_only": True,
+            "autonomous_execution_authority": False,
+            "human_harm_authority": False,
             "production_destination_allowed": False,
+            "receipts_required": True,
         },
     )
     _write_json(bundle / "install_plan.json", {"steps": ["policy", "schema", "fixtures"]})
@@ -52,6 +51,7 @@ def test_stages_candidate_evidence_and_preserves_hashes(tmp_path):
     assert result["decision"] == "STAGED_CANDIDATE_EVIDENCE"
     assert result["manual_actions_required"] == []
     assert result["external_destination_mutation_performed"] is False
+    assert result["source_package_id"] == "relationship-conditioned-execution"
 
     for entry in result["files"]:
         source = root / entry["source_path"]
@@ -84,16 +84,18 @@ def test_denies_non_allow_decision(tmp_path):
 @pytest.mark.parametrize(
     ("field", "unsafe_value"),
     [
+        ("sandbox_only", False),
         ("candidate_evidence_only", False),
         ("autonomous_execution_authority", True),
         ("human_harm_authority", True),
+        ("receipts_required", False),
     ],
 )
-def test_denies_authority_expansion(tmp_path, field, unsafe_value):
+def test_denies_authority_or_custody_expansion(tmp_path, field, unsafe_value):
     root = _fixture_root(tmp_path)
     path = root / "bundles" / "relationship_conditioned_execution" / "bundle_manifest.json"
     manifest = json.loads(path.read_text(encoding="utf-8"))
-    manifest["authority"][field] = unsafe_value
+    manifest[field] = unsafe_value
     _write_json(path, manifest)
     with pytest.raises(StagingError):
         stage(root=root)
@@ -106,6 +108,16 @@ def test_denies_production_destination_permission(tmp_path):
     manifest["production_destination_allowed"] = True
     _write_json(path, manifest)
     with pytest.raises(StagingError, match="production destination"):
+        stage(root=root)
+
+
+def test_denies_unexpected_manifest_schema(tmp_path):
+    root = _fixture_root(tmp_path)
+    path = root / "bundles" / "relationship_conditioned_execution" / "bundle_manifest.json"
+    manifest = json.loads(path.read_text(encoding="utf-8"))
+    manifest["schema"] = "unexpected"
+    _write_json(path, manifest)
+    with pytest.raises(StagingError, match="unexpected bundle manifest schema"):
         stage(root=root)
 
 
