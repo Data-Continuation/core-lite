@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T07:16:24+00:00`
-Source scan generated: `2026-07-14T07:16:24+00:00`
+Generated: `2026-07-14T07:17:43+00:00`
+Source scan generated: `2026-07-14T07:17:43+00:00`
 
 ## Done Definition
 
@@ -14,19 +14,19 @@ Source scan generated: `2026-07-14T07:16:24+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `143`
+- Files evaluated: `146`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
-- DO_NOT_TOUCH: `49`
-- HUMAN_REVIEW_REQUIRED: `53`
-- NO_ACTION: `41`
+- DO_NOT_TOUCH: `50`
+- HUMAN_REVIEW_REQUIRED: `54`
+- NO_ACTION: `42`
 
 ## Transition Block Counts
 
-- ASK_BOUNDARY_DECISION: `52`
-- AUTO_QUARANTINE_STUB: `50`
+- ASK_BOUNDARY_DECISION: `53`
+- AUTO_QUARANTINE_STUB: `51`
 
 ## Decisions
 
@@ -130,6 +130,15 @@ Source scan generated: `2026-07-14T07:16:24+00:00`
 - Reason: canonical/control file requires explicit boundary review before mutation
 
 ### .github/workflows/rce-p0-005-validation.yml
+
+- Source class: `CANONICAL_OR_CONTROL`
+- Recommended bucket: `DO_NOT_TOUCH`
+- Recommended transition block: `ASK_BOUNDARY_DECISION`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: canonical/control file requires explicit boundary review before mutation
+
+### .github/workflows/rce-p0-006-validation.yml
 
 - Source class: `CANONICAL_OR_CONTROL`
 - Recommended bucket: `DO_NOT_TOUCH`
@@ -1101,6 +1110,15 @@ Source scan generated: `2026-07-14T07:16:24+00:00`
 - Requires human review: `True`
 - Reason: orphan candidates are not auto-quarantined without review
 
+### tests/test_build_rce_candidate_intake_envelope.py
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
 ### tests/test_execution_candidate_manifest.py
 
 - Source class: `ORPHAN_CANDIDATE`
@@ -1165,6 +1183,15 @@ Source scan generated: `2026-07-14T07:16:24+00:00`
 - Reason: orphan candidates are not auto-quarantined without review
 
 ### tools/auto_fix_eligibility.py
+
+- Source class: `REAL`
+- Recommended bucket: `NO_ACTION`
+- Recommended transition block: `None`
+- Mutation allowed now: `False`
+- Requires human review: `False`
+- Reason: real file with no maintainer finding
+
+### tools/build_rce_candidate_intake_envelope.py
 
 - Source class: `REAL`
 - Recommended bucket: `NO_ACTION`
@@ -1319,5 +1346,5 @@ Source scan generated: `2026-07-14T07:16:24+00:00`
 
 ## Receipt
 
-- Receipt hash: `89ef640308d468dd51fee10968ef87029048070cf5b8fad23820221e1b0b3d7c`
+- Receipt hash: `eae444e70f495e4d54b0c44c224ab2a0d12940853df8df19fd0bd5e54e8339f6`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`

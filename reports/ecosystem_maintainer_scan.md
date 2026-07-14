@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T07:16:24+00:00`
+Generated: `2026-07-14T07:17:43+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,16 +14,16 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `143`
+- Files scanned: `146`
 - Result: `pass`
 - Mutations performed: `0`
 
 ## Class Counts
 
 - BINARY_OR_UNKNOWN: `3`
-- CANONICAL_OR_CONTROL: `49`
-- ORPHAN_CANDIDATE: `50`
-- REAL: `16`
+- CANONICAL_OR_CONTROL: `50`
+- ORPHAN_CANDIDATE: `51`
+- REAL: `17`
 - SUPPORT_ARTIFACT: `25`
 
 ## Recommended Next Transition Blocks
@@ -117,6 +117,13 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Class: `CANONICAL_OR_CONTROL`
 - Size: `8582` bytes
+- Evidence:
+  - canonical/control file
+
+### .github/workflows/rce-p0-006-validation.yml
+
+- Class: `CANONICAL_OR_CONTROL`
+- Size: `5580` bytes
 - Evidence:
   - canonical/control file
 
@@ -509,7 +516,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### docs/CORE_LITE_MIRROR_HANDOFF.md
 
 - Class: `SUPPORT_ARTIFACT`
-- Size: `6403` bytes
+- Size: `5998` bytes
 - Evidence:
   - support artifact for upload, verification, documentation, examples, or empty directory retention
 
@@ -899,6 +906,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - text file with no stub or broken-reference signal
   - no inbound references found in scanned text files
 
+### tests/test_build_rce_candidate_intake_envelope.py
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `2483` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
 ### tests/test_execution_candidate_manifest.py
 
 - Class: `ORPHAN_CANDIDATE`
@@ -965,5 +980,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `b34413c12eefa9835b907b14ae3cc3d4f1fbc9eecd83a6313df0ab845dc07709`
+- Receipt hash: `7fee8c2da786512f6a6523f4560148c7f19b27f92d0f39fe7e10fbd9e25ea788`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`

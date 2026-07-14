@@ -165,6 +165,19 @@
       "extension": ".yml",
       "inbound_refs": [],
       "local_refs": [],
+      "path": ".github/workflows/rce-p0-006-validation.yml",
+      "python_import_refs": [],
+      "size_bytes": 5580
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": ".github/workflows/target-capability-gap.yml",
       "python_import_refs": [],
       "size_bytes": 2287
@@ -895,7 +908,7 @@
       "local_refs": [],
       "path": "docs/CORE_LITE_MIRROR_HANDOFF.md",
       "python_import_refs": [],
-      "size_bytes": 6403
+      "size_bytes": 5998
     },
     {
       "broken_refs": [],
@@ -1612,6 +1625,22 @@
       "extension": ".py",
       "inbound_refs": [],
       "local_refs": [],
+      "path": "tests/test_build_rce_candidate_intake_envelope.py",
+      "python_import_refs": [
+        "tools/build_rce_candidate_intake_envelope.py"
+      ],
+      "size_bytes": 2483
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": "tests/test_execution_candidate_manifest.py",
       "python_import_refs": [
         "tools/validate_execution_candidate_manifest.py"
@@ -1728,6 +1757,21 @@
       "path": "tools/auto_fix_eligibility.py",
       "python_import_refs": [],
       "size_bytes": 12316
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [
+        "tests/test_build_rce_candidate_intake_envelope.py"
+      ],
+      "local_refs": [],
+      "path": "tools/build_rce_candidate_intake_envelope.py",
+      "python_import_refs": [],
+      "size_bytes": 4649
     },
     {
       "broken_refs": [],
@@ -1952,33 +1996,33 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T07:16:24+00:00",
+  "generated_at": "2026-07-14T07:17:43+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 49,
-      "ORPHAN_CANDIDATE": 50,
-      "REAL": 16,
+      "CANONICAL_OR_CONTROL": 50,
+      "ORPHAN_CANDIDATE": 51,
+      "REAL": 17,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 143,
-    "hash": "b34413c12eefa9835b907b14ae3cc3d4f1fbc9eecd83a6313df0ab845dc07709",
+    "file_count": 146,
+    "hash": "7fee8c2da786512f6a6523f4560148c7f19b27f92d0f39fe7e10fbd9e25ea788",
     "mutation_count": 0,
-    "previous_hash": "6918f1d4416d49b49a5259cd71dd73f954776ada2a2b82477601ab26fe4aca81",
+    "previous_hash": "b34413c12eefa9835b907b14ae3cc3d4f1fbc9eecd83a6313df0ab845dc07709",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T07:16:24+00:00"
+    "timestamp": "2026-07-14T07:17:43+00:00"
   },
   "summary": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 49,
-      "ORPHAN_CANDIDATE": 50,
-      "REAL": 16,
+      "CANONICAL_OR_CONTROL": 50,
+      "ORPHAN_CANDIDATE": 51,
+      "REAL": 17,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 143,
+    "file_count": 146,
     "mutation_count": 0,
     "result": "pass"
   },
