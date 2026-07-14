@@ -193,7 +193,7 @@
       "local_refs": [],
       "path": ".github/workflows/workstream-status.yml",
       "python_import_refs": [],
-      "size_bytes": 4478
+      "size_bytes": 4890
     },
     {
       "broken_refs": [],
@@ -2034,7 +2034,7 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T07:24:22+00:00",
+  "generated_at": "2026-07-14T07:24:50+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
@@ -2044,13 +2044,13 @@
       "SUPPORT_ARTIFACT": 25
     },
     "file_count": 149,
-    "hash": "e1c3c0038440d2cb13e9bca24ce30d98fffb029cd3337374a0083847bf208116",
+    "hash": "40dc20ddcbc3a33f506fcbcef06e6088da2864fe4a04be23af75c10e5d224783",
     "mutation_count": 0,
-    "previous_hash": "4bc8d637f604a2969c80f56aae60dadbbea916403e0a5b05ec7d294b86726d44",
+    "previous_hash": "e1c3c0038440d2cb13e9bca24ce30d98fffb029cd3337374a0083847bf208116",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T07:24:22+00:00"
+    "timestamp": "2026-07-14T07:24:50+00:00"
   },
   "summary": {
     "class_counts": {

@@ -1,24 +1,4 @@
 {
-  "schema": "stegverse.core_lite.task.v1",
-  "task_id": "RCE-P0-006",
-  "title": "Verify sandbox custody and deterministic replay",
-  "status": "ACTIVE",
-  "priority": "P0",
-  "owner_repo": "Data-Continuation/core-lite",
-  "owner": "core_lite_management_workflow",
-  "activation_dependency": {
-    "task_id": "RCE-P0-005",
-    "required_status": "COMPLETE",
-    "required_evidence": "receipts/rce_p0_005_authoritative_validation.json",
-    "required_decision": "STAGED_CANDIDATE_EVIDENCE",
-    "satisfied": true
-  },
-  "goal": "Verify origin-to-sandbox custody, receipt-chain integrity, staged byte equality, and deterministic replay without production or external destination mutation.",
-  "required_outputs": [
-    "tools/verify_relationship_conditioned_execution_custody.py",
-    "reports/rce_p0_006_custody_replay.json",
-    "receipts/rce_p0_006_authoritative_validation.json"
-  ],
   "acceptance_criteria": [
     "P0-005 receipt is authoritative and records staged candidate evidence",
     "P0-004 receipt hash matches the P0-005 source receipt hash",
@@ -28,6 +8,16 @@
     "no external destination mutation is performed",
     "manual_actions_required remains empty"
   ],
+  "activation_dependency": {
+    "required_decision": "STAGED_CANDIDATE_EVIDENCE",
+    "required_evidence": "receipts/rce_p0_005_authoritative_validation.json",
+    "required_status": "COMPLETE",
+    "satisfied": true,
+    "task_id": "RCE-P0-005"
+  },
+  "blocked_by": [],
+  "completed_at": "2026-07-14T07:24:50.579290+00:00",
+  "goal": "Verify origin-to-sandbox custody, receipt-chain integrity, staged byte equality, and deterministic replay without production or external destination mutation.",
   "invariants": [
     "origin_destination_custody_traceable",
     "receipt_chain_integrity",
@@ -38,8 +28,9 @@
     "fail_closed_on_any_mismatch",
     "manual_actions_required_is_empty"
   ],
-  "blocked_by": [],
   "manual_actions_required": [],
+  "owner": "core_lite_management_workflow",
+  "owner_repo": "Data-Continuation/core-lite",
   "permitted_scope": [
     "custody verification",
     "receipt-chain verification",
@@ -49,6 +40,7 @@
     "receipts",
     "automatic task-state persistence"
   ],
+  "priority": "P0",
   "prohibited_scope": [
     "production installation",
     "external destination mutation",
@@ -57,5 +49,22 @@
     "real-world target data",
     "weapons enablement",
     "cyber exploitation instructions"
-  ]
+  ],
+  "required_outputs": [
+    "tools/verify_relationship_conditioned_execution_custody.py",
+    "reports/rce_p0_006_custody_replay.json",
+    "receipts/rce_p0_006_authoritative_validation.json"
+  ],
+  "schema": "stegverse.core_lite.task.v1",
+  "status": "COMPLETE",
+  "successor_task": "RCE-P0-007 sandbox lifecycle and supersession automation",
+  "task_id": "RCE-P0-006",
+  "title": "Verify sandbox custody and deterministic replay",
+  "validation": {
+    "authoritative_completion_evidence": true,
+    "authoritative_receipt": "receipts/rce_p0_006_authoritative_validation.json",
+    "decision": "CUSTODY_AND_REPLAY_VERIFIED",
+    "manual_actions_required": [],
+    "status": "PASS"
+  }
 }

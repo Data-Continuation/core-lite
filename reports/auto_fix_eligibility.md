@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T07:24:22+00:00`
-Source scan generated: `2026-07-14T07:24:22+00:00`
+Generated: `2026-07-14T07:24:50+00:00`
+Source scan generated: `2026-07-14T07:24:50+00:00`
 
 ## Done Definition
 
@@ -1373,5 +1373,5 @@ Source scan generated: `2026-07-14T07:24:22+00:00`
 
 ## Receipt
 
-- Receipt hash: `c8de6d8e61bd488b65889f87ffffb0f55e93b652670bb503152a87cf8056be29`
+- Receipt hash: `aa65b4a78b55a91cc3a9fe2cd4ed118332c1cdff736067366d1a4069e346a809`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`
