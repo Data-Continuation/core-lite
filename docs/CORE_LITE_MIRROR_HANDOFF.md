@@ -133,4 +133,7 @@ unknown authority fails closed, abstains, or escalates
 
 ## Next build candidate
 
-Obtain and preserve the authoritative `RCE-P0-001` validation receipt. If both commands pass, mark `RCE-P0-001` complete and begin `RCE-P0-002`: canonical manifest and sandbox fixture package. The existing management-package mirroring task remains independently valid.
+1. Obtain and preserve the authoritative `RCE-P0-001` validation receipt.
+2. If both commands pass, mark `RCE-P0-001` complete.
+3. Activate `RCE-P0-002`: canonical manifest and sandbox fixture package.
+4. Keep the existing management-package mirroring task independently valid.
