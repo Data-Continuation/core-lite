@@ -1,6 +1,6 @@
 # Core-Lite Friction Avoided Report
 
-Generated: `2026-07-14T05:19:50+00:00`
+Generated: `2026-07-14T05:20:02+00:00`
 
 ## Definition
 
@@ -273,5 +273,5 @@ Avoidable human recovery burden prevented by governed execution.
 
 ## Receipt
 
-- Receipt hash: `fe697a96d793356ce776428317670aa8569d557684de89eb4f2b28f75bf56145`
+- Receipt hash: `1f5c28b21c24b3b89b0786972641f4103069d7a10fb2988b352f8be755fd9c5c`
 - Receipt path: `receipts/friction_avoided_receipts.jsonl`
