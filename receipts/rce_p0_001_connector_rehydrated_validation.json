@@ -1,0 +1,36 @@
+{
+  "schema": "stegverse.validation.receipt.v1",
+  "receipt_id": "rce-p0-001-connector-rehydrated-2026-07-13",
+  "task_id": "RCE-P0-001",
+  "repository": "Data-Continuation/core-lite",
+  "ref": "stegops/rce-handoff-clean",
+  "observed_date": "2026-07-13",
+  "validation_class": "CONNECTOR_REHYDRATED_INDEPENDENT_VALIDATION",
+  "authoritative_completion_evidence": false,
+  "source_blobs": {
+    "tools/validate_relationship_conditioned_human_decision_policy.py": "fcf40d2ad7c8ac5dcef4b76df5b75020925da12d",
+    "tests/test_relationship_conditioned_human_decision_policy.py": "8dcb6d216ec2628e29dc9f88f1b02b2389a4515e",
+    "schemas/relationship_conditioned_human_decision_policy.schema.json": "86c32493b26511e452d7b7067686db7acc949600",
+    "samples/relationship_conditioned_human_decision_policy.example.json": "2cad3b8eb88269da258d6c859098fc17fb78731a"
+  },
+  "commands": [
+    {
+      "command": "python tools/validate_relationship_conditioned_human_decision_policy.py",
+      "exit_code": 0,
+      "result": "RELATIONSHIP_CONDITIONED_POLICY_VALID"
+    },
+    {
+      "command": "python -m pytest -q tests/test_relationship_conditioned_human_decision_policy.py",
+      "exit_code": 0,
+      "result": "16 passed in 2.07s"
+    }
+  ],
+  "environment": {
+    "source_acquisition": "GitHub connector fetch_file",
+    "execution": "isolated Python sandbox rehydrated from fetched branch contents",
+    "direct_git_checkout": false,
+    "direct_git_checkout_blocker": "DNS resolution unavailable for github.com"
+  },
+  "conclusion": "The fetched artifacts validate independently. This receipt does not replace the task's required authoritative CI or direct local-checkout receipt.",
+  "required_next_event": "A GitHub Actions run or direct repository checkout executes both declared commands and preserves the resulting authoritative receipt."
+}

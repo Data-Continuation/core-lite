@@ -1,0 +1,80 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-001",
+  "title": "Define normative relationship-conditioned human-decision policy",
+  "status": "COMPLETE",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "source_handoff": "docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md",
+  "goal": "Create a reviewable policy and schema that make AI-human relationship history the contextual root of the decision tree without allowing relationship history, trust, quorum, reputation, or adaptation to create unauthorized execution authority over human-impacting actions.",
+  "inputs": [
+    "docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md",
+    "docs/CORE_LITE_MIRROR_HANDOFF.md",
+    "docs/ADVERSARIAL_AI_EXECUTION_MODEL.md"
+  ],
+  "required_outputs": [
+    "docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md",
+    "schemas/relationship_conditioned_human_decision_policy.schema.json",
+    "samples/relationship_conditioned_human_decision_policy.example.json",
+    "tools/validate_relationship_conditioned_human_decision_policy.py",
+    "tests/test_relationship_conditioned_human_decision_policy.py",
+    ".github/workflows/rce-p0-001-validation.yml"
+  ],
+  "outputs_present": true,
+  "validation": {
+    "independent_connector_rehydrated": "PASS",
+    "independent_receipt": "receipts/rce_p0_001_connector_rehydrated_validation.json",
+    "authoritative_ci": "PASS",
+    "authoritative_run_id": 29308124165,
+    "authoritative_run_number": 32,
+    "authoritative_run_commit": "cc9f7cf31caeac157884ea247ddfa8e17c6249fe",
+    "authoritative_merge_commit": "2c662f41da42894a1904f993823d6aa6002fbcce",
+    "authoritative_receipt": "receipts/rce_p0_001_authoritative_validation.json",
+    "authoritative_completion_evidence": true,
+    "observed_results": [
+      "RELATIONSHIP_CONDITIONED_POLICY_VALID",
+      "focused policy tests passed"
+    ]
+  },
+  "invariants": [
+    "human_is_not_system_owned_resource",
+    "relationship_history_does_not_create_authority",
+    "uncertainty_acknowledgment_is_not_execution_authorization",
+    "collective_ai_vote_cannot_authorize_human_harm",
+    "irreversible_human_impact_requires_fail_closed_or_human_controlled_transition",
+    "policy_adaptation_requires_review_and_bounded_authority",
+    "all_material_decisions_are_traceable",
+    "commit_time_admissibility_must_be_rederived_from_live_state",
+    "denial_must_remain_meaningfully_reachable",
+    "authority_scope_must_contain_cross_domain_effects"
+  ],
+  "acceptance_criteria": [
+    "schema validation passes for the canonical example",
+    "missing relationship role fails closed",
+    "implicit authority inferred from trust fails closed",
+    "self-sacrificial or irreversible human-impacting execution is never returned as autonomous ALLOW",
+    "advisory, witness, guardian, delegate, and counterparty roles have distinct bounded outputs",
+    "unknown or conflicting authority returns ABSTAIN, ESCALATE, or FAIL_CLOSED",
+    "tests preserve non-guarantee and temporal-identity disclosures without treating them as consent substitutes"
+  ],
+  "blocked_by": [],
+  "completed_at": "2026-07-14T05:17:14.297110+00:00",
+  "successor_task": "RCE-P0-002",
+  "prepared_next_task": "core_lite/tasks/relationship_conditioned_execution_p0_002.json",
+  "permitted_scope": [
+    "policy",
+    "schema",
+    "examples",
+    "tests",
+    "sandbox fixtures",
+    "receipts"
+  ],
+  "prohibited_scope": [
+    "autonomous execution of human self-harm or self-sacrifice",
+    "production ingestion of prior conversation ZIPs",
+    "authority inferred solely from trust or history",
+    "reputation-only adversary determinations",
+    "unreviewed adaptive policy mutation",
+    "operational targeting instructions or autonomous weapons enablement"
+  ]
+}

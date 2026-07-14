@@ -100,6 +100,58 @@
       "extension": ".yml",
       "inbound_refs": [],
       "local_refs": [],
+      "path": ".github/workflows/rce-p0-001-validation.yml",
+      "python_import_refs": [],
+      "size_bytes": 10333
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".github/workflows/rce-p0-002-validation.yml",
+      "python_import_refs": [],
+      "size_bytes": 5119
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".github/workflows/rce-p0-003-validation.yml",
+      "python_import_refs": [],
+      "size_bytes": 8760
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": ".github/workflows/rce-p0-004-validation.yml",
+      "python_import_refs": [],
+      "size_bytes": 8072
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": ".github/workflows/target-capability-gap.yml",
       "python_import_refs": [],
       "size_bytes": 2287
@@ -292,6 +344,48 @@
       "path": "bundle_manifest.json",
       "python_import_refs": [],
       "size_bytes": 1330
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "bundles/relationship_conditioned_execution/bundle_manifest.json",
+      "python_import_refs": [],
+      "size_bytes": 839
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "bundles/relationship_conditioned_execution/install_plan.json",
+      "python_import_refs": [],
+      "size_bytes": 4015
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "bundles/relationship_conditioned_execution/source_inventory.json",
+      "python_import_refs": [],
+      "size_bytes": 3527
     },
     {
       "broken_refs": [],
@@ -640,6 +734,58 @@
       "evidence": [
         "canonical/control file"
       ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/tasks/relationship_conditioned_execution.json",
+      "python_import_refs": [],
+      "size_bytes": 3772
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/tasks/relationship_conditioned_execution_p0_002.json",
+      "python_import_refs": [],
+      "size_bytes": 2840
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/tasks/relationship_conditioned_execution_p0_003.json",
+      "python_import_refs": [],
+      "size_bytes": 3227
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/tasks/relationship_conditioned_execution_p0_004.json",
+      "python_import_refs": [],
+      "size_bytes": 2719
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
       "extension": ".py",
       "inbound_refs": [],
       "local_refs": [],
@@ -695,9 +841,35 @@
       "extension": ".md",
       "inbound_refs": [],
       "local_refs": [],
+      "path": "docs/ADVERSARIAL_AI_EXECUTION_MODEL.md",
+      "python_import_refs": [],
+      "size_bytes": 7574
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": "docs/CORE_LITE_MIRROR_HANDOFF.md",
       "python_import_refs": [],
-      "size_bytes": 3194
+      "size_bytes": 5421
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/RCE_P0_002_MANIFEST_AND_FIXTURES.md",
+      "python_import_refs": [],
+      "size_bytes": 3502
     },
     {
       "broken_refs": [],
@@ -724,6 +896,32 @@
       "path": "docs/README.md",
       "python_import_refs": [],
       "size_bytes": 606
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md",
+      "python_import_refs": [],
+      "size_bytes": 6395
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md",
+      "python_import_refs": [],
+      "size_bytes": 6389
     },
     {
       "broken_refs": [],
@@ -1025,6 +1223,62 @@
       "extension": ".json",
       "inbound_refs": [],
       "local_refs": [],
+      "path": "samples/execution_candidate_manifest.allow.example.json",
+      "python_import_refs": [],
+      "size_bytes": 1237
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "samples/execution_candidate_manifest.scope_leakage.example.json",
+      "python_import_refs": [],
+      "size_bytes": 1253
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "samples/execution_candidate_manifest.stale_state.example.json",
+      "python_import_refs": [],
+      "size_bytes": 1222
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "samples/relationship_conditioned_human_decision_policy.example.json",
+      "python_import_refs": [],
+      "size_bytes": 1500
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": "schemas/bundle_queue_metadata.schema.json",
       "python_import_refs": [],
       "size_bytes": 130
@@ -1042,6 +1296,20 @@
       "path": "schemas/cge_fingerprint.schema.json",
       "python_import_refs": [],
       "size_bytes": 234
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/execution_candidate_manifest.schema.json",
+      "python_import_refs": [],
+      "size_bytes": 3860
     },
     {
       "broken_refs": [],
@@ -1154,6 +1422,20 @@
       "path": "schemas/master_hash_event.schema.json",
       "python_import_refs": [],
       "size_bytes": 295
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/relationship_conditioned_human_decision_policy.schema.json",
+      "python_import_refs": [],
+      "size_bytes": 4786
     },
     {
       "broken_refs": [],
@@ -1291,6 +1573,22 @@
       "extension": ".py",
       "inbound_refs": [],
       "local_refs": [],
+      "path": "tests/test_execution_candidate_manifest.py",
+      "python_import_refs": [
+        "tools/validate_execution_candidate_manifest.py"
+      ],
+      "size_bytes": 2688
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": "tests/test_ingest_incoming_contract.py",
       "python_import_refs": [
         "core_lite/ingest.py"
@@ -1315,6 +1613,56 @@
     },
     {
       "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tests/test_reconstruct_relationship_conditioned_execution_bundle.py",
+      "python_import_refs": [
+        "tools/build_relationship_conditioned_execution_bundle.py",
+        "tools/reconstruct_relationship_conditioned_execution_bundle.py"
+      ],
+      "size_bytes": 2138
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tests/test_relationship_conditioned_execution_bundle.py",
+      "python_import_refs": [
+        "tools/build_relationship_conditioned_execution_bundle.py",
+        "tools/validate_relationship_conditioned_execution_bundle.py"
+      ],
+      "size_bytes": 3571
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tests/test_relationship_conditioned_human_decision_policy.py",
+      "python_import_refs": [
+        "tools/validate_relationship_conditioned_human_decision_policy.py"
+      ],
+      "size_bytes": 3150
+    },
+    {
+      "broken_refs": [],
       "class": "REAL",
       "evidence": [
         "text file with no stub or broken-reference signal"
@@ -1325,6 +1673,22 @@
       "path": "tools/auto_fix_eligibility.py",
       "python_import_refs": [],
       "size_bytes": 12316
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [
+        "tests/test_reconstruct_relationship_conditioned_execution_bundle.py",
+        "tests/test_relationship_conditioned_execution_bundle.py"
+      ],
+      "local_refs": [],
+      "path": "tools/build_relationship_conditioned_execution_bundle.py",
+      "python_import_refs": [],
+      "size_bytes": 4159
     },
     {
       "broken_refs": [],
@@ -1385,6 +1749,21 @@
         "text file with no stub or broken-reference signal"
       ],
       "extension": ".py",
+      "inbound_refs": [
+        "tests/test_reconstruct_relationship_conditioned_execution_bundle.py"
+      ],
+      "local_refs": [],
+      "path": "tools/reconstruct_relationship_conditioned_execution_bundle.py",
+      "python_import_refs": [],
+      "size_bytes": 6200
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
       "inbound_refs": [],
       "local_refs": [],
       "path": "tools/stegverse001_worker.py",
@@ -1403,6 +1782,51 @@
       "path": "tools/tasks/core_lite_tasks.json",
       "python_import_refs": [],
       "size_bytes": 827
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [
+        "tests/test_execution_candidate_manifest.py"
+      ],
+      "local_refs": [],
+      "path": "tools/validate_execution_candidate_manifest.py",
+      "python_import_refs": [],
+      "size_bytes": 4143
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [
+        "tests/test_relationship_conditioned_execution_bundle.py"
+      ],
+      "local_refs": [],
+      "path": "tools/validate_relationship_conditioned_execution_bundle.py",
+      "python_import_refs": [],
+      "size_bytes": 5142
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [
+        "tests/test_relationship_conditioned_human_decision_policy.py"
+      ],
+      "local_refs": [],
+      "path": "tools/validate_relationship_conditioned_human_decision_policy.py",
+      "python_import_refs": [],
+      "size_bytes": 4587
     },
     {
       "broken_refs": [],
@@ -1458,33 +1882,33 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-10T14:16:08+00:00",
+  "generated_at": "2026-07-14T05:38:35+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 38,
-      "ORPHAN_CANDIDATE": 36,
-      "REAL": 10,
-      "SUPPORT_ARTIFACT": 21
+      "CANONICAL_OR_CONTROL": 46,
+      "ORPHAN_CANDIDATE": 49,
+      "REAL": 15,
+      "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 108,
-    "hash": "c2e3c5936b4d25d7bc90ae4d2fd676a0cb87b5888335ead089d9c27ecdc1f82b",
+    "file_count": 138,
+    "hash": "cd522f252a26fc62f5962c2c4a6f12044806398d5d74a8178f4ce34484969005",
     "mutation_count": 0,
-    "previous_hash": "702450bc434b736265938171bfc4ccd4d0b36a2b6fddc8cbe11c1f208bb27115",
+    "previous_hash": "a226771285f02ffcd434377d7f747f951bf18ff98a7342eb79cf6f9aaa743668",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-10T14:16:08+00:00"
+    "timestamp": "2026-07-14T05:38:35+00:00"
   },
   "summary": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 38,
-      "ORPHAN_CANDIDATE": 36,
-      "REAL": 10,
-      "SUPPORT_ARTIFACT": 21
+      "CANONICAL_OR_CONTROL": 46,
+      "ORPHAN_CANDIDATE": 49,
+      "REAL": 15,
+      "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 108,
+    "file_count": 138,
     "mutation_count": 0,
     "result": "pass"
   },

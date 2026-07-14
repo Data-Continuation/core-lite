@@ -1,0 +1,81 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-003",
+  "title": "Build canonical sandbox-only ingestion candidate package",
+  "status": "COMPLETE",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "source_handoff": "docs/CORE_LITE_MIRROR_HANDOFF.md",
+  "activation_dependency": {
+    "task_id": "RCE-P0-002",
+    "required_status": "COMPLETE",
+    "required_evidence": "receipts/rce_p0_002_authoritative_validation.json",
+    "satisfied": true
+  },
+  "goal": "Package the validated relationship-conditioned policy and execution-candidate artifacts as a deterministic, sandbox-only Core-Lite ingestion candidate with file hashes, byte counts, explicit target paths, dependency order, and a no-execution authority declaration.",
+  "required_outputs": [
+    "bundles/relationship_conditioned_execution/bundle_manifest.json",
+    "bundles/relationship_conditioned_execution/install_plan.json",
+    "bundles/relationship_conditioned_execution/source_inventory.json",
+    "tools/build_relationship_conditioned_execution_bundle.py",
+    "tools/validate_relationship_conditioned_execution_bundle.py",
+    "tests/test_relationship_conditioned_execution_bundle.py",
+    ".github/workflows/rce-p0-003-validation.yml"
+  ],
+  "acceptance_criteria": [
+    "every packaged file has a sha256 digest and byte count",
+    "manifest source paths and sandbox target paths are explicit",
+    "dependency order places policy and schemas before validators and fixtures",
+    "package declares candidate_evidence_only=true",
+    "package declares autonomous_execution_authority=false",
+    "package cannot target production paths",
+    "validator rejects missing files, hash mismatch, size mismatch, path traversal, production target paths, or execution authority",
+    "authoritative CI emits a receipt with authoritative_completion_evidence=true"
+  ],
+  "invariants": [
+    "sandbox_only",
+    "candidate_evidence_only",
+    "no_autonomous_execution_authority",
+    "no_human_harm_authority",
+    "deterministic_file_inventory",
+    "explicit_dependency_order",
+    "fail_closed_on_integrity_or_path_mismatch"
+  ],
+  "blocked_by": [],
+  "permitted_scope": [
+    "manifest",
+    "install plan",
+    "source inventory",
+    "sandbox paths",
+    "validators",
+    "tests",
+    "receipts"
+  ],
+  "prohibited_scope": [
+    "production installation",
+    "automatic destination mutation",
+    "autonomous execution",
+    "human-harm authorization",
+    "real-world target data",
+    "weapons enablement",
+    "cyber exploitation instructions"
+  ],
+  "outputs_present": true,
+  "validation": {
+    "status": "PASS",
+    "workflow": ".github/workflows/rce-p0-003-validation.yml",
+    "authoritative_run_id": 29308626043,
+    "authoritative_run_number": 1,
+    "authoritative_run_commit": "1df36d1e0760e1cfd60eca0fff9a2ee99f3366cf",
+    "authoritative_receipt": "receipts/rce_p0_003_authoritative_validation.json",
+    "authoritative_completion_evidence": true,
+    "outcomes": {
+      "bundle_build": "success",
+      "bundle_validation": "success",
+      "focused_tests": "success"
+    },
+    "manual_actions_required": []
+  },
+  "completed_at": "2026-07-14T05:28:46.630768+00:00",
+  "successor_task": "RCE-P0-004"
+}

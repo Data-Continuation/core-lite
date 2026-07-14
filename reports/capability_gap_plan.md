@@ -1,6 +1,6 @@
 # Core-Lite Capability Gap Plan
 
-Generated: `2026-07-10T14:16:09+00:00`
+Generated: `2026-07-14T05:38:35+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -17,13 +17,13 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Role: `core-lite`
 - Confidence: `high`
-- Scores: `{'footprint-auditor': 107, 'core-lite': 1476, 'formalism': 53}`
+- Scores: `{'footprint-auditor': 107, 'core-lite': 1613, 'formalism': 55}`
 
 ## Summary
 
 - result: `pass`
-- file_count: `108`
-- directory_count: `21`
+- file_count: `138`
+- directory_count: `25`
 - capability_count: `9`
 - implemented_or_seeded_count: `2`
 - missing_or_placeholder_count: `7`
@@ -110,12 +110,16 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - Implementation files:
   - `tests/fixtures/sample_ingest_bundle/bundle_manifest.json`
   - `tests/fixtures/sample_ingest_bundle/payload/sample.txt`
+  - `tests/test_execution_candidate_manifest.py`
   - `tests/test_ingest_incoming_contract.py`
   - `tests/test_receipts_append_contract.py`
+  - `tests/test_reconstruct_relationship_conditioned_execution_bundle.py`
+  - `tests/test_relationship_conditioned_execution_bundle.py`
+  - `tests/test_relationship_conditioned_human_decision_policy.py`
 - Evidence:
   - signal hit(s): tests/, pytest, unittest
   - expected path exists: tests
-  - implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_ingest_incoming_contract.py, tests/test_receipts_append_contract.py
+  - implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_execution_candidate_manifest.py, tests/test_ingest_incoming_contract.py, tests/test_receipts_append_contract.py, tests/test_reconstruct_relationship_conditioned_execution_bundle.py, tests/test_relationship_conditioned_execution_bundle.py, tests/test_relationship_conditioned_human_decision_policy.py
 
 ### workflow — GitHub Actions workflow for running product checks
 
@@ -130,6 +134,10 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - `.github/workflows/ecosystem-maintainer-scan.yml`
   - `.github/workflows/friction-avoided.yml`
   - `.github/workflows/install-iosnoperiod.yml`
+  - `.github/workflows/rce-p0-001-validation.yml`
+  - `.github/workflows/rce-p0-002-validation.yml`
+  - `.github/workflows/rce-p0-003-validation.yml`
+  - `.github/workflows/rce-p0-004-validation.yml`
   - `.github/workflows/target-capability-gap.yml`
   - `.github/workflows/target-repo-scan.yml`
   - `.github/workflows/workstream-status.yml`
@@ -138,9 +146,9 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - Evidence:
   - signal hit(s): .github/workflows, github/workflows
   - expected path exists: .github/workflows
-  - implementation file(s): .github/workflows/auto-fix-eligibility.yml, .github/workflows/bundle-registry.yml, .github/workflows/core-lite-intake.yml, .github/workflows/core-lite-self-test.yml, .github/workflows/ecosystem-maintainer-scan.yml, .github/workflows/friction-avoided.yml, .github/workflows/install-iosnoperiod.yml, .github/workflows/target-capability-gap.yml
+  - implementation file(s): .github/workflows/auto-fix-eligibility.yml, .github/workflows/bundle-registry.yml, .github/workflows/core-lite-intake.yml, .github/workflows/core-lite-self-test.yml, .github/workflows/ecosystem-maintainer-scan.yml, .github/workflows/friction-avoided.yml, .github/workflows/install-iosnoperiod.yml, .github/workflows/rce-p0-001-validation.yml
 
 ## Receipt
 
-- Receipt hash: `7d6efbaa9a947cd9d4e9bbb830c81f467be7ba0515d87c35f3c320df14dc0197`
+- Receipt hash: `74e2577e3b552e33d01db5010a2ec47d536f1af10c3889d02f2993a43b0a0b46`
 - Receipt path: `receipts/capability_gap_receipts.jsonl`

@@ -1,0 +1,250 @@
+name: RCE Automated Validation and Activation
+
+on:
+  push:
+    branches:
+      - "stegops/rce-handoff-clean"
+    paths:
+      - "docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md"
+      - "schemas/relationship_conditioned_human_decision_policy.schema.json"
+      - "samples/relationship_conditioned_human_decision_policy.example.json"
+      - "tools/validate_relationship_conditioned_human_decision_policy.py"
+      - "tests/test_relationship_conditioned_human_decision_policy.py"
+      - "docs/RCE_P0_002_MANIFEST_AND_FIXTURES.md"
+      - "schemas/execution_candidate_manifest.schema.json"
+      - "samples/execution_candidate_manifest.*.json"
+      - "tools/validate_execution_candidate_manifest.py"
+      - "tests/test_execution_candidate_manifest.py"
+      - ".github/workflows/rce-p0-001-validation.yml"
+  pull_request:
+    paths:
+      - "docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md"
+      - "schemas/relationship_conditioned_human_decision_policy.schema.json"
+      - "samples/relationship_conditioned_human_decision_policy.example.json"
+      - "tools/validate_relationship_conditioned_human_decision_policy.py"
+      - "tests/test_relationship_conditioned_human_decision_policy.py"
+      - "docs/RCE_P0_002_MANIFEST_AND_FIXTURES.md"
+      - "schemas/execution_candidate_manifest.schema.json"
+      - "samples/execution_candidate_manifest.*.json"
+      - "tools/validate_execution_candidate_manifest.py"
+      - "tests/test_execution_candidate_manifest.py"
+      - ".github/workflows/rce-p0-001-validation.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rce-automated-validation-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate-and-activate:
+    if: ${{ !contains(github.event.head_commit.message || '', '[rce-auto-state]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validation dependencies
+        run: python -m pip install --upgrade pip pytest jsonschema
+
+      - name: Validate RCE-P0-001 canonical policy
+        id: p0_001_canonical
+        run: |
+          set -o pipefail
+          python tools/validate_relationship_conditioned_human_decision_policy.py | tee rce-p0-001-canonical.txt
+
+      - name: Test RCE-P0-001 policy
+        id: p0_001_tests
+        run: |
+          set -o pipefail
+          python -m pytest -q tests/test_relationship_conditioned_human_decision_policy.py | tee rce-p0-001-pytest.txt
+
+      - name: Validate RCE-P0-002 fixtures
+        id: p0_002_canonical
+        run: |
+          set -o pipefail
+          python tools/validate_execution_candidate_manifest.py | tee rce-p0-002-canonical.txt
+
+      - name: Test RCE-P0-002 manifest policy
+        id: p0_002_tests
+        run: |
+          set -o pipefail
+          python -m pytest -q tests/test_execution_candidate_manifest.py | tee rce-p0-002-pytest.txt
+
+      - name: Generate durable receipts and state
+        if: always()
+        env:
+          P0_001_CANONICAL: ${{ steps.p0_001_canonical.outcome }}
+          P0_001_TESTS: ${{ steps.p0_001_tests.outcome }}
+          P0_002_CANONICAL: ${{ steps.p0_002_canonical.outcome }}
+          P0_002_TESTS: ${{ steps.p0_002_tests.outcome }}
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          observed_at = datetime.now(timezone.utc).isoformat()
+          run_id = os.environ["GITHUB_RUN_ID"]
+          run_attempt = os.environ["GITHUB_RUN_ATTEMPT"]
+          commit_sha = os.environ["GITHUB_SHA"]
+          repository = os.environ["GITHUB_REPOSITORY"]
+          ref = os.environ["GITHUB_REF"]
+          event = os.environ["GITHUB_EVENT_NAME"]
+
+          def digest(paths):
+              result = {}
+              for value in paths:
+                  result[value] = hashlib.sha256(Path(value).read_bytes()).hexdigest()
+              return result
+
+          p0_001_pass = (
+              os.environ.get("P0_001_CANONICAL") == "success"
+              and os.environ.get("P0_001_TESTS") == "success"
+          )
+          p0_002_pass = (
+              p0_001_pass
+              and os.environ.get("P0_002_CANONICAL") == "success"
+              and os.environ.get("P0_002_TESTS") == "success"
+          )
+
+          Path("receipts").mkdir(exist_ok=True)
+          Path("reports").mkdir(exist_ok=True)
+
+          p0_001_receipt = {
+              "schema": "stegverse.validation.receipt.v1",
+              "receipt_id": f"rce-p0-001-github-actions-{run_id}-{run_attempt}",
+              "task_id": "RCE-P0-001",
+              "repository": repository,
+              "commit_sha": commit_sha,
+              "ref": ref,
+              "event": event,
+              "run_id": run_id,
+              "run_attempt": run_attempt,
+              "observed_at": observed_at,
+              "validation_class": "GITHUB_ACTIONS_AUTHORITATIVE_VALIDATION",
+              "authoritative_completion_evidence": p0_001_pass,
+              "outcomes": {
+                  "canonical_validator": os.environ.get("P0_001_CANONICAL"),
+                  "focused_tests": os.environ.get("P0_001_TESTS"),
+              },
+              "source_sha256": digest([
+                  "docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md",
+                  "schemas/relationship_conditioned_human_decision_policy.schema.json",
+                  "samples/relationship_conditioned_human_decision_policy.example.json",
+                  "tools/validate_relationship_conditioned_human_decision_policy.py",
+                  "tests/test_relationship_conditioned_human_decision_policy.py",
+              ]),
+          }
+
+          p0_002_receipt = {
+              "schema": "stegverse.validation.receipt.v1",
+              "receipt_id": f"rce-p0-002-github-actions-{run_id}-{run_attempt}",
+              "task_id": "RCE-P0-002",
+              "repository": repository,
+              "commit_sha": commit_sha,
+              "ref": ref,
+              "event": event,
+              "run_id": run_id,
+              "run_attempt": run_attempt,
+              "observed_at": observed_at,
+              "validation_class": "GITHUB_ACTIONS_AUTHORITATIVE_VALIDATION",
+              "activation_precondition_satisfied": p0_001_pass,
+              "authoritative_completion_evidence": p0_002_pass,
+              "outcomes": {
+                  "manifest_validator": os.environ.get("P0_002_CANONICAL"),
+                  "focused_tests": os.environ.get("P0_002_TESTS"),
+              },
+              "source_sha256": digest([
+                  "docs/RCE_P0_002_MANIFEST_AND_FIXTURES.md",
+                  "schemas/execution_candidate_manifest.schema.json",
+                  "samples/execution_candidate_manifest.allow.example.json",
+                  "samples/execution_candidate_manifest.stale_state.example.json",
+                  "samples/execution_candidate_manifest.scope_leakage.example.json",
+                  "tools/validate_execution_candidate_manifest.py",
+                  "tests/test_execution_candidate_manifest.py",
+              ]),
+          }
+
+          status = {
+              "schema": "stegverse.rce.automation_status.v1",
+              "repository": repository,
+              "ref": ref,
+              "source_commit_sha": commit_sha,
+              "run_id": run_id,
+              "run_attempt": run_attempt,
+              "observed_at": observed_at,
+              "manual_actions_required": [],
+              "rce_p0_001": {
+                  "status": "COMPLETE" if p0_001_pass else "VALIDATION_FAILED",
+                  "receipt": "receipts/rce_p0_001_authoritative_validation.json",
+              },
+              "rce_p0_002": {
+                  "status": "COMPLETE" if p0_002_pass else (
+                      "VALIDATION_FAILED" if p0_001_pass else "BLOCKED_BY_RCE_P0_001"
+                  ),
+                  "activation_allowed": p0_001_pass,
+                  "receipt": "receipts/rce_p0_002_authoritative_validation.json",
+              },
+              "next_goal_candidate": (
+                  "RCE-P0-003 receipt-chain and destination-intake integration"
+                  if p0_002_pass else "repair_failed_validation"
+              ),
+          }
+
+          Path("receipts/rce_p0_001_authoritative_validation.json").write_text(
+              json.dumps(p0_001_receipt, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          Path("receipts/rce_p0_002_authoritative_validation.json").write_text(
+              json.dumps(p0_002_receipt, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          Path("reports/rce_automation_status.json").write_text(
+              json.dumps(status, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Persist receipts and state without manual download
+        if: ${{ always() && github.event_name == 'push' }}
+        run: |
+          git config user.name "stegverse-rce-automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add receipts/rce_p0_001_authoritative_validation.json
+          git add receipts/rce_p0_002_authoritative_validation.json
+          git add reports/rce_automation_status.json
+          if git diff --cached --quiet; then
+            echo "No state change to persist"
+          else
+            git commit -m "chore: persist RCE authoritative state [rce-auto-state]"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
+
+      - name: Upload redundant validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rce-authoritative-validation-${{ github.run_id }}
+          path: |
+            receipts/rce_p0_001_authoritative_validation.json
+            receipts/rce_p0_002_authoritative_validation.json
+            reports/rce_automation_status.json
+            rce-p0-001-canonical.txt
+            rce-p0-001-pytest.txt
+            rce-p0-002-canonical.txt
+            rce-p0-002-pytest.txt
+          if-no-files-found: error
+          retention-days: 90
