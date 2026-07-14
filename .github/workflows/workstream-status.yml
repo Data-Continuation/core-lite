@@ -12,9 +12,11 @@ on:
       - 'tests/test_manage_relationship_conditioned_execution_lease.py'
       - 'tests/test_index_relationship_conditioned_execution_evidence.py'
       - 'tests/test_seal_relationship_conditioned_execution_snapshot.py'
+      - 'tests/test_restore_relationship_conditioned_execution_snapshot.py'
       - 'bundles/relationship_conditioned_execution/**'
       - 'sandbox/intake/relationship_conditioned_execution/**'
       - 'sandbox/snapshots/relationship_conditioned_execution/**'
+      - 'sandbox/restoration_drills/relationship_conditioned_execution/**'
       - 'docs/CORE_LITE_MIRROR_HANDOFF.md'
       - '.github/workflows/workstream-status.yml'
 
@@ -118,12 +120,22 @@ jobs:
         continue-on-error: true
         run: python tools/seal_relationship_conditioned_execution_snapshot.py
 
+      - name: Verify RCE snapshot restoration implementation
+        id: rce_restore_tests
+        continue-on-error: true
+        run: python -m pytest -q tests/test_restore_relationship_conditioned_execution_snapshot.py
+
+      - name: Run sealed RCE snapshot restoration drill
+        id: rce_restore
+        continue-on-error: true
+        run: python tools/restore_relationship_conditioned_execution_snapshot.py
+
       - name: Publish managed reports, receipts, task state, and sandbox evidence
         run: |
           set -euo pipefail
           git config user.name "Data-Continuation Core-Lite Manager"
           git config user.email "core-lite-manager@data-continuation"
-          git add -A reports/ receipts/ core_lite/tasks/relationship_conditioned_execution_p0_004.json core_lite/tasks/relationship_conditioned_execution_p0_005.json core_lite/tasks/relationship_conditioned_execution_p0_006.json core_lite/tasks/relationship_conditioned_execution_p0_007.json core_lite/tasks/relationship_conditioned_execution_p0_008.json core_lite/tasks/relationship_conditioned_execution_p0_009.json core_lite/tasks/relationship_conditioned_execution_p0_010.json sandbox/intake/relationship_conditioned_execution/ sandbox/archive/relationship_conditioned_execution/ sandbox/quarantine/relationship_conditioned_execution/ sandbox/snapshots/relationship_conditioned_execution/ || true
+          git add -A reports/ receipts/ core_lite/tasks/relationship_conditioned_execution_p0_004.json core_lite/tasks/relationship_conditioned_execution_p0_005.json core_lite/tasks/relationship_conditioned_execution_p0_006.json core_lite/tasks/relationship_conditioned_execution_p0_007.json core_lite/tasks/relationship_conditioned_execution_p0_008.json core_lite/tasks/relationship_conditioned_execution_p0_009.json core_lite/tasks/relationship_conditioned_execution_p0_010.json core_lite/tasks/relationship_conditioned_execution_p0_011.json sandbox/intake/relationship_conditioned_execution/ sandbox/archive/relationship_conditioned_execution/ sandbox/quarantine/relationship_conditioned_execution/ sandbox/snapshots/relationship_conditioned_execution/ sandbox/restoration_drills/relationship_conditioned_execution/ || true
           if git diff --staged --quiet; then
             echo "No managed state changed."
           else
@@ -164,6 +176,7 @@ jobs:
             reports/rce_p0_008_lease.json
             reports/rce_p0_009_reconstruction_index.json
             reports/rce_p0_010_snapshot_seal.json
+            reports/rce_p0_011_restoration_drill.json
             reports/rce_automation_status.json
             receipts/rce_p0_004_authoritative_validation.json
             receipts/rce_p0_005_authoritative_validation.json
@@ -172,14 +185,16 @@ jobs:
             receipts/rce_p0_008_authoritative_validation.json
             receipts/rce_p0_009_authoritative_validation.json
             receipts/rce_p0_010_authoritative_validation.json
+            receipts/rce_p0_011_authoritative_validation.json
             sandbox/intake/relationship_conditioned_execution/staging_manifest.json
             sandbox/intake/relationship_conditioned_execution/lifecycle_state.json
             sandbox/intake/relationship_conditioned_execution/lease_state.json
             sandbox/snapshots/relationship_conditioned_execution/snapshot_manifest.json
+            sandbox/restoration_drills/relationship_conditioned_execution/restoration_manifest.json
           if-no-files-found: error
 
       - name: Enforce RCE managed results
-        if: ${{ steps.rce.outcome != 'success' || steps.rce_custody.outcome != 'success' || steps.rce_lifecycle_tests.outcome != 'success' || steps.rce_lifecycle.outcome != 'success' || steps.rce_lease_tests.outcome != 'success' || steps.rce_lease.outcome != 'success' || steps.rce_index_tests.outcome != 'success' || steps.rce_index.outcome != 'success' || steps.rce_snapshot_tests.outcome != 'success' || steps.rce_snapshot.outcome != 'success' }}
+        if: ${{ steps.rce.outcome != 'success' || steps.rce_custody.outcome != 'success' || steps.rce_lifecycle_tests.outcome != 'success' || steps.rce_lifecycle.outcome != 'success' || steps.rce_lease_tests.outcome != 'success' || steps.rce_lease.outcome != 'success' || steps.rce_index_tests.outcome != 'success' || steps.rce_index.outcome != 'success' || steps.rce_snapshot_tests.outcome != 'success' || steps.rce_snapshot.outcome != 'success' || steps.rce_restore_tests.outcome != 'success' || steps.rce_restore.outcome != 'success' }}
         run: |
           echo "RCE managed verification failed closed after state persistence."
           exit 1
