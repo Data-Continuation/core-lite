@@ -1,6 +1,6 @@
 # Core-Lite Capability Gap Plan
 
-Generated: `2026-07-14T07:06:29+00:00`
+Generated: `2026-07-14T07:09:22+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -17,12 +17,12 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Role: `core-lite`
 - Confidence: `high`
-- Scores: `{'footprint-auditor': 107, 'core-lite': 1640, 'formalism': 55}`
+- Scores: `{'footprint-auditor': 107, 'core-lite': 1672, 'formalism': 55}`
 
 ## Summary
 
 - result: `pass`
-- file_count: `140`
+- file_count: `142`
 - directory_count: `25`
 - capability_count: `9`
 - implemented_or_seeded_count: `2`
@@ -116,6 +116,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - `tests/test_reconstruct_relationship_conditioned_execution_bundle.py`
   - `tests/test_relationship_conditioned_execution_bundle.py`
   - `tests/test_relationship_conditioned_human_decision_policy.py`
+  - `tests/test_stage_relationship_conditioned_execution_sandbox.py`
 - Evidence:
   - signal hit(s): tests/, pytest, unittest
   - expected path exists: tests
@@ -138,6 +139,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - `.github/workflows/rce-p0-002-validation.yml`
   - `.github/workflows/rce-p0-003-validation.yml`
   - `.github/workflows/rce-p0-004-validation.yml`
+  - `.github/workflows/rce-p0-005-sandbox-staging.yml`
   - `.github/workflows/target-capability-gap.yml`
   - `.github/workflows/target-repo-scan.yml`
   - `.github/workflows/workstream-status.yml`
@@ -150,5 +152,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `1b87ebb5d00530cefd9e0ca01904e09fb81ba60f9354fe3a09a8bd7d95ff79f2`
+- Receipt hash: `666816c6ef76b7aa0e867f8625d952129b0e1b6fc2ad1ded53b56e30886faa59`
 - Receipt path: `receipts/capability_gap_receipts.jsonl`

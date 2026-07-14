@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T07:06:29+00:00`
+Generated: `2026-07-14T07:09:22+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,15 +14,15 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `140`
+- Files scanned: `142`
 - Result: `pass`
 - Mutations performed: `0`
 
 ## Class Counts
 
 - BINARY_OR_UNKNOWN: `3`
-- CANONICAL_OR_CONTROL: `47`
-- ORPHAN_CANDIDATE: `49`
+- CANONICAL_OR_CONTROL: `48`
+- ORPHAN_CANDIDATE: `50`
 - REAL: `16`
 - SUPPORT_ARTIFACT: `25`
 
@@ -109,7 +109,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### .github/workflows/rce-p0-004-validation.yml
 
 - Class: `CANONICAL_OR_CONTROL`
-- Size: `8107` bytes
+- Size: `8178` bytes
+- Evidence:
+  - canonical/control file
+
+### .github/workflows/rce-p0-005-sandbox-staging.yml
+
+- Class: `CANONICAL_OR_CONTROL`
+- Size: `8247` bytes
 - Evidence:
   - canonical/control file
 
@@ -933,6 +940,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - text file with no stub or broken-reference signal
   - no inbound references found in scanned text files
 
+### tests/test_stage_relationship_conditioned_execution_sandbox.py
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `4459` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
 ### verification.json
 
 - Class: `ORPHAN_CANDIDATE`
@@ -943,5 +958,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `94a53a192fcf528907471f285eeba46d2ed25110826a568de92d1d790526d0b7`
+- Receipt hash: `0b213a6e96f0bf3679ea77ca5e3c7588fbd7d7e7ac456e21b9a914daa2b859ce`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`
