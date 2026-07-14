@@ -40,6 +40,13 @@
     "manual_actions_required_is_empty"
   ],
   "blocked_by": [],
+  "automation": {
+    "manual_actions_required": [],
+    "merge_to_main_enables_trusted_push_execution": true,
+    "workflow_persists_report_receipt_and_task_state": true,
+    "workflow_loop_guard": "[rce-p0-004-state]",
+    "successor_declared_automatically": "RCE-P0-005 automated sandbox intake staging"
+  },
   "permitted_scope": [
     "independent reconstruction",
     "byte comparison",
