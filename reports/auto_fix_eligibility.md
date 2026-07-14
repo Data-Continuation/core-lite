@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T07:22:45+00:00`
-Source scan generated: `2026-07-14T07:22:44+00:00`
+Generated: `2026-07-14T07:23:19+00:00`
+Source scan generated: `2026-07-14T07:23:19+00:00`
 
 ## Done Definition
 
@@ -14,19 +14,19 @@ Source scan generated: `2026-07-14T07:22:44+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `143`
+- Files evaluated: `147`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
 - DO_NOT_TOUCH: `48`
-- HUMAN_REVIEW_REQUIRED: `53`
+- HUMAN_REVIEW_REQUIRED: `57`
 - NO_ACTION: `42`
 
 ## Transition Block Counts
 
 - ASK_BOUNDARY_DECISION: `51`
-- AUTO_QUARANTINE_STUB: `50`
+- AUTO_QUARANTINE_STUB: `54`
 
 ## Decisions
 
@@ -903,6 +903,42 @@ Source scan generated: `2026-07-14T07:22:44+00:00`
 - Requires human review: `True`
 - Reason: orphan candidates are not auto-quarantined without review
 
+### sandbox/intake/relationship_conditioned_execution/bundle_manifest.json
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
+### sandbox/intake/relationship_conditioned_execution/install_plan.json
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
+### sandbox/intake/relationship_conditioned_execution/source_inventory.json
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
+### sandbox/intake/relationship_conditioned_execution/staging_manifest.json
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
 ### schemas/bundle_queue_metadata.schema.json
 
 - Source class: `ORPHAN_CANDIDATE`
@@ -1319,5 +1355,5 @@ Source scan generated: `2026-07-14T07:22:44+00:00`
 
 ## Receipt
 
-- Receipt hash: `a099b5003cf14070efccf482e732f40ff17434857c465a2bab761e53e45370c8`
+- Receipt hash: `a0ee89e2178904b33a1db324db05070300ac7cfe31d76b728f485a9b0a490300`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`

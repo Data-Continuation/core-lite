@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T07:22:44+00:00`
+Generated: `2026-07-14T07:23:19+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,7 +14,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `143`
+- Files scanned: `147`
 - Result: `pass`
 - Mutations performed: `0`
 
@@ -22,7 +22,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - BINARY_OR_UNKNOWN: `3`
 - CANONICAL_OR_CONTROL: `48`
-- ORPHAN_CANDIDATE: `50`
+- ORPHAN_CANDIDATE: `54`
 - REAL: `17`
 - SUPPORT_ARTIFACT: `25`
 
@@ -137,7 +137,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### .github/workflows/workstream-status.yml
 
 - Class: `CANONICAL_OR_CONTROL`
-- Size: `4407` bytes
+- Size: `4478` bytes
 - Evidence:
   - canonical/control file
 
@@ -453,14 +453,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### core_lite/tasks/relationship_conditioned_execution_p0_004.json
 
 - Class: `CANONICAL_OR_CONTROL`
-- Size: `2719` bytes
+- Size: `3179` bytes
 - Evidence:
   - canonical/control file
 
 ### core_lite/tasks/relationship_conditioned_execution_p0_005.json
 
 - Class: `CANONICAL_OR_CONTROL`
-- Size: `1935` bytes
+- Size: `2241` bytes
 - Evidence:
   - canonical/control file
 
@@ -724,6 +724,38 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - text file with no stub or broken-reference signal
   - no inbound references found in scanned text files
 
+### sandbox/intake/relationship_conditioned_execution/bundle_manifest.json
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `839` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
+### sandbox/intake/relationship_conditioned_execution/install_plan.json
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `4015` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
+### sandbox/intake/relationship_conditioned_execution/source_inventory.json
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `3527` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
+### sandbox/intake/relationship_conditioned_execution/staging_manifest.json
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `1611` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
 ### schemas/bundle_queue_metadata.schema.json
 
 - Class: `ORPHAN_CANDIDATE`
@@ -958,5 +990,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `11ec2aae196ba90cb7e089151bc2354e2d2509e8dddd89d28eb71f8a68445673`
+- Receipt hash: `a8f18ec1604ca58c4e95eb7cbdade58012c6be87e3eef658352f5911db7d800d`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`
