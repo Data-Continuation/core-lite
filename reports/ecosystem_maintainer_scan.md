@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T05:20:28+00:00`
+Generated: `2026-07-14T05:27:46+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,7 +14,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `127`
+- Files scanned: `128`
 - Result: `pass`
 - Mutations performed: `0`
 
@@ -23,7 +23,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - BINARY_OR_UNKNOWN: `3`
 - CANONICAL_OR_CONTROL: `43`
 - ORPHAN_CANDIDATE: `44`
-- REAL: `12`
+- REAL: `13`
 - SUPPORT_ARTIFACT: `25`
 
 ## Recommended Next Transition Blocks
@@ -88,7 +88,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### .github/workflows/rce-p0-001-validation.yml
 
 - Class: `CANONICAL_OR_CONTROL`
-- Size: `4310` bytes
+- Size: `10333` bytes
 - Evidence:
   - canonical/control file
 
@@ -875,5 +875,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `5689134dd8a636d4a1daf1cf10db3c46bd960361d5a4e3006e854e01c0746f23`
+- Receipt hash: `29b6af4a38cddcd3ae2c5ea869eb884a0f986c0ac95ed5e393555283af07d2e1`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`

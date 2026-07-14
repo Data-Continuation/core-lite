@@ -1037,6 +1037,15 @@
     },
     {
       "mutation_allowed_now": false,
+      "path": "tools/build_relationship_conditioned_execution_bundle.py",
+      "reason": "real file with no maintainer finding",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "REAL"
+    },
+    {
+      "mutation_allowed_now": false,
       "path": "tools/bundle_registry_report.py",
       "reason": "real file with no maintainer finding",
       "recommended_bucket": "NO_ACTION",
@@ -1144,29 +1153,29 @@
       "source_class": "ORPHAN_CANDIDATE"
     }
   ],
-  "generated_at": "2026-07-14T05:20:28+00:00",
+  "generated_at": "2026-07-14T05:27:46+00:00",
   "receipt": {
     "auto_fix_eligible_count": 0,
     "auto_quarantine_eligible_count": 0,
     "complete_stub_eligible_count": 0,
     "do_not_touch_count": 43,
-    "file_count": 127,
-    "hash": "6a1d6a87242b14dc42068cb333acf7a25745491892a4a8e6e48e6f6e273cde76",
+    "file_count": 128,
+    "hash": "7c44fd6682d2e07443fefef9ae7493edd9cc3252be02f9af859a39a7e6e0cba0",
     "human_review_required_count": 47,
     "mutation_count": 0,
-    "previous_hash": "e4917573221df56e1c8dc6ba0d4351f7f4a067d91cebb5f83a64060ed9d98776",
+    "previous_hash": "6a1d6a87242b14dc42068cb333acf7a25745491892a4a8e6e48e6f6e273cde76",
     "receipt_type": "core_lite.auto_fix_eligibility",
     "result": "pass",
-    "timestamp": "2026-07-14T05:20:28+00:00"
+    "timestamp": "2026-07-14T05:27:46+00:00"
   },
-  "source_scan_generated_at": "2026-07-14T05:20:28+00:00",
+  "source_scan_generated_at": "2026-07-14T05:27:46+00:00",
   "summary": {
     "bucket_counts": {
       "DO_NOT_TOUCH": 43,
       "HUMAN_REVIEW_REQUIRED": 47,
-      "NO_ACTION": 37
+      "NO_ACTION": 38
     },
-    "file_count": 127,
+    "file_count": 128,
     "mutation_count": 0,
     "result": "pass",
     "transition_block_counts": {

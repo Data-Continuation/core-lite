@@ -102,7 +102,7 @@
       "local_refs": [],
       "path": ".github/workflows/rce-p0-001-validation.yml",
       "python_import_refs": [],
-      "size_bytes": 4310
+      "size_bytes": 10333
     },
     {
       "broken_refs": [],
@@ -1568,6 +1568,19 @@
       "extension": ".py",
       "inbound_refs": [],
       "local_refs": [],
+      "path": "tools/build_relationship_conditioned_execution_bundle.py",
+      "python_import_refs": [],
+      "size_bytes": 4159
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": "tools/bundle_registry_report.py",
       "python_import_refs": [],
       "size_bytes": 12804
@@ -1721,33 +1734,33 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T05:20:28+00:00",
+  "generated_at": "2026-07-14T05:27:46+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
       "CANONICAL_OR_CONTROL": 43,
       "ORPHAN_CANDIDATE": 44,
-      "REAL": 12,
+      "REAL": 13,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 127,
-    "hash": "5689134dd8a636d4a1daf1cf10db3c46bd960361d5a4e3006e854e01c0746f23",
+    "file_count": 128,
+    "hash": "29b6af4a38cddcd3ae2c5ea869eb884a0f986c0ac95ed5e393555283af07d2e1",
     "mutation_count": 0,
-    "previous_hash": "da2246d86d51b02c183745b4c2275b02bf8f561d637724d8d8edecd524819bb9",
+    "previous_hash": "5689134dd8a636d4a1daf1cf10db3c46bd960361d5a4e3006e854e01c0746f23",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T05:20:28+00:00"
+    "timestamp": "2026-07-14T05:27:46+00:00"
   },
   "summary": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
       "CANONICAL_OR_CONTROL": 43,
       "ORPHAN_CANDIDATE": 44,
-      "REAL": 12,
+      "REAL": 13,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 127,
+    "file_count": 128,
     "mutation_count": 0,
     "result": "pass"
   },
