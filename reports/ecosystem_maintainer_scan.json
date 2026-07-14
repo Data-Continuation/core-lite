@@ -1862,6 +1862,19 @@
       "extension": ".py",
       "inbound_refs": [],
       "local_refs": [],
+      "path": "tools/manage_relationship_conditioned_execution_lifecycle.py",
+      "python_import_refs": [],
+      "size_bytes": 8969
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": "tools/measure_friction.py",
       "python_import_refs": [],
       "size_bytes": 9335
@@ -2047,33 +2060,33 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T07:35:19+00:00",
+  "generated_at": "2026-07-14T07:35:53+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
       "CANONICAL_OR_CONTROL": 50,
       "ORPHAN_CANDIDATE": 54,
-      "REAL": 18,
+      "REAL": 19,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 150,
-    "hash": "ca23754fc59532fd501c4259e3b4bdbd3a67bc7f6b3cbe09d9370bc8f7857b6f",
+    "file_count": 151,
+    "hash": "f3bb004085e4e56d2e7752a1c05c28746daacc25c0948c5237e9e4620145cdf8",
     "mutation_count": 0,
-    "previous_hash": "40dc20ddcbc3a33f506fcbcef06e6088da2864fe4a04be23af75c10e5d224783",
+    "previous_hash": "ca23754fc59532fd501c4259e3b4bdbd3a67bc7f6b3cbe09d9370bc8f7857b6f",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T07:35:19+00:00"
+    "timestamp": "2026-07-14T07:35:53+00:00"
   },
   "summary": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
       "CANONICAL_OR_CONTROL": 50,
       "ORPHAN_CANDIDATE": 54,
-      "REAL": 18,
+      "REAL": 19,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 150,
+    "file_count": 151,
     "mutation_count": 0,
     "result": "pass"
   },

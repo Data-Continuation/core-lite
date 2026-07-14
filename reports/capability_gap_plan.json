@@ -154,24 +154,24 @@
       "status": "implemented_or_seeded"
     }
   ],
-  "generated_at": "2026-07-14T07:35:19+00:00",
+  "generated_at": "2026-07-14T07:35:53+00:00",
   "receipt": {
     "capability_count": 9,
-    "hash": "e5e4daa2e20e4a70efa8d5cc8990819c2f8343cb7ab773600d4d8d73d06b74f7",
+    "hash": "3ce300b01f99c85ecbf7730a382d23403141978ed151ee5273145a66e4ceb10d",
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,
-    "previous_hash": "6e950f44dc1d8b6e2978931a1cc3fbfd309c0467332716a50856d128eb06dc40",
+    "previous_hash": "e5e4daa2e20e4a70efa8d5cc8990819c2f8343cb7ab773600d4d8d73d06b74f7",
     "receipt_type": "core_lite.capability_gap_plan",
     "repo_role": "core-lite",
     "result": "pass",
-    "timestamp": "2026-07-14T07:35:19+00:00"
+    "timestamp": "2026-07-14T07:35:53+00:00"
   },
   "repo_role": {
     "confidence": "high",
     "role": "core-lite",
     "scores": {
-      "core-lite": 1773,
+      "core-lite": 1796,
       "footprint-auditor": 107,
       "formalism": 55
     }
@@ -179,7 +179,7 @@
   "summary": {
     "capability_count": 9,
     "directory_count": 28,
-    "file_count": 150,
+    "file_count": 151,
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,

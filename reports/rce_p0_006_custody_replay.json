@@ -3,7 +3,7 @@
   "deterministic_replay_valid": true,
   "external_destination_mutation_performed": false,
   "manual_actions_required": [],
-  "observed_at": "2026-07-14T07:35:19.546000+00:00",
+  "observed_at": "2026-07-14T07:35:54.042240+00:00",
   "predecessor_receipt_valid": true,
   "receipt_chain_valid": true,
   "sandbox_policy_valid": true,
