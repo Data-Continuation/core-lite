@@ -2,6 +2,8 @@
 name: RCE P0-004 Automated Reconstruction Review
 
 on:
+  schedule:
+    - cron: "17 * * * *"
   push:
     branches:
       - "main"
@@ -155,10 +157,11 @@ jobs:
           PY
 
       - name: Persist reconstruction decision and evidence
-        if: ${{ always() && github.event_name == 'push' }}
+        if: ${{ always() && github.event_name != 'pull_request' }}
         run: |
           git config user.name "stegverse-rce-automation"
           git config user.email "actions@users.noreply.github.com"
+          git pull --rebase origin main
           git add reports/rce_p0_004_reconstruction.json
           git add reports/rce_automation_status.json
           git add receipts/rce_p0_004_authoritative_validation.json
@@ -167,7 +170,7 @@ jobs:
             echo "No reconstruction state change"
           else
             git commit -m "chore: persist RCE-P0-004 reconstruction state [rce-p0-004-state]"
-            git push origin HEAD:${GITHUB_REF_NAME}
+            git push origin HEAD:main
           fi
 
       - name: Upload redundant evidence
