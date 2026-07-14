@@ -141,7 +141,7 @@
       "local_refs": [],
       "path": ".github/workflows/rce-p0-004-validation.yml",
       "python_import_refs": [],
-      "size_bytes": 8057
+      "size_bytes": 8072
     },
     {
       "broken_refs": [],
@@ -778,7 +778,7 @@
       "local_refs": [],
       "path": "core_lite/tasks/relationship_conditioned_execution_p0_004.json",
       "python_import_refs": [],
-      "size_bytes": 2407
+      "size_bytes": 2719
     },
     {
       "broken_refs": [],
@@ -1882,7 +1882,7 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T05:30:52+00:00",
+  "generated_at": "2026-07-14T05:37:31+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
@@ -1892,13 +1892,13 @@
       "SUPPORT_ARTIFACT": 25
     },
     "file_count": 138,
-    "hash": "8faa833075237395856647acdfd419fa4c9c53e46f0d4d29fa747db382e91f5e",
+    "hash": "a226771285f02ffcd434377d7f747f951bf18ff98a7342eb79cf6f9aaa743668",
     "mutation_count": 0,
-    "previous_hash": "17d35857e659f0b28580223535d71c432b716e07436ae5cb29df2ae3e6be79df",
+    "previous_hash": "8faa833075237395856647acdfd419fa4c9c53e46f0d4d29fa747db382e91f5e",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T05:30:52+00:00"
+    "timestamp": "2026-07-14T05:37:31+00:00"
   },
   "summary": {
     "class_counts": {

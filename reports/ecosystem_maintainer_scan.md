@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T05:30:52+00:00`
+Generated: `2026-07-14T05:37:31+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -109,7 +109,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### .github/workflows/rce-p0-004-validation.yml
 
 - Class: `CANONICAL_OR_CONTROL`
-- Size: `8057` bytes
+- Size: `8072` bytes
 - Evidence:
   - canonical/control file
 
@@ -446,7 +446,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### core_lite/tasks/relationship_conditioned_execution_p0_004.json
 
 - Class: `CANONICAL_OR_CONTROL`
-- Size: `2407` bytes
+- Size: `2719` bytes
 - Evidence:
   - canonical/control file
 
@@ -936,5 +936,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `8faa833075237395856647acdfd419fa4c9c53e46f0d4d29fa747db382e91f5e`
+- Receipt hash: `a226771285f02ffcd434377d7f747f951bf18ff98a7342eb79cf6f9aaa743668`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`
