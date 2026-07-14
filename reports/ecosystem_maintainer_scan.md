@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T04:16:26+00:00`
+Generated: `2026-07-14T04:17:31+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,7 +14,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `114`
+- Files scanned: `115`
 - Result: `pass`
 - Mutations performed: `0`
 
@@ -22,7 +22,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - BINARY_OR_UNKNOWN: `3`
 - CANONICAL_OR_CONTROL: `39`
-- ORPHAN_CANDIDATE: `38`
+- ORPHAN_CANDIDATE: `39`
 - REAL: `11`
 - SUPPORT_ARTIFACT: `23`
 
@@ -373,7 +373,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### core_lite/tasks/relationship_conditioned_execution.json
 
 - Class: `CANONICAL_OR_CONTROL`
-- Size: `2551` bytes
+- Size: `2919` bytes
 - Evidence:
   - canonical/control file
 
@@ -775,6 +775,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - text file with no stub or broken-reference signal
   - no inbound references found in scanned text files
 
+### tests/test_relationship_conditioned_human_decision_policy.py
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `3150` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
 ### verification.json
 
 - Class: `ORPHAN_CANDIDATE`
@@ -785,5 +793,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `628524de07fba97b26a8230c7adb0af6041672d700f66725c5def1c8e6be75a3`
+- Receipt hash: `f504389f6accc3c83e4ee9aeda058f9b10b573e00dfd22e0e5edb8090710db0b`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`

@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T04:16:26+00:00`
-Source scan generated: `2026-07-14T04:16:26+00:00`
+Generated: `2026-07-14T04:17:31+00:00`
+Source scan generated: `2026-07-14T04:17:31+00:00`
 
 ## Done Definition
 
@@ -14,19 +14,19 @@ Source scan generated: `2026-07-14T04:16:26+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `114`
+- Files evaluated: `115`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
 - DO_NOT_TOUCH: `39`
-- HUMAN_REVIEW_REQUIRED: `41`
+- HUMAN_REVIEW_REQUIRED: `42`
 - NO_ACTION: `34`
 
 ## Transition Block Counts
 
 - ASK_BOUNDARY_DECISION: `42`
-- AUTO_QUARANTINE_STUB: `38`
+- AUTO_QUARANTINE_STUB: `39`
 
 ## Decisions
 
@@ -948,6 +948,15 @@ Source scan generated: `2026-07-14T04:16:26+00:00`
 - Requires human review: `True`
 - Reason: orphan candidates are not auto-quarantined without review
 
+### tests/test_relationship_conditioned_human_decision_policy.py
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
 ### tools/auto_fix_eligibility.py
 
 - Source class: `REAL`
@@ -1058,5 +1067,5 @@ Source scan generated: `2026-07-14T04:16:26+00:00`
 
 ## Receipt
 
-- Receipt hash: `7e58c6a183b3746b13864e679f7794cb1f1f0663e6b0819c2c58d4ce4568febc`
+- Receipt hash: `5911f9d5ac9b3488b9476283f2dee04281b09183d73febd0a8a61d49601360e8`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`

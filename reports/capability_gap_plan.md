@@ -1,6 +1,6 @@
 # Core-Lite Capability Gap Plan
 
-Generated: `2026-07-14T04:16:26+00:00`
+Generated: `2026-07-14T04:17:31+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -17,12 +17,12 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Role: `core-lite`
 - Confidence: `high`
-- Scores: `{'footprint-auditor': 107, 'core-lite': 1496, 'formalism': 54}`
+- Scores: `{'footprint-auditor': 107, 'core-lite': 1497, 'formalism': 54}`
 
 ## Summary
 
 - result: `pass`
-- file_count: `114`
+- file_count: `115`
 - directory_count: `23`
 - capability_count: `9`
 - implemented_or_seeded_count: `2`
@@ -112,10 +112,11 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - `tests/fixtures/sample_ingest_bundle/payload/sample.txt`
   - `tests/test_ingest_incoming_contract.py`
   - `tests/test_receipts_append_contract.py`
+  - `tests/test_relationship_conditioned_human_decision_policy.py`
 - Evidence:
   - signal hit(s): tests/, pytest, unittest
   - expected path exists: tests
-  - implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_ingest_incoming_contract.py, tests/test_receipts_append_contract.py
+  - implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_ingest_incoming_contract.py, tests/test_receipts_append_contract.py, tests/test_relationship_conditioned_human_decision_policy.py
 
 ### workflow — GitHub Actions workflow for running product checks
 
@@ -142,5 +143,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `8f4da78a2d628880e323f6fa85114ab2e629c062ca893922c5a2b79d7bbd6aa7`
+- Receipt hash: `ec4b1f6bac964066488ce40282d0609a7bab83fb4520c79f04fd71d3da58221b`
 - Receipt path: `receipts/capability_gap_receipts.jsonl`

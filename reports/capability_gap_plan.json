@@ -103,13 +103,14 @@
       "evidence": [
         "signal hit(s): tests/, pytest, unittest",
         "expected path exists: tests",
-        "implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_ingest_incoming_contract.py, tests/test_receipts_append_contract.py"
+        "implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_ingest_incoming_contract.py, tests/test_receipts_append_contract.py, tests/test_relationship_conditioned_human_decision_policy.py"
       ],
       "implementation_files": [
         "tests/fixtures/sample_ingest_bundle/bundle_manifest.json",
         "tests/fixtures/sample_ingest_bundle/payload/sample.txt",
         "tests/test_ingest_incoming_contract.py",
-        "tests/test_receipts_append_contract.py"
+        "tests/test_receipts_append_contract.py",
+        "tests/test_relationship_conditioned_human_decision_policy.py"
       ],
       "missing": [],
       "recommended_transition_block": "NO_ACTION",
@@ -144,24 +145,24 @@
       "status": "implemented_or_seeded"
     }
   ],
-  "generated_at": "2026-07-14T04:16:26+00:00",
+  "generated_at": "2026-07-14T04:17:31+00:00",
   "receipt": {
     "capability_count": 9,
-    "hash": "8f4da78a2d628880e323f6fa85114ab2e629c062ca893922c5a2b79d7bbd6aa7",
+    "hash": "ec4b1f6bac964066488ce40282d0609a7bab83fb4520c79f04fd71d3da58221b",
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,
-    "previous_hash": "638662f545344b815a46ba17eab69535f6b6a1de63aea7a81f57e55b5ac1aeae",
+    "previous_hash": "8f4da78a2d628880e323f6fa85114ab2e629c062ca893922c5a2b79d7bbd6aa7",
     "receipt_type": "core_lite.capability_gap_plan",
     "repo_role": "core-lite",
     "result": "pass",
-    "timestamp": "2026-07-14T04:16:26+00:00"
+    "timestamp": "2026-07-14T04:17:31+00:00"
   },
   "repo_role": {
     "confidence": "high",
     "role": "core-lite",
     "scores": {
-      "core-lite": 1496,
+      "core-lite": 1497,
       "footprint-auditor": 107,
       "formalism": 54
     }
@@ -169,7 +170,7 @@
   "summary": {
     "capability_count": 9,
     "directory_count": 23,
-    "file_count": 114,
+    "file_count": 115,
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,
