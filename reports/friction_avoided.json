@@ -268,7 +268,7 @@
       "trust_severity": "high"
     }
   ],
-  "generated_at": "2026-07-14T04:43:45+00:00",
+  "generated_at": "2026-07-14T05:02:39+00:00",
   "metric": {
     "definition": "Avoidable human recovery burden prevented by governed execution.",
     "name": "Friction Avoided",
@@ -278,14 +278,14 @@
     "estimated_hours_saved": 31.05,
     "estimated_minutes_saved": 1863,
     "failure_type_count": 12,
-    "hash": "f9b3c702d7bc576f63e27ff57d4bcc539461fc92a2bdf6f578abeedd6cee861f",
+    "hash": "4b6d0601b7b891483222e409fd38c8446db198ef8411806f58047398b6152af1",
     "manual_actions_prevented": 68,
-    "previous_hash": "7dd9e951ed11d1d47191d4e7dc004d007dfc40f1cd097e2e82b8aeb800b94ef7",
+    "previous_hash": "f9b3c702d7bc576f63e27ff57d4bcc539461fc92a2bdf6f578abeedd6cee861f",
     "receipt_type": "core_lite.friction_avoided",
     "repeated_prompts_prevented": 219,
     "reruns_prevented": 3,
     "result": "pass",
-    "timestamp": "2026-07-14T04:43:45+00:00",
+    "timestamp": "2026-07-14T05:02:39+00:00",
     "trust_friction_score": 30
   },
   "summary": {

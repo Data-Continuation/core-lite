@@ -103,11 +103,12 @@
       "evidence": [
         "signal hit(s): tests/, pytest, unittest",
         "expected path exists: tests",
-        "implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_ingest_incoming_contract.py, tests/test_receipts_append_contract.py, tests/test_relationship_conditioned_human_decision_policy.py"
+        "implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_execution_candidate_manifest.py, tests/test_ingest_incoming_contract.py, tests/test_receipts_append_contract.py, tests/test_relationship_conditioned_human_decision_policy.py"
       ],
       "implementation_files": [
         "tests/fixtures/sample_ingest_bundle/bundle_manifest.json",
         "tests/fixtures/sample_ingest_bundle/payload/sample.txt",
+        "tests/test_execution_candidate_manifest.py",
         "tests/test_ingest_incoming_contract.py",
         "tests/test_receipts_append_contract.py",
         "tests/test_relationship_conditioned_human_decision_policy.py"
@@ -146,24 +147,24 @@
       "status": "implemented_or_seeded"
     }
   ],
-  "generated_at": "2026-07-14T04:43:45+00:00",
+  "generated_at": "2026-07-14T05:02:39+00:00",
   "receipt": {
     "capability_count": 9,
-    "hash": "53aa2f9d403275e65708b370e824d179df61b2be4b1b175da593577207533026",
+    "hash": "b1397b863caebe49a7503c7d7faaaa177118ce874de2437ef89185376daf3cc5",
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,
-    "previous_hash": "a9458eced6be1d004529fc6f391ed38852741874347954ad84423f00de69adae",
+    "previous_hash": "53aa2f9d403275e65708b370e824d179df61b2be4b1b175da593577207533026",
     "receipt_type": "core_lite.capability_gap_plan",
     "repo_role": "core-lite",
     "result": "pass",
-    "timestamp": "2026-07-14T04:43:45+00:00"
+    "timestamp": "2026-07-14T05:02:39+00:00"
   },
   "repo_role": {
     "confidence": "high",
     "role": "core-lite",
     "scores": {
-      "core-lite": 1523,
+      "core-lite": 1542,
       "footprint-auditor": 107,
       "formalism": 55
     }
@@ -171,7 +172,7 @@
   "summary": {
     "capability_count": 9,
     "directory_count": 23,
-    "file_count": 117,
+    "file_count": 125,
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,

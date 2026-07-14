@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T04:43:45+00:00`
+Generated: `2026-07-14T05:02:38+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,17 +14,17 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `117`
+- Files scanned: `125`
 - Result: `pass`
 - Mutations performed: `0`
 
 ## Class Counts
 
 - BINARY_OR_UNKNOWN: `3`
-- CANONICAL_OR_CONTROL: `40`
-- ORPHAN_CANDIDATE: `39`
-- REAL: `11`
-- SUPPORT_ARTIFACT: `24`
+- CANONICAL_OR_CONTROL: `41`
+- ORPHAN_CANDIDATE: `44`
+- REAL: `12`
+- SUPPORT_ARTIFACT: `25`
 
 ## Recommended Next Transition Blocks
 
@@ -384,6 +384,13 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - Evidence:
   - canonical/control file
 
+### core_lite/tasks/relationship_conditioned_execution_p0_002.json
+
+- Class: `CANONICAL_OR_CONTROL`
+- Size: `2729` bytes
+- Evidence:
+  - canonical/control file
+
 ### core_lite/tasks.py
 
 - Class: `CANONICAL_OR_CONTROL`
@@ -423,6 +430,13 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Class: `SUPPORT_ARTIFACT`
 - Size: `6884` bytes
+- Evidence:
+  - support artifact for upload, verification, documentation, examples, or empty directory retention
+
+### docs/RCE_P0_002_MANIFEST_AND_FIXTURES.md
+
+- Class: `SUPPORT_ARTIFACT`
+- Size: `3502` bytes
 - Evidence:
   - support artifact for upload, verification, documentation, examples, or empty directory retention
 
@@ -605,6 +619,30 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - text file with no stub or broken-reference signal
   - no inbound references found in scanned text files
 
+### samples/execution_candidate_manifest.allow.example.json
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `1237` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
+### samples/execution_candidate_manifest.scope_leakage.example.json
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `1253` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
+### samples/execution_candidate_manifest.stale_state.example.json
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `1222` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
 ### samples/relationship_conditioned_human_decision_policy.example.json
 
 - Class: `ORPHAN_CANDIDATE`
@@ -625,6 +663,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Class: `ORPHAN_CANDIDATE`
 - Size: `234` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
+### schemas/execution_candidate_manifest.schema.json
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `3860` bytes
 - Evidence:
   - text file with no stub or broken-reference signal
   - no inbound references found in scanned text files
@@ -773,6 +819,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - text file with no stub or broken-reference signal
   - no inbound references found in scanned text files
 
+### tests/test_execution_candidate_manifest.py
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `2688` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
 ### tests/test_ingest_incoming_contract.py
 
 - Class: `ORPHAN_CANDIDATE`
@@ -807,5 +861,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `bebab257a3b855286763346179ad72dee2d641ecd76950f58556bd9a829195d8`
+- Receipt hash: `bbec122ceabec35ce8660cf6552847372a5702e1804f1606d7a56672d3baaf99`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`

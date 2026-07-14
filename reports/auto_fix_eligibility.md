@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T04:43:45+00:00`
-Source scan generated: `2026-07-14T04:43:45+00:00`
+Generated: `2026-07-14T05:02:38+00:00`
+Source scan generated: `2026-07-14T05:02:38+00:00`
 
 ## Done Definition
 
@@ -14,19 +14,19 @@ Source scan generated: `2026-07-14T04:43:45+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `117`
+- Files evaluated: `125`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
-- DO_NOT_TOUCH: `40`
-- HUMAN_REVIEW_REQUIRED: `42`
-- NO_ACTION: `35`
+- DO_NOT_TOUCH: `41`
+- HUMAN_REVIEW_REQUIRED: `47`
+- NO_ACTION: `37`
 
 ## Transition Block Counts
 
-- ASK_BOUNDARY_DECISION: `43`
-- AUTO_QUARANTINE_STUB: `39`
+- ASK_BOUNDARY_DECISION: `44`
+- AUTO_QUARANTINE_STUB: `44`
 
 ## Decisions
 
@@ -471,6 +471,15 @@ Source scan generated: `2026-07-14T04:43:45+00:00`
 - Requires human review: `True`
 - Reason: canonical/control file requires explicit boundary review before mutation
 
+### core_lite/tasks/relationship_conditioned_execution_p0_002.json
+
+- Source class: `CANONICAL_OR_CONTROL`
+- Recommended bucket: `DO_NOT_TOUCH`
+- Recommended transition block: `ASK_BOUNDARY_DECISION`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: canonical/control file requires explicit boundary review before mutation
+
 ### core_lite/tasks.py
 
 - Source class: `CANONICAL_OR_CONTROL`
@@ -517,6 +526,15 @@ Source scan generated: `2026-07-14T04:43:45+00:00`
 - Reason: support artifact should be kept unless superseded by bundle registry policy
 
 ### docs/CORE_LITE_MIRROR_HANDOFF.md
+
+- Source class: `SUPPORT_ARTIFACT`
+- Recommended bucket: `NO_ACTION`
+- Recommended transition block: `None`
+- Mutation allowed now: `False`
+- Requires human review: `False`
+- Reason: support artifact should be kept unless superseded by bundle registry policy
+
+### docs/RCE_P0_002_MANIFEST_AND_FIXTURES.md
 
 - Source class: `SUPPORT_ARTIFACT`
 - Recommended bucket: `NO_ACTION`
@@ -759,6 +777,33 @@ Source scan generated: `2026-07-14T04:43:45+00:00`
 - Requires human review: `True`
 - Reason: orphan candidates are not auto-quarantined without review
 
+### samples/execution_candidate_manifest.allow.example.json
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
+### samples/execution_candidate_manifest.scope_leakage.example.json
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
+### samples/execution_candidate_manifest.stale_state.example.json
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
 ### samples/relationship_conditioned_human_decision_policy.example.json
 
 - Source class: `ORPHAN_CANDIDATE`
@@ -778,6 +823,15 @@ Source scan generated: `2026-07-14T04:43:45+00:00`
 - Reason: orphan candidates are not auto-quarantined without review
 
 ### schemas/cge_fingerprint.schema.json
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
+### schemas/execution_candidate_manifest.schema.json
 
 - Source class: `ORPHAN_CANDIDATE`
 - Recommended bucket: `HUMAN_REVIEW_REQUIRED`
@@ -948,6 +1002,15 @@ Source scan generated: `2026-07-14T04:43:45+00:00`
 - Requires human review: `True`
 - Reason: orphan candidates are not auto-quarantined without review
 
+### tests/test_execution_candidate_manifest.py
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
 ### tests/test_ingest_incoming_contract.py
 
 - Source class: `ORPHAN_CANDIDATE`
@@ -1038,6 +1101,15 @@ Source scan generated: `2026-07-14T04:43:45+00:00`
 - Requires human review: `False`
 - Reason: real file with no maintainer finding
 
+### tools/validate_execution_candidate_manifest.py
+
+- Source class: `REAL`
+- Recommended bucket: `NO_ACTION`
+- Recommended transition block: `None`
+- Mutation allowed now: `False`
+- Requires human review: `False`
+- Reason: real file with no maintainer finding
+
 ### tools/validate_relationship_conditioned_human_decision_policy.py
 
 - Source class: `REAL`
@@ -1085,5 +1157,5 @@ Source scan generated: `2026-07-14T04:43:45+00:00`
 
 ## Receipt
 
-- Receipt hash: `0f3d27d32f10dcddcebdf81860d1029373e16c9710ab31199bd12e5f08ef7d37`
+- Receipt hash: `875d4ddc1a12a2cc48552a99c0a782fee2aea16649cf3ff55d644594416965e3`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`

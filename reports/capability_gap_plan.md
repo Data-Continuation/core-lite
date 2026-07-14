@@ -1,6 +1,6 @@
 # Core-Lite Capability Gap Plan
 
-Generated: `2026-07-14T04:43:45+00:00`
+Generated: `2026-07-14T05:02:39+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -17,12 +17,12 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Role: `core-lite`
 - Confidence: `high`
-- Scores: `{'footprint-auditor': 107, 'core-lite': 1523, 'formalism': 55}`
+- Scores: `{'footprint-auditor': 107, 'core-lite': 1542, 'formalism': 55}`
 
 ## Summary
 
 - result: `pass`
-- file_count: `117`
+- file_count: `125`
 - directory_count: `23`
 - capability_count: `9`
 - implemented_or_seeded_count: `2`
@@ -110,13 +110,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - Implementation files:
   - `tests/fixtures/sample_ingest_bundle/bundle_manifest.json`
   - `tests/fixtures/sample_ingest_bundle/payload/sample.txt`
+  - `tests/test_execution_candidate_manifest.py`
   - `tests/test_ingest_incoming_contract.py`
   - `tests/test_receipts_append_contract.py`
   - `tests/test_relationship_conditioned_human_decision_policy.py`
 - Evidence:
   - signal hit(s): tests/, pytest, unittest
   - expected path exists: tests
-  - implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_ingest_incoming_contract.py, tests/test_receipts_append_contract.py, tests/test_relationship_conditioned_human_decision_policy.py
+  - implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_execution_candidate_manifest.py, tests/test_ingest_incoming_contract.py, tests/test_receipts_append_contract.py, tests/test_relationship_conditioned_human_decision_policy.py
 
 ### workflow — GitHub Actions workflow for running product checks
 
@@ -144,5 +145,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `53aa2f9d403275e65708b370e824d179df61b2be4b1b175da593577207533026`
+- Receipt hash: `b1397b863caebe49a7503c7d7faaaa177118ce874de2437ef89185376daf3cc5`
 - Receipt path: `receipts/capability_gap_receipts.jsonl`

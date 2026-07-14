@@ -666,6 +666,19 @@
       "evidence": [
         "canonical/control file"
       ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/tasks/relationship_conditioned_execution_p0_002.json",
+      "python_import_refs": [],
+      "size_bytes": 2729
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
       "extension": ".py",
       "inbound_refs": [],
       "local_refs": [],
@@ -737,6 +750,19 @@
       "path": "docs/CORE_LITE_MIRROR_HANDOFF.md",
       "python_import_refs": [],
       "size_bytes": 6884
+    },
+    {
+      "broken_refs": [],
+      "class": "SUPPORT_ARTIFACT",
+      "evidence": [
+        "support artifact for upload, verification, documentation, examples, or empty directory retention"
+      ],
+      "extension": ".md",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "docs/RCE_P0_002_MANIFEST_AND_FIXTURES.md",
+      "python_import_refs": [],
+      "size_bytes": 3502
     },
     {
       "broken_refs": [],
@@ -1090,6 +1116,48 @@
       "extension": ".json",
       "inbound_refs": [],
       "local_refs": [],
+      "path": "samples/execution_candidate_manifest.allow.example.json",
+      "python_import_refs": [],
+      "size_bytes": 1237
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "samples/execution_candidate_manifest.scope_leakage.example.json",
+      "python_import_refs": [],
+      "size_bytes": 1253
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "samples/execution_candidate_manifest.stale_state.example.json",
+      "python_import_refs": [],
+      "size_bytes": 1222
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": "samples/relationship_conditioned_human_decision_policy.example.json",
       "python_import_refs": [],
       "size_bytes": 1500
@@ -1121,6 +1189,20 @@
       "path": "schemas/cge_fingerprint.schema.json",
       "python_import_refs": [],
       "size_bytes": 234
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "schemas/execution_candidate_manifest.schema.json",
+      "python_import_refs": [],
+      "size_bytes": 3860
     },
     {
       "broken_refs": [],
@@ -1384,6 +1466,22 @@
       "extension": ".py",
       "inbound_refs": [],
       "local_refs": [],
+      "path": "tests/test_execution_candidate_manifest.py",
+      "python_import_refs": [
+        "tools/validate_execution_candidate_manifest.py"
+      ],
+      "size_bytes": 2688
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": "tests/test_ingest_incoming_contract.py",
       "python_import_refs": [
         "core_lite/ingest.py"
@@ -1521,6 +1619,21 @@
       ],
       "extension": ".py",
       "inbound_refs": [
+        "tests/test_execution_candidate_manifest.py"
+      ],
+      "local_refs": [],
+      "path": "tools/validate_execution_candidate_manifest.py",
+      "python_import_refs": [],
+      "size_bytes": 4143
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [
         "tests/test_relationship_conditioned_human_decision_policy.py"
       ],
       "local_refs": [],
@@ -1582,33 +1695,33 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T04:43:45+00:00",
+  "generated_at": "2026-07-14T05:02:38+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 40,
-      "ORPHAN_CANDIDATE": 39,
-      "REAL": 11,
-      "SUPPORT_ARTIFACT": 24
+      "CANONICAL_OR_CONTROL": 41,
+      "ORPHAN_CANDIDATE": 44,
+      "REAL": 12,
+      "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 117,
-    "hash": "bebab257a3b855286763346179ad72dee2d641ecd76950f58556bd9a829195d8",
+    "file_count": 125,
+    "hash": "bbec122ceabec35ce8660cf6552847372a5702e1804f1606d7a56672d3baaf99",
     "mutation_count": 0,
-    "previous_hash": "aa5a3f5cb4d3ebb08b8208a87ebd22d08af4d66deb44dbc7a4c3fef5f4f6d5b4",
+    "previous_hash": "bebab257a3b855286763346179ad72dee2d641ecd76950f58556bd9a829195d8",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T04:43:45+00:00"
+    "timestamp": "2026-07-14T05:02:38+00:00"
   },
   "summary": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 40,
-      "ORPHAN_CANDIDATE": 39,
-      "REAL": 11,
-      "SUPPORT_ARTIFACT": 24
+      "CANONICAL_OR_CONTROL": 41,
+      "ORPHAN_CANDIDATE": 44,
+      "REAL": 12,
+      "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 117,
+    "file_count": 125,
     "mutation_count": 0,
     "result": "pass"
   },
