@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T07:42:47+00:00`
-Source scan generated: `2026-07-14T07:42:47+00:00`
+Generated: `2026-07-14T07:43:22+00:00`
+Source scan generated: `2026-07-14T07:43:22+00:00`
 
 ## Done Definition
 
@@ -14,18 +14,18 @@ Source scan generated: `2026-07-14T07:42:47+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `152`
+- Files evaluated: `153`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
-- DO_NOT_TOUCH: `53`
+- DO_NOT_TOUCH: `54`
 - HUMAN_REVIEW_REQUIRED: `55`
 - NO_ACTION: `44`
 
 ## Transition Block Counts
 
-- ASK_BOUNDARY_DECISION: `56`
+- ASK_BOUNDARY_DECISION: `57`
 - AUTO_QUARANTINE_STUB: `52`
 
 ## Decisions
@@ -607,6 +607,15 @@ Source scan generated: `2026-07-14T07:42:47+00:00`
 - Reason: canonical/control file requires explicit boundary review before mutation
 
 ### core_lite/tasks/relationship_conditioned_execution_p0_007.json
+
+- Source class: `CANONICAL_OR_CONTROL`
+- Recommended bucket: `DO_NOT_TOUCH`
+- Recommended transition block: `ASK_BOUNDARY_DECISION`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: canonical/control file requires explicit boundary review before mutation
+
+### core_lite/tasks/relationship_conditioned_execution_p0_008.json
 
 - Source class: `CANONICAL_OR_CONTROL`
 - Recommended bucket: `DO_NOT_TOUCH`
@@ -1400,5 +1409,5 @@ Source scan generated: `2026-07-14T07:42:47+00:00`
 
 ## Receipt
 
-- Receipt hash: `615dd7157d38c18cf1d7af11921d74cd1e301cd2320636d978500bf0b997a686`
+- Receipt hash: `bd0885bffcedee0a45e8361d4fa36a06879f888ab4473a7c8c360d935185164d`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`
