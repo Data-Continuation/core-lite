@@ -2,7 +2,7 @@
   "schema": "stegverse.core_lite.task.v1",
   "task_id": "RCE-P0-001",
   "title": "Define normative relationship-conditioned human-decision policy",
-  "status": "IMPLEMENTED_VALIDATED_INDEPENDENTLY_AUTHORITATIVE_WORKFLOW_PRESENT_PENDING_RUN",
+  "status": "IMPLEMENTED_VALIDATED_INDEPENDENTLY_AUTHORITATIVE_WORKFLOW_ACTION_REQUIRED",
   "priority": "P0",
   "owner_repo": "Data-Continuation/core-lite",
   "source_handoff": "docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md",
@@ -26,8 +26,13 @@
     "independent_receipt": "receipts/rce_p0_001_connector_rehydrated_validation.json",
     "authoritative_workflow": ".github/workflows/rce-p0-001-validation.yml",
     "authoritative_workflow_commit": "43a7f25f5a22acdf87793f41b4fb0d3e293fb87d",
-    "authoritative_ci": "PENDING_RUN",
-    "pull_request_workflow_runs_observed_for_workflow_commit": 0,
+    "authoritative_ci": "ACTION_REQUIRED",
+    "observed_run_id": 29306690630,
+    "observed_run_number": 5,
+    "observed_run_commit": "109ab9890ed3e3a4e2230d3b1b6925072b7cb1c3",
+    "observed_run_status": "completed",
+    "observed_run_conclusion": "action_required",
+    "jobs_created": 0,
     "direct_checkout": "BLOCKED_DNS_RESOLUTION",
     "commands": [
       "python tools/validate_relationship_conditioned_human_decision_policy.py",
@@ -38,7 +43,7 @@
       "16 passed in 2.07s"
     ],
     "authoritative_receipt_artifact": "rce-p0-001-validation-receipt",
-    "required_next_event": "GitHub Actions executes RCE P0-001 Validation successfully and its receipt artifact is preserved"
+    "required_next_event": "A repository maintainer approves or manually dispatches RCE P0-001 Validation; the run executes successfully and its receipt artifact is preserved"
   },
   "invariants": [
     "human_is_not_system_owned_resource",
@@ -62,11 +67,12 @@
     "tests preserve non-guarantee and temporal-identity disclosures without treating them as consent substitutes"
   ],
   "blocked_by": [
-    "authoritative_workflow_run_not_yet_observed",
-    "authoritative_validation_receipt_missing"
+    "repository approval or manual dispatch required for authoritative workflow",
+    "authoritative validation receipt missing"
   ],
   "supersedes": [],
   "next_task_candidate": "RCE-P0-002 canonical manifest and sandbox fixture package",
+  "prepared_next_task": "core_lite/tasks/relationship_conditioned_execution_p0_002.json",
   "prepared_next_artifact": "docs/ADVERSARIAL_AI_EXECUTION_MODEL.md",
   "permitted_scope": [
     "policy",
