@@ -204,6 +204,19 @@
       "extension": ".yml",
       "inbound_refs": [],
       "local_refs": [],
+      "path": ".github/workflows/rce-p0-009-observation.yml",
+      "python_import_refs": [],
+      "size_bytes": 5307
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": ".github/workflows/target-capability-gap.yml",
       "python_import_refs": [],
       "size_bytes": 2287
@@ -999,7 +1012,7 @@
       "local_refs": [],
       "path": "docs/CORE_LITE_MIRROR_HANDOFF.md",
       "python_import_refs": [],
-      "size_bytes": 6568
+      "size_bytes": 7278
     },
     {
       "broken_refs": [],
@@ -2144,33 +2157,33 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T07:53:02+00:00",
+  "generated_at": "2026-07-14T07:54:18+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 57,
+      "CANONICAL_OR_CONTROL": 58,
       "ORPHAN_CANDIDATE": 52,
       "REAL": 20,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 157,
-    "hash": "8faa3a2697f6eb36a11e0638256500f38d051a477997285532de0a3ad5207fad",
+    "file_count": 158,
+    "hash": "1a0462fd88c24e239ea0150a3aa4100e100beb78606381c3d84fbb38029841b8",
     "mutation_count": 0,
-    "previous_hash": "bf63a6f26da90d32b6b7b2ccfb0ec7942f7579b1c3f38afea1a7b923509d7784",
+    "previous_hash": "8faa3a2697f6eb36a11e0638256500f38d051a477997285532de0a3ad5207fad",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T07:53:02+00:00"
+    "timestamp": "2026-07-14T07:54:18+00:00"
   },
   "summary": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 57,
+      "CANONICAL_OR_CONTROL": 58,
       "ORPHAN_CANDIDATE": 52,
       "REAL": 20,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 157,
+    "file_count": 158,
     "mutation_count": 0,
     "result": "pass"
   },

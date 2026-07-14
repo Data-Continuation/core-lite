@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T07:53:02+00:00`
+Generated: `2026-07-14T07:54:18+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,14 +14,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `157`
+- Files scanned: `158`
 - Result: `pass`
 - Mutations performed: `0`
 
 ## Class Counts
 
 - BINARY_OR_UNKNOWN: `3`
-- CANONICAL_OR_CONTROL: `57`
+- CANONICAL_OR_CONTROL: `58`
 - ORPHAN_CANDIDATE: `52`
 - REAL: `20`
 - SUPPORT_ARTIFACT: `25`
@@ -138,6 +138,13 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Class: `CANONICAL_OR_CONTROL`
 - Size: `6904` bytes
+- Evidence:
+  - canonical/control file
+
+### .github/workflows/rce-p0-009-observation.yml
+
+- Class: `CANONICAL_OR_CONTROL`
+- Size: `5307` bytes
 - Evidence:
   - canonical/control file
 
@@ -565,7 +572,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### docs/CORE_LITE_MIRROR_HANDOFF.md
 
 - Class: `SUPPORT_ARTIFACT`
-- Size: `6568` bytes
+- Size: `7278` bytes
 - Evidence:
   - support artifact for upload, verification, documentation, examples, or empty directory retention
 
@@ -1037,5 +1044,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `8faa3a2697f6eb36a11e0638256500f38d051a477997285532de0a3ad5207fad`
+- Receipt hash: `1a0462fd88c24e239ea0150a3aa4100e100beb78606381c3d84fbb38029841b8`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`

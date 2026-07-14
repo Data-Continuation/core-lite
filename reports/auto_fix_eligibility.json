@@ -137,6 +137,15 @@
     },
     {
       "mutation_allowed_now": false,
+      "path": ".github/workflows/rce-p0-009-observation.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
       "path": ".github/workflows/target-capability-gap.yml",
       "reason": "canonical/control file requires explicit boundary review before mutation",
       "recommended_bucket": "DO_NOT_TOUCH",
@@ -1414,33 +1423,33 @@
       "source_class": "ORPHAN_CANDIDATE"
     }
   ],
-  "generated_at": "2026-07-14T07:53:02+00:00",
+  "generated_at": "2026-07-14T07:54:18+00:00",
   "receipt": {
     "auto_fix_eligible_count": 0,
     "auto_quarantine_eligible_count": 0,
     "complete_stub_eligible_count": 0,
-    "do_not_touch_count": 57,
-    "file_count": 157,
-    "hash": "017ea1671442f4bcb5d447e81e2976f2e3d5b5d04506ba4a9b15468f046e546b",
+    "do_not_touch_count": 58,
+    "file_count": 158,
+    "hash": "3007371cf72331692703edc2a55bee9402dc4e687b3fc6e075ec9b5fe6b0d778",
     "human_review_required_count": 55,
     "mutation_count": 0,
-    "previous_hash": "4bc78923ae808b55cfae4b0217a6e8bfa7f1047583a644c8d92f863a2cc789f6",
+    "previous_hash": "017ea1671442f4bcb5d447e81e2976f2e3d5b5d04506ba4a9b15468f046e546b",
     "receipt_type": "core_lite.auto_fix_eligibility",
     "result": "pass",
-    "timestamp": "2026-07-14T07:53:02+00:00"
+    "timestamp": "2026-07-14T07:54:18+00:00"
   },
-  "source_scan_generated_at": "2026-07-14T07:53:02+00:00",
+  "source_scan_generated_at": "2026-07-14T07:54:18+00:00",
   "summary": {
     "bucket_counts": {
-      "DO_NOT_TOUCH": 57,
+      "DO_NOT_TOUCH": 58,
       "HUMAN_REVIEW_REQUIRED": 55,
       "NO_ACTION": 45
     },
-    "file_count": 157,
+    "file_count": 158,
     "mutation_count": 0,
     "result": "pass",
     "transition_block_counts": {
-      "ASK_BOUNDARY_DECISION": 60,
+      "ASK_BOUNDARY_DECISION": 61,
       "AUTO_QUARANTINE_STUB": 52
     }
   }

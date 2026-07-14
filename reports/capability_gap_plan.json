@@ -147,6 +147,7 @@
         ".github/workflows/rce-p0-006-validation.yml",
         ".github/workflows/rce-p0-007-validation.yml",
         ".github/workflows/rce-p0-008-observation.yml",
+        ".github/workflows/rce-p0-009-observation.yml",
         ".github/workflows/target-capability-gap.yml",
         ".github/workflows/target-repo-scan.yml",
         ".github/workflows/workstream-status.yml"
@@ -159,24 +160,24 @@
       "status": "implemented_or_seeded"
     }
   ],
-  "generated_at": "2026-07-14T07:53:02+00:00",
+  "generated_at": "2026-07-14T07:54:19+00:00",
   "receipt": {
     "capability_count": 9,
-    "hash": "2ee5bca5b08d8d2c74bc30f3e59d132631b2f44832ce20fb1aae348b3d2073a8",
+    "hash": "0bae7e1f5b80a2c21339802bd956017bec8b4b5f896199ee95fdd5eae38a15af",
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,
-    "previous_hash": "b272483039ef50db61ac4df05755e9c1462c5809f2f9e3f45495c1d8f37356ad",
+    "previous_hash": "2ee5bca5b08d8d2c74bc30f3e59d132631b2f44832ce20fb1aae348b3d2073a8",
     "receipt_type": "core_lite.capability_gap_plan",
     "repo_role": "core-lite",
     "result": "pass",
-    "timestamp": "2026-07-14T07:53:02+00:00"
+    "timestamp": "2026-07-14T07:54:19+00:00"
   },
   "repo_role": {
     "confidence": "high",
     "role": "core-lite",
     "scores": {
-      "core-lite": 1802,
+      "core-lite": 1813,
       "footprint-auditor": 107,
       "formalism": 55
     }
@@ -184,7 +185,7 @@
   "summary": {
     "capability_count": 9,
     "directory_count": 26,
-    "file_count": 157,
+    "file_count": 158,
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,
