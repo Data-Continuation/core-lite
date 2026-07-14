@@ -1,6 +1,6 @@
 # Core-Lite Capability Gap Plan
 
-Generated: `2026-07-14T07:28:34+00:00`
+Generated: `2026-07-14T07:29:44+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -17,12 +17,12 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Role: `core-lite`
 - Confidence: `high`
-- Scores: `{'footprint-auditor': 107, 'core-lite': 1733, 'formalism': 55}`
+- Scores: `{'footprint-auditor': 107, 'core-lite': 1762, 'formalism': 55}`
 
 ## Summary
 
 - result: `pass`
-- file_count: `148`
+- file_count: `150`
 - directory_count: `25`
 - capability_count: `9`
 - implemented_or_seeded_count: `2`
@@ -113,6 +113,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - `tests/test_build_rce_candidate_intake_envelope.py`
   - `tests/test_execution_candidate_manifest.py`
   - `tests/test_ingest_incoming_contract.py`
+  - `tests/test_publish_rce_candidate_notification.py`
   - `tests/test_receipts_append_contract.py`
   - `tests/test_reconstruct_relationship_conditioned_execution_bundle.py`
   - `tests/test_relationship_conditioned_execution_bundle.py`
@@ -121,7 +122,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - Evidence:
   - signal hit(s): tests/, pytest, unittest
   - expected path exists: tests
-  - implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_build_rce_candidate_intake_envelope.py, tests/test_execution_candidate_manifest.py, tests/test_ingest_incoming_contract.py, tests/test_receipts_append_contract.py, tests/test_reconstruct_relationship_conditioned_execution_bundle.py, tests/test_relationship_conditioned_execution_bundle.py
+  - implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_build_rce_candidate_intake_envelope.py, tests/test_execution_candidate_manifest.py, tests/test_ingest_incoming_contract.py, tests/test_publish_rce_candidate_notification.py, tests/test_receipts_append_contract.py, tests/test_reconstruct_relationship_conditioned_execution_bundle.py
 
 ### workflow — GitHub Actions workflow for running product checks
 
@@ -142,6 +143,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - `.github/workflows/rce-p0-004-validation.yml`
   - `.github/workflows/rce-p0-005-validation.yml`
   - `.github/workflows/rce-p0-006-validation.yml`
+  - `.github/workflows/rce-p0-007-validation.yml`
   - `.github/workflows/target-capability-gap.yml`
   - `.github/workflows/target-repo-scan.yml`
   - `.github/workflows/workstream-status.yml`
@@ -154,5 +156,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `ca0eb6bc0af03a4aa5d67909f14a198202fffdaa1d2835c492907ff65275079c`
+- Receipt hash: `41f785d6cb5f944ad2ffa52d489c237a632e1a9e917c594d396f60809d9dc4b9`
 - Receipt path: `receipts/capability_gap_receipts.jsonl`

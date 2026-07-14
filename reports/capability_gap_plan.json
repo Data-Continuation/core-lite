@@ -103,7 +103,7 @@
       "evidence": [
         "signal hit(s): tests/, pytest, unittest",
         "expected path exists: tests",
-        "implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_build_rce_candidate_intake_envelope.py, tests/test_execution_candidate_manifest.py, tests/test_ingest_incoming_contract.py, tests/test_receipts_append_contract.py, tests/test_reconstruct_relationship_conditioned_execution_bundle.py, tests/test_relationship_conditioned_execution_bundle.py"
+        "implementation file(s): tests/fixtures/sample_ingest_bundle/bundle_manifest.json, tests/fixtures/sample_ingest_bundle/payload/sample.txt, tests/test_build_rce_candidate_intake_envelope.py, tests/test_execution_candidate_manifest.py, tests/test_ingest_incoming_contract.py, tests/test_publish_rce_candidate_notification.py, tests/test_receipts_append_contract.py, tests/test_reconstruct_relationship_conditioned_execution_bundle.py"
       ],
       "implementation_files": [
         "tests/fixtures/sample_ingest_bundle/bundle_manifest.json",
@@ -111,6 +111,7 @@
         "tests/test_build_rce_candidate_intake_envelope.py",
         "tests/test_execution_candidate_manifest.py",
         "tests/test_ingest_incoming_contract.py",
+        "tests/test_publish_rce_candidate_notification.py",
         "tests/test_receipts_append_contract.py",
         "tests/test_reconstruct_relationship_conditioned_execution_bundle.py",
         "tests/test_relationship_conditioned_execution_bundle.py",
@@ -144,6 +145,7 @@
         ".github/workflows/rce-p0-004-validation.yml",
         ".github/workflows/rce-p0-005-validation.yml",
         ".github/workflows/rce-p0-006-validation.yml",
+        ".github/workflows/rce-p0-007-validation.yml",
         ".github/workflows/target-capability-gap.yml",
         ".github/workflows/target-repo-scan.yml",
         ".github/workflows/workstream-status.yml"
@@ -156,24 +158,24 @@
       "status": "implemented_or_seeded"
     }
   ],
-  "generated_at": "2026-07-14T07:28:34+00:00",
+  "generated_at": "2026-07-14T07:29:44+00:00",
   "receipt": {
     "capability_count": 9,
-    "hash": "ca0eb6bc0af03a4aa5d67909f14a198202fffdaa1d2835c492907ff65275079c",
+    "hash": "41f785d6cb5f944ad2ffa52d489c237a632e1a9e917c594d396f60809d9dc4b9",
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,
-    "previous_hash": "65959faf0ef1ae4ac518d0e72353bd16b8b735f9610f9dbd87435aaeb9639c61",
+    "previous_hash": "ca0eb6bc0af03a4aa5d67909f14a198202fffdaa1d2835c492907ff65275079c",
     "receipt_type": "core_lite.capability_gap_plan",
     "repo_role": "core-lite",
     "result": "pass",
-    "timestamp": "2026-07-14T07:28:34+00:00"
+    "timestamp": "2026-07-14T07:29:44+00:00"
   },
   "repo_role": {
     "confidence": "high",
     "role": "core-lite",
     "scores": {
-      "core-lite": 1733,
+      "core-lite": 1762,
       "footprint-auditor": 107,
       "formalism": 55
     }
@@ -181,7 +183,7 @@
   "summary": {
     "capability_count": 9,
     "directory_count": 25,
-    "file_count": 148,
+    "file_count": 150,
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,

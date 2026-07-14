@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T07:28:34+00:00`
-Source scan generated: `2026-07-14T07:28:34+00:00`
+Generated: `2026-07-14T07:29:44+00:00`
+Source scan generated: `2026-07-14T07:29:43+00:00`
 
 ## Done Definition
 
@@ -14,19 +14,19 @@ Source scan generated: `2026-07-14T07:28:34+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `148`
+- Files evaluated: `150`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
-- DO_NOT_TOUCH: `51`
-- HUMAN_REVIEW_REQUIRED: `54`
+- DO_NOT_TOUCH: `52`
+- HUMAN_REVIEW_REQUIRED: `55`
 - NO_ACTION: `43`
 
 ## Transition Block Counts
 
-- ASK_BOUNDARY_DECISION: `54`
-- AUTO_QUARANTINE_STUB: `51`
+- ASK_BOUNDARY_DECISION: `55`
+- AUTO_QUARANTINE_STUB: `52`
 
 ## Decisions
 
@@ -139,6 +139,15 @@ Source scan generated: `2026-07-14T07:28:34+00:00`
 - Reason: canonical/control file requires explicit boundary review before mutation
 
 ### .github/workflows/rce-p0-006-validation.yml
+
+- Source class: `CANONICAL_OR_CONTROL`
+- Recommended bucket: `DO_NOT_TOUCH`
+- Recommended transition block: `ASK_BOUNDARY_DECISION`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: canonical/control file requires explicit boundary review before mutation
+
+### .github/workflows/rce-p0-007-validation.yml
 
 - Source class: `CANONICAL_OR_CONTROL`
 - Recommended bucket: `DO_NOT_TOUCH`
@@ -1146,6 +1155,15 @@ Source scan generated: `2026-07-14T07:28:34+00:00`
 - Requires human review: `True`
 - Reason: orphan candidates are not auto-quarantined without review
 
+### tests/test_publish_rce_candidate_notification.py
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
 ### tests/test_receipts_append_contract.py
 
 - Source class: `ORPHAN_CANDIDATE`
@@ -1364,5 +1382,5 @@ Source scan generated: `2026-07-14T07:28:34+00:00`
 
 ## Receipt
 
-- Receipt hash: `04b9138f83a7ee4dd638a442aa9aefcb84c9298fb71b361449939bc5f3d09b2e`
+- Receipt hash: `846e8e41b748a08edd12ded5118337d5ecb6d7d67d93200e5832f934bc235fc7`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`
