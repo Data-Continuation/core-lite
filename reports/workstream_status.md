@@ -1,6 +1,6 @@
 # Core-Lite Workstream Status
 
-Generated: `2026-07-14T07:06:08+00:00`
+Generated: `2026-07-14T07:06:29+00:00`
 
 ## Summary
 
@@ -114,5 +114,5 @@ Validation: pass
 
 ## Receipts
 
-- Receipt hash: `5670ece72b1f7a6e38c5d6d1b9fb66561c241923b2d461af2ca252dfa5150cb0`
+- Receipt hash: `87b1f4604a42b6cb4ae89235334aad237e42d5f39fbbe7eb19d211132909fde1`
 - Receipt path: `receipts/workstream_receipts.jsonl`

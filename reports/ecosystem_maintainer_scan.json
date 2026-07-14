@@ -1779,6 +1779,19 @@
       "extension": ".py",
       "inbound_refs": [],
       "local_refs": [],
+      "path": "tools/stage_relationship_conditioned_execution_sandbox.py",
+      "python_import_refs": [],
+      "size_bytes": 5174
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": "tools/stegverse001_worker.py",
       "python_import_refs": [],
       "size_bytes": 14119
@@ -1895,33 +1908,33 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T07:06:08+00:00",
+  "generated_at": "2026-07-14T07:06:29+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
       "CANONICAL_OR_CONTROL": 47,
       "ORPHAN_CANDIDATE": 49,
-      "REAL": 15,
+      "REAL": 16,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 139,
-    "hash": "74ac4c4ea2975620657ff9c9ab96927ca9fd2bcf6efcc2c531b09e431887f129",
+    "file_count": 140,
+    "hash": "94a53a192fcf528907471f285eeba46d2ed25110826a568de92d1d790526d0b7",
     "mutation_count": 0,
-    "previous_hash": "31d38e6b49619ba5a6dc93589aa074ab1bc94dfb28edbdc65b84aa93131d79d5",
+    "previous_hash": "74ac4c4ea2975620657ff9c9ab96927ca9fd2bcf6efcc2c531b09e431887f129",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T07:06:08+00:00"
+    "timestamp": "2026-07-14T07:06:29+00:00"
   },
   "summary": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
       "CANONICAL_OR_CONTROL": 47,
       "ORPHAN_CANDIDATE": 49,
-      "REAL": 15,
+      "REAL": 16,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 139,
+    "file_count": 140,
     "mutation_count": 0,
     "result": "pass"
   },
