@@ -1,0 +1,61 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-004",
+  "title": "Independently reconstruct bundle and automate sandbox-intake decision",
+  "status": "ACTIVE",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "owner": "github_actions:rce-p0-004-reconstruction-review",
+  "source_handoff": "docs/CORE_LITE_MIRROR_HANDOFF.md",
+  "activation_dependency": {
+    "task_id": "RCE-P0-003",
+    "required_status": "COMPLETE",
+    "required_evidence": "receipts/rce_p0_003_authoritative_validation.json",
+    "satisfied": true
+  },
+  "goal": "Independently reconstruct the sandbox-only RCE package from canonical sources, compare it byte-for-byte with the committed package, and emit an automated candidate-intake decision without mutating a destination.",
+  "required_outputs": [
+    "tools/reconstruct_relationship_conditioned_execution_bundle.py",
+    "tests/test_reconstruct_relationship_conditioned_execution_bundle.py",
+    "reports/rce_p0_004_reconstruction.json",
+    "receipts/rce_p0_004_authoritative_validation.json",
+    ".github/workflows/rce-p0-004-validation.yml"
+  ],
+  "acceptance_criteria": [
+    "reconstruction implementation does not import the bundle builder",
+    "reconstructed manifest inventory and install plan exactly match committed bytes",
+    "P0-003 authoritative receipt is present and true",
+    "decision is ALLOW_CANDIDATE_INTAKE only when all reconstruction and policy checks pass",
+    "decision never grants production installation or autonomous execution authority",
+    "tampered source inventory manifest plan or receipt fails closed",
+    "authoritative workflow commits report receipt and task state automatically"
+  ],
+  "invariants": [
+    "independent_reconstruction",
+    "candidate_intake_only",
+    "no_destination_mutation",
+    "sandbox_only",
+    "no_autonomous_execution_authority",
+    "fail_closed_on_any_mismatch",
+    "manual_actions_required_is_empty"
+  ],
+  "blocked_by": [],
+  "permitted_scope": [
+    "independent reconstruction",
+    "byte comparison",
+    "candidate-intake decision",
+    "reports",
+    "tests",
+    "receipts",
+    "automatic evidence persistence"
+  ],
+  "prohibited_scope": [
+    "production installation",
+    "destination mutation",
+    "autonomous execution",
+    "human-harm authorization",
+    "real-world target data",
+    "weapons enablement",
+    "cyber exploitation instructions"
+  ]
+}
