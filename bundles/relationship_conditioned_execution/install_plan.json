@@ -1,0 +1,83 @@
+{
+  "automatic_destination_mutation": false,
+  "autonomous_execution_authority": false,
+  "candidate_evidence_only": true,
+  "destination_root": "sandbox/relationship_conditioned_execution",
+  "mode": "sandbox_only",
+  "operations": [
+    {
+      "expected_bytes": 6389,
+      "expected_sha256": "5d5ded6e06fa91767b7f61762b25e6d12817b959323e5f0509228624c34f9f7b",
+      "operation": "copy_candidate_evidence",
+      "order": 1,
+      "source_path": "docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md",
+      "target_path": "sandbox/relationship_conditioned_execution/docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md"
+    },
+    {
+      "expected_bytes": 4786,
+      "expected_sha256": "f3e3d7bcdc6dd73336caf5b125e6c4e843b647e65d25b867990625a4495110ea",
+      "operation": "copy_candidate_evidence",
+      "order": 2,
+      "source_path": "schemas/relationship_conditioned_human_decision_policy.schema.json",
+      "target_path": "sandbox/relationship_conditioned_execution/schemas/relationship_conditioned_human_decision_policy.schema.json"
+    },
+    {
+      "expected_bytes": 3860,
+      "expected_sha256": "64623eec668e83a040e91c827ce8949221adb7a0a3f5009b638213e79523f1c0",
+      "operation": "copy_candidate_evidence",
+      "order": 3,
+      "source_path": "schemas/execution_candidate_manifest.schema.json",
+      "target_path": "sandbox/relationship_conditioned_execution/schemas/execution_candidate_manifest.schema.json"
+    },
+    {
+      "expected_bytes": 4587,
+      "expected_sha256": "2a60c797a7c76236f9f8461e135a6c9d8e773d8fdac3a7500f324eae578acdef",
+      "operation": "copy_candidate_evidence",
+      "order": 4,
+      "source_path": "tools/validate_relationship_conditioned_human_decision_policy.py",
+      "target_path": "sandbox/relationship_conditioned_execution/tools/validate_relationship_conditioned_human_decision_policy.py"
+    },
+    {
+      "expected_bytes": 4143,
+      "expected_sha256": "d85e27463b8a98f523c70ac1fbc1ada1364c0c840a555217e7b4121c74bfc875",
+      "operation": "copy_candidate_evidence",
+      "order": 5,
+      "source_path": "tools/validate_execution_candidate_manifest.py",
+      "target_path": "sandbox/relationship_conditioned_execution/tools/validate_execution_candidate_manifest.py"
+    },
+    {
+      "expected_bytes": 1500,
+      "expected_sha256": "150742d82c2a2663aabeb82a9f1d04a34dc4c24c5a00144fd51dd492730c96f6",
+      "operation": "copy_candidate_evidence",
+      "order": 6,
+      "source_path": "samples/relationship_conditioned_human_decision_policy.example.json",
+      "target_path": "sandbox/relationship_conditioned_execution/samples/relationship_conditioned_human_decision_policy.example.json"
+    },
+    {
+      "expected_bytes": 1237,
+      "expected_sha256": "baf4e0f1763cb6cc3d2dba270807aed69aabd83bec3a0b329659fe701d883695",
+      "operation": "copy_candidate_evidence",
+      "order": 7,
+      "source_path": "samples/execution_candidate_manifest.allow.example.json",
+      "target_path": "sandbox/relationship_conditioned_execution/samples/execution_candidate_manifest.allow.example.json"
+    },
+    {
+      "expected_bytes": 1222,
+      "expected_sha256": "f2a2f7c4651934943231c4c90869b9793569f025ffc701c88887ca61564fee0a",
+      "operation": "copy_candidate_evidence",
+      "order": 8,
+      "source_path": "samples/execution_candidate_manifest.stale_state.example.json",
+      "target_path": "sandbox/relationship_conditioned_execution/samples/execution_candidate_manifest.stale_state.example.json"
+    },
+    {
+      "expected_bytes": 1253,
+      "expected_sha256": "dc30881604f2d821b38a3e756212ef97856a8913be1f1a9d6261a8d23c5e7209",
+      "operation": "copy_candidate_evidence",
+      "order": 9,
+      "source_path": "samples/execution_candidate_manifest.scope_leakage.example.json",
+      "target_path": "sandbox/relationship_conditioned_execution/samples/execution_candidate_manifest.scope_leakage.example.json"
+    }
+  ],
+  "package_id": "relationship-conditioned-execution",
+  "schema": "stegverse.rce.install_plan.v1"
+}
