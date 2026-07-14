@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T05:27:46+00:00`
-Source scan generated: `2026-07-14T05:27:46+00:00`
+Generated: `2026-07-14T05:28:02+00:00`
+Source scan generated: `2026-07-14T05:28:02+00:00`
 
 ## Done Definition
 
@@ -14,14 +14,14 @@ Source scan generated: `2026-07-14T05:27:46+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `128`
+- Files evaluated: `129`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
 - DO_NOT_TOUCH: `43`
 - HUMAN_REVIEW_REQUIRED: `47`
-- NO_ACTION: `38`
+- NO_ACTION: `39`
 
 ## Transition Block Counts
 
@@ -1137,6 +1137,15 @@ Source scan generated: `2026-07-14T05:27:46+00:00`
 - Requires human review: `False`
 - Reason: real file with no maintainer finding
 
+### tools/validate_relationship_conditioned_execution_bundle.py
+
+- Source class: `REAL`
+- Recommended bucket: `NO_ACTION`
+- Recommended transition block: `None`
+- Mutation allowed now: `False`
+- Requires human review: `False`
+- Reason: real file with no maintainer finding
+
 ### tools/validate_relationship_conditioned_human_decision_policy.py
 
 - Source class: `REAL`
@@ -1184,5 +1193,5 @@ Source scan generated: `2026-07-14T05:27:46+00:00`
 
 ## Receipt
 
-- Receipt hash: `7c44fd6682d2e07443fefef9ae7493edd9cc3252be02f9af859a39a7e6e0cba0`
+- Receipt hash: `de98b5076beab4bb1fbccaa396b78c45ab0cd0cb9ba1946bf3fee7d3196e8518`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`
