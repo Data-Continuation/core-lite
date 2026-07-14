@@ -35,7 +35,7 @@ def _sha256(path: Path) -> str:
 
 def _safe_relative(value: str) -> Path:
     path = Path(value)
-    if path.is_absolute() or ".." in path.parts:
+    if not value or path.is_absolute() or ".." in path.parts:
         raise StagingError(f"unsafe relative path: {value}")
     return path
 
@@ -65,8 +65,13 @@ def stage_candidate() -> dict[str, Any]:
         raise StagingError("bundle is not candidate evidence only")
     if manifest.get("autonomous_execution_authority") is not False:
         raise StagingError("bundle claims execution authority")
-    if install_plan.get("destination_class") not in {"sandbox", "repository_local_sandbox"}:
-        raise StagingError("install plan destination is not sandbox-only")
+    if install_plan.get("mode") != "sandbox_only":
+        raise StagingError("install plan mode is not sandbox-only")
+    destination_root = str(install_plan.get("destination_root", ""))
+    if destination_root != "sandbox/relationship_conditioned_execution":
+        raise StagingError("unexpected sandbox destination root")
+    if install_plan.get("automatic_destination_mutation") is not False:
+        raise StagingError("install plan permits automatic destination mutation")
 
     entries = inventory.get("files")
     if not isinstance(entries, list) or not entries:
@@ -82,7 +87,9 @@ def stage_candidate() -> dict[str, Any]:
         if not isinstance(entry, dict):
             raise StagingError("invalid inventory entry")
         source_rel = _safe_relative(str(entry.get("source_path", "")))
-        target_rel = _safe_relative(str(entry.get("target_path", source_rel)))
+        target_rel = _safe_relative(str(entry.get("target_path", "")))
+        if target_rel.parts[:2] != ("sandbox", "relationship_conditioned_execution"):
+            raise StagingError(f"target outside declared sandbox root: {target_rel}")
         source = ROOT / source_rel
         if not source.is_file():
             raise StagingError(f"missing source: {source_rel}")
