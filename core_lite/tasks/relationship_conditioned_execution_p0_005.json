@@ -1,0 +1,64 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-005",
+  "title": "Stage validated RCE candidate evidence in a local sandbox intake area",
+  "status": "ACTIVE",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "owner": "github_actions:rce-p0-005-sandbox-staging",
+  "source_handoff": "docs/CORE_LITE_MIRROR_HANDOFF.md",
+  "activation_dependency": {
+    "task_id": "RCE-P0-004",
+    "required_decision": "ALLOW_CANDIDATE_INTAKE",
+    "required_evidence": "receipts/rce_p0_004_authoritative_validation.json",
+    "satisfaction_mode": "validated_at_runtime_fail_closed"
+  },
+  "goal": "Create an integrity-protected local sandbox staging package with explicit origin, destination, package, reconstruction, and staging receipts without mutating any external or production destination.",
+  "required_outputs": [
+    "tools/stage_relationship_conditioned_execution_candidate.py",
+    "tests/test_stage_relationship_conditioned_execution_candidate.py",
+    "staging/relationship_conditioned_execution/staging_manifest.json",
+    "reports/rce_p0_005_staging.json",
+    "receipts/rce_p0_005_authoritative_validation.json",
+    ".github/workflows/rce-p0-005-validation.yml"
+  ],
+  "acceptance_criteria": [
+    "P0-003 and P0-004 authoritative receipts exist and are true",
+    "P0-004 decision equals ALLOW_CANDIDATE_INTAKE",
+    "all staged files match source sha256 and byte counts",
+    "origin destination package reconstruction and staging receipt references are explicit",
+    "destination is repository-local sandbox staging only",
+    "missing receipt hash mismatch path escape authority expansion or non-sandbox destination fails closed",
+    "workflow persists report receipt task state and automation status automatically",
+    "manual_actions_required remains empty"
+  ],
+  "invariants": [
+    "local_sandbox_only",
+    "candidate_evidence_only",
+    "no_external_destination_mutation",
+    "no_production_installation",
+    "no_autonomous_execution_authority",
+    "complete_receipt_chain",
+    "fail_closed_on_any_mismatch",
+    "manual_actions_required_is_empty"
+  ],
+  "blocked_by": [],
+  "permitted_scope": [
+    "local sandbox staging",
+    "copying validated candidate evidence",
+    "hash verification",
+    "receipt chaining",
+    "reports",
+    "tests",
+    "automatic evidence persistence"
+  ],
+  "prohibited_scope": [
+    "external repository mutation",
+    "production installation",
+    "autonomous execution",
+    "human-harm authorization",
+    "real-world target data",
+    "weapons enablement",
+    "cyber exploitation instructions"
+  ]
+}
