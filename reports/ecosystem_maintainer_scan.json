@@ -710,7 +710,7 @@
       "local_refs": [],
       "path": "docs/CORE_LITE_MIRROR_HANDOFF.md",
       "python_import_refs": [],
-      "size_bytes": 4372
+      "size_bytes": 4670
     },
     {
       "broken_refs": [],
@@ -1556,7 +1556,7 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T04:18:12+00:00",
+  "generated_at": "2026-07-14T04:18:29+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
@@ -1566,13 +1566,13 @@
       "SUPPORT_ARTIFACT": 23
     },
     "file_count": 115,
-    "hash": "7e50e91005474c5792a7caf65554675aa58e11c5bc9fb316c252a12c788b8958",
+    "hash": "4499863a9e69b4645108234db7b54a1145bda790c03c1e1aa2097bb4ec70d472",
     "mutation_count": 0,
-    "previous_hash": "f504389f6accc3c83e4ee9aeda058f9b10b573e00dfd22e0e5edb8090710db0b",
+    "previous_hash": "7e50e91005474c5792a7caf65554675aa58e11c5bc9fb316c252a12c788b8958",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T04:18:12+00:00"
+    "timestamp": "2026-07-14T04:18:29+00:00"
   },
   "summary": {
     "class_counts": {
