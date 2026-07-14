@@ -1569,7 +1569,7 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T04:24:03+00:00",
+  "generated_at": "2026-07-14T04:24:16+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
@@ -1579,13 +1579,13 @@
       "SUPPORT_ARTIFACT": 24
     },
     "file_count": 116,
-    "hash": "57bea67a5348f266830dd0f89236a93cc186a3f9331f5d595172a239046dc74f",
+    "hash": "25af0517b17ea0a0f8de35296a488d7a9db360e977ed0561be44fee463bfbee4",
     "mutation_count": 0,
-    "previous_hash": "57c7673b3f92da52cc4d6b6bc132627993a611a3da4cbcbd5ff5dd6d7e4bf71d",
+    "previous_hash": "57bea67a5348f266830dd0f89236a93cc186a3f9331f5d595172a239046dc74f",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T04:24:03+00:00"
+    "timestamp": "2026-07-14T04:24:16+00:00"
   },
   "summary": {
     "class_counts": {

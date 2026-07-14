@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T04:24:03+00:00`
+Generated: `2026-07-14T04:24:16+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -800,5 +800,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `57bea67a5348f266830dd0f89236a93cc186a3f9331f5d595172a239046dc74f`
+- Receipt hash: `25af0517b17ea0a0f8de35296a488d7a9db360e977ed0561be44fee463bfbee4`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`
