@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T07:23:53+00:00`
+Generated: `2026-07-14T07:24:22+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,7 +14,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `148`
+- Files scanned: `149`
 - Result: `pass`
 - Mutations performed: `0`
 
@@ -23,7 +23,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - BINARY_OR_UNKNOWN: `3`
 - CANONICAL_OR_CONTROL: `49`
 - ORPHAN_CANDIDATE: `54`
-- REAL: `17`
+- REAL: `18`
 - SUPPORT_ARTIFACT: `25`
 
 ## Recommended Next Transition Blocks
@@ -997,5 +997,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `4bc8d637f604a2969c80f56aae60dadbbea916403e0a5b05ec7d294b86726d44`
+- Receipt hash: `e1c3c0038440d2cb13e9bca24ce30d98fffb029cd3337374a0083847bf208116`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`

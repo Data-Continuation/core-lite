@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T07:23:53+00:00`
-Source scan generated: `2026-07-14T07:23:53+00:00`
+Generated: `2026-07-14T07:24:22+00:00`
+Source scan generated: `2026-07-14T07:24:22+00:00`
 
 ## Done Definition
 
@@ -14,14 +14,14 @@ Source scan generated: `2026-07-14T07:23:53+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `148`
+- Files evaluated: `149`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
 - DO_NOT_TOUCH: `49`
 - HUMAN_REVIEW_REQUIRED: `57`
-- NO_ACTION: `42`
+- NO_ACTION: `43`
 
 ## Transition Block Counts
 
@@ -1353,6 +1353,15 @@ Source scan generated: `2026-07-14T07:23:53+00:00`
 - Requires human review: `False`
 - Reason: real file with no maintainer finding
 
+### tools/verify_relationship_conditioned_execution_custody.py
+
+- Source class: `REAL`
+- Recommended bucket: `NO_ACTION`
+- Recommended transition block: `None`
+- Mutation allowed now: `False`
+- Requires human review: `False`
+- Reason: real file with no maintainer finding
+
 ### verification.json
 
 - Source class: `ORPHAN_CANDIDATE`
@@ -1364,5 +1373,5 @@ Source scan generated: `2026-07-14T07:23:53+00:00`
 
 ## Receipt
 
-- Receipt hash: `1b4ce04b21075c2cc0351808378573fe7c5dac5620157fcfe40ec9e68e598ee5`
+- Receipt hash: `c8de6d8e61bd488b65889f87ffffb0f55e93b652670bb503152a87cf8056be29`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`
