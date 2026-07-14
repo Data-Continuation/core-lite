@@ -1,0 +1,20 @@
+{
+  "manual_actions_required": [],
+  "next_goal_candidate": "repair_failed_validation",
+  "observed_at": "2026-07-14T05:26:54.466432+00:00",
+  "rce_p0_001": {
+    "receipt": "receipts/rce_p0_001_authoritative_validation.json",
+    "status": "COMPLETE"
+  },
+  "rce_p0_002": {
+    "activation_allowed": true,
+    "receipt": "receipts/rce_p0_002_authoritative_validation.json",
+    "status": "VALIDATION_FAILED"
+  },
+  "ref": "refs/heads/stegops/rce-handoff-clean",
+  "repository": "Data-Continuation/core-lite",
+  "run_attempt": "1",
+  "run_id": "29308544087",
+  "schema": "stegverse.rce.automation_status.v1",
+  "source_commit_sha": "835e312570478a26f1535b43002ce90b5014681e"
+}
