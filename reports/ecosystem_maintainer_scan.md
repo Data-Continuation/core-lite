@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T07:29:43+00:00`
+Generated: `2026-07-14T07:42:47+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,16 +14,16 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `150`
+- Files scanned: `152`
 - Result: `pass`
 - Mutations performed: `0`
 
 ## Class Counts
 
 - BINARY_OR_UNKNOWN: `3`
-- CANONICAL_OR_CONTROL: `52`
+- CANONICAL_OR_CONTROL: `53`
 - ORPHAN_CANDIDATE: `52`
-- REAL: `18`
+- REAL: `19`
 - SUPPORT_ARTIFACT: `25`
 
 ## Recommended Next Transition Blocks
@@ -255,6 +255,13 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - Evidence:
   - text file with no stub or broken-reference signal
   - no inbound references found in scanned text files
+
+### config/rce_destination_acknowledgement_watch.json
+
+- Class: `CANONICAL_OR_CONTROL`
+- Size: `951` bytes
+- Evidence:
+  - canonical/control file
 
 ### continuity/README.md
 
@@ -1002,5 +1009,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `87b6387831ee7e97bcf6e6838170abc822d0beb9cd4a62897eaf20db8dad250f`
+- Receipt hash: `6c4856e1be723d148e71fb12f1c4f605dea962f281641c475269dd38149a3886`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`

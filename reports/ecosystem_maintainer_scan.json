@@ -432,6 +432,19 @@
       "evidence": [
         "canonical/control file"
       ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "config/rce_destination_acknowledgement_watch.json",
+      "python_import_refs": [],
+      "size_bytes": 951
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
       "extension": ".md",
       "inbound_refs": [],
       "local_refs": [],
@@ -1890,6 +1903,19 @@
         "text file with no stub or broken-reference signal"
       ],
       "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tools/observe_rce_destination_acknowledgement.py",
+      "python_import_refs": [],
+      "size_bytes": 6935
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
       "inbound_refs": [
         "tests/test_publish_rce_candidate_notification.py"
       ],
@@ -2053,33 +2079,33 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T07:29:43+00:00",
+  "generated_at": "2026-07-14T07:42:47+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 52,
+      "CANONICAL_OR_CONTROL": 53,
       "ORPHAN_CANDIDATE": 52,
-      "REAL": 18,
+      "REAL": 19,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 150,
-    "hash": "87b6387831ee7e97bcf6e6838170abc822d0beb9cd4a62897eaf20db8dad250f",
+    "file_count": 152,
+    "hash": "6c4856e1be723d148e71fb12f1c4f605dea962f281641c475269dd38149a3886",
     "mutation_count": 0,
-    "previous_hash": "87d57967a4474c5263e235d270dc210cfbd345e01def0efc341b53f0eda16e9b",
+    "previous_hash": "87b6387831ee7e97bcf6e6838170abc822d0beb9cd4a62897eaf20db8dad250f",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T07:29:43+00:00"
+    "timestamp": "2026-07-14T07:42:47+00:00"
   },
   "summary": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 52,
+      "CANONICAL_OR_CONTROL": 53,
       "ORPHAN_CANDIDATE": 52,
-      "REAL": 18,
+      "REAL": 19,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 150,
+    "file_count": 152,
     "mutation_count": 0,
     "result": "pass"
   },

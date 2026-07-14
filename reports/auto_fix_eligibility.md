@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T07:29:44+00:00`
-Source scan generated: `2026-07-14T07:29:43+00:00`
+Generated: `2026-07-14T07:42:47+00:00`
+Source scan generated: `2026-07-14T07:42:47+00:00`
 
 ## Done Definition
 
@@ -14,18 +14,18 @@ Source scan generated: `2026-07-14T07:29:43+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `150`
+- Files evaluated: `152`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
-- DO_NOT_TOUCH: `52`
+- DO_NOT_TOUCH: `53`
 - HUMAN_REVIEW_REQUIRED: `55`
-- NO_ACTION: `43`
+- NO_ACTION: `44`
 
 ## Transition Block Counts
 
-- ASK_BOUNDARY_DECISION: `55`
+- ASK_BOUNDARY_DECISION: `56`
 - AUTO_QUARANTINE_STUB: `52`
 
 ## Decisions
@@ -317,6 +317,15 @@ Source scan generated: `2026-07-14T07:29:43+00:00`
 - Mutation allowed now: `False`
 - Requires human review: `True`
 - Reason: orphan candidates are not auto-quarantined without review
+
+### config/rce_destination_acknowledgement_watch.json
+
+- Source class: `CANONICAL_OR_CONTROL`
+- Recommended bucket: `DO_NOT_TOUCH`
+- Recommended transition block: `ASK_BOUNDARY_DECISION`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: canonical/control file requires explicit boundary review before mutation
 
 ### continuity/README.md
 
@@ -1272,6 +1281,15 @@ Source scan generated: `2026-07-14T07:29:43+00:00`
 - Requires human review: `False`
 - Reason: real file with no maintainer finding
 
+### tools/observe_rce_destination_acknowledgement.py
+
+- Source class: `REAL`
+- Recommended bucket: `NO_ACTION`
+- Recommended transition block: `None`
+- Mutation allowed now: `False`
+- Requires human review: `False`
+- Reason: real file with no maintainer finding
+
 ### tools/publish_rce_candidate_notification.py
 
 - Source class: `REAL`
@@ -1382,5 +1400,5 @@ Source scan generated: `2026-07-14T07:29:43+00:00`
 
 ## Receipt
 
-- Receipt hash: `846e8e41b748a08edd12ded5118337d5ecb6d7d67d93200e5832f934bc235fc7`
+- Receipt hash: `615dd7157d38c18cf1d7af11921d74cd1e301cd2320636d978500bf0b997a686`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`

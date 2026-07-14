@@ -290,6 +290,15 @@
     },
     {
       "mutation_allowed_now": false,
+      "path": "config/rce_destination_acknowledgement_watch.json",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
       "path": "continuity/README.md",
       "reason": "canonical/control file requires explicit boundary review before mutation",
       "recommended_bucket": "DO_NOT_TOUCH",
@@ -1244,6 +1253,15 @@
     },
     {
       "mutation_allowed_now": false,
+      "path": "tools/observe_rce_destination_acknowledgement.py",
+      "reason": "real file with no maintainer finding",
+      "recommended_bucket": "NO_ACTION",
+      "recommended_transition_block": null,
+      "requires_human_review": false,
+      "source_class": "REAL"
+    },
+    {
+      "mutation_allowed_now": false,
       "path": "tools/publish_rce_candidate_notification.py",
       "reason": "real file with no maintainer finding",
       "recommended_bucket": "NO_ACTION",
@@ -1351,33 +1369,33 @@
       "source_class": "ORPHAN_CANDIDATE"
     }
   ],
-  "generated_at": "2026-07-14T07:29:44+00:00",
+  "generated_at": "2026-07-14T07:42:47+00:00",
   "receipt": {
     "auto_fix_eligible_count": 0,
     "auto_quarantine_eligible_count": 0,
     "complete_stub_eligible_count": 0,
-    "do_not_touch_count": 52,
-    "file_count": 150,
-    "hash": "846e8e41b748a08edd12ded5118337d5ecb6d7d67d93200e5832f934bc235fc7",
+    "do_not_touch_count": 53,
+    "file_count": 152,
+    "hash": "615dd7157d38c18cf1d7af11921d74cd1e301cd2320636d978500bf0b997a686",
     "human_review_required_count": 55,
     "mutation_count": 0,
-    "previous_hash": "04b9138f83a7ee4dd638a442aa9aefcb84c9298fb71b361449939bc5f3d09b2e",
+    "previous_hash": "846e8e41b748a08edd12ded5118337d5ecb6d7d67d93200e5832f934bc235fc7",
     "receipt_type": "core_lite.auto_fix_eligibility",
     "result": "pass",
-    "timestamp": "2026-07-14T07:29:44+00:00"
+    "timestamp": "2026-07-14T07:42:47+00:00"
   },
-  "source_scan_generated_at": "2026-07-14T07:29:43+00:00",
+  "source_scan_generated_at": "2026-07-14T07:42:47+00:00",
   "summary": {
     "bucket_counts": {
-      "DO_NOT_TOUCH": 52,
+      "DO_NOT_TOUCH": 53,
       "HUMAN_REVIEW_REQUIRED": 55,
-      "NO_ACTION": 43
+      "NO_ACTION": 44
     },
-    "file_count": 150,
+    "file_count": 152,
     "mutation_count": 0,
     "result": "pass",
     "transition_block_counts": {
-      "ASK_BOUNDARY_DECISION": 55,
+      "ASK_BOUNDARY_DECISION": 56,
       "AUTO_QUARANTINE_STUB": 52
     }
   }
