@@ -2,7 +2,7 @@
   "schema": "stegverse.core_lite.task.v1",
   "task_id": "RCE-P0-001",
   "title": "Define normative relationship-conditioned human-decision policy",
-  "status": "DECLARED",
+  "status": "IMPLEMENTED_PENDING_CI",
   "priority": "P0",
   "owner_repo": "Data-Continuation/core-lite",
   "source_handoff": "docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md",
@@ -12,8 +12,15 @@
     "docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md",
     "schemas/relationship_conditioned_human_decision_policy.schema.json",
     "samples/relationship_conditioned_human_decision_policy.example.json",
+    "tools/validate_relationship_conditioned_human_decision_policy.py",
     "tests/test_relationship_conditioned_human_decision_policy.py"
   ],
+  "outputs_present": true,
+  "validation": {
+    "local": "BLOCKED_NETWORK_NO_REPOSITORY_CLONE",
+    "pull_request_workflow_runs": 0,
+    "required_next_event": "authoritative CI or local checkout executes validator and pytest target"
+  },
   "invariants": [
     "human_is_not_system_owned_resource",
     "relationship_history_does_not_create_authority",
@@ -32,7 +39,7 @@
     "unknown or conflicting authority returns ABSTAIN, ESCALATE, or FAIL_CLOSED",
     "tests preserve non-guarantee and temporal-identity disclosures without treating them as consent substitutes"
   ],
-  "blocked_by": [],
+  "blocked_by": ["authoritative_validation_receipt_missing"],
   "supersedes": [],
   "next_task_candidate": "RCE-P0-002 canonical manifest and sandbox fixture package",
   "permitted_scope": ["policy", "schema", "examples", "tests", "sandbox fixtures", "receipts"],
