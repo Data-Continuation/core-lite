@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T07:09:22+00:00`
+Generated: `2026-07-14T07:22:24+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,7 +14,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `142`
+- Files scanned: `143`
 - Result: `pass`
 - Mutations performed: `0`
 
@@ -23,7 +23,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - BINARY_OR_UNKNOWN: `3`
 - CANONICAL_OR_CONTROL: `48`
 - ORPHAN_CANDIDATE: `50`
-- REAL: `16`
+- REAL: `17`
 - SUPPORT_ARTIFACT: `25`
 
 ## Recommended Next Transition Blocks
@@ -943,7 +943,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### tests/test_stage_relationship_conditioned_execution_sandbox.py
 
 - Class: `ORPHAN_CANDIDATE`
-- Size: `4459` bytes
+- Size: `5124` bytes
 - Evidence:
   - text file with no stub or broken-reference signal
   - no inbound references found in scanned text files
@@ -958,5 +958,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `0b213a6e96f0bf3679ea77ca5e3c7588fbd7d7e7ac456e21b9a914daa2b859ce`
+- Receipt hash: `eef7b99df3c09e74195c2d68385a3a835426f6912976eaad630152b8da45c5c4`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`

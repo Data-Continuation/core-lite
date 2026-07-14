@@ -1701,7 +1701,7 @@
       "python_import_refs": [
         "tools/stage_relationship_conditioned_execution_sandbox.py"
       ],
-      "size_bytes": 4459
+      "size_bytes": 5124
     },
     {
       "broken_refs": [],
@@ -1783,6 +1783,19 @@
       "path": "tools/measure_friction.py",
       "python_import_refs": [],
       "size_bytes": 9335
+    },
+    {
+      "broken_refs": [],
+      "class": "REAL",
+      "evidence": [
+        "text file with no stub or broken-reference signal"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tools/reconcile_relationship_conditioned_execution.py",
+      "python_import_refs": [],
+      "size_bytes": 8414
     },
     {
       "broken_refs": [],
@@ -1939,33 +1952,33 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T07:09:22+00:00",
+  "generated_at": "2026-07-14T07:22:24+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
       "CANONICAL_OR_CONTROL": 48,
       "ORPHAN_CANDIDATE": 50,
-      "REAL": 16,
+      "REAL": 17,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 142,
-    "hash": "0b213a6e96f0bf3679ea77ca5e3c7588fbd7d7e7ac456e21b9a914daa2b859ce",
+    "file_count": 143,
+    "hash": "eef7b99df3c09e74195c2d68385a3a835426f6912976eaad630152b8da45c5c4",
     "mutation_count": 0,
-    "previous_hash": "94a53a192fcf528907471f285eeba46d2ed25110826a568de92d1d790526d0b7",
+    "previous_hash": "0b213a6e96f0bf3679ea77ca5e3c7588fbd7d7e7ac456e21b9a914daa2b859ce",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T07:09:22+00:00"
+    "timestamp": "2026-07-14T07:22:24+00:00"
   },
   "summary": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
       "CANONICAL_OR_CONTROL": 48,
       "ORPHAN_CANDIDATE": 50,
-      "REAL": 16,
+      "REAL": 17,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 142,
+    "file_count": 143,
     "mutation_count": 0,
     "result": "pass"
   },
