@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-14T05:03:21+00:00",
+  "generated_at": "2026-07-14T05:10:08+00:00",
   "receipt": {
     "error_count": 0,
-    "hash": "969efba9408a3a7082abccaec825fc1d4ec7fd2252fd8f4ca4a1fe6a6913e0ef",
-    "previous_hash": "2958a7371ee4249f509229e03464eb699d2f53ee2fb4e76ad8453201d4470027",
+    "hash": "a8d1e94204a9243dbc5204830e606b88f979a80f570524fe56a3f0fac47f8dae",
+    "previous_hash": "969efba9408a3a7082abccaec825fc1d4ec7fd2252fd8f4ca4a1fe6a6913e0ef",
     "receipt_type": "core_lite.workstream_status",
     "result": "pass",
-    "timestamp": "2026-07-14T05:03:21+00:00",
+    "timestamp": "2026-07-14T05:10:08+00:00",
     "transition_block_count": 52,
     "warning_count": 0,
     "workstream_count": 8
