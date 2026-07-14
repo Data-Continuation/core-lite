@@ -1,0 +1,140 @@
+name: RCE P0-007 Candidate Notification
+
+on:
+  push:
+    branches: [main, stegops/rce-handoff-clean]
+    paths:
+      - "exports/relationship_conditioned_execution/candidate_envelope.json"
+      - "receipts/rce_p0_006_authoritative_validation.json"
+      - "tools/publish_rce_candidate_notification.py"
+      - "tests/test_publish_rce_candidate_notification.py"
+      - "core_lite/tasks/relationship_conditioned_execution_p0_007.json"
+      - ".github/workflows/rce-p0-007-validation.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  publish-notification:
+    if: ${{ !contains(github.event.head_commit.message, '[rce-p0-007-state]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Detect predecessor evidence
+        id: dependency
+        run: |
+          if [[ -f receipts/rce_p0_006_authoritative_validation.json && -f exports/relationship_conditioned_execution/candidate_envelope.json ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Wait automatically
+        if: steps.dependency.outputs.ready != 'true'
+        run: echo "RCE-P0-007 waiting automatically for P0-006 evidence"
+      - name: Install tests
+        if: steps.dependency.outputs.ready == 'true'
+        run: python -m pip install pytest
+      - name: Run focused tests
+        if: steps.dependency.outputs.ready == 'true'
+        run: python -m pytest -q tests/test_publish_rce_candidate_notification.py
+      - name: Publish candidate notification
+        if: steps.dependency.outputs.ready == 'true'
+        run: python tools/publish_rce_candidate_notification.py
+      - name: Persist report receipt and task state
+        if: steps.dependency.outputs.ready == 'true'
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_number }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          python - <<'PY'
+          import hashlib, json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          root = Path('.')
+          notification_path = root / 'notifications/relationship_conditioned_execution/candidate_available.json'
+          notification = json.loads(notification_path.read_text())
+          digest = hashlib.sha256(notification_path.read_bytes()).hexdigest()
+          now = datetime.now(timezone.utc).isoformat()
+
+          report = dict(notification)
+          report.update({
+              'observed_at': now,
+              'notification_sha256': digest,
+              'authoritative_run_id': int(os.environ['RUN_ID']),
+              'authoritative_run_number': int(os.environ['RUN_NUMBER']),
+              'authoritative_run_commit': os.environ['COMMIT_SHA'],
+          })
+          Path('reports').mkdir(exist_ok=True)
+          Path('reports/rce_p0_007_candidate_notification.json').write_text(json.dumps(report, indent=2, sort_keys=True) + '\n')
+
+          receipt = {
+              'schema': 'stegverse.validation.receipt.v1',
+              'task_id': 'RCE-P0-007',
+              'authoritative_completion_evidence': True,
+              'authoritative_run_id': int(os.environ['RUN_ID']),
+              'authoritative_run_number': int(os.environ['RUN_NUMBER']),
+              'authoritative_run_commit': os.environ['COMMIT_SHA'],
+              'notification': 'notifications/relationship_conditioned_execution/candidate_available.json',
+              'notification_sha256': digest,
+              'outcomes': {'focused_tests': 'success', 'notification_publish': 'success'},
+              'manual_actions_required': [],
+              'completed_at': now,
+          }
+          Path('receipts').mkdir(exist_ok=True)
+          Path('receipts/rce_p0_007_authoritative_validation.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n')
+
+          task_path = Path('core_lite/tasks/relationship_conditioned_execution_p0_007.json')
+          task = json.loads(task_path.read_text())
+          task.update({
+              'status': 'COMPLETE',
+              'completed_at': now,
+              'validation': {
+                  'status': 'PASS',
+                  'workflow': '.github/workflows/rce-p0-007-validation.yml',
+                  'authoritative_run_id': int(os.environ['RUN_ID']),
+                  'authoritative_run_number': int(os.environ['RUN_NUMBER']),
+                  'authoritative_run_commit': os.environ['COMMIT_SHA'],
+                  'authoritative_receipt': 'receipts/rce_p0_007_authoritative_validation.json',
+                  'authoritative_completion_evidence': True,
+                  'manual_actions_required': [],
+              },
+              'successor_task': 'RCE-P0-008',
+          })
+          task_path.write_text(json.dumps(task, indent=2, sort_keys=True) + '\n')
+
+          successor = {
+              'schema': 'stegverse.core_lite.task.v1',
+              'task_id': 'RCE-P0-008',
+              'title': 'Observe destination-owned acknowledgement without fabricating receipt',
+              'status': 'DECLARED_AUTOMATION_OWNED',
+              'priority': 'P0',
+              'owner_repo': 'Data-Continuation/core-lite',
+              'owner': 'github_actions:rce-p0-008-acknowledgement-observer',
+              'activation_dependency': {
+                  'task_id': 'RCE-P0-007',
+                  'required_status': 'COMPLETE',
+                  'required_evidence': 'receipts/rce_p0_007_authoritative_validation.json',
+                  'satisfied': True,
+              },
+              'goal': 'Publish observation state for destination-owned acknowledgement while treating absence as pending and never fabricating receipt or acceptance.',
+              'manual_actions_required': [],
+              'prohibited_scope': ['destination mutation', 'fabricated receipt', 'acceptance claim', 'production installation', 'autonomous execution'],
+          }
+          Path('core_lite/tasks/relationship_conditioned_execution_p0_008.json').write_text(json.dumps(successor, indent=2, sort_keys=True) + '\n')
+          PY
+      - name: Commit generated state
+        if: steps.dependency.outputs.ready == 'true'
+        run: |
+          git config user.name "stegverse-automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add notifications/relationship_conditioned_execution/candidate_available.json reports/rce_p0_007_candidate_notification.json receipts/rce_p0_007_authoritative_validation.json core_lite/tasks/relationship_conditioned_execution_p0_007.json core_lite/tasks/relationship_conditioned_execution_p0_008.json
+          git diff --cached --quiet || git commit -m "chore: persist RCE P0-007 notification [rce-p0-007-state]"
+          git push
