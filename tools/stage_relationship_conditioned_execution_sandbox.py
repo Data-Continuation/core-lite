@@ -16,9 +16,6 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-BUNDLE_ROOT = ROOT / "bundles" / "relationship_conditioned_execution"
-DEFAULT_STAGE_ROOT = ROOT / "sandbox" / "intake" / "relationship_conditioned_execution"
-P0_004_RECEIPT = ROOT / "receipts" / "rce_p0_004_authoritative_validation.json"
 PACKAGE_FILES = ("bundle_manifest.json", "install_plan.json", "source_inventory.json")
 
 
@@ -50,16 +47,37 @@ def _require_safe_receipt(receipt: dict[str, Any]) -> None:
         raise StagingError("predecessor still requires manual actions")
 
 
+def _require_safe_manifest(manifest: dict[str, Any]) -> None:
+    if manifest.get("schema") != "stegverse.rce.bundle_manifest.v1":
+        raise StagingError("unexpected bundle manifest schema")
+    if manifest.get("sandbox_only") is not True:
+        raise StagingError("bundle is not sandbox only")
+    if manifest.get("candidate_evidence_only") is not True:
+        raise StagingError("bundle is not candidate evidence only")
+    if manifest.get("autonomous_execution_authority") is not False:
+        raise StagingError("bundle grants autonomous execution authority")
+    if manifest.get("human_harm_authority") is not False:
+        raise StagingError("bundle grants human-harm authority")
+    if manifest.get("production_destination_allowed") is not False:
+        raise StagingError("bundle permits a production destination")
+    if manifest.get("receipts_required") is not True:
+        raise StagingError("bundle does not require receipts")
+
+
 def stage(root: Path = ROOT, stage_root: Path | None = None) -> dict[str, Any]:
     bundle_root = root / "bundles" / "relationship_conditioned_execution"
     receipt_path = root / "receipts" / "rce_p0_004_authoritative_validation.json"
     destination = stage_root or (root / "sandbox" / "intake" / "relationship_conditioned_execution")
+    sandbox_root = (root / "sandbox" / "intake").resolve()
 
-    if destination.resolve().is_relative_to((root / "sandbox" / "intake").resolve()) is False:
+    if not destination.resolve().is_relative_to(sandbox_root):
         raise StagingError("staging destination escaped sandbox intake")
 
     receipt = _load_json(receipt_path)
     _require_safe_receipt(receipt)
+
+    manifest = _load_json(bundle_root / "bundle_manifest.json")
+    _require_safe_manifest(manifest)
 
     source_entries: list[dict[str, Any]] = []
     for filename in PACKAGE_FILES:
@@ -75,17 +93,6 @@ def stage(root: Path = ROOT, stage_root: Path | None = None) -> dict[str, Any]:
             }
         )
 
-    manifest = _load_json(bundle_root / "bundle_manifest.json")
-    authority = manifest.get("authority", {})
-    if authority.get("candidate_evidence_only") is not True:
-        raise StagingError("bundle is not candidate evidence only")
-    if authority.get("autonomous_execution_authority") is not False:
-        raise StagingError("bundle grants autonomous execution authority")
-    if authority.get("human_harm_authority") is not False:
-        raise StagingError("bundle grants human-harm authority")
-    if manifest.get("production_destination_allowed") is not False:
-        raise StagingError("bundle permits a production destination")
-
     if destination.exists():
         shutil.rmtree(destination)
     destination.mkdir(parents=True, exist_ok=True)
@@ -99,6 +106,8 @@ def stage(root: Path = ROOT, stage_root: Path | None = None) -> dict[str, Any]:
         "source_task": "RCE-P0-004",
         "source_receipt": str(receipt_path.relative_to(root)),
         "source_receipt_sha256": _sha256(receipt_path),
+        "source_package_id": manifest.get("package_id"),
+        "source_package_version": manifest.get("package_version"),
         "decision": "STAGED_CANDIDATE_EVIDENCE",
         "sandbox_only": True,
         "candidate_evidence_only": True,
