@@ -68,12 +68,17 @@ jobs:
         continue-on-error: true
         run: python tools/reconcile_relationship_conditioned_execution.py
 
+      - name: Verify RCE custody and deterministic replay
+        id: rce_custody
+        continue-on-error: true
+        run: python tools/verify_relationship_conditioned_execution_custody.py
+
       - name: Publish managed reports, receipts, task state, and sandbox evidence
         run: |
           set -euo pipefail
           git config user.name "Data-Continuation Core-Lite Manager"
           git config user.email "core-lite-manager@data-continuation"
-          git add -A reports/ receipts/ core_lite/tasks/relationship_conditioned_execution_p0_004.json core_lite/tasks/relationship_conditioned_execution_p0_005.json sandbox/intake/relationship_conditioned_execution/ || true
+          git add -A reports/ receipts/ core_lite/tasks/relationship_conditioned_execution_p0_004.json core_lite/tasks/relationship_conditioned_execution_p0_005.json core_lite/tasks/relationship_conditioned_execution_p0_006.json sandbox/intake/relationship_conditioned_execution/ || true
           if git diff --staged --quiet; then
             echo "No managed state changed."
           else
@@ -109,14 +114,16 @@ jobs:
             reports/stegverse_002_export_manifest.json
             receipts/stegverse_002_export_receipts.jsonl
             reports/rce_p0_004_reconstruction.json
+            reports/rce_p0_006_custody_replay.json
             reports/rce_automation_status.json
             receipts/rce_p0_004_authoritative_validation.json
             receipts/rce_p0_005_authoritative_validation.json
+            receipts/rce_p0_006_authoritative_validation.json
             sandbox/intake/relationship_conditioned_execution/staging_manifest.json
           if-no-files-found: error
 
-      - name: Enforce RCE reconciliation result
-        if: ${{ steps.rce.outcome != 'success' }}
+      - name: Enforce RCE managed results
+        if: ${{ steps.rce.outcome != 'success' || steps.rce_custody.outcome != 'success' }}
         run: |
-          echo "RCE reconciliation failed closed after state persistence."
+          echo "RCE managed verification failed closed after state persistence."
           exit 1
