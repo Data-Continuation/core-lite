@@ -126,6 +126,19 @@
       "extension": ".yml",
       "inbound_refs": [],
       "local_refs": [],
+      "path": ".github/workflows/rce-p0-003-validation.yml",
+      "python_import_refs": [],
+      "size_bytes": 8760
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": ".github/workflows/target-capability-gap.yml",
       "python_import_refs": [],
       "size_bytes": 2287
@@ -318,6 +331,48 @@
       "path": "bundle_manifest.json",
       "python_import_refs": [],
       "size_bytes": 1330
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "bundles/relationship_conditioned_execution/bundle_manifest.json",
+      "python_import_refs": [],
+      "size_bytes": 839
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "bundles/relationship_conditioned_execution/install_plan.json",
+      "python_import_refs": [],
+      "size_bytes": 4015
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "bundles/relationship_conditioned_execution/source_inventory.json",
+      "python_import_refs": [],
+      "size_bytes": 3527
     },
     {
       "broken_refs": [],
@@ -697,7 +752,20 @@
       "local_refs": [],
       "path": "core_lite/tasks/relationship_conditioned_execution_p0_003.json",
       "python_import_refs": [],
-      "size_bytes": 2560
+      "size_bytes": 3227
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/tasks/relationship_conditioned_execution_p0_004.json",
+      "python_import_refs": [],
+      "size_bytes": 2407
     },
     {
       "broken_refs": [],
@@ -1540,6 +1608,23 @@
       "extension": ".py",
       "inbound_refs": [],
       "local_refs": [],
+      "path": "tests/test_relationship_conditioned_execution_bundle.py",
+      "python_import_refs": [
+        "tools/build_relationship_conditioned_execution_bundle.py",
+        "tools/validate_relationship_conditioned_execution_bundle.py"
+      ],
+      "size_bytes": 3571
+    },
+    {
+      "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": "tests/test_relationship_conditioned_human_decision_policy.py",
       "python_import_refs": [
         "tools/validate_relationship_conditioned_human_decision_policy.py"
@@ -1566,7 +1651,9 @@
         "text file with no stub or broken-reference signal"
       ],
       "extension": ".py",
-      "inbound_refs": [],
+      "inbound_refs": [
+        "tests/test_relationship_conditioned_execution_bundle.py"
+      ],
       "local_refs": [],
       "path": "tools/build_relationship_conditioned_execution_bundle.py",
       "python_import_refs": [],
@@ -1672,7 +1759,9 @@
         "text file with no stub or broken-reference signal"
       ],
       "extension": ".py",
-      "inbound_refs": [],
+      "inbound_refs": [
+        "tests/test_relationship_conditioned_execution_bundle.py"
+      ],
       "local_refs": [],
       "path": "tools/validate_relationship_conditioned_execution_bundle.py",
       "python_import_refs": [],
@@ -1747,33 +1836,33 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T05:28:02+00:00",
+  "generated_at": "2026-07-14T05:29:30+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 43,
-      "ORPHAN_CANDIDATE": 44,
+      "CANONICAL_OR_CONTROL": 45,
+      "ORPHAN_CANDIDATE": 48,
       "REAL": 14,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 129,
-    "hash": "ccd5669a2a0d25e1a66e31ac365d6d38b370e0d7fb467dd6435e8edff7c517ef",
+    "file_count": 135,
+    "hash": "717de29ee18b0342d1a79682b77e938e33ef87273ede383d22f85f4967acf89c",
     "mutation_count": 0,
-    "previous_hash": "29b6af4a38cddcd3ae2c5ea869eb884a0f986c0ac95ed5e393555283af07d2e1",
+    "previous_hash": "ccd5669a2a0d25e1a66e31ac365d6d38b370e0d7fb467dd6435e8edff7c517ef",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T05:28:02+00:00"
+    "timestamp": "2026-07-14T05:29:30+00:00"
   },
   "summary": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 43,
-      "ORPHAN_CANDIDATE": 44,
+      "CANONICAL_OR_CONTROL": 45,
+      "ORPHAN_CANDIDATE": 48,
       "REAL": 14,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 129,
+    "file_count": 135,
     "mutation_count": 0,
     "result": "pass"
   },

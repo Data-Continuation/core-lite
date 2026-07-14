@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T05:28:02+00:00`
-Source scan generated: `2026-07-14T05:28:02+00:00`
+Generated: `2026-07-14T05:29:30+00:00`
+Source scan generated: `2026-07-14T05:29:30+00:00`
 
 ## Done Definition
 
@@ -14,19 +14,19 @@ Source scan generated: `2026-07-14T05:28:02+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `129`
+- Files evaluated: `135`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
-- DO_NOT_TOUCH: `43`
-- HUMAN_REVIEW_REQUIRED: `47`
+- DO_NOT_TOUCH: `45`
+- HUMAN_REVIEW_REQUIRED: `51`
 - NO_ACTION: `39`
 
 ## Transition Block Counts
 
-- ASK_BOUNDARY_DECISION: `46`
-- AUTO_QUARANTINE_STUB: `44`
+- ASK_BOUNDARY_DECISION: `48`
+- AUTO_QUARANTINE_STUB: `48`
 
 ## Decisions
 
@@ -103,6 +103,15 @@ Source scan generated: `2026-07-14T05:28:02+00:00`
 - Reason: canonical/control file requires explicit boundary review before mutation
 
 ### .github/workflows/rce-p0-002-validation.yml
+
+- Source class: `CANONICAL_OR_CONTROL`
+- Recommended bucket: `DO_NOT_TOUCH`
+- Recommended transition block: `ASK_BOUNDARY_DECISION`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: canonical/control file requires explicit boundary review before mutation
+
+### .github/workflows/rce-p0-003-validation.yml
 
 - Source class: `CANONICAL_OR_CONTROL`
 - Recommended bucket: `DO_NOT_TOUCH`
@@ -238,6 +247,33 @@ Source scan generated: `2026-07-14T05:28:02+00:00`
 - Reason: support artifact should be kept unless superseded by bundle registry policy
 
 ### bundle_manifest.json
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
+### bundles/relationship_conditioned_execution/bundle_manifest.json
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
+### bundles/relationship_conditioned_execution/install_plan.json
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
+### bundles/relationship_conditioned_execution/source_inventory.json
 
 - Source class: `ORPHAN_CANDIDATE`
 - Recommended bucket: `HUMAN_REVIEW_REQUIRED`
@@ -490,6 +526,15 @@ Source scan generated: `2026-07-14T05:28:02+00:00`
 - Reason: canonical/control file requires explicit boundary review before mutation
 
 ### core_lite/tasks/relationship_conditioned_execution_p0_003.json
+
+- Source class: `CANONICAL_OR_CONTROL`
+- Recommended bucket: `DO_NOT_TOUCH`
+- Recommended transition block: `ASK_BOUNDARY_DECISION`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: canonical/control file requires explicit boundary review before mutation
+
+### core_lite/tasks/relationship_conditioned_execution_p0_004.json
 
 - Source class: `CANONICAL_OR_CONTROL`
 - Recommended bucket: `DO_NOT_TOUCH`
@@ -1047,6 +1092,15 @@ Source scan generated: `2026-07-14T05:28:02+00:00`
 - Requires human review: `True`
 - Reason: orphan candidates are not auto-quarantined without review
 
+### tests/test_relationship_conditioned_execution_bundle.py
+
+- Source class: `ORPHAN_CANDIDATE`
+- Recommended bucket: `HUMAN_REVIEW_REQUIRED`
+- Recommended transition block: `AUTO_QUARANTINE_STUB`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: orphan candidates are not auto-quarantined without review
+
 ### tests/test_relationship_conditioned_human_decision_policy.py
 
 - Source class: `ORPHAN_CANDIDATE`
@@ -1193,5 +1247,5 @@ Source scan generated: `2026-07-14T05:28:02+00:00`
 
 ## Receipt
 
-- Receipt hash: `de98b5076beab4bb1fbccaa396b78c45ab0cd0cb9ba1946bf3fee7d3196e8518`
+- Receipt hash: `68b05c1e8a586a5bbb47847b86d1b4dd3368e8fff15b3e83fb11c05cd281e172`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`

@@ -83,6 +83,15 @@
     },
     {
       "mutation_allowed_now": false,
+      "path": ".github/workflows/rce-p0-003-validation.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
       "path": ".github/workflows/target-capability-gap.yml",
       "reason": "canonical/control file requires explicit boundary review before mutation",
       "recommended_bucket": "DO_NOT_TOUCH",
@@ -210,6 +219,33 @@
     {
       "mutation_allowed_now": false,
       "path": "bundle_manifest.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "bundles/relationship_conditioned_execution/bundle_manifest.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "bundles/relationship_conditioned_execution/install_plan.json",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "bundles/relationship_conditioned_execution/source_inventory.json",
       "reason": "orphan candidates are not auto-quarantined without review",
       "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
       "recommended_transition_block": "AUTO_QUARANTINE_STUB",
@@ -462,6 +498,15 @@
     {
       "mutation_allowed_now": false,
       "path": "core_lite/tasks/relationship_conditioned_execution_p0_003.json",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
+      "path": "core_lite/tasks/relationship_conditioned_execution_p0_004.json",
       "reason": "canonical/control file requires explicit boundary review before mutation",
       "recommended_bucket": "DO_NOT_TOUCH",
       "recommended_transition_block": "ASK_BOUNDARY_DECISION",
@@ -1019,6 +1064,15 @@
     },
     {
       "mutation_allowed_now": false,
+      "path": "tests/test_relationship_conditioned_execution_bundle.py",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
       "path": "tests/test_relationship_conditioned_human_decision_policy.py",
       "reason": "orphan candidates are not auto-quarantined without review",
       "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
@@ -1162,34 +1216,34 @@
       "source_class": "ORPHAN_CANDIDATE"
     }
   ],
-  "generated_at": "2026-07-14T05:28:02+00:00",
+  "generated_at": "2026-07-14T05:29:30+00:00",
   "receipt": {
     "auto_fix_eligible_count": 0,
     "auto_quarantine_eligible_count": 0,
     "complete_stub_eligible_count": 0,
-    "do_not_touch_count": 43,
-    "file_count": 129,
-    "hash": "de98b5076beab4bb1fbccaa396b78c45ab0cd0cb9ba1946bf3fee7d3196e8518",
-    "human_review_required_count": 47,
+    "do_not_touch_count": 45,
+    "file_count": 135,
+    "hash": "68b05c1e8a586a5bbb47847b86d1b4dd3368e8fff15b3e83fb11c05cd281e172",
+    "human_review_required_count": 51,
     "mutation_count": 0,
-    "previous_hash": "7c44fd6682d2e07443fefef9ae7493edd9cc3252be02f9af859a39a7e6e0cba0",
+    "previous_hash": "de98b5076beab4bb1fbccaa396b78c45ab0cd0cb9ba1946bf3fee7d3196e8518",
     "receipt_type": "core_lite.auto_fix_eligibility",
     "result": "pass",
-    "timestamp": "2026-07-14T05:28:02+00:00"
+    "timestamp": "2026-07-14T05:29:30+00:00"
   },
-  "source_scan_generated_at": "2026-07-14T05:28:02+00:00",
+  "source_scan_generated_at": "2026-07-14T05:29:30+00:00",
   "summary": {
     "bucket_counts": {
-      "DO_NOT_TOUCH": 43,
-      "HUMAN_REVIEW_REQUIRED": 47,
+      "DO_NOT_TOUCH": 45,
+      "HUMAN_REVIEW_REQUIRED": 51,
       "NO_ACTION": 39
     },
-    "file_count": 129,
+    "file_count": 135,
     "mutation_count": 0,
     "result": "pass",
     "transition_block_counts": {
-      "ASK_BOUNDARY_DECISION": 46,
-      "AUTO_QUARANTINE_STUB": 44
+      "ASK_BOUNDARY_DECISION": 48,
+      "AUTO_QUARANTINE_STUB": 48
     }
   }
 }

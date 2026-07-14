@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T05:28:02+00:00`
+Generated: `2026-07-14T05:29:30+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,15 +14,15 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `129`
+- Files scanned: `135`
 - Result: `pass`
 - Mutations performed: `0`
 
 ## Class Counts
 
 - BINARY_OR_UNKNOWN: `3`
-- CANONICAL_OR_CONTROL: `43`
-- ORPHAN_CANDIDATE: `44`
+- CANONICAL_OR_CONTROL: `45`
+- ORPHAN_CANDIDATE: `48`
 - REAL: `14`
 - SUPPORT_ARTIFACT: `25`
 
@@ -96,6 +96,13 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Class: `CANONICAL_OR_CONTROL`
 - Size: `5119` bytes
+- Evidence:
+  - canonical/control file
+
+### .github/workflows/rce-p0-003-validation.yml
+
+- Class: `CANONICAL_OR_CONTROL`
+- Size: `8760` bytes
 - Evidence:
   - canonical/control file
 
@@ -193,6 +200,30 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Class: `ORPHAN_CANDIDATE`
 - Size: `1330` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
+### bundles/relationship_conditioned_execution/bundle_manifest.json
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `839` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
+### bundles/relationship_conditioned_execution/install_plan.json
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `4015` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
+### bundles/relationship_conditioned_execution/source_inventory.json
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `3527` bytes
 - Evidence:
   - text file with no stub or broken-reference signal
   - no inbound references found in scanned text files
@@ -401,7 +432,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### core_lite/tasks/relationship_conditioned_execution_p0_003.json
 
 - Class: `CANONICAL_OR_CONTROL`
-- Size: `2560` bytes
+- Size: `3227` bytes
+- Evidence:
+  - canonical/control file
+
+### core_lite/tasks/relationship_conditioned_execution_p0_004.json
+
+- Class: `CANONICAL_OR_CONTROL`
+- Size: `2407` bytes
 - Evidence:
   - canonical/control file
 
@@ -857,6 +895,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - text file with no stub or broken-reference signal
   - no inbound references found in scanned text files
 
+### tests/test_relationship_conditioned_execution_bundle.py
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `3571` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
 ### tests/test_relationship_conditioned_human_decision_policy.py
 
 - Class: `ORPHAN_CANDIDATE`
@@ -875,5 +921,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `ccd5669a2a0d25e1a66e31ac365d6d38b370e0d7fb467dd6435e8edff7c517ef`
+- Receipt hash: `717de29ee18b0342d1a79682b77e938e33ef87273ede383d22f85f4967acf89c`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`
