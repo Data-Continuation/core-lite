@@ -1,0 +1,68 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-009",
+  "title": "Observe destination-owned intake decision without conflating receipt acceptance installation or execution authority",
+  "status": "ACTIVE_WAITING_FOR_P0_008",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "owner": "github_actions:rce-p0-009-destination-intake-decision-observer",
+  "source_handoff": "docs/CORE_LITE_MIRROR_HANDOFF.md",
+  "activation_dependency": {
+    "task_id": "RCE-P0-008",
+    "required_status": "COMPLETE",
+    "required_evidence": "receipts/rce_p0_008_authoritative_validation.json",
+    "satisfaction_mode": "validated_at_runtime_fail_closed"
+  },
+  "goal": "Periodically observe a destination-owned intake decision record while preserving the distinctions among receipt, evaluation, acceptance, rejection, installation, and execution authority.",
+  "required_outputs": [
+    "config/rce_destination_intake_decision_watch.json",
+    "tools/observe_rce_destination_intake_decision.py",
+    "reports/rce_p0_009_destination_intake_decision.json",
+    "receipts/rce_p0_009_authoritative_validation.json",
+    ".github/workflows/rce-p0-009-observation.yml"
+  ],
+  "acceptance_criteria": [
+    "absence or unreachable destination remains PENDING_DESTINATION_INTAKE_DECISION",
+    "destination acknowledgement is not treated as acceptance",
+    "observed decision matches required schema repository identities notification envelope and acknowledgement digests",
+    "evaluation acceptance and rejection states remain distinct",
+    "acceptance does not grant production installation or autonomous execution authority",
+    "rejection is preserved as a destination-owned decision rather than source-side failure",
+    "workflow records state changes and conditional successors automatically",
+    "manual_actions_required remains empty"
+  ],
+  "invariants": [
+    "receipt_is_not_acceptance",
+    "evaluation_is_not_acceptance",
+    "acceptance_is_not_installation",
+    "installation_is_not_execution_authority",
+    "rejection_is_destination_owned_state",
+    "absence_is_pending_not_failure_or_decision",
+    "destination_owned_evidence_required",
+    "digest_bound_decision",
+    "no_destination_mutation",
+    "no_authority_expansion",
+    "manual_actions_required_is_empty"
+  ],
+  "blocked_by": [],
+  "permitted_scope": [
+    "scheduled observation",
+    "public destination-owned evidence fetch",
+    "digest validation",
+    "decision-state classification",
+    "reports",
+    "receipts",
+    "automatic state persistence"
+  ],
+  "prohibited_scope": [
+    "destination mutation",
+    "fabricated decision",
+    "source-side acceptance claim",
+    "production installation",
+    "autonomous execution",
+    "human-harm authorization",
+    "real-world target data",
+    "weapons enablement",
+    "cyber exploitation instructions"
+  ]
+}
