@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T07:22:24+00:00`
+Generated: `2026-07-14T07:22:44+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -137,7 +137,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### .github/workflows/workstream-status.yml
 
 - Class: `CANONICAL_OR_CONTROL`
-- Size: `3166` bytes
+- Size: `4407` bytes
 - Evidence:
   - canonical/control file
 
@@ -958,5 +958,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `eef7b99df3c09e74195c2d68385a3a835426f6912976eaad630152b8da45c5c4`
+- Receipt hash: `11ec2aae196ba90cb7e089151bc2354e2d2509e8dddd89d28eb71f8a68445673`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`
