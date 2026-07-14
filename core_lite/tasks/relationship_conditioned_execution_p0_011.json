@@ -10,7 +10,7 @@
     "task_id": "RCE-P0-010",
     "required_status": "COMPLETE",
     "required_evidence": "receipts/rce_p0_010_authoritative_validation.json",
-    "required_decision": "SNAPSHOT_SEALED",
+    "required_decision": "SANDBOX_EVIDENCE_SNAPSHOT_SEALED",
     "satisfied": false
   },
   "goal": "Restore the sealed RCE evidence snapshot into an isolated sandbox drill directory, verify every reconstructed byte against the snapshot manifest, and emit authoritative restoration evidence without production or external destination mutation.",
@@ -23,7 +23,7 @@
   ],
   "acceptance_criteria": [
     "P0-010 authoritative receipt is present and true",
-    "P0-010 decision is SNAPSHOT_SEALED",
+    "P0-010 decision is SANDBOX_EVIDENCE_SNAPSHOT_SEALED",
     "snapshot root and manifest digest are verified before restoration",
     "each restored file matches the indexed sha256 digest and byte count",
     "restoration destination is confined to sandbox/restoration_drills",
