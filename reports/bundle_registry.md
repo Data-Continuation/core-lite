@@ -1,6 +1,6 @@
 # Core-Lite Bundle Registry Report
 
-Generated: `2026-07-14T04:17:31+00:00`
+Generated: `2026-07-14T04:18:12+00:00`
 
 ## Operating Rule
 
@@ -216,5 +216,5 @@ Bundle-only delivery is valid. Untracked bundle proliferation is not.
 
 ## Receipt
 
-- Receipt hash: `22c7c02db8ea7eee8c187cc89e6312a95b3b2c46f1ea82aec2b29ebe3167f4ed`
+- Receipt hash: `e0b551e1fa1295f817baaa1dc747a4d3545ca2a24a95fd89f612ef29dfe43ebb`
 - Receipt path: `receipts/bundle_registry_receipts.jsonl`

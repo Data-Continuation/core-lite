@@ -145,24 +145,24 @@
       "status": "implemented_or_seeded"
     }
   ],
-  "generated_at": "2026-07-14T04:17:31+00:00",
+  "generated_at": "2026-07-14T04:18:12+00:00",
   "receipt": {
     "capability_count": 9,
-    "hash": "ec4b1f6bac964066488ce40282d0609a7bab83fb4520c79f04fd71d3da58221b",
+    "hash": "bed83f348a9b9f52b25982210289134334d246e06e7cfb55ca6449260e7324e6",
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,
-    "previous_hash": "8f4da78a2d628880e323f6fa85114ab2e629c062ca893922c5a2b79d7bbd6aa7",
+    "previous_hash": "ec4b1f6bac964066488ce40282d0609a7bab83fb4520c79f04fd71d3da58221b",
     "receipt_type": "core_lite.capability_gap_plan",
     "repo_role": "core-lite",
     "result": "pass",
-    "timestamp": "2026-07-14T04:17:31+00:00"
+    "timestamp": "2026-07-14T04:18:12+00:00"
   },
   "repo_role": {
     "confidence": "high",
     "role": "core-lite",
     "scores": {
-      "core-lite": 1497,
+      "core-lite": 1495,
       "footprint-auditor": 107,
       "formalism": 54
     }

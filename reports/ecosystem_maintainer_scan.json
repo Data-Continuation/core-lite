@@ -645,7 +645,7 @@
       "local_refs": [],
       "path": "core_lite/tasks/relationship_conditioned_execution.json",
       "python_import_refs": [],
-      "size_bytes": 2919
+      "size_bytes": 3124
     },
     {
       "broken_refs": [],
@@ -710,7 +710,7 @@
       "local_refs": [],
       "path": "docs/CORE_LITE_MIRROR_HANDOFF.md",
       "python_import_refs": [],
-      "size_bytes": 4397
+      "size_bytes": 4372
     },
     {
       "broken_refs": [],
@@ -749,7 +749,7 @@
       "local_refs": [],
       "path": "docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md",
       "python_import_refs": [],
-      "size_bytes": 6182
+      "size_bytes": 7203
     },
     {
       "broken_refs": [],
@@ -1556,7 +1556,7 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T04:17:31+00:00",
+  "generated_at": "2026-07-14T04:18:12+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
@@ -1566,13 +1566,13 @@
       "SUPPORT_ARTIFACT": 23
     },
     "file_count": 115,
-    "hash": "f504389f6accc3c83e4ee9aeda058f9b10b573e00dfd22e0e5edb8090710db0b",
+    "hash": "7e50e91005474c5792a7caf65554675aa58e11c5bc9fb316c252a12c788b8958",
     "mutation_count": 0,
-    "previous_hash": "628524de07fba97b26a8230c7adb0af6041672d700f66725c5def1c8e6be75a3",
+    "previous_hash": "f504389f6accc3c83e4ee9aeda058f9b10b573e00dfd22e0e5edb8090710db0b",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T04:17:31+00:00"
+    "timestamp": "2026-07-14T04:18:12+00:00"
   },
   "summary": {
     "class_counts": {
