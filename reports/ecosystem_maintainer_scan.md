@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-10T14:16:08+00:00`
+Generated: `2026-07-14T04:09:41+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,17 +14,17 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `108`
+- Files scanned: `110`
 - Result: `pass`
 - Mutations performed: `0`
 
 ## Class Counts
 
 - BINARY_OR_UNKNOWN: `3`
-- CANONICAL_OR_CONTROL: `38`
+- CANONICAL_OR_CONTROL: `39`
 - ORPHAN_CANDIDATE: `36`
 - REAL: `10`
-- SUPPORT_ARTIFACT: `21`
+- SUPPORT_ARTIFACT: `22`
 
 ## Recommended Next Transition Blocks
 
@@ -370,6 +370,13 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - Evidence:
   - canonical/control file
 
+### core_lite/tasks/relationship_conditioned_execution.json
+
+- Class: `CANONICAL_OR_CONTROL`
+- Size: `2591` bytes
+- Evidence:
+  - canonical/control file
+
 ### core_lite/tasks.py
 
 - Class: `CANONICAL_OR_CONTROL`
@@ -418,6 +425,13 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - Size: `606` bytes
 - Evidence:
   - canonical/control file
+
+### docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md
+
+- Class: `SUPPORT_ARTIFACT`
+- Size: `6182` bytes
+- Evidence:
+  - support artifact for upload, verification, documentation, examples, or empty directory retention
 
 ### docs/STEGCLAW_TARGET_INTAKE.md
 
@@ -748,5 +762,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `c2e3c5936b4d25d7bc90ae4d2fd676a0cb87b5888335ead089d9c27ecdc1f82b`
+- Receipt hash: `5854510f30f4560f25a82841452c835a4c53349ed5b5da51fde9206ea8975f73`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`
