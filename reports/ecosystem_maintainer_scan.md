@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T05:39:00+00:00`
+Generated: `2026-07-14T07:06:08+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,14 +14,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `138`
+- Files scanned: `139`
 - Result: `pass`
 - Mutations performed: `0`
 
 ## Class Counts
 
 - BINARY_OR_UNKNOWN: `3`
-- CANONICAL_OR_CONTROL: `46`
+- CANONICAL_OR_CONTROL: `47`
 - ORPHAN_CANDIDATE: `49`
 - REAL: `15`
 - SUPPORT_ARTIFACT: `25`
@@ -109,7 +109,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### .github/workflows/rce-p0-004-validation.yml
 
 - Class: `CANONICAL_OR_CONTROL`
-- Size: `8072` bytes
+- Size: `8107` bytes
 - Evidence:
   - canonical/control file
 
@@ -447,6 +447,13 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Class: `CANONICAL_OR_CONTROL`
 - Size: `2719` bytes
+- Evidence:
+  - canonical/control file
+
+### core_lite/tasks/relationship_conditioned_execution_p0_005.json
+
+- Class: `CANONICAL_OR_CONTROL`
+- Size: `1935` bytes
 - Evidence:
   - canonical/control file
 
@@ -936,5 +943,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `31d38e6b49619ba5a6dc93589aa074ab1bc94dfb28edbdc65b84aa93131d79d5`
+- Receipt hash: `74ac4c4ea2975620657ff9c9ab96927ca9fd2bcf6efcc2c531b09e431887f129`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`
