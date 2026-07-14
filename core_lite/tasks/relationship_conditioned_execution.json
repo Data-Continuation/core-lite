@@ -1,0 +1,56 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-001",
+  "title": "Define normative relationship-conditioned human-decision policy",
+  "status": "DECLARED",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "source_handoff": "docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md",
+  "goal": "Create a reviewable policy and schema that make AI-human relationship history the contextual root of the decision tree without allowing relationship history, trust, quorum, reputation, or adaptation to create unauthorized execution authority over human-impacting actions.",
+  "inputs": [
+    "docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md",
+    "docs/CORE_LITE_MIRROR_HANDOFF.md"
+  ],
+  "required_outputs": [
+    "docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md",
+    "schemas/relationship_conditioned_human_decision_policy.schema.json",
+    "samples/relationship_conditioned_human_decision_policy.example.json",
+    "tests/test_relationship_conditioned_human_decision_policy.py"
+  ],
+  "invariants": [
+    "human_is_not_system_owned_resource",
+    "relationship_history_does_not_create_authority",
+    "uncertainty_acknowledgment_is_not_execution_authorization",
+    "collective_ai_vote_cannot_authorize_human_harm",
+    "irreversible_human_impact_requires_fail_closed_or_human_controlled_transition",
+    "policy_adaptation_requires_review_and_bounded_authority",
+    "all_material_decisions_are_traceable"
+  ],
+  "acceptance_criteria": [
+    "schema validation passes for the canonical example",
+    "missing relationship role fails closed",
+    "implicit authority inferred from trust fails closed",
+    "self-sacrificial or irreversible human-impacting execution is never returned as autonomous ALLOW",
+    "advisory, witness, guardian, delegate, and counterparty roles have distinct bounded outputs",
+    "unknown or conflicting authority returns ABSTAIN, ESCALATE, or FAIL_CLOSED",
+    "tests preserve non-guarantee and temporal-identity disclosures without treating them as consent substitutes"
+  ],
+  "blocked_by": [],
+  "supersedes": [],
+  "next_task_candidate": "RCE-P0-002 canonical manifest and sandbox fixture package",
+  "permitted_scope": [
+    "policy",
+    "schema",
+    "examples",
+    "tests",
+    "sandbox fixtures",
+    "receipts"
+  ],
+  "prohibited_scope": [
+    "autonomous execution of human self-harm or self-sacrifice",
+    "production ingestion of prior conversation ZIPs",
+    "authority inferred solely from trust or history",
+    "reputation-only adversary determinations",
+    "unreviewed adaptive policy mutation"
+  ]
+}
