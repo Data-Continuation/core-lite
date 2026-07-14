@@ -1,0 +1,48 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-006",
+  "title": "Create destination-neutral RCE candidate intake envelope",
+  "status": "ACTIVE_WAITING_FOR_P0_005",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "owner": "github_actions:rce-p0-006-candidate-envelope",
+  "source_handoff": "docs/CORE_LITE_MIRROR_HANDOFF.md",
+  "activation_dependency": {
+    "task_id": "RCE-P0-005",
+    "required_status": "COMPLETE",
+    "required_evidence": "receipts/rce_p0_005_authoritative_validation.json",
+    "satisfaction_mode": "validated_at_runtime_fail_closed"
+  },
+  "goal": "Create a deterministic destination-neutral candidate envelope for the existing StegVerse-002 intake contract without mutating or binding the destination repository.",
+  "required_outputs": [
+    "tools/build_rce_candidate_intake_envelope.py",
+    "tests/test_build_rce_candidate_intake_envelope.py",
+    "exports/relationship_conditioned_execution/candidate_envelope.json",
+    "reports/rce_p0_006_candidate_envelope.json",
+    "receipts/rce_p0_006_authoritative_validation.json",
+    ".github/workflows/rce-p0-006-validation.yml"
+  ],
+  "acceptance_criteria": [
+    "P0-005 authoritative receipt exists and is true",
+    "staging manifest exists and all staged file hashes and sizes remain valid",
+    "envelope names source and intended destination intake policy",
+    "candidate_evidence_only is true",
+    "may_bind_destination_repo_state is false",
+    "destination_mutation_performed is false",
+    "missing receipt hash mismatch authority expansion or destination mutation fails closed",
+    "workflow persists envelope report receipt and task state automatically",
+    "manual_actions_required remains empty"
+  ],
+  "invariants": [
+    "destination_neutral_envelope",
+    "candidate_evidence_only",
+    "no_destination_binding",
+    "no_external_mutation",
+    "complete_receipt_chain",
+    "fail_closed_on_any_mismatch",
+    "manual_actions_required_is_empty"
+  ],
+  "blocked_by": [],
+  "permitted_scope": ["envelope generation", "hash verification", "receipt chaining", "reports", "tests", "automatic evidence persistence"],
+  "prohibited_scope": ["external repository mutation", "production installation", "destination acceptance", "autonomous execution", "human-harm authorization", "real-world target data", "weapons enablement", "cyber exploitation instructions"]
+}
