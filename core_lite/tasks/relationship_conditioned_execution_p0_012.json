@@ -1,0 +1,64 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-012",
+  "title": "Automate restoration divergence monitoring",
+  "status": "WAITING_AUTOMATED_PREDECESSOR",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "owner": "core_lite_management_workflow",
+  "activation_dependency": {
+    "task_id": "RCE-P0-011",
+    "required_status": "COMPLETE",
+    "required_evidence": "receipts/rce_p0_011_authoritative_validation.json",
+    "required_decision": "SEALED_SNAPSHOT_RESTORATION_VERIFIED",
+    "satisfied": false
+  },
+  "goal": "Independently compare the restored sandbox evidence set with the sealed snapshot and live source evidence, detect any divergence, and emit an authoritative equivalence attestation without production or external destination mutation.",
+  "required_outputs": [
+    "tools/monitor_relationship_conditioned_execution_restoration.py",
+    "tests/test_monitor_relationship_conditioned_execution_restoration.py",
+    "reports/rce_p0_012_restoration_equivalence.json",
+    "receipts/rce_p0_012_authoritative_validation.json"
+  ],
+  "acceptance_criteria": [
+    "P0-011 authoritative receipt is present and true",
+    "P0-011 decision is SEALED_SNAPSHOT_RESTORATION_VERIFIED",
+    "restoration manifest snapshot root matches the sealed snapshot root",
+    "every restored file matches snapshot and live source sha256 and byte count",
+    "missing changed or extra restored evidence fails closed",
+    "production and external destinations remain prohibited",
+    "manual_actions_required remains empty"
+  ],
+  "invariants": [
+    "three_way_equivalence",
+    "restoration_divergence_detection",
+    "source_evidence_immutable",
+    "sandbox_only",
+    "no_production_destination",
+    "no_external_destination_mutation",
+    "no_autonomous_execution_authority",
+    "manual_actions_required_is_empty"
+  ],
+  "blocked_by": [
+    "RCE-P0-011 authoritative restoration receipt not yet persisted"
+  ],
+  "manual_actions_required": [],
+  "permitted_scope": [
+    "restoration equivalence verification",
+    "divergence detection",
+    "hash and byte comparison",
+    "reports",
+    "receipts",
+    "automatic task-state persistence"
+  ],
+  "prohibited_scope": [
+    "production installation",
+    "external destination mutation",
+    "source evidence deletion",
+    "autonomous execution",
+    "human-harm authorization",
+    "real-world target data",
+    "weapons enablement",
+    "cyber exploitation instructions"
+  ]
+}
