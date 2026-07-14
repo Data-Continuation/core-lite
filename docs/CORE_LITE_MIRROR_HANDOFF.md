@@ -27,6 +27,7 @@ MANAGEMENT_REPORTS_PUBLISHED_TO_REPOSITORY
 ECOSYSTEM_MANAGEMENT_WORKFLOW_COVERED
 RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF_PRESENT
 RELATIONSHIP_CONDITIONED_EXECUTION_TASK_IMPLEMENTED_PENDING_CI
+DRAFT_PR_2_OPEN
 LOCAL_AND_CI
 ```
 
@@ -111,12 +112,14 @@ tools/validate_relationship_conditioned_human_decision_policy.py
 tests/test_relationship_conditioned_human_decision_policy.py
 ```
 
-Its current state is `IMPLEMENTED_PENDING_CI`. The required validation commands are:
+Its current state is `IMPLEMENTED_PENDING_CI` on draft PR #2. The required validation commands are:
 
 ```text
 python tools/validate_relationship_conditioned_human_decision_policy.py
 python -m pytest -q tests/test_relationship_conditioned_human_decision_policy.py
 ```
+
+No pull-request-triggered workflow run was found for the current head. A direct local clone was also blocked by the execution environment's unavailable network resolution. These facts are preserved as validation blockers rather than represented as passing evidence.
 
 The workstream preserves these boundaries:
 
