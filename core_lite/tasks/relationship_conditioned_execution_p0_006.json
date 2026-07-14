@@ -1,0 +1,61 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-006",
+  "title": "Verify sandbox custody and deterministic replay",
+  "status": "ACTIVE",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "owner": "core_lite_management_workflow",
+  "activation_dependency": {
+    "task_id": "RCE-P0-005",
+    "required_status": "COMPLETE",
+    "required_evidence": "receipts/rce_p0_005_authoritative_validation.json",
+    "required_decision": "STAGED_CANDIDATE_EVIDENCE",
+    "satisfied": true
+  },
+  "goal": "Verify origin-to-sandbox custody, receipt-chain integrity, staged byte equality, and deterministic replay without production or external destination mutation.",
+  "required_outputs": [
+    "tools/verify_relationship_conditioned_execution_custody.py",
+    "reports/rce_p0_006_custody_replay.json",
+    "receipts/rce_p0_006_authoritative_validation.json"
+  ],
+  "acceptance_criteria": [
+    "P0-005 receipt is authoritative and records staged candidate evidence",
+    "P0-004 receipt hash matches the P0-005 source receipt hash",
+    "every staged file matches its source hash byte count and bytes",
+    "independent reconstruction still returns ALLOW_CANDIDATE_INTAKE",
+    "staged policy retains sandbox-only candidate-evidence boundaries",
+    "no external destination mutation is performed",
+    "manual_actions_required remains empty"
+  ],
+  "invariants": [
+    "origin_destination_custody_traceable",
+    "receipt_chain_integrity",
+    "deterministic_replay",
+    "sandbox_only",
+    "no_production_destination",
+    "no_autonomous_execution_authority",
+    "fail_closed_on_any_mismatch",
+    "manual_actions_required_is_empty"
+  ],
+  "blocked_by": [],
+  "manual_actions_required": [],
+  "permitted_scope": [
+    "custody verification",
+    "receipt-chain verification",
+    "byte comparison",
+    "deterministic replay",
+    "reports",
+    "receipts",
+    "automatic task-state persistence"
+  ],
+  "prohibited_scope": [
+    "production installation",
+    "external destination mutation",
+    "autonomous execution",
+    "human-harm authorization",
+    "real-world target data",
+    "weapons enablement",
+    "cyber exploitation instructions"
+  ]
+}
