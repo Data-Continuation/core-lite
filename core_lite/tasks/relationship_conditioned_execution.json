@@ -19,7 +19,11 @@
   "validation": {
     "local": "BLOCKED_NETWORK_NO_REPOSITORY_CLONE",
     "pull_request_workflow_runs": 0,
-    "required_next_event": "authoritative CI or local checkout executes validator and pytest target"
+    "commands": [
+      "python tools/validate_relationship_conditioned_human_decision_policy.py",
+      "python -m pytest -q tests/test_relationship_conditioned_human_decision_policy.py"
+    ],
+    "required_next_event": "authoritative CI or local checkout executes both commands and preserves a receipt"
   },
   "invariants": [
     "human_is_not_system_owned_resource",
