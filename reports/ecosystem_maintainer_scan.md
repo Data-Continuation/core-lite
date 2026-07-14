@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T05:29:43+00:00`
+Generated: `2026-07-14T05:30:52+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,15 +14,15 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `136`
+- Files scanned: `138`
 - Result: `pass`
 - Mutations performed: `0`
 
 ## Class Counts
 
 - BINARY_OR_UNKNOWN: `3`
-- CANONICAL_OR_CONTROL: `45`
-- ORPHAN_CANDIDATE: `48`
+- CANONICAL_OR_CONTROL: `46`
+- ORPHAN_CANDIDATE: `49`
 - REAL: `15`
 - SUPPORT_ARTIFACT: `25`
 
@@ -103,6 +103,13 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Class: `CANONICAL_OR_CONTROL`
 - Size: `8760` bytes
+- Evidence:
+  - canonical/control file
+
+### .github/workflows/rce-p0-004-validation.yml
+
+- Class: `CANONICAL_OR_CONTROL`
+- Size: `8057` bytes
 - Evidence:
   - canonical/control file
 
@@ -481,7 +488,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### docs/CORE_LITE_MIRROR_HANDOFF.md
 
 - Class: `SUPPORT_ARTIFACT`
-- Size: `5788` bytes
+- Size: `6904` bytes
 - Evidence:
   - support artifact for upload, verification, documentation, examples, or empty directory retention
 
@@ -895,6 +902,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - text file with no stub or broken-reference signal
   - no inbound references found in scanned text files
 
+### tests/test_reconstruct_relationship_conditioned_execution_bundle.py
+
+- Class: `ORPHAN_CANDIDATE`
+- Size: `2138` bytes
+- Evidence:
+  - text file with no stub or broken-reference signal
+  - no inbound references found in scanned text files
+
 ### tests/test_relationship_conditioned_execution_bundle.py
 
 - Class: `ORPHAN_CANDIDATE`
@@ -921,5 +936,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `17d35857e659f0b28580223535d71c432b716e07436ae5cb29df2ae3e6be79df`
+- Receipt hash: `8faa833075237395856647acdfd419fa4c9c53e46f0d4d29fa747db382e91f5e`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`
