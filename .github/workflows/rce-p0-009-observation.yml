@@ -1,0 +1,125 @@
+name: RCE P0-009 Destination Intake Decision Observation
+
+on:
+  push:
+    branches: [main, stegops/rce-handoff-clean]
+    paths:
+      - "config/rce_destination_intake_decision_watch.json"
+      - "tools/observe_rce_destination_intake_decision.py"
+      - "core_lite/tasks/relationship_conditioned_execution_p0_009.json"
+      - "receipts/rce_p0_008_authoritative_validation.json"
+      - "reports/rce_p0_008_destination_acknowledgement.json"
+      - "notifications/relationship_conditioned_execution/candidate_available.json"
+      - "exports/relationship_conditioned_execution/candidate_envelope.json"
+      - ".github/workflows/rce-p0-009-observation.yml"
+  schedule:
+    - cron: "31 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rce-p0-009-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  observe:
+    if: ${{ !contains(github.event.head_commit.message || '', '[rce-p0-009-state]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Detect predecessor evidence
+        id: dependency
+        run: |
+          if [[ -f receipts/rce_p0_008_authoritative_validation.json && -f reports/rce_p0_008_destination_acknowledgement.json ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Observe destination-owned intake decision
+        if: steps.dependency.outputs.ready == 'true'
+        run: python tools/observe_rce_destination_intake_decision.py > /tmp/rce-p0-009.json
+
+      - name: Persist observation and task state
+        if: steps.dependency.outputs.ready == 'true'
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_number }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          observation = json.loads(Path('/tmp/rce-p0-009.json').read_text())
+          Path('reports').mkdir(exist_ok=True)
+          report_path = Path('reports/rce_p0_009_destination_intake_decision.json')
+          report_path.write_text(json.dumps(observation, indent=2, sort_keys=True) + '\n')
+
+          terminal = observation['state'] in {
+              'CANDIDATE_ACCEPTED_FOR_SANDBOX_INTAKE',
+              'CANDIDATE_REJECTED',
+          }
+          receipt = {
+              'schema': 'stegverse.validation.receipt.v1',
+              'receipt_id': f"rce-p0-009-github-actions-{os.environ['RUN_ID']}",
+              'task_id': 'RCE-P0-009',
+              'repository': 'Data-Continuation/core-lite',
+              'commit_sha': os.environ['COMMIT_SHA'],
+              'run_id': int(os.environ['RUN_ID']),
+              'run_number': int(os.environ['RUN_NUMBER']),
+              'observed_at': datetime.now(timezone.utc).isoformat(),
+              'state': observation['state'],
+              'authoritative_completion_evidence': terminal,
+              'destination_mutation_performed': False,
+              'production_installation_authority': False,
+              'autonomous_execution_authority': False,
+              'manual_actions_required': [],
+          }
+          Path('receipts').mkdir(exist_ok=True)
+          Path('receipts/rce_p0_009_authoritative_validation.json').write_text(
+              json.dumps(receipt, indent=2, sort_keys=True) + '\n'
+          )
+
+          task_path = Path('core_lite/tasks/relationship_conditioned_execution_p0_009.json')
+          task = json.loads(task_path.read_text())
+          task['status'] = 'COMPLETE' if terminal else 'ACTIVE_MONITORING'
+          task['last_observed_state'] = observation['state']
+          task['last_observed_at'] = receipt['observed_at']
+          task['validation'] = {
+              'status': 'PASS',
+              'workflow': '.github/workflows/rce-p0-009-observation.yml',
+              'authoritative_run_id': int(os.environ['RUN_ID']),
+              'authoritative_completion_evidence': terminal,
+              'manual_actions_required': [],
+          }
+          if terminal:
+              task['completed_at'] = receipt['observed_at']
+              task['successor_task'] = (
+                  'RCE-P0-010 accepted sandbox-intake continuity observation'
+                  if observation['state'] == 'CANDIDATE_ACCEPTED_FOR_SANDBOX_INTAKE'
+                  else 'RCE-P0-010 rejection remediation observation'
+              )
+          task_path.write_text(json.dumps(task, indent=2, sort_keys=True) + '\n')
+          PY
+
+      - name: Commit durable observation state
+        if: steps.dependency.outputs.ready == 'true'
+        run: |
+          git config user.name "stegverse-automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/rce_p0_009_destination_intake_decision.json \
+                  receipts/rce_p0_009_authoritative_validation.json \
+                  core_lite/tasks/relationship_conditioned_execution_p0_009.json
+          git diff --cached --quiet || git commit -m "chore: persist P0-009 intake decision observation [rce-p0-009-state]"
+          git push
