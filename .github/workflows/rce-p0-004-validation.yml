@@ -3,6 +3,7 @@ name: RCE P0-004 Automated Reconstruction Review
 on:
   push:
     branches:
+      - "main"
       - "stegops/rce-handoff-clean"
     paths:
       - "bundles/relationship_conditioned_execution/**"
