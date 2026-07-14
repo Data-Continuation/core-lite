@@ -1,0 +1,194 @@
+name: RCE P0-005 Automated Sandbox Staging
+
+on:
+  push:
+    branches:
+      - main
+      - stegops/rce-handoff-clean
+    paths:
+      - "receipts/rce_p0_004_authoritative_validation.json"
+      - "reports/rce_p0_004_reconstruction.json"
+      - "bundles/relationship_conditioned_execution/**"
+      - "tools/stage_relationship_conditioned_execution_candidate.py"
+      - "tests/test_stage_relationship_conditioned_execution_candidate.py"
+      - "core_lite/tasks/relationship_conditioned_execution_p0_005.json"
+      - ".github/workflows/rce-p0-005-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rce-p0-005-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  stage-rce-p0-005:
+    if: ${{ !contains(github.event.head_commit.message || '', '[rce-p0-005-state]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install test dependency
+        run: python -m pip install pytest
+
+      - name: Detect dependency readiness
+        id: readiness
+        shell: bash
+        run: |
+          if [[ -f receipts/rce_p0_004_authoritative_validation.json && -f reports/rce_p0_004_reconstruction.json ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "RCE-P0-005 is waiting automatically for P0-004 durable evidence."
+          fi
+
+      - name: Run focused staging tests
+        if: steps.readiness.outputs.ready == 'true'
+        run: python -m pytest -q tests/test_stage_relationship_conditioned_execution_candidate.py
+
+      - name: Stage candidate evidence
+        if: steps.readiness.outputs.ready == 'true'
+        run: python tools/stage_relationship_conditioned_execution_candidate.py > rce-p0-005-output.json
+
+      - name: Persist report receipt task and successor
+        if: steps.readiness.outputs.ready == 'true'
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_number }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+          COMMIT_SHA: ${{ github.sha }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          root = Path('.')
+          staging_path = root / 'staging/relationship_conditioned_execution/staging_manifest.json'
+          staging = json.loads(staging_path.read_text(encoding='utf-8'))
+          now = datetime.now(timezone.utc).isoformat()
+          report = {
+              'schema': 'stegverse.rce.staging_report.v1',
+              'task_id': 'RCE-P0-005',
+              'decision': 'SANDBOX_STAGING_COMPLETE',
+              'staging_manifest': staging_path.as_posix(),
+              'staging_manifest_sha256': hashlib.sha256(staging_path.read_bytes()).hexdigest(),
+              'staged_file_count': len(staging['staged_files']),
+              'receipt_chain': staging['receipt_chain'],
+              'candidate_evidence_only': True,
+              'external_destination_mutation_performed': False,
+              'production_installation_authority': False,
+              'autonomous_execution_authority': False,
+              'manual_actions_required': [],
+              'observed_at': now,
+          }
+          reports = root / 'reports'
+          receipts = root / 'receipts'
+          reports.mkdir(exist_ok=True)
+          receipts.mkdir(exist_ok=True)
+          report_path = reports / 'rce_p0_005_staging.json'
+          report_path.write_text(json.dumps(report, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          receipt = {
+              'schema': 'stegverse.validation.receipt.v1',
+              'receipt_id': f"rce-p0-005-github-actions-{os.environ['RUN_ID']}-{os.environ['RUN_ATTEMPT']}",
+              'task_id': 'RCE-P0-005',
+              'repository': 'Data-Continuation/core-lite',
+              'commit_sha': os.environ['COMMIT_SHA'],
+              'ref': os.environ['REF_NAME'],
+              'run_id': int(os.environ['RUN_ID']),
+              'run_number': int(os.environ['RUN_NUMBER']),
+              'run_attempt': int(os.environ['RUN_ATTEMPT']),
+              'validation_class': 'GITHUB_ACTIONS_AUTHORITATIVE_SANDBOX_STAGING',
+              'authoritative_completion_evidence': True,
+              'outcomes': {
+                  'dependency_receipts': 'success',
+                  'focused_tests': 'success',
+                  'sandbox_staging': 'success',
+                  'receipt_chain': 'success',
+              },
+              'report': report_path.as_posix(),
+              'report_sha256': hashlib.sha256(report_path.read_bytes()).hexdigest(),
+              'staging_manifest': staging_path.as_posix(),
+              'staging_manifest_sha256': hashlib.sha256(staging_path.read_bytes()).hexdigest(),
+              'manual_actions_required': [],
+              'observed_at': now,
+          }
+          receipt_path = receipts / 'rce_p0_005_authoritative_validation.json'
+          receipt_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          task_path = root / 'core_lite/tasks/relationship_conditioned_execution_p0_005.json'
+          task = json.loads(task_path.read_text(encoding='utf-8'))
+          task['status'] = 'COMPLETE'
+          task['completed_at'] = now
+          task['outputs_present'] = True
+          task['validation'] = {
+              'status': 'PASS',
+              'workflow': '.github/workflows/rce-p0-005-validation.yml',
+              'authoritative_run_id': int(os.environ['RUN_ID']),
+              'authoritative_run_number': int(os.environ['RUN_NUMBER']),
+              'authoritative_run_commit': os.environ['COMMIT_SHA'],
+              'authoritative_receipt': receipt_path.as_posix(),
+              'authoritative_completion_evidence': True,
+              'manual_actions_required': [],
+          }
+          task['successor_task'] = 'RCE-P0-006'
+          task_path.write_text(json.dumps(task, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          successor = {
+              'schema': 'stegverse.core_lite.task.v1',
+              'task_id': 'RCE-P0-006',
+              'title': 'Publish sandbox-staging candidate envelope to the existing management intake path',
+              'status': 'DECLARED',
+              'priority': 'P0',
+              'owner_repo': 'Data-Continuation/core-lite',
+              'owner': 'github_actions:rce-p0-006-candidate-envelope',
+              'activation_dependency': {
+                  'task_id': 'RCE-P0-005',
+                  'required_status': 'COMPLETE',
+                  'required_evidence': receipt_path.as_posix(),
+                  'satisfied': True,
+              },
+              'goal': 'Create a signed-by-evidence candidate envelope for the existing management intake path without mutating the destination repository.',
+              'manual_actions_required': [],
+              'prohibited_scope': [
+                  'external repository mutation',
+                  'production installation',
+                  'autonomous execution',
+                  'human-harm authorization',
+              ],
+          }
+          successor_path = root / 'core_lite/tasks/relationship_conditioned_execution_p0_006.json'
+          if not successor_path.exists():
+              successor_path.write_text(json.dumps(successor, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          PY
+
+      - name: Commit durable staging state
+        if: steps.readiness.outputs.ready == 'true'
+        run: |
+          git config user.name "stegverse-automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add \
+            staging/relationship_conditioned_execution \
+            reports/rce_p0_005_staging.json \
+            receipts/rce_p0_005_authoritative_validation.json \
+            core_lite/tasks/relationship_conditioned_execution_p0_005.json \
+            core_lite/tasks/relationship_conditioned_execution_p0_006.json
+          if git diff --cached --quiet; then
+            echo "No state changes to commit."
+          else
+            git commit -m "chore: persist RCE P0-005 staging state [rce-p0-005-state]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
