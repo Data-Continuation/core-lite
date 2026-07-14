@@ -6,19 +6,28 @@ on:
     paths:
       - 'core_lite/**'
       - 'tools/**'
+      - 'bundles/relationship_conditioned_execution/**'
+      - 'sandbox/intake/relationship_conditioned_execution/**'
       - 'docs/CORE_LITE_MIRROR_HANDOFF.md'
       - '.github/workflows/workstream-status.yml'
 
 permissions:
   contents: write
 
+concurrency:
+  group: core-lite-management-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   validate-workstreams:
+    if: ${{ !contains(github.event.head_commit.message || '', '[core-lite-managed-state]') }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -52,16 +61,21 @@ jobs:
       - name: Validate StegVerse-002 export package
         run: python tools/validate_stegverse_002_export.py --root .
 
-      - name: Publish management reports and receipts
+      - name: Reconcile RCE reconstruction and sandbox staging
+        id: rce
+        continue-on-error: true
+        run: python tools/reconcile_relationship_conditioned_execution.py
+
+      - name: Publish managed reports, receipts, task state, and sandbox evidence
         run: |
           set -euo pipefail
           git config user.name "Data-Continuation Core-Lite Manager"
           git config user.email "core-lite-manager@data-continuation"
-          git add -A reports/ receipts/ || true
+          git add -A reports/ receipts/ core_lite/tasks/relationship_conditioned_execution_p0_004.json core_lite/tasks/relationship_conditioned_execution_p0_005.json sandbox/intake/relationship_conditioned_execution/ || true
           if git diff --staged --quiet; then
-            echo "No generated management reports changed."
+            echo "No managed state changed."
           else
-            git commit -m "core-lite: publish generated management package"
+            git commit -m "core-lite: publish managed state [core-lite-managed-state]"
             git push
           fi
 
@@ -92,4 +106,15 @@ jobs:
             reports/stegverse_002_export_manifest.md
             reports/stegverse_002_export_manifest.json
             receipts/stegverse_002_export_receipts.jsonl
+            reports/rce_p0_004_reconstruction.json
+            reports/rce_automation_status.json
+            receipts/rce_p0_004_authoritative_validation.json
+            receipts/rce_p0_005_authoritative_validation.json
+            sandbox/intake/relationship_conditioned_execution/staging_manifest.json
           if-no-files-found: error
+
+      - name: Enforce RCE reconciliation result
+        if: ${{ steps.rce.outcome != 'success' }}
+        run: |
+          echo "RCE reconciliation failed closed after state persistence."
+          exit 1
