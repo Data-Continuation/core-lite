@@ -25,8 +25,8 @@ def test_canonical_example_validates():
 def test_missing_relationship_role_fails_closed_validation():
     record = copy.deepcopy(EXAMPLE)
     del record["relationship"]["role"]
-    with pytest.raises((PolicyValidationError, Exception)):
-        validate_record(record, SCHEMA)
+    with pytest.raises(PolicyValidationError, match="relationship role"):
+        validate_record(record, None)
 
 
 def test_history_cannot_create_authority():
