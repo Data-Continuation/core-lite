@@ -1,0 +1,190 @@
+name: RCE P0-005 Automated Sandbox Staging
+
+on:
+  workflow_run:
+    workflows:
+      - "RCE P0-004 Automated Reconstruction Review"
+    types:
+      - completed
+  schedule:
+    - cron: "37 * * * *"
+  push:
+    branches:
+      - "main"
+    paths:
+      - "receipts/rce_p0_004_authoritative_validation.json"
+      - "tools/stage_relationship_conditioned_execution_sandbox.py"
+      - "tests/test_stage_relationship_conditioned_execution_sandbox.py"
+      - "core_lite/tasks/relationship_conditioned_execution_p0_005.json"
+      - ".github/workflows/rce-p0-005-sandbox-staging.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rce-p0-005-main
+  cancel-in-progress: false
+
+jobs:
+  stage-and-persist:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install test dependency
+        run: python -m pip install --upgrade pip pytest
+
+      - name: Stage validated candidate evidence
+        id: staging
+        run: python tools/stage_relationship_conditioned_execution_sandbox.py | tee rce-p0-005-staging.txt
+
+      - name: Run focused staging tests
+        id: tests
+        run: python -m pytest -q tests/test_stage_relationship_conditioned_execution_sandbox.py | tee rce-p0-005-pytest.txt
+
+      - name: Generate receipt and update task state
+        if: always()
+        env:
+          STAGING_OUTCOME: ${{ steps.staging.outcome }}
+          TEST_OUTCOME: ${{ steps.tests.outcome }}
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          observed_at = datetime.now(timezone.utc).isoformat()
+          stage_manifest = Path("sandbox/intake/relationship_conditioned_execution/staging_manifest.json")
+          manifest = json.loads(stage_manifest.read_text(encoding="utf-8")) if stage_manifest.exists() else {}
+          success = (
+              os.environ.get("STAGING_OUTCOME") == "success"
+              and os.environ.get("TEST_OUTCOME") == "success"
+              and manifest.get("decision") == "STAGED_CANDIDATE_EVIDENCE"
+              and manifest.get("sandbox_only") is True
+              and manifest.get("production_destination_allowed") is False
+              and manifest.get("autonomous_execution_authority") is False
+              and manifest.get("human_harm_authority") is False
+              and manifest.get("external_destination_mutation_performed") is False
+              and manifest.get("manual_actions_required") == []
+          )
+
+          receipt = {
+              "schema": "stegverse.validation.receipt.v1",
+              "receipt_id": f"rce-p0-005-github-actions-{os.environ['GITHUB_RUN_ID']}-{os.environ['GITHUB_RUN_ATTEMPT']}",
+              "task_id": "RCE-P0-005",
+              "repository": os.environ["GITHUB_REPOSITORY"],
+              "commit_sha": os.environ["GITHUB_SHA"],
+              "ref": os.environ["GITHUB_REF"],
+              "event": os.environ["GITHUB_EVENT_NAME"],
+              "run_id": os.environ["GITHUB_RUN_ID"],
+              "run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+              "observed_at": observed_at,
+              "validation_class": "GITHUB_ACTIONS_AUTHORITATIVE_SANDBOX_STAGING",
+              "authoritative_completion_evidence": success,
+              "decision": manifest.get("decision", "DENY_SANDBOX_STAGING"),
+              "sandbox_only": True,
+              "production_destination_allowed": False,
+              "external_destination_mutation_performed": False,
+              "manual_actions_required": [],
+              "outcomes": {
+                  "sandbox_staging": os.environ.get("STAGING_OUTCOME"),
+                  "focused_tests": os.environ.get("TEST_OUTCOME"),
+              },
+              "staging_manifest_sha256": (
+                  hashlib.sha256(stage_manifest.read_bytes()).hexdigest()
+                  if stage_manifest.exists() else None
+              ),
+          }
+          Path("receipts").mkdir(exist_ok=True)
+          receipt_path = Path("receipts/rce_p0_005_authoritative_validation.json")
+          receipt_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+          task_path = Path("core_lite/tasks/relationship_conditioned_execution_p0_005.json")
+          task = json.loads(task_path.read_text(encoding="utf-8"))
+          task["status"] = "COMPLETE" if success else "VALIDATION_FAILED"
+          task["activation_dependency"]["satisfied"] = success
+          task["blocked_by"] = [] if success else ["automated_sandbox_staging_or_validation_failed"]
+          task["validation"] = {
+              "status": "PASS" if success else "FAIL",
+              "workflow": ".github/workflows/rce-p0-005-sandbox-staging.yml",
+              "authoritative_run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "authoritative_run_number": int(os.environ["GITHUB_RUN_NUMBER"]),
+              "authoritative_run_commit": os.environ["GITHUB_SHA"],
+              "authoritative_receipt": str(receipt_path),
+              "authoritative_completion_evidence": success,
+              "manual_actions_required": [],
+          }
+          if success:
+              task["completed_at"] = observed_at
+              task["successor_task"] = "RCE-P0-006 sandbox custody and supersession ledger"
+          task_path.write_text(json.dumps(task, indent=2) + "\n", encoding="utf-8")
+
+          status_path = Path("reports/rce_automation_status.json")
+          status = json.loads(status_path.read_text(encoding="utf-8")) if status_path.exists() else {}
+          status.update({
+              "schema": "stegverse.rce.automation_status.v1",
+              "repository": os.environ["GITHUB_REPOSITORY"],
+              "ref": os.environ["GITHUB_REF"],
+              "source_commit_sha": os.environ["GITHUB_SHA"],
+              "run_id": os.environ["GITHUB_RUN_ID"],
+              "observed_at": observed_at,
+              "manual_actions_required": [],
+              "rce_p0_005": {
+                  "status": "COMPLETE" if success else "VALIDATION_FAILED",
+                  "decision": receipt["decision"],
+                  "receipt": str(receipt_path),
+                  "external_destination_mutation_performed": False,
+              },
+              "next_goal_candidate": (
+                  "RCE-P0-006 sandbox custody and supersession ledger"
+                  if success else "repair_rce_p0_005_validation"
+              ),
+          })
+          Path("reports").mkdir(exist_ok=True)
+          status_path.write_text(json.dumps(status, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+          PY
+
+      - name: Persist sandbox staging state
+        if: always()
+        run: |
+          git config user.name "stegverse-rce-automation"
+          git config user.email "actions@users.noreply.github.com"
+          git pull --rebase origin main
+          git add sandbox/intake/relationship_conditioned_execution
+          git add receipts/rce_p0_005_authoritative_validation.json
+          git add reports/rce_automation_status.json
+          git add core_lite/tasks/relationship_conditioned_execution_p0_005.json
+          if git diff --cached --quiet; then
+            echo "No sandbox staging state change"
+          else
+            git commit -m "chore: persist RCE-P0-005 sandbox staging state [rce-p0-005-state]"
+            git push origin HEAD:main
+          fi
+
+      - name: Upload redundant evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rce-p0-005-authoritative-${{ github.run_id }}
+          path: |
+            sandbox/intake/relationship_conditioned_execution
+            receipts/rce_p0_005_authoritative_validation.json
+            reports/rce_automation_status.json
+            rce-p0-005-staging.txt
+            rce-p0-005-pytest.txt
+          if-no-files-found: error
+          retention-days: 90
