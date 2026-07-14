@@ -1,0 +1,44 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-008",
+  "title": "Observe destination-owned acknowledgement without fabricating receipt or acceptance",
+  "status": "ACTIVE_MONITORING",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "owner": "github_actions:rce-p0-008-destination-acknowledgement-observer",
+  "source_handoff": "docs/CORE_LITE_MIRROR_HANDOFF.md",
+  "activation_dependency": {
+    "task_id": "RCE-P0-007",
+    "required_status": "COMPLETE",
+    "required_evidence": "receipts/rce_p0_007_authoritative_validation.json",
+    "satisfaction_mode": "validated_at_runtime_fail_closed"
+  },
+  "goal": "Periodically observe a destination-owned acknowledgement record, preserve pending state when absent or unreachable, and advance only when schema, repository identity, candidate state, and source digests validate.",
+  "required_outputs": [
+    "config/rce_destination_acknowledgement_watch.json",
+    "tools/observe_rce_destination_acknowledgement.py",
+    "reports/rce_p0_008_destination_acknowledgement.json",
+    "receipts/rce_p0_008_authoritative_validation.json",
+    ".github/workflows/rce-p0-008-observation.yml"
+  ],
+  "acceptance_criteria": [
+    "absence or unreachable destination remains PENDING_DESTINATION_ACKNOWLEDGEMENT",
+    "no destination receipt or acceptance is fabricated",
+    "observed acknowledgement matches required schema and repository identities",
+    "notification and envelope digests match source records",
+    "acknowledgement cannot grant destination acceptance production installation or autonomous execution authority",
+    "workflow records state changes automatically and requires no manual action"
+  ],
+  "invariants": [
+    "observation_not_acceptance",
+    "absence_is_pending_not_failure_or_receipt",
+    "destination_owned_evidence_required",
+    "digest_bound_acknowledgement",
+    "no_destination_mutation",
+    "no_authority_expansion",
+    "manual_actions_required_is_empty"
+  ],
+  "blocked_by": [],
+  "permitted_scope": ["scheduled observation", "public destination-owned evidence fetch", "digest validation", "reports", "receipts", "automatic state persistence"],
+  "prohibited_scope": ["destination mutation", "fabricated acknowledgement", "destination acceptance claim", "production installation", "autonomous execution", "human-harm authorization", "real-world target data", "weapons enablement", "cyber exploitation instructions"]
+}
