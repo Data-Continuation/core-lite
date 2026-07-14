@@ -817,7 +817,20 @@
       "local_refs": [],
       "path": "core_lite/tasks/relationship_conditioned_execution_p0_006.json",
       "python_import_refs": [],
-      "size_bytes": 2183
+      "size_bytes": 2574
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".json",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "core_lite/tasks/relationship_conditioned_execution_p0_007.json",
+      "python_import_refs": [],
+      "size_bytes": 2446
     },
     {
       "broken_refs": [],
@@ -2034,33 +2047,33 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T07:24:50+00:00",
+  "generated_at": "2026-07-14T07:35:19+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 49,
+      "CANONICAL_OR_CONTROL": 50,
       "ORPHAN_CANDIDATE": 54,
       "REAL": 18,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 149,
-    "hash": "40dc20ddcbc3a33f506fcbcef06e6088da2864fe4a04be23af75c10e5d224783",
+    "file_count": 150,
+    "hash": "ca23754fc59532fd501c4259e3b4bdbd3a67bc7f6b3cbe09d9370bc8f7857b6f",
     "mutation_count": 0,
-    "previous_hash": "e1c3c0038440d2cb13e9bca24ce30d98fffb029cd3337374a0083847bf208116",
+    "previous_hash": "40dc20ddcbc3a33f506fcbcef06e6088da2864fe4a04be23af75c10e5d224783",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T07:24:50+00:00"
+    "timestamp": "2026-07-14T07:35:19+00:00"
   },
   "summary": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 49,
+      "CANONICAL_OR_CONTROL": 50,
       "ORPHAN_CANDIDATE": 54,
       "REAL": 18,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 149,
+    "file_count": 150,
     "mutation_count": 0,
     "result": "pass"
   },

@@ -1,6 +1,6 @@
 # Core-Lite Ecosystem Maintainer Scan
 
-Generated: `2026-07-14T07:24:50+00:00`
+Generated: `2026-07-14T07:35:19+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -14,14 +14,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Summary
 
-- Files scanned: `149`
+- Files scanned: `150`
 - Result: `pass`
 - Mutations performed: `0`
 
 ## Class Counts
 
 - BINARY_OR_UNKNOWN: `3`
-- CANONICAL_OR_CONTROL: `49`
+- CANONICAL_OR_CONTROL: `50`
 - ORPHAN_CANDIDATE: `54`
 - REAL: `18`
 - SUPPORT_ARTIFACT: `25`
@@ -467,7 +467,14 @@ Target root: `/home/runner/work/core-lite/core-lite`
 ### core_lite/tasks/relationship_conditioned_execution_p0_006.json
 
 - Class: `CANONICAL_OR_CONTROL`
-- Size: `2183` bytes
+- Size: `2574` bytes
+- Evidence:
+  - canonical/control file
+
+### core_lite/tasks/relationship_conditioned_execution_p0_007.json
+
+- Class: `CANONICAL_OR_CONTROL`
+- Size: `2446` bytes
 - Evidence:
   - canonical/control file
 
@@ -997,5 +1004,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `40dc20ddcbc3a33f506fcbcef06e6088da2864fe4a04be23af75c10e5d224783`
+- Receipt hash: `ca23754fc59532fd501c4259e3b4bdbd3a67bc7f6b3cbe09d9370bc8f7857b6f`
 - Receipt path: `receipts/ecosystem_maintainer_receipts.jsonl`
