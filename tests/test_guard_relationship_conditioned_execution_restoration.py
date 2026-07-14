@@ -57,6 +57,7 @@ def test_arms_clean_guard(tmp_path):
     assert result["decision"] == "DIVERGENCE_GUARD_ARMED"
     assert result["divergence_count"] == 0
     assert result["manual_actions_required"] == []
+    assert result["evidence_deleted"] is False
     receipt = json.loads((root / "receipts/rce_p0_013_authoritative_validation.json").read_text())
     assert receipt["authoritative_completion_evidence"] is True
 
@@ -96,3 +97,19 @@ def test_detects_membership_divergence(tmp_path):
     _write(restoration, value)
     result = guard(root)
     assert result["divergence_count"] == 1
+
+
+def test_clean_guard_preserves_historical_quarantine_alert(tmp_path):
+    root = _root(tmp_path)
+    alert = root / "sandbox/quarantine/relationship_conditioned_execution/divergence_alert.json"
+    _write(alert, {"historical": True, "evidence_deleted": False})
+    original = alert.read_bytes()
+
+    result = guard(root)
+
+    assert result["decision"] == "DIVERGENCE_GUARD_ARMED"
+    assert result["prior_quarantine_alert_preserved"] is True
+    assert alert.read_bytes() == original
+    receipt = json.loads((root / "receipts/rce_p0_013_authoritative_validation.json").read_text())
+    assert receipt["prior_quarantine_alert_preserved"] is True
+    assert receipt["quarantine_alert_sha256"] == hashlib.sha256(original).hexdigest()
