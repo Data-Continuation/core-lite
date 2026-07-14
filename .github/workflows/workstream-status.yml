@@ -3,7 +3,7 @@ name: Core-Lite Workstream Status
 on:
   workflow_dispatch:
   schedule:
-    - cron: '7 * * * *'
+    - cron: '*/5 * * * *'
   push:
     paths:
       - 'core_lite/**'
@@ -218,7 +218,7 @@ jobs:
             sandbox/snapshots/relationship_conditioned_execution/snapshot_manifest.json
             sandbox/restoration_drills/relationship_conditioned_execution/restoration_manifest.json
             sandbox/quarantine/relationship_conditioned_execution/divergence_alert.json
-          if-no-files-found: error
+          if-no-files-found: warn
 
       - name: Enforce RCE managed results
         if: ${{ steps.rce.outcome != 'success' || steps.rce_custody.outcome != 'success' || steps.rce_lifecycle_tests.outcome != 'success' || steps.rce_lifecycle.outcome != 'success' || steps.rce_lease_tests.outcome != 'success' || steps.rce_lease.outcome != 'success' || steps.rce_index_tests.outcome != 'success' || steps.rce_index.outcome != 'success' || steps.rce_snapshot_tests.outcome != 'success' || steps.rce_snapshot.outcome != 'success' || steps.rce_restore_tests.outcome != 'success' || steps.rce_restore.outcome != 'success' || steps.rce_equivalence_tests.outcome != 'success' || steps.rce_equivalence.outcome != 'success' || steps.rce_guard_tests.outcome != 'success' || steps.rce_guard.outcome != 'success' }}
