@@ -46,9 +46,10 @@
     ]
   },
   "blocked_by": [
-    "RCE-P0-001 authoritative workflow run requires repository approval",
+    "RCE-P0-001 authoritative workflow run requires repository approval or a successful pull-request-triggered rerun",
     "RCE-P0-001 authoritative validation receipt missing"
   ],
+  "required_next_event": "Repository maintainer approves the pending Actions run for PR #2 or causes a successful pull-request-triggered RCE P0-001 Validation run; the receipt artifact is preserved and authoritative_completion_evidence=true is verified",
   "permitted_scope": [
     "schema",
     "harmless sandbox fixtures",
