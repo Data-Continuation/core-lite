@@ -1,6 +1,6 @@
 # Core-Lite Capability Gap Plan
 
-Generated: `2026-07-14T05:18:28+00:00`
+Generated: `2026-07-14T05:19:50+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -17,12 +17,12 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Role: `core-lite`
 - Confidence: `high`
-- Scores: `{'footprint-auditor': 107, 'core-lite': 1542, 'formalism': 55}`
+- Scores: `{'footprint-auditor': 107, 'core-lite': 1551, 'formalism': 55}`
 
 ## Summary
 
 - result: `pass`
-- file_count: `125`
+- file_count: `126`
 - directory_count: `23`
 - capability_count: `9`
 - implemented_or_seeded_count: `2`
@@ -133,6 +133,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - `.github/workflows/friction-avoided.yml`
   - `.github/workflows/install-iosnoperiod.yml`
   - `.github/workflows/rce-p0-001-validation.yml`
+  - `.github/workflows/rce-p0-002-validation.yml`
   - `.github/workflows/target-capability-gap.yml`
   - `.github/workflows/target-repo-scan.yml`
   - `.github/workflows/workstream-status.yml`
@@ -145,5 +146,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `623cbb020e0221b364c1288917dcf98d609982c8d422fa6f9a8de491502476a2`
+- Receipt hash: `a601b7ee8676326df55c55956acdf9373c9a909ce80eedb1ac597ec10a712155`
 - Receipt path: `receipts/capability_gap_receipts.jsonl`

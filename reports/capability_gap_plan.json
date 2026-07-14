@@ -135,6 +135,7 @@
         ".github/workflows/friction-avoided.yml",
         ".github/workflows/install-iosnoperiod.yml",
         ".github/workflows/rce-p0-001-validation.yml",
+        ".github/workflows/rce-p0-002-validation.yml",
         ".github/workflows/target-capability-gap.yml",
         ".github/workflows/target-repo-scan.yml",
         ".github/workflows/workstream-status.yml"
@@ -147,24 +148,24 @@
       "status": "implemented_or_seeded"
     }
   ],
-  "generated_at": "2026-07-14T05:18:28+00:00",
+  "generated_at": "2026-07-14T05:19:50+00:00",
   "receipt": {
     "capability_count": 9,
-    "hash": "623cbb020e0221b364c1288917dcf98d609982c8d422fa6f9a8de491502476a2",
+    "hash": "a601b7ee8676326df55c55956acdf9373c9a909ce80eedb1ac597ec10a712155",
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,
-    "previous_hash": "2f31bdc1a25dabae48f02a74ba739c08db9f301ad1107824e34337b5110e3742",
+    "previous_hash": "623cbb020e0221b364c1288917dcf98d609982c8d422fa6f9a8de491502476a2",
     "receipt_type": "core_lite.capability_gap_plan",
     "repo_role": "core-lite",
     "result": "pass",
-    "timestamp": "2026-07-14T05:18:28+00:00"
+    "timestamp": "2026-07-14T05:19:50+00:00"
   },
   "repo_role": {
     "confidence": "high",
     "role": "core-lite",
     "scores": {
-      "core-lite": 1542,
+      "core-lite": 1551,
       "footprint-auditor": 107,
       "formalism": 55
     }
@@ -172,7 +173,7 @@
   "summary": {
     "capability_count": 9,
     "directory_count": 23,
-    "file_count": 125,
+    "file_count": 126,
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,
