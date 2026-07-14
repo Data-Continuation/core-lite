@@ -4,6 +4,8 @@
 
 This record preserves the design decisions and generated-artifact lineage from the AI–human self-sacrifice governance discussion. The prior ZIPs are **unvalidated conversation artifacts**, not production-ready releases or install authority.
 
+`RCE-P0-001` policy, schema, example, validator, and tests are present on draft PR #2. Their status is `IMPLEMENTED_PENDING_CI`; no authoritative workflow run or local validation receipt is yet attached.
+
 ## Core decision
 
 The AI entity's response to a human decision involving self-sacrifice must be rooted in the **historical relationship between the AI entity and the human**, including the relationship's development, declared role, authority grants, boundary history, typical behavior, trust posture, and alignment with StegVerse principles.
@@ -51,6 +53,16 @@ The ZIPs were created in ephemeral sandbox storage. Their existence does not pro
 | v2.1 | adversarial detection, reputation change, slashing/filtering | scaffold only; failure rate is not proof of adversarial intent |
 | v2.2 | weighted voting, quorum, consensus, execution | scaffold only; current voting model does not encode agent choices and must not execute human-impacting decisions |
 
+## RCE-P0-001 outputs
+
+- `docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md`
+- `schemas/relationship_conditioned_human_decision_policy.schema.json`
+- `samples/relationship_conditioned_human_decision_policy.example.json`
+- `tools/validate_relationship_conditioned_human_decision_policy.py`
+- `tests/test_relationship_conditioned_human_decision_policy.py`
+
+The validator enforces the non-execution invariant independently of optional JSON Schema tooling. Tests cover missing roles, inferred authority, uncertainty acknowledgment, irreversible impact, role-specific outputs, invalid authority states, and temporal-identity consent limits.
+
 ## Known blockers and defects
 
 1. Bundle manifests do not conform to the canonical Core-Lite manifest shape documented for incoming bundles.
@@ -63,8 +75,8 @@ The ZIPs were created in ephemeral sandbox storage. Their existence does not pro
 8. Adaptive threshold code mutates shared state and may progressively exceed valid bounds.
 9. Reputation and slashing mechanisms conflate failure, malice, degraded capability, and environmental uncertainty.
 10. The v2.2 voting scaffold grants every agent weight to every proposal, producing non-expressive votes.
-11. No hard invariant separates advisory output from execution authority over human-impacting actions.
-12. No tests demonstrate StegVerse ethics, boundary preservation, witness independence, Byzantine tolerance, chain verification, replay equivalence, or fail-closed behavior.
+11. No hard invariant separates advisory output from execution authority over human-impacting actions in the prior bundles.
+12. Authoritative CI or a local validation receipt is still missing for `RCE-P0-001`.
 
 ## Required reconstruction target
 
@@ -78,7 +90,7 @@ Do not ingest the prior ZIPs as-is. Rebuild the concept as a governed Core-Lite 
 - durable state storage and migration rules;
 - witness independence and conflict-of-interest declarations;
 - bounded, review-gated policy adaptation rather than autonomous threshold mutation;
-- tests for ALLOW, BLOCK, ESCALATE, ABSTAIN, and FAIL_CLOSED outcomes;
+- tests for ADVISE, WITNESS_ONLY, PROTECTIVE_DELAY, EXECUTE_REVERSIBLE, ESCALATE, ABSTAIN, and FAIL_CLOSED outcomes;
 - sandbox validation before any destination installation;
 - ingestion receipts and master-record pointers after authorized installation.
 
@@ -88,4 +100,7 @@ A continuation session may create schemas, validators, tests, sandbox fixtures, 
 
 ## Next task
 
-Build `RCE-P0-001`: a normative relationship-conditioned human-decision policy and machine-readable schema before rebuilding executable modules.
+1. Execute `python tools/validate_relationship_conditioned_human_decision_policy.py`.
+2. Execute `python -m pytest -q tests/test_relationship_conditioned_human_decision_policy.py`.
+3. Preserve the validation receipt and move `RCE-P0-001` to complete only if both pass.
+4. Begin `RCE-P0-002`: canonical manifest and sandbox fixture package.
