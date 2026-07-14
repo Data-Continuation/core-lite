@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T04:24:16+00:00`
-Source scan generated: `2026-07-14T04:24:16+00:00`
+Generated: `2026-07-14T04:43:24+00:00`
+Source scan generated: `2026-07-14T04:43:24+00:00`
 
 ## Done Definition
 
@@ -14,18 +14,18 @@ Source scan generated: `2026-07-14T04:24:16+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `116`
+- Files evaluated: `117`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
-- DO_NOT_TOUCH: `39`
+- DO_NOT_TOUCH: `40`
 - HUMAN_REVIEW_REQUIRED: `42`
 - NO_ACTION: `35`
 
 ## Transition Block Counts
 
-- ASK_BOUNDARY_DECISION: `42`
+- ASK_BOUNDARY_DECISION: `43`
 - AUTO_QUARANTINE_STUB: `39`
 
 ## Decisions
@@ -85,6 +85,15 @@ Source scan generated: `2026-07-14T04:24:16+00:00`
 - Reason: canonical/control file requires explicit boundary review before mutation
 
 ### .github/workflows/install-iosnoperiod.yml
+
+- Source class: `CANONICAL_OR_CONTROL`
+- Recommended bucket: `DO_NOT_TOUCH`
+- Recommended transition block: `ASK_BOUNDARY_DECISION`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: canonical/control file requires explicit boundary review before mutation
+
+### .github/workflows/rce-p0-001-validation.yml
 
 - Source class: `CANONICAL_OR_CONTROL`
 - Recommended bucket: `DO_NOT_TOUCH`
@@ -1076,5 +1085,5 @@ Source scan generated: `2026-07-14T04:24:16+00:00`
 
 ## Receipt
 
-- Receipt hash: `bead6187fd9ea56db7472a570977cfe84e3ba8d63a031293b1fc7e7480523434`
+- Receipt hash: `b5fe79a2f570af50a8b8a996537d001175e14d4300c59aed73cbc84e2b491d9f`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`

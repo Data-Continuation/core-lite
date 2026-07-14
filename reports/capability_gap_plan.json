@@ -123,7 +123,7 @@
       "evidence": [
         "signal hit(s): .github/workflows, github/workflows",
         "expected path exists: .github/workflows",
-        "implementation file(s): .github/workflows/auto-fix-eligibility.yml, .github/workflows/bundle-registry.yml, .github/workflows/core-lite-intake.yml, .github/workflows/core-lite-self-test.yml, .github/workflows/ecosystem-maintainer-scan.yml, .github/workflows/friction-avoided.yml, .github/workflows/install-iosnoperiod.yml, .github/workflows/target-capability-gap.yml"
+        "implementation file(s): .github/workflows/auto-fix-eligibility.yml, .github/workflows/bundle-registry.yml, .github/workflows/core-lite-intake.yml, .github/workflows/core-lite-self-test.yml, .github/workflows/ecosystem-maintainer-scan.yml, .github/workflows/friction-avoided.yml, .github/workflows/install-iosnoperiod.yml, .github/workflows/rce-p0-001-validation.yml"
       ],
       "implementation_files": [
         ".github/workflows/auto-fix-eligibility.yml",
@@ -133,6 +133,7 @@
         ".github/workflows/ecosystem-maintainer-scan.yml",
         ".github/workflows/friction-avoided.yml",
         ".github/workflows/install-iosnoperiod.yml",
+        ".github/workflows/rce-p0-001-validation.yml",
         ".github/workflows/target-capability-gap.yml",
         ".github/workflows/target-repo-scan.yml",
         ".github/workflows/workstream-status.yml"
@@ -145,24 +146,24 @@
       "status": "implemented_or_seeded"
     }
   ],
-  "generated_at": "2026-07-14T04:24:16+00:00",
+  "generated_at": "2026-07-14T04:43:25+00:00",
   "receipt": {
     "capability_count": 9,
-    "hash": "747bc13b7b47b7b830f9e7607a89082fe6bb978fa30804925c75ef32bf265dd4",
+    "hash": "a9458eced6be1d004529fc6f391ed38852741874347954ad84423f00de69adae",
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,
-    "previous_hash": "4ca9050cd4f778efa6b7b1d43ef561062d6361d960d66af73b4375389bb3c040",
+    "previous_hash": "747bc13b7b47b7b830f9e7607a89082fe6bb978fa30804925c75ef32bf265dd4",
     "receipt_type": "core_lite.capability_gap_plan",
     "repo_role": "core-lite",
     "result": "pass",
-    "timestamp": "2026-07-14T04:24:16+00:00"
+    "timestamp": "2026-07-14T04:43:25+00:00"
   },
   "repo_role": {
     "confidence": "high",
     "role": "core-lite",
     "scores": {
-      "core-lite": 1508,
+      "core-lite": 1519,
       "footprint-auditor": 107,
       "formalism": 55
     }
@@ -170,7 +171,7 @@
   "summary": {
     "capability_count": 9,
     "directory_count": 23,
-    "file_count": 116,
+    "file_count": 117,
     "implemented_or_seeded_count": 2,
     "missing_or_placeholder_count": 7,
     "mutation_count": 0,

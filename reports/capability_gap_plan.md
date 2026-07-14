@@ -1,6 +1,6 @@
 # Core-Lite Capability Gap Plan
 
-Generated: `2026-07-14T04:24:16+00:00`
+Generated: `2026-07-14T04:43:25+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -17,12 +17,12 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 - Role: `core-lite`
 - Confidence: `high`
-- Scores: `{'footprint-auditor': 107, 'core-lite': 1508, 'formalism': 55}`
+- Scores: `{'footprint-auditor': 107, 'core-lite': 1519, 'formalism': 55}`
 
 ## Summary
 
 - result: `pass`
-- file_count: `116`
+- file_count: `117`
 - directory_count: `23`
 - capability_count: `9`
 - implemented_or_seeded_count: `2`
@@ -131,6 +131,7 @@ Target root: `/home/runner/work/core-lite/core-lite`
   - `.github/workflows/ecosystem-maintainer-scan.yml`
   - `.github/workflows/friction-avoided.yml`
   - `.github/workflows/install-iosnoperiod.yml`
+  - `.github/workflows/rce-p0-001-validation.yml`
   - `.github/workflows/target-capability-gap.yml`
   - `.github/workflows/target-repo-scan.yml`
   - `.github/workflows/workstream-status.yml`
@@ -139,9 +140,9 @@ Target root: `/home/runner/work/core-lite/core-lite`
 - Evidence:
   - signal hit(s): .github/workflows, github/workflows
   - expected path exists: .github/workflows
-  - implementation file(s): .github/workflows/auto-fix-eligibility.yml, .github/workflows/bundle-registry.yml, .github/workflows/core-lite-intake.yml, .github/workflows/core-lite-self-test.yml, .github/workflows/ecosystem-maintainer-scan.yml, .github/workflows/friction-avoided.yml, .github/workflows/install-iosnoperiod.yml, .github/workflows/target-capability-gap.yml
+  - implementation file(s): .github/workflows/auto-fix-eligibility.yml, .github/workflows/bundle-registry.yml, .github/workflows/core-lite-intake.yml, .github/workflows/core-lite-self-test.yml, .github/workflows/ecosystem-maintainer-scan.yml, .github/workflows/friction-avoided.yml, .github/workflows/install-iosnoperiod.yml, .github/workflows/rce-p0-001-validation.yml
 
 ## Receipt
 
-- Receipt hash: `747bc13b7b47b7b830f9e7607a89082fe6bb978fa30804925c75ef32bf265dd4`
+- Receipt hash: `a9458eced6be1d004529fc6f391ed38852741874347954ad84423f00de69adae`
 - Receipt path: `receipts/capability_gap_receipts.jsonl`

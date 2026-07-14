@@ -100,6 +100,19 @@
       "extension": ".yml",
       "inbound_refs": [],
       "local_refs": [],
+      "path": ".github/workflows/rce-p0-001-validation.yml",
+      "python_import_refs": [],
+      "size_bytes": 4331
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": ".github/workflows/target-capability-gap.yml",
       "python_import_refs": [],
       "size_bytes": 2287
@@ -645,7 +658,7 @@
       "local_refs": [],
       "path": "core_lite/tasks/relationship_conditioned_execution.json",
       "python_import_refs": [],
-      "size_bytes": 3855
+      "size_bytes": 4245
     },
     {
       "broken_refs": [],
@@ -1569,33 +1582,33 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T04:24:16+00:00",
+  "generated_at": "2026-07-14T04:43:24+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 39,
+      "CANONICAL_OR_CONTROL": 40,
       "ORPHAN_CANDIDATE": 39,
       "REAL": 11,
       "SUPPORT_ARTIFACT": 24
     },
-    "file_count": 116,
-    "hash": "25af0517b17ea0a0f8de35296a488d7a9db360e977ed0561be44fee463bfbee4",
+    "file_count": 117,
+    "hash": "aa5a3f5cb4d3ebb08b8208a87ebd22d08af4d66deb44dbc7a4c3fef5f4f6d5b4",
     "mutation_count": 0,
-    "previous_hash": "57bea67a5348f266830dd0f89236a93cc186a3f9331f5d595172a239046dc74f",
+    "previous_hash": "25af0517b17ea0a0f8de35296a488d7a9db360e977ed0561be44fee463bfbee4",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T04:24:16+00:00"
+    "timestamp": "2026-07-14T04:43:24+00:00"
   },
   "summary": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 39,
+      "CANONICAL_OR_CONTROL": 40,
       "ORPHAN_CANDIDATE": 39,
       "REAL": 11,
       "SUPPORT_ARTIFACT": 24
     },
-    "file_count": 116,
+    "file_count": 117,
     "mutation_count": 0,
     "result": "pass"
   },
