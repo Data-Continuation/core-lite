@@ -1,0 +1,49 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-007",
+  "title": "Publish destination-observable RCE candidate notification",
+  "status": "ACTIVE_WAITING_FOR_P0_006",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "owner": "github_actions:rce-p0-007-candidate-notification",
+  "source_handoff": "docs/CORE_LITE_MIRROR_HANDOFF.md",
+  "activation_dependency": {
+    "task_id": "RCE-P0-006",
+    "required_status": "COMPLETE",
+    "required_evidence": "receipts/rce_p0_006_authoritative_validation.json",
+    "satisfaction_mode": "validated_at_runtime_fail_closed"
+  },
+  "goal": "Publish a deterministic repository-visible notification that candidate evidence is available for destination-owned evaluation without mutating the destination or claiming receipt, acceptance, or installation.",
+  "required_outputs": [
+    "tools/publish_rce_candidate_notification.py",
+    "tests/test_publish_rce_candidate_notification.py",
+    "notifications/relationship_conditioned_execution/candidate_available.json",
+    "reports/rce_p0_007_candidate_notification.json",
+    "receipts/rce_p0_007_authoritative_validation.json",
+    ".github/workflows/rce-p0-007-validation.yml"
+  ],
+  "acceptance_criteria": [
+    "P0-006 authoritative receipt exists and is true",
+    "candidate envelope exists and its digest is verified",
+    "notification names source repository intended destination intake policy and envelope",
+    "notification_state equals CANDIDATE_AVAILABLE_FOR_DESTINATION_EVALUATION",
+    "destination_receipt_observed is false",
+    "destination_acceptance_claimed is false",
+    "destination_mutation_performed is false",
+    "workflow persists notification report receipt task state and successor automatically",
+    "manual_actions_required remains empty"
+  ],
+  "invariants": [
+    "notification_only",
+    "candidate_evidence_only",
+    "no_destination_receipt_claim",
+    "no_destination_acceptance_claim",
+    "no_external_mutation",
+    "complete_receipt_chain",
+    "fail_closed_on_any_mismatch",
+    "manual_actions_required_is_empty"
+  ],
+  "blocked_by": [],
+  "permitted_scope": ["notification records", "hash verification", "receipt chaining", "reports", "tests", "automatic evidence persistence"],
+  "prohibited_scope": ["external repository mutation", "production installation", "destination acceptance", "fabricated destination receipt", "autonomous execution", "human-harm authorization", "real-world target data", "weapons enablement", "cyber exploitation instructions"]
+}
