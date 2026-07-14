@@ -1,0 +1,116 @@
+name: RCE P0-001 Validation
+
+on:
+  pull_request:
+    paths:
+      - "docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md"
+      - "schemas/relationship_conditioned_human_decision_policy.schema.json"
+      - "samples/relationship_conditioned_human_decision_policy.example.json"
+      - "tools/validate_relationship_conditioned_human_decision_policy.py"
+      - "tests/test_relationship_conditioned_human_decision_policy.py"
+      - ".github/workflows/rce-p0-001-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-rce-p0-001:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install validation dependencies
+        run: python -m pip install --upgrade pip pytest jsonschema
+
+      - name: Run canonical policy validator
+        id: canonical
+        run: |
+          set -o pipefail
+          python tools/validate_relationship_conditioned_human_decision_policy.py | tee canonical-validation.txt
+
+      - name: Run focused policy tests
+        id: tests
+        run: |
+          set -o pipefail
+          python -m pytest -q tests/test_relationship_conditioned_human_decision_policy.py | tee pytest-validation.txt
+
+      - name: Create validation receipt
+        if: always()
+        env:
+          CANONICAL_OUTCOME: ${{ steps.canonical.outcome }}
+          TEST_OUTCOME: ${{ steps.tests.outcome }}
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          paths = [
+              "docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md",
+              "schemas/relationship_conditioned_human_decision_policy.schema.json",
+              "samples/relationship_conditioned_human_decision_policy.example.json",
+              "tools/validate_relationship_conditioned_human_decision_policy.py",
+              "tests/test_relationship_conditioned_human_decision_policy.py",
+          ]
+
+          files = {}
+          for value in paths:
+              data = Path(value).read_bytes()
+              files[value] = hashlib.sha256(data).hexdigest()
+
+          receipt = {
+              "schema": "stegverse.validation.receipt.v1",
+              "receipt_id": f"rce-p0-001-github-actions-{os.environ['GITHUB_RUN_ID']}-{os.environ['GITHUB_RUN_ATTEMPT']}",
+              "task_id": "RCE-P0-001",
+              "repository": os.environ["GITHUB_REPOSITORY"],
+              "commit_sha": os.environ["GITHUB_SHA"],
+              "ref": os.environ["GITHUB_REF"],
+              "event": os.environ["GITHUB_EVENT_NAME"],
+              "run_id": os.environ["GITHUB_RUN_ID"],
+              "run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+              "observed_at": datetime.now(timezone.utc).isoformat(),
+              "validation_class": "GITHUB_ACTIONS_AUTHORITATIVE_VALIDATION",
+              "authoritative_completion_evidence": (
+                  os.environ.get("CANONICAL_OUTCOME") == "success"
+                  and os.environ.get("TEST_OUTCOME") == "success"
+              ),
+              "outcomes": {
+                  "canonical_validator": os.environ.get("CANONICAL_OUTCOME"),
+                  "focused_tests": os.environ.get("TEST_OUTCOME"),
+              },
+              "source_sha256": files,
+              "commands": [
+                  "python tools/validate_relationship_conditioned_human_decision_policy.py",
+                  "python -m pytest -q tests/test_relationship_conditioned_human_decision_policy.py",
+              ],
+          }
+
+          Path("rce-p0-001-validation-receipt.json").write_text(
+              json.dumps(receipt, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Upload authoritative validation receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rce-p0-001-validation-receipt
+          path: |
+            rce-p0-001-validation-receipt.json
+            canonical-validation.txt
+            pytest-validation.txt
+          if-no-files-found: error
+          retention-days: 90
