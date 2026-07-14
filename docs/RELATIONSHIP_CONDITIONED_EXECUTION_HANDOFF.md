@@ -4,7 +4,9 @@
 
 This record preserves the design decisions and generated-artifact lineage from the AI–human self-sacrifice governance discussion. The prior ZIPs are **unvalidated conversation artifacts**, not production-ready releases or install authority.
 
-`RCE-P0-001` policy, schema, example, validator, and tests are present on draft PR #2. Their status is `IMPLEMENTED_PENDING_CI`; no authoritative workflow run or local validation receipt is yet attached.
+`RCE-P0-001` is implemented and independently validated from connector-rehydrated branch artifacts. The authoritative GitHub Actions run remains blocked at an approval or dispatch gate, so the authoritative completion receipt does not yet exist.
+
+`RCE-P0-002` is materially prepared but remains `PREPARED_NOT_ACTIVATED` until `RCE-P0-001` is complete from authoritative evidence.
 
 ## Core decision
 
@@ -43,64 +45,67 @@ The ZIPs were created in ephemeral sandbox storage. Their existence does not pro
 
 | Version | Intended layer | Current evidence posture |
 |---|---|---|
-| v1.0 | relationship state, history, policy, ethics, non-guarantee, temporal identity, receipt integration | described in-thread; not durably packaged here |
-| v1.1 | distributed witnesses, quorum, anomaly detection, trust decay, recovery routing | scaffold only |
-| v1.2 | global state, stability scoring, cascade prevention | scaffold only |
-| v1.3 | receipt chain, continuous state, checkpoint, replay | scaffold only |
-| v1.4 | predictive risk, drift detection, throttling | scaffold only |
-| v1.5 | outcome feedback and threshold adaptation | scaffold only; unsafe without bounded policy-change authority |
-| v2.0 | multi-agent registry, conflict detection, negotiation, incentives | scaffold only |
-| v2.1 | adversarial detection, reputation change, slashing/filtering | scaffold only; failure rate is not proof of adversarial intent |
-| v2.2 | weighted voting, quorum, consensus, execution | scaffold only; current voting model does not encode agent choices and must not execute human-impacting decisions |
+| v1.0 | relationship state, history, policy, ethics, non-guarantee, temporal identity, receipt integration | reconstructed as `RCE-P0-001` policy/schema/validator/test set |
+| v1.1 | distributed witnesses, quorum, anomaly detection, trust decay, recovery routing | scaffold lineage only |
+| v1.2 | global state, stability scoring, cascade prevention | scaffold lineage only |
+| v1.3 | receipt chain, continuous state, checkpoint, replay | scaffold lineage only |
+| v1.4 | predictive risk, drift detection, throttling | scaffold lineage only |
+| v1.5 | outcome feedback and threshold adaptation | scaffold lineage only; unsafe without bounded policy-change authority |
+| v2.0 | multi-agent registry, conflict detection, negotiation, incentives | scaffold lineage only |
+| v2.1 | adversarial detection, reputation change, slashing/filtering | scaffold lineage only; failure rate is not proof of adversarial intent |
+| v2.2 | weighted voting, quorum, consensus, execution | scaffold lineage only; collective voting must not execute human-impacting decisions |
 
-## RCE-P0-001 outputs
+## Current durable implementation
+
+`RCE-P0-001` includes:
 
 - `docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md`
 - `schemas/relationship_conditioned_human_decision_policy.schema.json`
 - `samples/relationship_conditioned_human_decision_policy.example.json`
 - `tools/validate_relationship_conditioned_human_decision_policy.py`
 - `tests/test_relationship_conditioned_human_decision_policy.py`
+- `.github/workflows/rce-p0-001-validation.yml`
+- `receipts/rce_p0_001_connector_rehydrated_validation.json`
 
-The validator enforces the non-execution invariant independently of optional JSON Schema tooling. Tests cover missing roles, inferred authority, uncertainty acknowledgment, irreversible impact, role-specific outputs, invalid authority states, and temporal-identity consent limits.
+Observed independent validation:
 
-## Known blockers and defects
+```text
+RELATIONSHIP_CONDITIONED_POLICY_VALID
+16 passed in 2.07s
+```
 
-1. Bundle manifests do not conform to the canonical Core-Lite manifest shape documented for incoming bundles.
-2. No file-level hashes, byte counts, provenance receipts, or install destinations were preserved in the generated manifests.
-3. Versions were produced as incremental standalone bundles rather than one verified dependency-aware distribution.
-4. Most state is process-local and non-durable.
-5. Receipt hashing uses wall-clock time and does not establish deterministic replay.
-6. Rollback restores a stored object but does not reverse external effects.
-7. Predictive and anomaly logic uses simplistic heuristics with no calibration or context-of-use declaration.
-8. Adaptive threshold code mutates shared state and may progressively exceed valid bounds.
-9. Reputation and slashing mechanisms conflate failure, malice, degraded capability, and environmental uncertainty.
-10. The v2.2 voting scaffold grants every agent weight to every proposal, producing non-expressive votes.
-11. No hard invariant separates advisory output from execution authority over human-impacting actions in the prior bundles.
-12. Authoritative CI or a local validation receipt is still missing for `RCE-P0-001`.
+The observed authoritative workflow run concluded `action_required` with zero jobs created. That is an approval or dispatch gate, not validator failure evidence.
 
-## Required reconstruction target
+`RCE-P0-002` prepared files:
 
-Do not ingest the prior ZIPs as-is. Rebuild the concept as a governed Core-Lite candidate package with:
+- `docs/RCE_P0_002_MANIFEST_AND_FIXTURES.md`
+- `core_lite/tasks/relationship_conditioned_execution_p0_002.json`
+- `schemas/execution_candidate_manifest.schema.json`
+- `samples/execution_candidate_manifest.allow.example.json`
+- `samples/execution_candidate_manifest.stale_state.example.json`
+- `samples/execution_candidate_manifest.scope_leakage.example.json`
+- `tools/validate_execution_candidate_manifest.py`
+- `tests/test_execution_candidate_manifest.py`
 
-- a canonical manifest with per-file hashes and sizes;
-- explicit target paths and dependency order;
-- policy schemas separating human safety, relationship role, evidence posture, and execution authority;
-- a non-execution invariant for self-harm or self-sacrificial human-impacting actions;
-- deterministic receipts and chain verification;
-- durable state storage and migration rules;
-- witness independence and conflict-of-interest declarations;
-- bounded, review-gated policy adaptation rather than autonomous threshold mutation;
-- tests for ADVISE, WITNESS_ONLY, PROTECTIVE_DELAY, EXECUTE_REVERSIBLE, ESCALATE, ABSTAIN, and FAIL_CLOSED outcomes;
-- sandbox validation before any destination installation;
-- ingestion receipts and master-record pointers after authorized installation.
+## Known blockers
+
+1. The authoritative `RCE-P0-001` run requires repository approval or a successful pull-request-triggered rerun.
+2. The `rce-p0-001-validation-receipt` artifact has not been preserved.
+3. `authoritative_completion_evidence == true` has not been verified.
+4. `RCE-P0-002` therefore remains dormant and must not be activated.
+5. The earlier ZIPs remain unvalidated scaffolding and must not be ingested.
+
+## Required next event
+
+```text
+repository maintainer approves the pending Actions run for PR #2 or causes a successful pull-request-triggered RCE P0-001 Validation run
+-> validation job executes
+-> receipt artifact is downloaded and preserved
+-> authoritative_completion_evidence == true is verified
+-> RCE-P0-001 becomes COMPLETE
+-> RCE-P0-002 activation_allowed becomes true
+```
 
 ## Permitted continuation scope
 
-A continuation session may create schemas, validators, tests, sandbox fixtures, threat models, decision receipts, and a canonical ingestion candidate. It may not represent the prior ZIPs as production-ready, authorize irreversible harm, infer human intent from reputation or history alone, or allow collective AI voting to override human safety boundaries.
-
-## Next task
-
-1. Execute `python tools/validate_relationship_conditioned_human_decision_policy.py`.
-2. Execute `python -m pytest -q tests/test_relationship_conditioned_human_decision_policy.py`.
-3. Preserve the validation receipt and move `RCE-P0-001` to complete only if both pass.
-4. Begin `RCE-P0-002`: canonical manifest and sandbox fixture package.
+A continuation session may inspect the workflow run, preserve validation receipts, update task states from evidence, and activate the already-prepared harmless sandbox package after the dependency is satisfied. It may not represent the prior ZIPs as production-ready, authorize irreversible harm, infer human intent from reputation or history alone, or allow collective AI voting to override human safety boundaries.
