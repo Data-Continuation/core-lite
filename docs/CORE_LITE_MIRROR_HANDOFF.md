@@ -5,7 +5,7 @@ This file is the source of truth for continuing `Data-Continuation/core-lite` wo
 ## Current version
 
 ```text
-0.7.4-rce-p0-001-action-required-p0-002-prepared
+0.7.0-relationship-conditioned-execution-handoff
 ```
 
 ## Current status
@@ -26,11 +26,11 @@ STEGVERSE_002_EXPORT_WORKFLOW_COVERED
 MANAGEMENT_REPORTS_PUBLISHED_TO_REPOSITORY
 ECOSYSTEM_MANAGEMENT_WORKFLOW_COVERED
 RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF_PRESENT
-RELATIONSHIP_CONDITIONED_EXECUTION_TASK_INDEPENDENTLY_VALIDATED
-RCE_P0_001_AUTHORITATIVE_WORKFLOW_ACTION_REQUIRED
-RCE_P0_002_PACKAGE_PREPARED_NOT_ACTIVATED
-ADVERSARIAL_AI_EXECUTION_MODEL_PRESENT
-DRAFT_PR_2_OPEN
+RELATIONSHIP_CONDITIONED_EXECUTION_TASK_DECLARED
+RCE_P0_001_IMPLEMENTED
+RCE_P0_001_INDEPENDENT_VALIDATION_PASS
+RCE_P0_001_AUTHORITATIVE_ACTION_REQUIRED
+RCE_P0_002_PREPARED_NOT_ACTIVATED
 LOCAL_AND_CI
 ```
 
@@ -41,25 +41,42 @@ docs/CORE_LITE_MIRROR_HANDOFF.md
 docs/STEGCLAW_TARGET_INTAKE.md
 docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md
 docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md
-docs/ADVERSARIAL_AI_EXECUTION_MODEL.md
 docs/RCE_P0_002_MANIFEST_AND_FIXTURES.md
 README.md
 core_lite/stegverse_002_export_manifest.json
 core_lite/tasks/relationship_conditioned_execution.json
 core_lite/tasks/relationship_conditioned_execution_p0_002.json
-schemas/relationship_conditioned_human_decision_policy.schema.json
-schemas/execution_candidate_manifest.schema.json
-samples/relationship_conditioned_human_decision_policy.example.json
-samples/execution_candidate_manifest.allow.example.json
-samples/execution_candidate_manifest.stale_state.example.json
-samples/execution_candidate_manifest.scope_leakage.example.json
+```
+
+## Current managed files
+
+```text
+core_lite/workstreams.yml
+core_lite/transition_blocks.yml
+core_lite/stegclaw_target_intake.json
+core_lite/bundle_registry.yml
+core_lite/stegverse_002_export_manifest.json
+core_lite/tasks/relationship_conditioned_execution.json
+core_lite/tasks/relationship_conditioned_execution_p0_002.json
+tools/validate_workstreams.py
+tools/validate_stegclaw_intake.py
+tools/ecosystem_maintainer.py
+tools/auto_fix_eligibility.py
+tools/measure_friction.py
+tools/bundle_registry_report.py
+tools/capability_gap_plan.py
+tools/validate_stegverse_002_export.py
 tools/validate_relationship_conditioned_human_decision_policy.py
 tools/validate_execution_candidate_manifest.py
-tests/test_relationship_conditioned_human_decision_policy.py
-tests/test_execution_candidate_manifest.py
-.github/workflows/rce-p0-001-validation.yml
-receipts/rce_p0_001_connector_rehydrated_validation.json
+docs/STEGCLAW_TARGET_INTAKE.md
+docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md
+docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md
+docs/RCE_P0_002_MANIFEST_AND_FIXTURES.md
+github/workflows/workstream-status.yml
+github/workflows/rce-p0-001-validation.yml
 ```
+
+Path note: workflow paths above are displayed without the leading dot. Their actual paths begin with `.github/workflows/`.
 
 ## Current activation goal
 
@@ -177,7 +194,7 @@ Because no job was created, this is an approval or dispatch gate rather than val
 Required authoritative transition:
 
 ```text
-repository maintainer approves or manually dispatches RCE P0-001 Validation
+repository maintainer approves the pending Actions run for PR #2 or causes a successful pull-request-triggered RCE P0-001 Validation run
 -> validation job executes
 -> receipt artifact is downloaded and preserved
 -> authoritative_completion_evidence == true is verified
@@ -218,38 +235,6 @@ stale_state.example: evidence older than declared maximum -> DENY
 scope_leakage.example: predicted effect outside authorized domains -> DENY
 ```
 
-The package excludes real-world targets, targeting logic, weapons enablement, strike routing, evasion, cyber exploitation, and autonomous harmful execution.
+## Next build candidate
 
-## Preserved boundaries
-
-```text
-relationship history provides context but does not create authority
-uncertainty acknowledgment does not authorize irreversible harm
-AI quorum or reputation cannot authorize human harm
-adaptive policy changes require bounded review authority
-unknown authority fails closed, abstains, or escalates
-commit-time admissibility must be re-derived from live state
-denial must remain meaningfully reachable
-authority scope must contain cross-domain effects
-```
-
-## Adversarial execution-boundary model
-
-The U.S.-Iran adversarial AI pipeline model is durably preserved at:
-
-```text
-docs/ADVERSARIAL_AI_EXECUTION_MODEL.md
-```
-
-It records centralized and distributed pipeline archetypes, six execution-boundary breakpoints, the shared commit-time admissibility defect, required StegVerse gates, evidence-discipline rules, and the permitted next fixture scope. It explicitly excludes operational targeting instructions and autonomous-weapons enablement.
-
-## Next build sequence
-
-1. Approve or manually dispatch `RCE P0-001 Validation`.
-2. Observe the resulting workflow run and inspect its jobs.
-3. Download and preserve `rce-p0-001-validation-receipt`.
-4. Verify both command outcomes are `success` and `authoritative_completion_evidence` is `true`.
-5. Mark `RCE-P0-001` complete.
-6. Change `RCE-P0-002` from `PREPARED_NOT_ACTIVATED` to `ACTIVE`.
-7. Execute the prepared RCE-P0-002 validator and tests and preserve their receipt.
-8. Keep the existing management-package mirroring task independently valid.
+Do not activate or extend `RCE-P0-002` until the authoritative `RCE-P0-001` receipt exists. The next valid event is repository-maintainer approval or a successful pull-request-triggered rerun of `RCE P0-001 Validation`, followed by receipt preservation and task-state transition. The existing management-package mirroring task remains independently valid and may proceed without requiring this conversation.
