@@ -5,7 +5,7 @@ This file is the source of truth for continuing `Data-Continuation/core-lite` wo
 ## Current version
 
 ```text
-0.7.0-relationship-conditioned-execution-handoff
+0.7.1-rce-p0-001-implemented-pending-ci
 ```
 
 ## Current status
@@ -26,7 +26,7 @@ STEGVERSE_002_EXPORT_WORKFLOW_COVERED
 MANAGEMENT_REPORTS_PUBLISHED_TO_REPOSITORY
 ECOSYSTEM_MANAGEMENT_WORKFLOW_COVERED
 RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF_PRESENT
-RELATIONSHIP_CONDITIONED_EXECUTION_TASK_DECLARED
+RELATIONSHIP_CONDITIONED_EXECUTION_TASK_IMPLEMENTED_PENDING_CI
 LOCAL_AND_CI
 ```
 
@@ -36,34 +36,15 @@ LOCAL_AND_CI
 docs/CORE_LITE_MIRROR_HANDOFF.md
 docs/STEGCLAW_TARGET_INTAKE.md
 docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md
+docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md
 README.md
 core_lite/stegverse_002_export_manifest.json
 core_lite/tasks/relationship_conditioned_execution.json
+schemas/relationship_conditioned_human_decision_policy.schema.json
+samples/relationship_conditioned_human_decision_policy.example.json
+tools/validate_relationship_conditioned_human_decision_policy.py
+tests/test_relationship_conditioned_human_decision_policy.py
 ```
-
-## Current managed files
-
-```text
-core_lite/workstreams.yml
-core_lite/transition_blocks.yml
-core_lite/stegclaw_target_intake.json
-core_lite/bundle_registry.yml
-core_lite/stegverse_002_export_manifest.json
-core_lite/tasks/relationship_conditioned_execution.json
-tools/validate_workstreams.py
-tools/validate_stegclaw_intake.py
-tools/ecosystem_maintainer.py
-tools/auto_fix_eligibility.py
-tools/measure_friction.py
-tools/bundle_registry_report.py
-tools/capability_gap_plan.py
-tools/validate_stegverse_002_export.py
-docs/STEGCLAW_TARGET_INTAKE.md
-docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md
-github/workflows/workstream-status.yml
-```
-
-Path note: `github/workflows/workstream-status.yml` is displayed without the leading dot. The actual path is `.github/workflows/workstream-status.yml`.
 
 ## Current activation goal
 
@@ -111,16 +92,33 @@ MANAGEMENT_PACKAGE_CANDIDATE_EVIDENCE_ACCEPTED
 
 ## Relationship-conditioned execution workstream
 
-The AI-human relationship discussion and v1.0-v2.2 artifact lineage are now durably preserved in:
+The AI-human relationship discussion and v1.0-v2.2 artifact lineage are durably preserved in:
 
 ```text
 docs/RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF.md
 core_lite/tasks/relationship_conditioned_execution.json
 ```
 
-The previous ZIPs are explicitly classified as unvalidated scaffolding and must not be ingested as production releases. The active task is `RCE-P0-001`: define the normative relationship-conditioned human-decision policy, schema, example, and tests.
+The prior ZIPs are unvalidated scaffolding and must not be ingested as production releases.
 
-The workstream must preserve these boundaries:
+`RCE-P0-001` now includes:
+
+```text
+docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md
+schemas/relationship_conditioned_human_decision_policy.schema.json
+samples/relationship_conditioned_human_decision_policy.example.json
+tools/validate_relationship_conditioned_human_decision_policy.py
+tests/test_relationship_conditioned_human_decision_policy.py
+```
+
+Its current state is `IMPLEMENTED_PENDING_CI`. The required validation commands are:
+
+```text
+python tools/validate_relationship_conditioned_human_decision_policy.py
+python -m pytest -q tests/test_relationship_conditioned_human_decision_policy.py
+```
+
+The workstream preserves these boundaries:
 
 ```text
 relationship history provides context but does not create authority
@@ -132,4 +130,4 @@ unknown authority fails closed, abstains, or escalates
 
 ## Next build candidate
 
-Build `RCE-P0-001` outputs, validate them locally and in CI, then prepare `RCE-P0-002` as a canonical manifest and sandbox fixture package. The existing management-package mirroring task remains independently valid and may proceed without requiring this conversation.
+Obtain and preserve the authoritative `RCE-P0-001` validation receipt. If both commands pass, mark `RCE-P0-001` complete and begin `RCE-P0-002`: canonical manifest and sandbox fixture package. The existing management-package mirroring task remains independently valid.
