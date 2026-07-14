@@ -1,0 +1,65 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-008",
+  "title": "Automate sandbox expiry renewal and quarantine",
+  "status": "WAITING_AUTOMATED_PREDECESSOR",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "owner": "core_lite_management_workflow",
+  "activation_dependency": {
+    "task_id": "RCE-P0-007",
+    "required_status": "COMPLETE",
+    "required_evidence": "receipts/rce_p0_007_authoritative_validation.json",
+    "satisfied": false
+  },
+  "goal": "Maintain a bounded sandbox lease, renew it automatically only while custody, lifecycle, content, and authority evidence remain valid, and quarantine expired or invalid candidates without production or external destination mutation.",
+  "required_outputs": [
+    "tools/manage_relationship_conditioned_execution_lease.py",
+    "tests/test_manage_relationship_conditioned_execution_lease.py",
+    "sandbox/intake/relationship_conditioned_execution/lease_state.json",
+    "reports/rce_p0_008_lease.json",
+    "receipts/rce_p0_008_authoritative_validation.json"
+  ],
+  "acceptance_criteria": [
+    "P0-007 authoritative receipt is present and true",
+    "lease has explicit issued and expiry timestamps",
+    "renewal requires unchanged package identity version and content hashes",
+    "renewal requires sandbox-only and no-authority boundaries",
+    "invalid or expired evidence quarantines the candidate fail closed",
+    "quarantine never deletes authoritative evidence",
+    "production and external destinations remain prohibited",
+    "manual_actions_required remains empty"
+  ],
+  "invariants": [
+    "bounded_sandbox_lease",
+    "renew_only_on_current_authoritative_evidence",
+    "quarantine_on_expiry_or_drift",
+    "sandbox_only",
+    "no_production_destination",
+    "no_external_destination_mutation",
+    "no_autonomous_execution_authority",
+    "manual_actions_required_is_empty"
+  ],
+  "blocked_by": [
+    "RCE-P0-007 authoritative lifecycle receipt not yet persisted"
+  ],
+  "manual_actions_required": [],
+  "permitted_scope": [
+    "sandbox lease state",
+    "automatic renewal",
+    "sandbox quarantine",
+    "hash and receipt verification",
+    "reports",
+    "receipts",
+    "automatic task-state persistence"
+  ],
+  "prohibited_scope": [
+    "production installation",
+    "external destination mutation",
+    "autonomous execution",
+    "human-harm authorization",
+    "real-world target data",
+    "weapons enablement",
+    "cyber exploitation instructions"
+  ]
+}
