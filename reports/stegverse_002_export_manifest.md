@@ -1,6 +1,6 @@
 # StegVerse-002 Export Manifest Validation
 
-Generated: `2026-07-14T06:57:22+00:00`
+Generated: `2026-07-14T06:58:42+00:00`
 Source repo: `Data-Continuation/core-lite`
 Destination repo: `StegVerse-002/core-lite`
 Artifact: `core-lite-workstream-status`
@@ -32,5 +32,5 @@ Artifact: `core-lite-workstream-status`
 
 ## Receipt
 
-- Receipt hash: `0781769262d47429b355fbe234a535316600b7e3d702f446e0d575cb619969ba`
+- Receipt hash: `0d57ffcd2e39dc797341b17ad358617d79b8fe20b328973e9dec8a512d6a4b00`
 - Receipt path: `receipts/stegverse_002_export_receipts.jsonl`

@@ -152,6 +152,19 @@
       "extension": ".yml",
       "inbound_refs": [],
       "local_refs": [],
+      "path": ".github/workflows/rce-p0-005-validation.yml",
+      "python_import_refs": [],
+      "size_bytes": 8582
+    },
+    {
+      "broken_refs": [],
+      "class": "CANONICAL_OR_CONTROL",
+      "evidence": [
+        "canonical/control file"
+      ],
+      "extension": ".yml",
+      "inbound_refs": [],
+      "local_refs": [],
       "path": ".github/workflows/target-capability-gap.yml",
       "python_import_refs": [],
       "size_bytes": 2287
@@ -869,7 +882,7 @@
       "local_refs": [],
       "path": "docs/CORE_LITE_MIRROR_HANDOFF.md",
       "python_import_refs": [],
-      "size_bytes": 5421
+      "size_bytes": 6403
     },
     {
       "broken_refs": [],
@@ -1676,6 +1689,22 @@
     },
     {
       "broken_refs": [],
+      "class": "ORPHAN_CANDIDATE",
+      "evidence": [
+        "text file with no stub or broken-reference signal",
+        "no inbound references found in scanned text files"
+      ],
+      "extension": ".py",
+      "inbound_refs": [],
+      "local_refs": [],
+      "path": "tests/test_stage_relationship_conditioned_execution_candidate.py",
+      "python_import_refs": [
+        "tools/stage_relationship_conditioned_execution_candidate.py"
+      ],
+      "size_bytes": 2659
+    },
+    {
+      "broken_refs": [],
       "class": "REAL",
       "evidence": [
         "text file with no stub or broken-reference signal"
@@ -1777,7 +1806,9 @@
         "text file with no stub or broken-reference signal"
       ],
       "extension": ".py",
-      "inbound_refs": [],
+      "inbound_refs": [
+        "tests/test_stage_relationship_conditioned_execution_candidate.py"
+      ],
       "local_refs": [],
       "path": "tools/stage_relationship_conditioned_execution_candidate.py",
       "python_import_refs": [],
@@ -1908,33 +1939,33 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T06:57:21+00:00",
+  "generated_at": "2026-07-14T06:58:42+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 47,
-      "ORPHAN_CANDIDATE": 49,
+      "CANONICAL_OR_CONTROL": 48,
+      "ORPHAN_CANDIDATE": 50,
       "REAL": 16,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 140,
-    "hash": "76ec27256a99e7f7b2bb2bda04760119ebc9159f61c6bf7f04b91d746fae965e",
+    "file_count": 142,
+    "hash": "6918f1d4416d49b49a5259cd71dd73f954776ada2a2b82477601ab26fe4aca81",
     "mutation_count": 0,
-    "previous_hash": "fab9061325fdbb111d5fe354a4c352d0dd325f6872a21afc454bc8fd0897c244",
+    "previous_hash": "76ec27256a99e7f7b2bb2bda04760119ebc9159f61c6bf7f04b91d746fae965e",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T06:57:21+00:00"
+    "timestamp": "2026-07-14T06:58:42+00:00"
   },
   "summary": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
-      "CANONICAL_OR_CONTROL": 47,
-      "ORPHAN_CANDIDATE": 49,
+      "CANONICAL_OR_CONTROL": 48,
+      "ORPHAN_CANDIDATE": 50,
       "REAL": 16,
       "SUPPORT_ARTIFACT": 25
     },
-    "file_count": 140,
+    "file_count": 142,
     "mutation_count": 0,
     "result": "pass"
   },

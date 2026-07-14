@@ -260,7 +260,7 @@
       "workstream_id": "W2"
     }
   ],
-  "generated_at": "2026-07-14T06:57:22+00:00",
+  "generated_at": "2026-07-14T06:58:42+00:00",
   "quarantine_candidates": [
     {
       "class": "corrective_rework",
@@ -388,14 +388,14 @@
     "current_count": 2,
     "estimated_handling_hours_likely": 86.9,
     "failed_count": 1,
-    "hash": "33c9ba9ba93717fad4062edba6df64a1f1a9f09c8bf923540817e6a39703cda8",
+    "hash": "e85368dc09d6f733aa9649751733b9c71a2b8b5aa889c6207034150ac23238fb",
     "observed_external_zip_count": 869,
     "obsolete_count": 0,
-    "previous_hash": "50d01e8e60749491b53a4eb6486dcb15afd3cbae311e666142209a130d3867da",
+    "previous_hash": "33c9ba9ba93717fad4062edba6df64a1f1a9f09c8bf923540817e6a39703cda8",
     "receipt_type": "core_lite.bundle_registry",
     "result": "pass",
     "superseded_count": 9,
-    "timestamp": "2026-07-14T06:57:22+00:00"
+    "timestamp": "2026-07-14T06:58:42+00:00"
   },
   "registry": {
     "name": "Core-Lite Bundle Registry",

@@ -101,6 +101,15 @@
     },
     {
       "mutation_allowed_now": false,
+      "path": ".github/workflows/rce-p0-005-validation.yml",
+      "reason": "canonical/control file requires explicit boundary review before mutation",
+      "recommended_bucket": "DO_NOT_TOUCH",
+      "recommended_transition_block": "ASK_BOUNDARY_DECISION",
+      "requires_human_review": true,
+      "source_class": "CANONICAL_OR_CONTROL"
+    },
+    {
+      "mutation_allowed_now": false,
       "path": ".github/workflows/target-capability-gap.yml",
       "reason": "canonical/control file requires explicit boundary review before mutation",
       "recommended_bucket": "DO_NOT_TOUCH",
@@ -1109,6 +1118,15 @@
     },
     {
       "mutation_allowed_now": false,
+      "path": "tests/test_stage_relationship_conditioned_execution_candidate.py",
+      "reason": "orphan candidates are not auto-quarantined without review",
+      "recommended_bucket": "HUMAN_REVIEW_REQUIRED",
+      "recommended_transition_block": "AUTO_QUARANTINE_STUB",
+      "requires_human_review": true,
+      "source_class": "ORPHAN_CANDIDATE"
+    },
+    {
+      "mutation_allowed_now": false,
       "path": "tools/auto_fix_eligibility.py",
       "reason": "real file with no maintainer finding",
       "recommended_bucket": "NO_ACTION",
@@ -1261,34 +1279,34 @@
       "source_class": "ORPHAN_CANDIDATE"
     }
   ],
-  "generated_at": "2026-07-14T06:57:21+00:00",
+  "generated_at": "2026-07-14T06:58:42+00:00",
   "receipt": {
     "auto_fix_eligible_count": 0,
     "auto_quarantine_eligible_count": 0,
     "complete_stub_eligible_count": 0,
-    "do_not_touch_count": 47,
-    "file_count": 140,
-    "hash": "1143847fa2eb651aa2de546c0f82ef92e066735a0b3ab47850412e4cd0039323",
-    "human_review_required_count": 52,
+    "do_not_touch_count": 48,
+    "file_count": 142,
+    "hash": "a6699b34131ae648bc48093d84f9159920d05f02cd35cfe45a37cd5d382d2365",
+    "human_review_required_count": 53,
     "mutation_count": 0,
-    "previous_hash": "ed1867bfcffa3948613d0145c37ac37eb9e9362a15631e86e579686a21b0b30a",
+    "previous_hash": "1143847fa2eb651aa2de546c0f82ef92e066735a0b3ab47850412e4cd0039323",
     "receipt_type": "core_lite.auto_fix_eligibility",
     "result": "pass",
-    "timestamp": "2026-07-14T06:57:21+00:00"
+    "timestamp": "2026-07-14T06:58:42+00:00"
   },
-  "source_scan_generated_at": "2026-07-14T06:57:21+00:00",
+  "source_scan_generated_at": "2026-07-14T06:58:42+00:00",
   "summary": {
     "bucket_counts": {
-      "DO_NOT_TOUCH": 47,
-      "HUMAN_REVIEW_REQUIRED": 52,
+      "DO_NOT_TOUCH": 48,
+      "HUMAN_REVIEW_REQUIRED": 53,
       "NO_ACTION": 41
     },
-    "file_count": 140,
+    "file_count": 142,
     "mutation_count": 0,
     "result": "pass",
     "transition_block_counts": {
-      "ASK_BOUNDARY_DECISION": 50,
-      "AUTO_QUARANTINE_STUB": 49
+      "ASK_BOUNDARY_DECISION": 51,
+      "AUTO_QUARANTINE_STUB": 50
     }
   }
 }
