@@ -3,7 +3,8 @@
 
 The guard emits a clean machine-readable status when source, snapshot, and
 restored evidence remain equivalent. On divergence it preserves a sandbox-only
-alert record and fails closed. It never deletes evidence or targets production.
+alert record and fails closed. Historical alerts are never deleted by later
+clean checks. It never deletes evidence or targets production.
 """
 
 from __future__ import annotations
@@ -116,6 +117,7 @@ def guard(root: Path = ROOT) -> dict[str, Any]:
         divergences.append({"path": str(restoration_path.relative_to(root)), "reason": "snapshot_root_divergence"})
 
     observed_at = datetime.now(timezone.utc).isoformat()
+    prior_alert_preserved = alert_path.exists()
     decision = "DIVERGENCE_GUARD_ARMED" if not divergences else "EVIDENCE_DIVERGENCE_QUARANTINED"
     report = {
         "schema": "stegverse.rce.divergence_guard.v1",
@@ -125,7 +127,9 @@ def guard(root: Path = ROOT) -> dict[str, Any]:
         "checked_entry_count": len(expected),
         "divergence_count": len(divergences),
         "divergences": divergences,
+        "prior_quarantine_alert_preserved": prior_alert_preserved,
         "source_evidence_modified": False,
+        "evidence_deleted": False,
         "sandbox_only": True,
         "production_destination_allowed": False,
         "external_destination_mutation_performed": False,
@@ -149,8 +153,6 @@ def guard(root: Path = ROOT) -> dict[str, Any]:
             "manual_actions_required": [],
             "observed_at": observed_at,
         })
-    elif alert_path.exists():
-        alert_path.unlink()
 
     identity = _identity()
     receipt = {
@@ -164,12 +166,14 @@ def guard(root: Path = ROOT) -> dict[str, Any]:
         "decision": decision,
         "report": str(report_path.relative_to(root)),
         "report_sha256": _sha(report_path),
+        "prior_quarantine_alert_preserved": prior_alert_preserved,
+        "evidence_deleted": False,
         "sandbox_only": True,
         "production_destination_allowed": False,
         "external_destination_mutation_performed": False,
         "manual_actions_required": [],
     }
-    if divergences:
+    if alert_path.exists():
         receipt["quarantine_alert"] = str(alert_path.relative_to(root))
         receipt["quarantine_alert_sha256"] = _sha(alert_path)
     _write(receipt_path, receipt)
@@ -183,6 +187,7 @@ def guard(root: Path = ROOT) -> dict[str, Any]:
         "authoritative_completion_evidence": not divergences,
         "authoritative_receipt": str(receipt_path.relative_to(root)),
         "decision": decision,
+        "prior_quarantine_alert_preserved": prior_alert_preserved,
         "manual_actions_required": [],
     }
     if not divergences:
