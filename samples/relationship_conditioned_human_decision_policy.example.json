@@ -1,0 +1,49 @@
+{
+  "policy_version": "1.0.0",
+  "decision_id": "rce-example-001",
+  "relationship": {
+    "role": "advisor",
+    "history_available": true,
+    "history_used_as_context_only": true,
+    "typicality": "atypical"
+  },
+  "authority": {
+    "state": "valid",
+    "source": "explicit_advisory_relationship_record",
+    "scope": ["explain", "identify_alternatives", "recommend_human_review"],
+    "revocable": true
+  },
+  "human_impact": {
+    "class": "self_sacrificial",
+    "irreversible": true,
+    "self_sacrificial": true,
+    "severe_harm_possible": true
+  },
+  "uncertainty": {
+    "open_world_acknowledged": true,
+    "future_frameworks_unknown": true,
+    "future_interpreters_unknown": true,
+    "acknowledgment_is_not_authorization": true
+  },
+  "temporal_identity": {
+    "future_self_divergence_considered": true,
+    "present_consent_treated_as_non_final": true
+  },
+  "alternatives_considered": [
+    "pause and seek an independent human review",
+    "choose a reversible lower-harm action",
+    "transfer the task to an authorized responder"
+  ],
+  "requested_operation": "execute_irreversible",
+  "decision": "ESCALATE",
+  "reasons": [
+    "advisor authority does not include irreversible execution",
+    "the action is self-sacrificial and severe irreversible harm is possible",
+    "relationship history cannot create missing execution authority"
+  ],
+  "traceability": {
+    "record_required": true,
+    "integrity_protected": true,
+    "receipt_ref": "receipt:rce-example-001"
+  }
+}
