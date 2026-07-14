@@ -1,0 +1,66 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-011",
+  "title": "Automate sealed snapshot restoration drill",
+  "status": "WAITING_AUTOMATED_PREDECESSOR",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "owner": "core_lite_management_workflow",
+  "activation_dependency": {
+    "task_id": "RCE-P0-010",
+    "required_status": "COMPLETE",
+    "required_evidence": "receipts/rce_p0_010_authoritative_validation.json",
+    "required_decision": "SNAPSHOT_SEALED",
+    "satisfied": false
+  },
+  "goal": "Restore the sealed RCE evidence snapshot into an isolated sandbox drill directory, verify every reconstructed byte against the snapshot manifest, and emit authoritative restoration evidence without production or external destination mutation.",
+  "required_outputs": [
+    "tools/restore_relationship_conditioned_execution_snapshot.py",
+    "tests/test_restore_relationship_conditioned_execution_snapshot.py",
+    "sandbox/restoration_drills/relationship_conditioned_execution/restoration_manifest.json",
+    "reports/rce_p0_011_restoration_drill.json",
+    "receipts/rce_p0_011_authoritative_validation.json"
+  ],
+  "acceptance_criteria": [
+    "P0-010 authoritative receipt is present and true",
+    "P0-010 decision is SNAPSHOT_SEALED",
+    "snapshot root and manifest digest are verified before restoration",
+    "each restored file matches the indexed sha256 digest and byte count",
+    "restoration destination is confined to sandbox/restoration_drills",
+    "no source evidence is modified or deleted",
+    "production and external destinations remain prohibited",
+    "manual_actions_required remains empty"
+  ],
+  "invariants": [
+    "isolated_sandbox_restoration",
+    "snapshot_root_verified",
+    "restored_bytes_verified",
+    "source_evidence_immutable",
+    "no_production_destination",
+    "no_external_destination_mutation",
+    "no_autonomous_execution_authority",
+    "manual_actions_required_is_empty"
+  ],
+  "blocked_by": [
+    "RCE-P0-010 authoritative snapshot receipt not yet persisted"
+  ],
+  "manual_actions_required": [],
+  "permitted_scope": [
+    "sandbox restoration drill",
+    "snapshot verification",
+    "byte reconstruction",
+    "reports",
+    "receipts",
+    "automatic task-state persistence"
+  ],
+  "prohibited_scope": [
+    "production installation",
+    "external destination mutation",
+    "source evidence deletion",
+    "autonomous execution",
+    "human-harm authorization",
+    "real-world target data",
+    "weapons enablement",
+    "cyber exploitation instructions"
+  ]
+}
