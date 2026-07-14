@@ -5,7 +5,7 @@ This file is the source of truth for continuing `Data-Continuation/core-lite` wo
 ## Current version
 
 ```text
-0.7.2-rce-p0-001-independent-pass-pending-authoritative-ci
+0.7.3-rce-p0-001-authoritative-workflow-present-pending-run
 ```
 
 ## Current status
@@ -26,7 +26,8 @@ STEGVERSE_002_EXPORT_WORKFLOW_COVERED
 MANAGEMENT_REPORTS_PUBLISHED_TO_REPOSITORY
 ECOSYSTEM_MANAGEMENT_WORKFLOW_COVERED
 RELATIONSHIP_CONDITIONED_EXECUTION_HANDOFF_PRESENT
-RELATIONSHIP_CONDITIONED_EXECUTION_TASK_INDEPENDENTLY_VALIDATED_PENDING_AUTHORITATIVE_CI
+RELATIONSHIP_CONDITIONED_EXECUTION_TASK_INDEPENDENTLY_VALIDATED
+RCE_P0_001_AUTHORITATIVE_WORKFLOW_PRESENT_PENDING_RUN
 ADVERSARIAL_AI_EXECUTION_MODEL_PRESENT
 DRAFT_PR_2_OPEN
 LOCAL_AND_CI
@@ -47,6 +48,7 @@ schemas/relationship_conditioned_human_decision_policy.schema.json
 samples/relationship_conditioned_human_decision_policy.example.json
 tools/validate_relationship_conditioned_human_decision_policy.py
 tests/test_relationship_conditioned_human_decision_policy.py
+.github/workflows/rce-p0-001-validation.yml
 receipts/rce_p0_001_connector_rehydrated_validation.json
 ```
 
@@ -113,6 +115,7 @@ schemas/relationship_conditioned_human_decision_policy.schema.json
 samples/relationship_conditioned_human_decision_policy.example.json
 tools/validate_relationship_conditioned_human_decision_policy.py
 tests/test_relationship_conditioned_human_decision_policy.py
+.github/workflows/rce-p0-001-validation.yml
 ```
 
 The exact fetched branch artifacts passed independent connector-rehydrated validation on 2026-07-13:
@@ -131,7 +134,40 @@ Evidence is preserved in:
 receipts/rce_p0_001_connector_rehydrated_validation.json
 ```
 
-This is independent validation evidence, not the authoritative CI or direct-checkout receipt required to close `RCE-P0-001`. A direct clone remained blocked by unavailable DNS resolution for `github.com`, and no pull-request-triggered workflow run was available for the branch head.
+This is independent validation evidence, not the authoritative CI or direct-checkout receipt required to close `RCE-P0-001`.
+
+## Authoritative validation workflow
+
+The repository now contains:
+
+```text
+.github/workflows/rce-p0-001-validation.yml
+```
+
+Workflow commit:
+
+```text
+43a7f25f5a22acdf87793f41b4fb0d3e293fb87d
+```
+
+It runs only the two declared validation commands, hashes the five canonical source files, creates `rce-p0-001-validation-receipt.json`, and uploads the following 90-day artifact:
+
+```text
+rce-p0-001-validation-receipt
+```
+
+The workflow supports `pull_request` and `workflow_dispatch`, uses read-only repository permissions, contains no secret-dependent conditions, and does not activate `RCE-P0-002`.
+
+No pull-request-triggered workflow run was returned for workflow commit `43a7f25f5a22acdf87793f41b4fb0d3e293fb87d` when checked. A direct clone also remains blocked by unavailable DNS resolution for `github.com`.
+
+Required authoritative transition:
+
+```text
+RCE P0-001 Validation run succeeds
+-> receipt artifact is downloaded and preserved
+-> task is marked COMPLETE
+-> RCE-P0-002 activates
+```
 
 The workstream preserves these boundaries:
 
@@ -148,7 +184,7 @@ authority scope must contain cross-domain effects
 
 ## Adversarial execution-boundary model
 
-The previously session-only U.S.-Iran adversarial AI pipeline model is now durably preserved at:
+The previously session-only U.S.-Iran adversarial AI pipeline model is durably preserved at:
 
 ```text
 docs/ADVERSARIAL_AI_EXECUTION_MODEL.md
@@ -158,8 +194,10 @@ It records centralized and distributed pipeline archetypes, six execution-bounda
 
 ## Next build candidate
 
-1. Obtain and preserve the authoritative `RCE-P0-001` CI or direct-checkout validation receipt.
-2. If both declared commands pass authoritatively, mark `RCE-P0-001` complete.
-3. Activate `RCE-P0-002`: canonical manifest and sandbox fixture package.
-4. Use `docs/ADVERSARIAL_AI_EXECUTION_MODEL.md` as a fixture-design input, not as operational targeting guidance.
-5. Keep the existing management-package mirroring task independently valid.
+1. Observe or dispatch `RCE P0-001 Validation`.
+2. Download and preserve the `rce-p0-001-validation-receipt` artifact.
+3. Verify both command outcomes are `success` and `authoritative_completion_evidence` is `true`.
+4. Mark `RCE-P0-001` complete.
+5. Activate `RCE-P0-002`: canonical manifest and sandbox fixture package.
+6. Use `docs/ADVERSARIAL_AI_EXECUTION_MODEL.md` as a fixture-design input, not as operational targeting guidance.
+7. Keep the existing management-package mirroring task independently valid.
