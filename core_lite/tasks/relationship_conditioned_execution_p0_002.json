@@ -2,7 +2,7 @@
   "schema": "stegverse.core_lite.task.v1",
   "task_id": "RCE-P0-002",
   "title": "Create canonical execution-candidate manifest and sandbox fixtures",
-  "status": "ACTIVE_PENDING_AUTHORITATIVE_VALIDATION",
+  "status": "COMPLETE",
   "priority": "P0",
   "owner_repo": "Data-Continuation/core-lite",
   "source_handoff": "docs/CORE_LITE_MIRROR_HANDOFF.md",
@@ -26,7 +26,8 @@
   "outputs_present": true,
   "activation_allowed": true,
   "activated_at": "2026-07-14T05:17:14.297110+00:00",
-  "prepared_invariants": [
+  "completed_at": "2026-07-14T05:19:00.058893+00:00",
+  "invariants": [
     "allow_requires_reversible_non_severe_sandbox_action",
     "stale_state_denies",
     "insufficient_state_abstains",
@@ -40,19 +41,23 @@
     "traceability_must_be_integrity_protected"
   ],
   "validation": {
-    "status": "PENDING_AUTHORITATIVE_CI",
+    "status": "PASS",
     "workflow": ".github/workflows/rce-p0-002-validation.yml",
-    "commands": [
-      "python tools/validate_execution_candidate_manifest.py samples/execution_candidate_manifest.allow.example.json",
-      "python tools/validate_execution_candidate_manifest.py samples/execution_candidate_manifest.stale_state.example.json",
-      "python tools/validate_execution_candidate_manifest.py samples/execution_candidate_manifest.scope_leakage.example.json",
-      "python -m pytest -q tests/test_execution_candidate_manifest.py"
-    ]
+    "authoritative_run_id": 29308190352,
+    "authoritative_run_number": 1,
+    "authoritative_run_commit": "244c3e4260246914919aa7956247db3ec0de2c68",
+    "authoritative_merge_commit": "7b2329065d8893f73beeeab3535e670cf9886624",
+    "authoritative_receipt": "receipts/rce_p0_002_authoritative_validation.json",
+    "authoritative_completion_evidence": true,
+    "outcomes": {
+      "allow_fixture": "success",
+      "stale_state_fixture": "success",
+      "scope_leakage_fixture": "success",
+      "focused_tests": "success"
+    }
   },
-  "blocked_by": [
-    "authoritative RCE-P0-002 validation receipt missing"
-  ],
-  "required_next_event": "RCE P0-002 Validation executes successfully; its receipt artifact is preserved and authoritative_completion_evidence=true is verified",
+  "blocked_by": [],
+  "successor_task": "RCE-P0-003",
   "permitted_scope": [
     "schema",
     "harmless sandbox fixtures",
