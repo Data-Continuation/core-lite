@@ -8,6 +8,7 @@ on:
     paths:
       - 'core_lite/**'
       - 'tools/**'
+      - 'tests/test_manage_relationship_conditioned_execution_lifecycle.py'
       - 'bundles/relationship_conditioned_execution/**'
       - 'sandbox/intake/relationship_conditioned_execution/**'
       - 'docs/CORE_LITE_MIRROR_HANDOFF.md'
@@ -37,7 +38,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: python -m pip install pyyaml
+        run: python -m pip install pyyaml pytest
 
       - name: Validate workstreams
         run: python tools/validate_workstreams.py
@@ -73,12 +74,22 @@ jobs:
         continue-on-error: true
         run: python tools/verify_relationship_conditioned_execution_custody.py
 
+      - name: Verify RCE lifecycle implementation
+        id: rce_lifecycle_tests
+        continue-on-error: true
+        run: python -m pytest -q tests/test_manage_relationship_conditioned_execution_lifecycle.py
+
+      - name: Reconcile RCE sandbox lifecycle and supersession
+        id: rce_lifecycle
+        continue-on-error: true
+        run: python tools/manage_relationship_conditioned_execution_lifecycle.py
+
       - name: Publish managed reports, receipts, task state, and sandbox evidence
         run: |
           set -euo pipefail
           git config user.name "Data-Continuation Core-Lite Manager"
           git config user.email "core-lite-manager@data-continuation"
-          git add -A reports/ receipts/ core_lite/tasks/relationship_conditioned_execution_p0_004.json core_lite/tasks/relationship_conditioned_execution_p0_005.json core_lite/tasks/relationship_conditioned_execution_p0_006.json sandbox/intake/relationship_conditioned_execution/ || true
+          git add -A reports/ receipts/ core_lite/tasks/relationship_conditioned_execution_p0_004.json core_lite/tasks/relationship_conditioned_execution_p0_005.json core_lite/tasks/relationship_conditioned_execution_p0_006.json core_lite/tasks/relationship_conditioned_execution_p0_007.json sandbox/intake/relationship_conditioned_execution/ sandbox/archive/relationship_conditioned_execution/ || true
           if git diff --staged --quiet; then
             echo "No managed state changed."
           else
@@ -115,15 +126,18 @@ jobs:
             receipts/stegverse_002_export_receipts.jsonl
             reports/rce_p0_004_reconstruction.json
             reports/rce_p0_006_custody_replay.json
+            reports/rce_p0_007_lifecycle.json
             reports/rce_automation_status.json
             receipts/rce_p0_004_authoritative_validation.json
             receipts/rce_p0_005_authoritative_validation.json
             receipts/rce_p0_006_authoritative_validation.json
+            receipts/rce_p0_007_authoritative_validation.json
             sandbox/intake/relationship_conditioned_execution/staging_manifest.json
+            sandbox/intake/relationship_conditioned_execution/lifecycle_state.json
           if-no-files-found: error
 
       - name: Enforce RCE managed results
-        if: ${{ steps.rce.outcome != 'success' || steps.rce_custody.outcome != 'success' }}
+        if: ${{ steps.rce.outcome != 'success' || steps.rce_custody.outcome != 'success' || steps.rce_lifecycle_tests.outcome != 'success' || steps.rce_lifecycle.outcome != 'success' }}
         run: |
           echo "RCE managed verification failed closed after state persistence."
           exit 1
