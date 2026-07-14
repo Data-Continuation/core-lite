@@ -1,0 +1,68 @@
+{
+  "schema": "stegverse.core_lite.task.v1",
+  "task_id": "RCE-P0-010",
+  "title": "Seal deterministic sandbox evidence snapshot",
+  "status": "WAITING_AUTOMATED_PREDECESSOR",
+  "priority": "P0",
+  "owner_repo": "Data-Continuation/core-lite",
+  "owner": "core_lite_management_workflow",
+  "activation_dependency": {
+    "task_id": "RCE-P0-009",
+    "required_status": "COMPLETE",
+    "required_evidence": "receipts/rce_p0_009_authoritative_validation.json",
+    "required_decision": "RECONSTRUCTION_INDEX_VERIFIED",
+    "satisfied": false
+  },
+  "goal": "Create a deterministic sandbox-only evidence snapshot whose root digest binds the verified RCE reconstruction index and authoritative receipt chain without deleting evidence or granting production, execution, or destination-mutation authority.",
+  "required_outputs": [
+    "tools/seal_relationship_conditioned_execution_snapshot.py",
+    "tests/test_seal_relationship_conditioned_execution_snapshot.py",
+    "sandbox/snapshots/relationship_conditioned_execution/snapshot_manifest.json",
+    "reports/rce_p0_010_snapshot_seal.json",
+    "receipts/rce_p0_010_authoritative_validation.json"
+  ],
+  "acceptance_criteria": [
+    "P0-009 authoritative receipt is present and true",
+    "P0-009 decision is RECONSTRUCTION_INDEX_VERIFIED",
+    "snapshot binds the reconstruction index digest and every indexed entry digest and byte count",
+    "snapshot root is deterministic for unchanged evidence",
+    "missing or changed indexed evidence fails closed",
+    "snapshot is candidate evidence only and sandbox only",
+    "production installation external destination mutation and autonomous execution remain prohibited",
+    "manual_actions_required remains empty"
+  ],
+  "invariants": [
+    "deterministic_snapshot_root",
+    "receipt_chain_bound",
+    "indexed_evidence_bound",
+    "evidence_is_not_deleted",
+    "sandbox_only",
+    "candidate_evidence_only",
+    "no_production_destination",
+    "no_external_destination_mutation",
+    "no_autonomous_execution_authority",
+    "manual_actions_required_is_empty"
+  ],
+  "blocked_by": [
+    "RCE-P0-009 authoritative reconstruction-index receipt not yet persisted"
+  ],
+  "manual_actions_required": [],
+  "permitted_scope": [
+    "snapshot manifests",
+    "root digest calculation",
+    "receipt-chain binding",
+    "reports",
+    "receipts",
+    "automatic task-state persistence"
+  ],
+  "prohibited_scope": [
+    "evidence deletion",
+    "production installation",
+    "external destination mutation",
+    "autonomous execution",
+    "human-harm authorization",
+    "real-world target data",
+    "weapons enablement",
+    "cyber exploitation instructions"
+  ]
+}
