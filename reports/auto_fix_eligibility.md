@@ -1,7 +1,7 @@
 # Core-Lite Auto-Fix Eligibility Plan
 
-Generated: `2026-07-14T07:43:22+00:00`
-Source scan generated: `2026-07-14T07:43:22+00:00`
+Generated: `2026-07-14T07:44:22+00:00`
+Source scan generated: `2026-07-14T07:44:21+00:00`
 
 ## Done Definition
 
@@ -14,18 +14,18 @@ Source scan generated: `2026-07-14T07:43:22+00:00`
 ## Summary
 
 - Result: `pass`
-- Files evaluated: `153`
+- Files evaluated: `154`
 - Mutations performed: `0`
 
 ## Bucket Counts
 
-- DO_NOT_TOUCH: `54`
+- DO_NOT_TOUCH: `55`
 - HUMAN_REVIEW_REQUIRED: `55`
 - NO_ACTION: `44`
 
 ## Transition Block Counts
 
-- ASK_BOUNDARY_DECISION: `57`
+- ASK_BOUNDARY_DECISION: `58`
 - AUTO_QUARANTINE_STUB: `52`
 
 ## Decisions
@@ -148,6 +148,15 @@ Source scan generated: `2026-07-14T07:43:22+00:00`
 - Reason: canonical/control file requires explicit boundary review before mutation
 
 ### .github/workflows/rce-p0-007-validation.yml
+
+- Source class: `CANONICAL_OR_CONTROL`
+- Recommended bucket: `DO_NOT_TOUCH`
+- Recommended transition block: `ASK_BOUNDARY_DECISION`
+- Mutation allowed now: `False`
+- Requires human review: `True`
+- Reason: canonical/control file requires explicit boundary review before mutation
+
+### .github/workflows/rce-p0-008-observation.yml
 
 - Source class: `CANONICAL_OR_CONTROL`
 - Recommended bucket: `DO_NOT_TOUCH`
@@ -1409,5 +1418,5 @@ Source scan generated: `2026-07-14T07:43:22+00:00`
 
 ## Receipt
 
-- Receipt hash: `bd0885bffcedee0a45e8361d4fa36a06879f888ab4473a7c8c360d935185164d`
+- Receipt hash: `c203ef0bcfc554566b30e88e0178c54056c6869b0e1e08c3e8f9144a693c8622`
 - Receipt path: `receipts/auto_fix_eligibility_receipts.jsonl`
