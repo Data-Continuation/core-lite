@@ -671,7 +671,7 @@
       "local_refs": [],
       "path": "core_lite/tasks/relationship_conditioned_execution_p0_002.json",
       "python_import_refs": [],
-      "size_bytes": 3029
+      "size_bytes": 2969
     },
     {
       "broken_refs": [],
@@ -1695,7 +1695,7 @@
       "size_bytes": 1856
     }
   ],
-  "generated_at": "2026-07-14T05:18:12+00:00",
+  "generated_at": "2026-07-14T05:18:28+00:00",
   "receipt": {
     "class_counts": {
       "BINARY_OR_UNKNOWN": 3,
@@ -1705,13 +1705,13 @@
       "SUPPORT_ARTIFACT": 25
     },
     "file_count": 125,
-    "hash": "a927eaa58952fc7eae2e0dc511ae338e438f11514d28506aa364da6dd03d40a8",
+    "hash": "58c7f44f13322df3e8230e8fbb5677ce5ab36f84aa56b3fbdf881d70d4562a16",
     "mutation_count": 0,
-    "previous_hash": "6648cfd97edcea04ecc7df2c155308fcefcdf2aff0abfaf920217a248464b2d1",
+    "previous_hash": "a927eaa58952fc7eae2e0dc511ae338e438f11514d28506aa364da6dd03d40a8",
     "receipt_type": "core_lite.ecosystem_maintainer_scan",
     "result": "pass",
     "target_root": "/home/runner/work/core-lite/core-lite",
-    "timestamp": "2026-07-14T05:18:12+00:00"
+    "timestamp": "2026-07-14T05:18:28+00:00"
   },
   "summary": {
     "class_counts": {

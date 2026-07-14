@@ -1,6 +1,6 @@
 # Core-Lite Capability Gap Plan
 
-Generated: `2026-07-14T05:18:13+00:00`
+Generated: `2026-07-14T05:18:28+00:00`
 Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Done Definition
@@ -145,5 +145,5 @@ Target root: `/home/runner/work/core-lite/core-lite`
 
 ## Receipt
 
-- Receipt hash: `2f31bdc1a25dabae48f02a74ba739c08db9f301ad1107824e34337b5110e3742`
+- Receipt hash: `623cbb020e0221b364c1288917dcf98d609982c8d422fa6f9a8de491502476a2`
 - Receipt path: `receipts/capability_gap_receipts.jsonl`
