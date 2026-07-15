@@ -10,11 +10,17 @@
       "status": "complete"
     },
     "REF-LOOP-002": {
+      "attempts": 1,
+      "completed_at": "2026-07-15T01:57:55+00:00",
+      "last_result": "COMPLETE",
+      "status": "complete"
+    },
+    "REF-LOOP-003": {
       "attempts": 0,
       "completed_at": null,
       "last_result": null,
       "status": "ready"
     }
   },
-  "updated_at": "2026-07-15T01:56:07+00:00"
+  "updated_at": "2026-07-15T01:57:55+00:00"
 }
