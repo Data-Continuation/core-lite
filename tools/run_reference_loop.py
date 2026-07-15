@@ -55,6 +55,7 @@ def new_state(config: dict[str, Any]) -> dict[str, Any]:
         "repository": config["repository"],
         "updated_at": iso(),
         "lease": None,
+        "recovered_from_receipts": False,
         "tasks": {
             task["id"]: {
                 "status": task["status"],
@@ -67,14 +68,63 @@ def new_state(config: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def load_state(config: dict[str, Any], path: Path) -> dict[str, Any]:
+def read_receipt_chain(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    receipts: list[dict[str, Any]] = []
+    expected_previous = None
+    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+        if not line.strip():
+            continue
+        value = json.loads(line)
+        if not isinstance(value, dict):
+            raise ValueError(f"Receipt line {line_number} must be an object")
+        observed_hash = value.get("hash")
+        body = {key: item for key, item in value.items() if key != "hash"}
+        if not isinstance(observed_hash, str) or observed_hash != digest(body):
+            raise ValueError(f"Receipt hash mismatch at line {line_number}")
+        if value.get("previous_hash") != expected_previous:
+            raise ValueError(f"Receipt chain mismatch at line {line_number}")
+        receipts.append(value)
+        expected_previous = observed_hash
+    return receipts
+
+
+def recover_state_from_receipts(
+    config: dict[str, Any], state: dict[str, Any], receipts_path: Path
+) -> dict[str, Any]:
+    receipts = read_receipt_chain(receipts_path)
+    if not receipts:
+        return state
+    known_tasks = {task["id"]: task for task in config["tasks"]}
+    recovered = False
+    for receipt in receipts:
+        task_id = receipt.get("task_id")
+        if task_id not in known_tasks or receipt.get("decision") != "COMPLETE":
+            continue
+        if receipt.get("execution_exit_code") != 0 or receipt.get("verification_exit_code") != 0:
+            raise ValueError(f"Completed receipt has non-zero evidence: {task_id}")
+        task_state = state["tasks"][task_id]
+        task_state["status"] = "complete"
+        task_state["attempts"] = max(task_state.get("attempts", 0), 1)
+        task_state["last_result"] = "COMPLETE"
+        task_state["completed_at"] = receipt.get("timestamp")
+        recovered = True
+    if recovered:
+        state["lease"] = None
+        state["recovered_from_receipts"] = True
+        state["updated_at"] = iso()
+    return state
+
+
+def load_state(config: dict[str, Any], path: Path, receipts_path: Path) -> dict[str, Any]:
     state = read_json(path) if path.exists() else new_state(config)
     for task in config["tasks"]:
         state.setdefault("tasks", {}).setdefault(
             task["id"],
             {"status": task["status"], "attempts": 0, "last_result": None, "completed_at": None},
         )
-    return state
+    return recover_state_from_receipts(config, state, receipts_path)
 
 
 def active_lease(state: dict[str, Any]) -> bool:
@@ -128,11 +178,8 @@ def run(config: dict[str, Any], name: str) -> dict[str, Any]:
 
 def append_receipt(path: Path, payload: dict[str, Any]) -> dict[str, Any]:
     path.parent.mkdir(parents=True, exist_ok=True)
-    previous_hash = None
-    if path.exists():
-        lines = [line for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
-        if lines:
-            previous_hash = json.loads(lines[-1]).get("hash")
+    existing = read_receipt_chain(path)
+    previous_hash = existing[-1]["hash"] if existing else None
     body = {**payload, "previous_hash": previous_hash}
     receipt = {**body, "hash": digest(body)}
     with path.open("a", encoding="utf-8") as handle:
@@ -200,7 +247,16 @@ def main() -> int:
     args = parser.parse_args()
 
     config = read_json(args.config)
-    state = load_state(config, args.state)
+    try:
+        state = load_state(config, args.state, args.receipts)
+    except (ValueError, json.JSONDecodeError) as exc:
+        write_json(args.escalation, {
+            "generated_at": iso(), "repository": config["repository"],
+            "decision": "ESCALATE_FAIL_CLOSED", "reason": str(exc),
+            "external_mutation_attempted": False,
+        })
+        print(f"Receipt recovery failed closed: {exc}")
+        return 1
     if active_lease(state):
         print("Active lease exists; duplicate execution suppressed.")
         return 0
