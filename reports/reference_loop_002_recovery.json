@@ -1,0 +1,29 @@
+{
+  "schema": "stegverse.core_lite.reference_loop_recovery.v1",
+  "repository": "Data-Continuation/core-lite",
+  "task_id": "REF-LOOP-002",
+  "decision": "RECOVER_VERIFIED_COMPLETION",
+  "source_workflow_run": 29382907943,
+  "source_commit": "fe7b347ec70d355288c12464ed1c1cd4cb59dbb1",
+  "execution": {
+    "command": "python tools/ecosystem_maintainer.py --root .",
+    "workflow_step": "Run ecosystem maintainer scan",
+    "conclusion": "success",
+    "exit_code": 0
+  },
+  "verification": {
+    "command": "python tools/auto_fix_eligibility.py --root .",
+    "workflow_step": "Run auto-fix eligibility planner",
+    "conclusion": "success",
+    "exit_code": 0
+  },
+  "bounded_result": {
+    "authorized_mutation_count": 0,
+    "external_mutation_attempted": false,
+    "production_mutation_attempted": false
+  },
+  "previous_receipt_hash": "11479b7b0057ac497943d3a1c0a05304e9f74f0a8f59fe9ba7b6677f0323c4b5",
+  "recovered_receipt_hash": "e19dd42c442f665cdb0647345a084d4bef326c14ed8038a693bca8aef3d28ca1",
+  "successor_activated": "REF-LOOP-003",
+  "manual_actions_required": []
+}
