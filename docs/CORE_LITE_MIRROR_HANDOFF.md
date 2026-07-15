@@ -5,7 +5,7 @@ This file is the source of truth for continuing `Data-Continuation/core-lite` wo
 ## Current version
 
 ```text
-0.11.1-reference-closure-loop-merged
+0.11.2-reference-activation-deterministic
 ```
 
 ## Current status
@@ -16,10 +16,12 @@ ECOSYSTEM_GOAL_RETAINED
 REFERENCE_REPOSITORY_SELECTED
 REFERENCE_LOOP_IMPLEMENTATION_VERIFIED
 REFERENCE_LOOP_MERGED_TO_MAIN
-REFERENCE_LOOP_ACTIVATION_TRIGGER_COMMITTED
+REFERENCE_LOOP_OPERATIONAL_CONDITION_SIMPLIFIED
+REFERENCE_LOOP_ACTIVATION_RETRIGGERED
 FIRST_MANAGED_CLOSURE_PENDING
 RCE_P0_001_THROUGH_P0_006_COMPLETE
 RCE_P0_007_LIFECYCLE_ACTIVE
+RCE_AGGREGATE_GATE_FAILURE_ISOLATED
 RCE_P0_008_THROUGH_P0_014_IMPLEMENTED_DEPENDENCY_GATED
 SANDBOX_ONLY
 NO_PRODUCTION_DESTINATION_AUTHORITY
@@ -33,13 +35,18 @@ pull request: 6
 verification workflow run: 29382140223
 verification result: SUCCESS
 merged commit: 440d09590eef7008e5f3e5369a5257930c2c65b3
-activation trigger commit: 456084a5e06d18dd531dbe9cd9d717e2fb15ac88
+activation evidence commit: 456084a5e06d18dd531dbe9cd9d717e2fb15ac88
+activation condition correction: e997dcd25a25be7d5e61d70f417c925cd30f4c6f
+latest inspected RCE run: 29382446777
 expected first state: core_lite/reference_loop_state.json
 expected first report: reports/reference_loop_status.json
+expected workflow outcome: reports/reference_loop_workflow_outcome.json
 expected first receipt chain: receipts/reference_loop_receipts.jsonl
 ```
 
-The implementation is merged and its tests passed on the pull-request merge ref. Activation is not yet declared complete because the first managed state, report, and receipt have not been persisted on `main`.
+The implementation is merged and its tests passed on the pull-request merge ref. The operational job condition was simplified to run for every qualifying non-pull-request event. State persistence now records the workflow outcome, rebases before push, and uploads evidence even when the closure cycle escalates.
+
+Activation is not yet declared complete because the first managed state, report, workflow-outcome record, and receipt have not been observed on `main`.
 
 ## Direction
 
@@ -69,6 +76,7 @@ configuration and ecosystem map: core_lite/reference_loop.json
 runner: tools/run_reference_loop.py
 state: core_lite/reference_loop_state.json
 status report: reports/reference_loop_status.json
+workflow outcome: reports/reference_loop_workflow_outcome.json
 escalation report: reports/reference_loop_escalation.json
 receipt chain: receipts/reference_loop_receipts.jsonl
 tests: tests/test_run_reference_loop.py
@@ -127,7 +135,7 @@ receipt: receipts/rce_p0_006_authoritative_validation.json
 decision: CUSTODY_AND_REPLAY_VERIFIED
 ```
 
-## Active RCE task
+## Active RCE task and diagnosed workflow boundary
 
 ```text
 RCE-P0-007
@@ -138,7 +146,9 @@ expected receipt: receipts/rce_p0_007_authoritative_validation.json
 expected lifecycle state: sandbox/intake/relationship_conditioned_execution/lifecycle_state.json
 ```
 
-The existing `.github/workflows/workstream-status.yml` remains responsible for the RCE sandbox chain. Repeated workflow failures mean its autonomous claims are not considered proven merely because the schedule and implementation exist. The reference closure loop is responsible for producing explicit task-level closure or escalation evidence and will be expanded only after its first cycle is verified.
+The latest inspected `Core-Lite Workstream Status` run completed every validation, scan, test, reconciliation, persistence, and artifact-upload step successfully at the displayed conclusion level. Only `Enforce RCE managed results` failed. The final gate evaluates raw `outcome` values from `continue-on-error` steps, so at least one managed RCE stage returned non-zero even though the job continued and persisted evidence. The exact stage still requires durable per-step outcome instrumentation; the failure is no longer treated as a general workstream-validation failure.
+
+The existing `.github/workflows/workstream-status.yml` remains responsible for the RCE sandbox chain. Its autonomy is not considered proven until the non-zero managed stage is identified, remediated or explicitly dependency-gated, and a green aggregate result is produced.
 
 ## Safety and authority boundaries
 
@@ -155,12 +165,14 @@ cross-repository awareness does not create cross-repository mutation authority
 ## Immediate continuation
 
 ```text
-observe the activation-triggered workflow result
+observe the deterministic activation run
 -> persist REF-LOOP-001 completion or escalation evidence
--> verify core_lite/reference_loop_state.json and the receipt chain
+-> verify reference_loop_state, workflow_outcome, and receipt chain
 -> confirm REF-LOOP-002 activation only after verified closure
 -> execute and verify REF-LOOP-002
--> reconcile the results with the existing RCE workstream failure evidence
+-> instrument raw RCE managed-step outcomes
+-> identify the exact non-zero RCE stage
+-> remediate or preserve its dependency-gated escalation
 -> expand responsibility only to the nearest compatible scope
 ```
 
