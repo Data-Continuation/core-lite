@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "repository": "Data-Continuation/core-lite",
+  "mode": "repository_local_reference_loop",
+  "authority": {
+    "allowed_roots": ["core_lite", "reports", "receipts", "sandbox"],
+    "external_repository_mutation": false,
+    "production_mutation": false,
+    "source_patch_from_command_output": false
+  },
+  "ecosystem": [
+    {
+      "repository": "Data-Continuation/core-lite",
+      "relationship": "reference_implementation",
+      "relative_stage": "lead",
+      "parallel_posture": "active",
+      "responsibility": "repository-local claim, execute, verify, receipt, and continuation"
+    },
+    {
+      "repository": "master-records/master-records",
+      "relationship": "durable_receipt_and_reconstruction_target",
+      "relative_stage": "interface_alignment_needed",
+      "parallel_posture": "contract_work_only",
+      "responsibility": "retain authoritative hashes, receipts, and reconstruction evidence"
+    },
+    {
+      "repository": "BCAT-GCAT-Engine/core-lite-prod",
+      "relationship": "production-class_successor",
+      "relative_stage": "behind_reference_loop",
+      "parallel_posture": "compatibility_only",
+      "responsibility": "consume a proven loop under a separate production authority boundary"
+    },
+    {
+      "repository": "StegVerse-Labs/Site",
+      "relationship": "bundle_and_status_surface",
+      "relative_stage": "parallel_interface_candidate",
+      "parallel_posture": "receipts_and_status_contracts",
+      "responsibility": "accept and display verified state without controlling repository mutation"
+    },
+    {
+      "repository": "StegGhost/entity-sandbox",
+      "relationship": "sandbox_replication_candidate",
+      "relative_stage": "after_reference_activation",
+      "parallel_posture": "observe",
+      "responsibility": "reuse loop mechanics with sandbox-specific authority"
+    },
+    {
+      "repository": "StegVerse-org/demo_ingest_engine",
+      "relationship": "portability_validation_target",
+      "relative_stage": "after_reference_activation",
+      "parallel_posture": "observe",
+      "responsibility": "demonstrate portable intake and receipt compatibility"
+    },
+    {
+      "repository": "StegVerse-Labs/StegAgents",
+      "relationship": "future_worker_consumer",
+      "relative_stage": "dependent",
+      "parallel_posture": "interface_observation",
+      "responsibility": "consume task, lease, evidence, and escalation contracts"
+    },
+    {
+      "repository": "StegVerse-Labs/StegVerse-Healer",
+      "relationship": "future_remediation_consumer",
+      "relative_stage": "dependent",
+      "parallel_posture": "interface_observation",
+      "responsibility": "consume bounded failure classification and remediation contracts"
+    },
+    {
+      "repository": "BCAT-GCAT-Engine/Publisher",
+      "relationship": "downstream_publication_obligation",
+      "relative_stage": "notification_only",
+      "parallel_posture": "deferred",
+      "responsibility": "publish only verified release information"
+    },
+    {
+      "repository": "StegVerse-Labs/Sit",
+      "relationship": "downstream_update_verification",
+      "relative_stage": "notification_only",
+      "parallel_posture": "deferred",
+      "responsibility": "verify pertinent ecosystem state is reflected after release"
+    },
+    {
+      "repository": "admissibility-wiki",
+      "relationship": "downstream_governance_documentation",
+      "relative_stage": "notification_only",
+      "parallel_posture": "deferred",
+      "responsibility": "update only after verified behavior or policy changes"
+    },
+    {
+      "repository": "stegguardian-wiki",
+      "relationship": "downstream_guardian_documentation",
+      "relative_stage": "notification_only",
+      "parallel_posture": "deferred",
+      "responsibility": "update only after verified responsibility or authority changes"
+    }
+  ],
+  "commands": {
+    "validate_workstreams": ["python", "tools/validate_workstreams.py"],
+    "validate_stegclaw_intake": ["python", "tools/validate_stegclaw_intake.py"],
+    "scan_repository": ["python", "tools/ecosystem_maintainer.py", "--root", "."],
+    "plan_auto_fix": ["python", "tools/auto_fix_eligibility.py", "--root", "."]
+  },
+  "tasks": [
+    {
+      "id": "REF-LOOP-001",
+      "status": "ready",
+      "priority": 1,
+      "command": "validate_workstreams",
+      "verification_command": "validate_workstreams",
+      "remediation": {
+        "strategy": "rerun_once",
+        "eligible_exit_codes": [1, 2]
+      },
+      "done_when": "verification exits zero and a chained completion receipt is written",
+      "next_task": "REF-LOOP-002"
+    },
+    {
+      "id": "REF-LOOP-002",
+      "status": "blocked",
+      "priority": 2,
+      "blocked_by": ["REF-LOOP-001"],
+      "command": "scan_repository",
+      "verification_command": "plan_auto_fix",
+      "remediation": {
+        "strategy": "none",
+        "eligible_exit_codes": []
+      },
+      "done_when": "repository scan and bounded auto-fix eligibility plan both exit zero",
+      "next_task": null
+    }
+  ]
+}
