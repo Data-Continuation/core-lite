@@ -8,13 +8,17 @@ on:
     paths:
       - 'core_lite/reference_loop.json'
       - 'tools/run_reference_loop.py'
+      - 'tools/build_reference_loop_receipt_contract.py'
       - 'tests/test_run_reference_loop.py'
+      - 'tests/test_build_reference_loop_receipt_contract.py'
       - '.github/workflows/reference-loop.yml'
   push:
     paths:
       - 'core_lite/reference_loop.json'
       - 'tools/run_reference_loop.py'
+      - 'tools/build_reference_loop_receipt_contract.py'
       - 'tests/test_run_reference_loop.py'
+      - 'tests/test_build_reference_loop_receipt_contract.py'
       - '.github/workflows/reference-loop.yml'
 
 permissions:
@@ -37,7 +41,7 @@ jobs:
       - name: Install verification dependencies
         run: python -m pip install pyyaml pytest
       - name: Verify reference-loop implementation
-        run: python -m pytest -q tests/test_run_reference_loop.py
+        run: python -m pytest -q tests/test_run_reference_loop.py tests/test_build_reference_loop_receipt_contract.py
 
   close-next-local-task:
     if: ${{ github.event_name != 'pull_request' }}
@@ -91,6 +95,7 @@ jobs:
             reports/reference_loop_status.json \
             reports/reference_loop_escalation.json \
             reports/reference_loop_workflow_outcome.json \
+            reports/reference_loop_receipt_contract.json \
             receipts/reference_loop_receipts.jsonl \
             reports/workstream_status.json \
             reports/workstream_status.md \
@@ -113,6 +118,7 @@ jobs:
             reports/reference_loop_status.json
             reports/reference_loop_escalation.json
             reports/reference_loop_workflow_outcome.json
+            reports/reference_loop_receipt_contract.json
             receipts/reference_loop_receipts.jsonl
           if-no-files-found: warn
       - name: Enforce fail-closed result after evidence persistence
