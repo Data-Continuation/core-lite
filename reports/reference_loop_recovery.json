@@ -1,0 +1,19 @@
+{
+  "schema": "stegverse.core_lite.reference_loop_recovery.v1",
+  "repository": "Data-Continuation/core-lite",
+  "source_workflow_run": 29382841401,
+  "source_artifact_id": 8330367949,
+  "source_artifact_digest": "sha256:e18a2dc1e97437a56cb5684b925d21846bdd031f76f7615b69d60ee8853fb327",
+  "source_commit": "236832c1fe9dcd28a3c15db7f67cabfce96a9a82",
+  "recovered_task": "REF-LOOP-001",
+  "decision": "COMPLETE",
+  "receipt_hash": "11479b7b0057ac497943d3a1c0a05304e9f74f0a8f59fe9ba7b6677f0323c4b5",
+  "execution_exit_code": 0,
+  "verification_exit_code": 0,
+  "successor_task": "REF-LOOP-002",
+  "successor_status": "ready",
+  "recovery_reason": "The closure cycle completed and the artifact was uploaded, but the pre-fix persistence step attempted to rebase before committing generated files.",
+  "authority_expanded": false,
+  "external_repository_mutation_performed": false,
+  "production_mutation_performed": false
+}
