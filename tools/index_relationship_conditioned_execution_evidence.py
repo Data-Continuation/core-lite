@@ -64,8 +64,12 @@ def _candidate_paths(root: Path) -> list[Path]:
         "sandbox/archive/relationship_conditioned_execution/**/*.json",
     ):
         paths.update(path for path in root.glob(pattern) if path.is_file())
-    paths.discard(REPORT)
-    paths.discard(RECEIPT)
+
+    # Generated index outputs must never become inputs to a later index pass.
+    # Use the supplied root rather than module-global production paths so
+    # temporary repositories and alternate roots remain deterministic.
+    paths.discard(root / "reports/rce_p0_009_reconstruction_index.json")
+    paths.discard(root / "receipts/rce_p0_009_authoritative_validation.json")
     return sorted(paths, key=lambda p: str(p.relative_to(root)))
 
 
