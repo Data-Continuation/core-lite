@@ -5,7 +5,7 @@ This file is the source of truth for continuing `Data-Continuation/core-lite` wo
 ## Current version
 
 ```text
-0.11.0-reference-closure-loop-candidate
+0.11.1-reference-closure-loop-merged
 ```
 
 ## Current status
@@ -14,8 +14,10 @@ This file is the source of truth for continuing `Data-Continuation/core-lite` wo
 MIRROR_HANDOFF_PRESENT
 ECOSYSTEM_GOAL_RETAINED
 REFERENCE_REPOSITORY_SELECTED
-REFERENCE_LOOP_IMPLEMENTED_ON_BUILD_BRANCH
-REFERENCE_LOOP_ACTIVATION_PENDING_PR_VERIFICATION
+REFERENCE_LOOP_IMPLEMENTATION_VERIFIED
+REFERENCE_LOOP_MERGED_TO_MAIN
+REFERENCE_LOOP_ACTIVATION_TRIGGER_COMMITTED
+FIRST_MANAGED_CLOSURE_PENDING
 RCE_P0_001_THROUGH_P0_006_COMPLETE
 RCE_P0_007_LIFECYCLE_ACTIVE
 RCE_P0_008_THROUGH_P0_014_IMPLEMENTED_DEPENDENCY_GATED
@@ -24,11 +26,26 @@ NO_PRODUCTION_DESTINATION_AUTHORITY
 NO_EXTERNAL_REPOSITORY_MUTATION_AUTHORITY
 ```
 
+## Verified integration evidence
+
+```text
+pull request: 6
+verification workflow run: 29382140223
+verification result: SUCCESS
+merged commit: 440d09590eef7008e5f3e5369a5257930c2c65b3
+activation trigger commit: 456084a5e06d18dd531dbe9cd9d717e2fb15ac88
+expected first state: core_lite/reference_loop_state.json
+expected first report: reports/reference_loop_status.json
+expected first receipt chain: receipts/reference_loop_receipts.jsonl
+```
+
+The implementation is merged and its tests passed on the pull-request merge ref. Activation is not yet declared complete because the first managed state, report, and receipt have not been persisted on `main`.
+
 ## Direction
 
 The ecosystem autonomy goal is not reset or narrowed. Execution is redirected through one complete reference implementation in one repository before responsibility is expanded or replicated.
 
-`Data-Continuation/core-lite` is the lead repository. It must first prove a repository-local loop:
+`Data-Continuation/core-lite` is the lead repository. It must prove a repository-local loop:
 
 ```text
 observe
@@ -138,11 +155,12 @@ cross-repository awareness does not create cross-repository mutation authority
 ## Immediate continuation
 
 ```text
-verify the reference-loop tests on the build branch
--> run the reference-loop workflow
+observe the activation-triggered workflow result
 -> persist REF-LOOP-001 completion or escalation evidence
--> confirm successor activation only after verified closure
--> reconcile the result with the existing RCE workstream failure evidence
+-> verify core_lite/reference_loop_state.json and the receipt chain
+-> confirm REF-LOOP-002 activation only after verified closure
+-> execute and verify REF-LOOP-002
+-> reconcile the results with the existing RCE workstream failure evidence
 -> expand responsibility only to the nearest compatible scope
 ```
 
