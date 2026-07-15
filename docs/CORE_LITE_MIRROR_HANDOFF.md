@@ -5,7 +5,7 @@ This file is the source of truth for continuing `Data-Continuation/core-lite` wo
 ## Current version
 
 ```text
-0.14.0-five-task-reference-and-status-proof
+0.15.0-sixth-portability-loop-implemented
 ```
 
 ## Current status
@@ -20,14 +20,18 @@ REF_LOOP_002_COMPLETE
 REF_LOOP_003_COMPLETE
 REF_LOOP_004_COMPLETE
 REF_LOOP_005_COMPLETE
+REF_LOOP_006_IMPLEMENTED_AND_TESTED
+REF_LOOP_006_OPERATIONAL_CLOSURE_PENDING
 FIVE_TASK_REFERENCE_CHAIN_COMPLETE
 RECEIPT_CHAIN_STATE_RECOVERY_VERIFIED
 INVALID_RECEIPT_CHAIN_FAILS_CLOSED
 READ_ONLY_MASTER_RECORDS_CONTRACT_VERIFIED
 READ_ONLY_SITE_STATUS_CONTRACT_VERIFIED
+READ_ONLY_PORTABILITY_MANIFEST_VERIFIED_IN_PR
+INSTALLATION_NOT_AUTHORIZED
+INGESTION_NOT_AUTHORIZED
 SITE_PUBLICATION_NOT_AUTHORIZED
 SITE_CONTROL_NOT_AUTHORIZED
-MANAGED_PERSISTENCE_ORDER_CORRECTED
 RCE_INDEX_TEST_ROOT_CAUSE_FIXED
 RCE_CLEAN_AGGREGATE_RESULT_PENDING
 SANDBOX_ONLY
@@ -63,6 +67,13 @@ verification run: 29387212276
 merge: 01127c752da03f1ed6af1c462cd170f3c1627eb8
 REF-LOOP-005 receipt: f8a865e8f9063bba0d4a35f0a619715af51e578a3c3be96f11dd502b076660f7
 status contract: reports/reference_loop_site_status.json
+
+portability-manifest PR: 11
+verification run: 29387464101
+verification result: SUCCESS
+merge: ba3c452206947d9d6c8e1905107bbc2296ab4d70
+expected manifest: reports/reference_loop_portability_manifest.json
+expected REF-LOOP-006 receipt: receipts/reference_loop_receipts.jsonl next chain entry
 ```
 
 ## Proven task chain
@@ -73,9 +84,12 @@ REF-LOOP-002 — scan repository and verify bounded auto-fix eligibility
 REF-LOOP-003 — validate the repository-local StegClaw intake boundary twice
 REF-LOOP-004 — build and independently verify a read-only master-records receipt contract
 REF-LOOP-005 — build and independently verify a read-only Site status contract
+REF-LOOP-006 — build and independently verify a read-only portability manifest
 ```
 
-The durable receipt chain is:
+Tasks 001 through 005 have durable completion receipts. Task 006 is merged and its combined test suite passed, but its operational manifest and chained completion receipt have not yet been observed on `main`.
+
+The current durable receipt chain is:
 
 ```text
 11479b7b...
@@ -85,45 +99,40 @@ The durable receipt chain is:
 -> f8a865e8...
 ```
 
-Every closure records zero execution and verification exit codes. No task used production mutation, external-repository mutation, chain transfer, Site publication authority, or Site control authority.
+Every durable closure records zero execution and verification exit codes. No task used production mutation, external-repository mutation, chain transfer, Site publication authority, Site control authority, installation authority, or ingestion authority.
 
 ## Contract artifacts
 
 ### Master-records receipt contract
 
-`reports/reference_loop_receipt_contract.json` records:
-
-```text
-receipt count
-completed task sequence
-receipt-chain head
-whole-chain digest
-target repository: master-records/master-records
-read_only_contract: true
-transfer_authorized: false
-external_repository_mutation: false
-production_mutation: false
-```
-
-It does not write to or create standing in `master-records/master-records`.
+`reports/reference_loop_receipt_contract.json` records the completed task sequence, receipt-chain head, whole-chain digest, target `master-records/master-records`, and explicit denials of transfer, external mutation, and production mutation.
 
 ### Site status contract
 
-`reports/reference_loop_site_status.json` records:
+`reports/reference_loop_site_status.json` exposes verified local status to `StegVerse-Labs/Site` while explicitly denying publication, Site control, external mutation, and production mutation.
+
+### Portability manifest
+
+`tools/build_reference_loop_portability_manifest.py` builds `reports/reference_loop_portability_manifest.json` from:
 
 ```text
-completed local tasks
-reference-state digest
-receipt-chain head and digest
-target repository: StegVerse-Labs/Site
-read_only_status: true
+core_lite/reference_loop_state.json
+reports/reference_loop_receipt_contract.json
+reports/reference_loop_site_status.json
+```
+
+The manifest targets `StegVerse-org/demo_ingest_engine` as compatibility evidence only. It records source-evidence digests, receipt-chain head, required consumer capabilities, and the following authority boundary:
+
+```text
+read_only_manifest: true
+installation_authorized: false
+ingestion_authorized: false
 publication_authorized: false
-site_control_authorized: false
 external_repository_mutation: false
 production_mutation: false
 ```
 
-It is a consumer-facing status interface only. It does not publish into Site or authorize Site to control the source repository.
+The implementation fails closed on incomplete source tasks, unverified contracts, evidence mismatch, or any source contract that does not deny external mutation.
 
 ## Continuity recovery behavior
 
@@ -141,11 +150,11 @@ A clean aggregate RCE workflow result against that correction or later remains r
 
 ```text
 Data-Continuation/core-lite -> lead reference implementation
-master-records/master-records -> read-only receipt and reconstruction contract target
-StegVerse-Labs/Site -> read-only verified status surface target
+master-records/master-records -> verified read-only receipt and reconstruction contract target
+StegVerse-Labs/Site -> verified read-only status surface target
+StegVerse-org/demo_ingest_engine -> active read-only portability contract target
 BCAT-GCAT-Engine/core-lite-prod -> production-class successor after local and RCE proof
 StegGhost/entity-sandbox -> sandbox replication candidate
-StegVerse-org/demo_ingest_engine -> portability validation target
 StegVerse-Labs/StegAgents -> future task, lease, and evidence consumer
 StegVerse-Labs/StegVerse-Healer -> future bounded-remediation consumer
 Publisher, Sit, admissibility-wiki, stegguardian-wiki -> verified release follow-up only
@@ -156,12 +165,14 @@ Awareness remains advisory and creates no cross-repository standing.
 ## Immediate continuation
 
 ```text
-verify a clean aggregate RCE workflow result
+observe the post-merge REF-LOOP-006 worker cycle
+-> persist reports/reference_loop_portability_manifest.json
+-> independently verify the manifest against current source evidence
+-> persist the sixth hash-chained completion receipt
+-> verify REF-LOOP-006 state is complete
+-> verify a clean aggregate RCE workflow result
 -> reconcile any remaining raw non-zero stage without widening authority
--> add REF-LOOP-006 as a repository-local portability-manifest contract
--> target StegVerse-org/demo_ingest_engine as read-only compatibility evidence only
--> independently verify manifest determinism and authority denials
--> persist the sixth chained receipt
+-> add the nearest compatible local responsibility only after both proofs
 ```
 
-Do not write into external repositories, duplicate the worker into another repository, authorize Site publication, or begin production-class expansion until the clean aggregate RCE result and the next compatibility contract are durably verified.
+Do not write into external repositories, duplicate the worker into another repository, authorize ingestion or installation, or begin production-class expansion until `REF-LOOP-006` and the clean aggregate RCE result are durably verified.
