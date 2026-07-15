@@ -1,0 +1,20 @@
+{
+  "lease": null,
+  "repository": "Data-Continuation/core-lite",
+  "schema_version": 1,
+  "tasks": {
+    "REF-LOOP-001": {
+      "attempts": 1,
+      "completed_at": "2026-07-15T01:56:07+00:00",
+      "last_result": "COMPLETE",
+      "status": "complete"
+    },
+    "REF-LOOP-002": {
+      "attempts": 0,
+      "completed_at": null,
+      "last_result": null,
+      "status": "ready"
+    }
+  },
+  "updated_at": "2026-07-15T01:56:07+00:00"
+}
