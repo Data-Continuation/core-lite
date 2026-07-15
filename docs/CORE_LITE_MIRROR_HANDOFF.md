@@ -5,30 +5,87 @@ This file is the source of truth for continuing `Data-Continuation/core-lite` wo
 ## Current version
 
 ```text
-0.10.1-rce-p0-007-accelerated-reconciliation
+0.11.0-reference-closure-loop-candidate
 ```
 
 ## Current status
 
 ```text
 MIRROR_HANDOFF_PRESENT
-ECOSYSTEM_MANAGEMENT_WORKFLOW_COVERED
-RCE_P0_001_COMPLETE
-RCE_P0_002_COMPLETE
-RCE_P0_003_COMPLETE
-RCE_P0_004_COMPLETE
-RCE_P0_005_COMPLETE
-RCE_P0_006_COMPLETE
+ECOSYSTEM_GOAL_RETAINED
+REFERENCE_REPOSITORY_SELECTED
+REFERENCE_LOOP_IMPLEMENTED_ON_BUILD_BRANCH
+REFERENCE_LOOP_ACTIVATION_PENDING_PR_VERIFICATION
+RCE_P0_001_THROUGH_P0_006_COMPLETE
 RCE_P0_007_LIFECYCLE_ACTIVE
 RCE_P0_008_THROUGH_P0_014_IMPLEMENTED_DEPENDENCY_GATED
-AUTONOMOUS_RECONCILIATION_EVERY_FIVE_MINUTES
-HISTORICAL_QUARANTINE_ALERTS_PRESERVED
-MANUAL_ACTIONS_REQUIRED_NONE
 SANDBOX_ONLY
 NO_PRODUCTION_DESTINATION_AUTHORITY
+NO_EXTERNAL_REPOSITORY_MUTATION_AUTHORITY
 ```
 
-## Authoritative chain
+## Direction
+
+The ecosystem autonomy goal is not reset or narrowed. Execution is redirected through one complete reference implementation in one repository before responsibility is expanded or replicated.
+
+`Data-Continuation/core-lite` is the lead repository. It must first prove a repository-local loop:
+
+```text
+observe
+-> select eligible task
+-> acquire lease
+-> execute registered command
+-> apply bounded remediation policy
+-> verify
+-> persist hash-chained receipt
+-> update task state
+-> activate eligible successor
+-> continue or escalate fail-closed
+```
+
+The loop retains situational awareness of related ecosystem repositories and their relative build posture, but it has no authority to mutate them.
+
+## Reference-loop implementation
+
+```text
+configuration and ecosystem map: core_lite/reference_loop.json
+runner: tools/run_reference_loop.py
+state: core_lite/reference_loop_state.json
+status report: reports/reference_loop_status.json
+escalation report: reports/reference_loop_escalation.json
+receipt chain: receipts/reference_loop_receipts.jsonl
+tests: tests/test_run_reference_loop.py
+workflow: .github/workflows/reference-loop.yml
+```
+
+The workflow runs one eligible local task per cycle. A concurrency group and persisted lease suppress duplicate execution. Commands must exist in the local command registry. Unknown commands, unapproved remediation, non-zero verification, production mutation, and external-repository mutation are not authorized.
+
+The first task validates the existing workstream registry and closes only after independent verification succeeds. Its only remediation policy is one declared rerun. Continued failure creates an escalation receipt and fails the workflow after evidence persistence.
+
+The second task becomes eligible only after the first closes. It runs the existing repository scanner and verifies that the existing auto-fix eligibility planner completes.
+
+## Ecosystem situational awareness
+
+The machine-readable relationship map in `core_lite/reference_loop.json` records the current sequencing posture:
+
+```text
+Data-Continuation/core-lite -> lead reference implementation
+master-records/master-records -> parallel receipt and reconstruction contract work
+BCAT-GCAT-Engine/core-lite-prod -> production-class successor after reference proof
+StegVerse-Labs/Site -> parallel bundle, receipt, and status interface work
+StegGhost/entity-sandbox -> sandbox replication candidate after activation
+StegVerse-org/demo_ingest_engine -> portability validation after activation
+StegVerse-Labs/StegAgents -> future task-worker contract consumer
+StegVerse-Labs/StegVerse-Healer -> future bounded-remediation contract consumer
+BCAT-GCAT-Engine/Publisher -> downstream verified publication obligation
+StegVerse-Labs/Sit -> downstream update-verification obligation
+admissibility-wiki -> downstream governance documentation obligation
+stegguardian-wiki -> downstream Guardian documentation obligation
+```
+
+This map is advisory and observational. It does not create cross-repository standing or mutation authority.
+
+## Existing RCE authoritative chain
 
 ```text
 RCE-P0-001 -> COMPLETE
@@ -53,7 +110,7 @@ receipt: receipts/rce_p0_006_authoritative_validation.json
 decision: CUSTODY_AND_REPLAY_VERIFIED
 ```
 
-## Active task
+## Active RCE task
 
 ```text
 RCE-P0-007
@@ -62,86 +119,31 @@ purpose: sandbox lifecycle, supersession, downgrade prevention, and deterministi
 status: ACTIVE pending authoritative managed-state receipt
 expected receipt: receipts/rce_p0_007_authoritative_validation.json
 expected lifecycle state: sandbox/intake/relationship_conditioned_execution/lifecycle_state.json
-manual_actions_required: []
 ```
 
-`RCE-P0-007` maintains exactly one authoritative sandbox candidate. It denies version downgrade, same-version content drift, package-identity change, production permission, autonomous execution authority, human-harm authority, and external destination mutation. A newer version may supersede the active sandbox candidate only after authoritative custody and replay verification; the prior candidate is archived under `sandbox/archive/relationship_conditioned_execution/<version>/`.
-
-## Implemented dependency-gated continuation
-
-```text
-RCE-P0-008 -> sandbox expiry, renewal, and quarantine
-RCE-P0-009 -> evidence retention and reconstruction index
-RCE-P0-010 -> deterministic sandbox snapshot seal
-RCE-P0-011 -> isolated sealed-snapshot restoration drill
-RCE-P0-012 -> three-way restoration equivalence attestation
-RCE-P0-013 -> persistent divergence guard and quarantine evidence
-RCE-P0-014 -> local continuity-checkpoint publication candidate
-```
-
-These tasks are implemented but cannot become authoritative until each predecessor receipt exists and has the required decision. No downstream task bypasses `RCE-P0-007`.
-
-## Stable autonomous path
-
-`.github/workflows/workstream-status.yml` is the controlling workflow. It runs on relevant repository changes and every five minutes. It performs:
-
-```text
-workstream validation
-management report generation
-RCE reconstruction and candidate-intake decision
-sandbox staging
-custody and replay verification
-lifecycle tests and reconciliation
-lease renewal or quarantine
-reconstruction indexing
-snapshot sealing
-isolated restoration drill
-restoration equivalence attestation
-persistent divergence guarding
-report and receipt persistence
-task-state transitions
-sandbox evidence persistence
-fail-closed enforcement after evidence persistence
-```
-
-Generated state commits contain `[core-lite-managed-state]` and are excluded from recursive push execution. Scheduled runs remain enabled so suppressed app-authored or workflow-authored push events do not create a manual recovery requirement. The fallback cadence is `*/5 * * * *`, which is the minimum practical GitHub Actions schedule interval.
-
-`RCE-P0-014` also has an independent five-minute scheduled fallback in `.github/workflows/rce-p0-014-checkpoint.yml`.
-
-## Evidence-retention correction
-
-The clean `RCE-P0-013` guard path never deletes a prior quarantine alert. Existing `sandbox/quarantine/relationship_conditioned_execution/divergence_alert.json` evidence is preserved byte-for-byte and referenced by subsequent clean receipts. Later equivalence does not erase historical divergence evidence.
+The existing `.github/workflows/workstream-status.yml` remains responsible for the RCE sandbox chain. Repeated workflow failures mean its autonomous claims are not considered proven merely because the schedule and implementation exist. The reference closure loop is responsible for producing explicit task-level closure or escalation evidence and will be expanded only after its first cycle is verified.
 
 ## Safety and authority boundaries
 
 ```text
 relationship history provides context but does not create authority
-uncertainty acknowledgment does not authorize irreversible harm
-AI quorum, reputation, voting, or adaptation cannot authorize human harm
 candidate intake and sandbox staging do not grant production authority
-no RCE task may mutate an external or production destination
+no task may mutate an external or production destination
 no autonomous harmful execution is permitted
-all receipt, hash, path, version, authority, and custody mismatches fail closed
+all receipt, hash, path, version, authority, custody, lease, and verification mismatches fail closed
 historical quarantine and divergence evidence is never deleted
-manual_actions_required remains an empty array
+cross-repository awareness does not create cross-repository mutation authority
 ```
 
-## Permitted continuation scope
-
-Continuation may build sandbox lifecycle, expiry, renewal, supersession, custody, replay, deterministic archival, receipts, reports, tests, automatic task-state persistence, evidence indexing, restoration verification, divergence quarantine, and local publication candidates.
-
-Continuation may not perform production installation, external publication, external destination mutation, autonomous execution, human-harm authorization, real-world targeting, weapons enablement, or cyber exploitation.
-
-## Next transition
+## Immediate continuation
 
 ```text
-Core-Lite management workflow executes on the five-minute schedule
--> reports/rce_p0_007_lifecycle.json is persisted
--> receipts/rce_p0_007_authoritative_validation.json is persisted
--> lifecycle_state.json records ACTIVATE_INITIAL_SANDBOX_CANDIDATE, NO_CHANGE_ACTIVE_CANDIDATE, or SUPERSEDE_SANDBOX_CANDIDATE
--> RCE-P0-007 becomes COMPLETE
--> dependency-gated successors execute in order through RCE-P0-013
--> RCE-P0-014 creates a local checkpoint candidate only after the complete authoritative chain exists
+verify the reference-loop tests on the build branch
+-> run the reference-loop workflow
+-> persist REF-LOOP-001 completion or escalation evidence
+-> confirm successor activation only after verified closure
+-> reconcile the result with the existing RCE workstream failure evidence
+-> expand responsibility only to the nearest compatible scope
 ```
 
-No user-run command, workflow dispatch, approval, artifact download, receipt copying, task-state edit, external publication, or production mutation is required or authorized.
+Do not begin ecosystem-wide mutation. Do not duplicate the loop before the reference cycle is verified. Parallel work is limited to compatibility contracts and situational-awareness updates that do not claim operational completion.
