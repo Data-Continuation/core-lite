@@ -1,0 +1,21 @@
+{
+  "decision": "RECOVERED_VERIFIED_COMPLETION",
+  "task_id": "REF-LOOP-004",
+  "source_verification_run": 29384127013,
+  "source_pull_request": 9,
+  "source_merge": "14d0b983b699839f270ef6e33be70a61864e19b9",
+  "execution": {
+    "command": "build_receipt_contract",
+    "exit_code": 0,
+    "artifact": "reports/reference_loop_receipt_contract.json"
+  },
+  "verification": {
+    "command": "verify_receipt_contract",
+    "exit_code": 0,
+    "test_run": 29384127013
+  },
+  "receipt_hash": "a9bd42c4bb7a0468c7e6e5766364232ba7b9cc44d4280a9bf2226aa3f4b38ee8",
+  "external_mutation_attempted": false,
+  "production_mutation_attempted": false,
+  "transfer_authorized": false
+}
