@@ -1,0 +1,22 @@
+{
+  "authority": {
+    "external_repository_mutation": false,
+    "production_mutation": false,
+    "read_only_contract": true,
+    "transfer_authorized": false
+  },
+  "chain_head": "afb43613d6e10b120613007ecb4507a6fc887991f3a530c7e21cb6ec5288dc7f",
+  "chain_sha256": "f420636289033afc43e1de9bffe695680aae820e4cfb2be5894c41e095d9f596",
+  "completed_tasks": [
+    "REF-LOOP-001",
+    "REF-LOOP-002",
+    "REF-LOOP-003"
+  ],
+  "decision": "RECEIPT_CONTRACT_VERIFIED",
+  "manual_actions_required": [],
+  "receipt_count": 3,
+  "relationship": "durable_receipt_and_reconstruction_contract",
+  "repository": "Data-Continuation/core-lite",
+  "schema": "stegverse.core_lite.reference_receipt_contract.v1",
+  "target_repository": "master-records/master-records"
+}
