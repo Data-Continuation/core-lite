@@ -1,3 +1,5 @@
+"""Verification coverage for the read-only Site status contract boundary."""
+
 import json
 from pathlib import Path
 
