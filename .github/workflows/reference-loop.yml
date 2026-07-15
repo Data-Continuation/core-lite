@@ -4,6 +4,12 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '17 * * * *'
+  pull_request:
+    paths:
+      - 'core_lite/reference_loop.json'
+      - 'tools/run_reference_loop.py'
+      - 'tests/test_run_reference_loop.py'
+      - '.github/workflows/reference-loop.yml'
   push:
     paths:
       - 'core_lite/reference_loop.json'
@@ -19,31 +25,39 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  verify-implementation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install verification dependencies
+        run: python -m pip install pyyaml pytest
+      - name: Verify reference-loop implementation
+        run: python -m pytest -q tests/test_run_reference_loop.py
+
   close-next-local-task:
-    if: ${{ github.event_name == 'schedule' || !contains(github.event.head_commit.message || '', '[reference-loop-state]') }}
+    if: ${{ github.event_name != 'pull_request' && (github.event_name == 'schedule' || !contains(github.event.head_commit.message || '', '[reference-loop-state]')) }}
+    needs: verify-implementation
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
-      - name: Install verification dependencies
-        run: python -m pip install pyyaml pytest
-
-      - name: Verify reference-loop implementation
-        run: python -m pytest -q tests/test_run_reference_loop.py
-
+      - name: Install runtime dependencies
+        run: python -m pip install pyyaml
       - name: Run one repository-local closure cycle
         id: reference_loop
         continue-on-error: true
         run: python tools/run_reference_loop.py
-
       - name: Persist state, reports, receipts, and escalation evidence
         run: |
           set -euo pipefail
@@ -63,7 +77,6 @@ jobs:
             git commit -m "core-lite: persist reference loop state [reference-loop-state]"
             git push
           fi
-
       - name: Upload reference-loop evidence
         uses: actions/upload-artifact@v4
         with:
@@ -75,7 +88,6 @@ jobs:
             reports/reference_loop_escalation.json
             receipts/reference_loop_receipts.jsonl
           if-no-files-found: warn
-
       - name: Enforce fail-closed result after evidence persistence
         if: ${{ steps.reference_loop.outcome != 'success' }}
         run: |
