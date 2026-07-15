@@ -34,7 +34,6 @@ jobs:
   validate-workstreams:
     if: ${{ github.event_name == 'schedule' || !contains(github.event.head_commit.message || '', '[core-lite-managed-state]') }}
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -219,7 +218,6 @@ jobs:
           set -euo pipefail
           git config user.name "Data-Continuation Core-Lite Manager"
           git config user.email "core-lite-manager@data-continuation"
-          git pull --rebase origin "${GITHUB_REF_NAME}"
           git add -A \
             reports/ receipts/ core_lite/tasks/ core_lite/reference_loop_state.json \
             sandbox/intake/relationship_conditioned_execution/ \
@@ -231,6 +229,7 @@ jobs:
             echo "No managed state changed."
           else
             git commit -m "core-lite: publish managed state [core-lite-managed-state]"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
             git push
           fi
 
@@ -240,60 +239,14 @@ jobs:
         with:
           name: core-lite-workstream-status
           path: |
-            reports/workstream_status.md
-            reports/workstream_status.json
-            receipts/workstream_receipts.jsonl
-            reports/reference_loop_status.json
-            reports/reference_loop_escalation.json
-            reports/reference_loop_workflow_outcome.json
-            reports/managed_step_outcomes.json
-            receipts/reference_loop_receipts.jsonl
+            reports/
+            receipts/
             core_lite/reference_loop_state.json
-            reports/stegclaw_target_intake.json
-            reports/ecosystem_maintainer_scan.md
-            reports/ecosystem_maintainer_scan.json
-            receipts/ecosystem_maintainer_receipts.jsonl
-            reports/auto_fix_eligibility.md
-            reports/auto_fix_eligibility.json
-            receipts/auto_fix_eligibility_receipts.jsonl
-            reports/friction_avoided.md
-            reports/friction_avoided.json
-            receipts/friction_avoided_receipts.jsonl
-            reports/bundle_registry.md
-            reports/bundle_registry.json
-            receipts/bundle_registry_receipts.jsonl
-            reports/capability_gap_plan.md
-            reports/capability_gap_plan.json
-            receipts/capability_gap_receipts.jsonl
-            reports/stegverse_002_export_manifest.md
-            reports/stegverse_002_export_manifest.json
-            receipts/stegverse_002_export_receipts.jsonl
-            reports/rce_p0_004_reconstruction.json
-            reports/rce_p0_006_custody_replay.json
-            reports/rce_p0_007_lifecycle.json
-            reports/rce_p0_008_lease.json
-            reports/rce_p0_009_reconstruction_index.json
-            reports/rce_p0_010_snapshot_seal.json
-            reports/rce_p0_011_restoration_drill.json
-            reports/rce_p0_012_restoration_equivalence.json
-            reports/rce_p0_013_divergence_guard.json
-            reports/rce_automation_status.json
-            receipts/rce_p0_004_authoritative_validation.json
-            receipts/rce_p0_005_authoritative_validation.json
-            receipts/rce_p0_006_authoritative_validation.json
-            receipts/rce_p0_007_authoritative_validation.json
-            receipts/rce_p0_008_authoritative_validation.json
-            receipts/rce_p0_009_authoritative_validation.json
-            receipts/rce_p0_010_authoritative_validation.json
-            receipts/rce_p0_011_authoritative_validation.json
-            receipts/rce_p0_012_authoritative_validation.json
-            receipts/rce_p0_013_authoritative_validation.json
-            sandbox/intake/relationship_conditioned_execution/staging_manifest.json
-            sandbox/intake/relationship_conditioned_execution/lifecycle_state.json
-            sandbox/intake/relationship_conditioned_execution/lease_state.json
-            sandbox/snapshots/relationship_conditioned_execution/snapshot_manifest.json
-            sandbox/restoration_drills/relationship_conditioned_execution/restoration_manifest.json
-            sandbox/quarantine/relationship_conditioned_execution/divergence_alert.json
+            sandbox/intake/relationship_conditioned_execution/
+            sandbox/archive/relationship_conditioned_execution/
+            sandbox/quarantine/relationship_conditioned_execution/
+            sandbox/snapshots/relationship_conditioned_execution/
+            sandbox/restoration_drills/relationship_conditioned_execution/
           if-no-files-found: warn
 
       - name: Enforce managed results
