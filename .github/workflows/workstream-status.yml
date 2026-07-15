@@ -15,6 +15,7 @@ on:
       - 'tests/test_restore_relationship_conditioned_execution_snapshot.py'
       - 'tests/test_monitor_relationship_conditioned_execution_restoration.py'
       - 'tests/test_guard_relationship_conditioned_execution_restoration.py'
+      - 'tests/test_run_reference_loop.py'
       - 'bundles/relationship_conditioned_execution/**'
       - 'sandbox/intake/relationship_conditioned_execution/**'
       - 'sandbox/snapshots/relationship_conditioned_execution/**'
@@ -71,6 +72,16 @@ jobs:
 
       - name: Validate StegVerse-002 export package
         run: python tools/validate_stegverse_002_export.py --root .
+
+      - name: Verify reference closure implementation
+        id: reference_loop_tests
+        continue-on-error: true
+        run: python -m pytest -q tests/test_run_reference_loop.py
+
+      - name: Run one repository-local reference closure cycle
+        id: reference_loop
+        continue-on-error: true
+        run: python tools/run_reference_loop.py
 
       - name: Reconcile RCE reconstruction and sandbox staging
         id: rce
@@ -152,12 +163,70 @@ jobs:
         continue-on-error: true
         run: python tools/guard_relationship_conditioned_execution_restoration.py
 
+      - name: Persist managed step outcomes
+        if: always()
+        env:
+          REFERENCE_LOOP_TESTS: ${{ steps.reference_loop_tests.outcome }}
+          REFERENCE_LOOP: ${{ steps.reference_loop.outcome }}
+          RCE: ${{ steps.rce.outcome }}
+          RCE_CUSTODY: ${{ steps.rce_custody.outcome }}
+          RCE_LIFECYCLE_TESTS: ${{ steps.rce_lifecycle_tests.outcome }}
+          RCE_LIFECYCLE: ${{ steps.rce_lifecycle.outcome }}
+          RCE_LEASE_TESTS: ${{ steps.rce_lease_tests.outcome }}
+          RCE_LEASE: ${{ steps.rce_lease.outcome }}
+          RCE_INDEX_TESTS: ${{ steps.rce_index_tests.outcome }}
+          RCE_INDEX: ${{ steps.rce_index.outcome }}
+          RCE_SNAPSHOT_TESTS: ${{ steps.rce_snapshot_tests.outcome }}
+          RCE_SNAPSHOT: ${{ steps.rce_snapshot.outcome }}
+          RCE_RESTORE_TESTS: ${{ steps.rce_restore_tests.outcome }}
+          RCE_RESTORE: ${{ steps.rce_restore.outcome }}
+          RCE_EQUIVALENCE_TESTS: ${{ steps.rce_equivalence_tests.outcome }}
+          RCE_EQUIVALENCE: ${{ steps.rce_equivalence.outcome }}
+          RCE_GUARD_TESTS: ${{ steps.rce_guard_tests.outcome }}
+          RCE_GUARD: ${{ steps.rce_guard.outcome }}
+        run: |
+          python - <<'PY'
+          import datetime, json, os
+          from pathlib import Path
+          keys = [
+              'REFERENCE_LOOP_TESTS','REFERENCE_LOOP','RCE','RCE_CUSTODY',
+              'RCE_LIFECYCLE_TESTS','RCE_LIFECYCLE','RCE_LEASE_TESTS','RCE_LEASE',
+              'RCE_INDEX_TESTS','RCE_INDEX','RCE_SNAPSHOT_TESTS','RCE_SNAPSHOT',
+              'RCE_RESTORE_TESTS','RCE_RESTORE','RCE_EQUIVALENCE_TESTS','RCE_EQUIVALENCE',
+              'RCE_GUARD_TESTS','RCE_GUARD'
+          ]
+          outcomes = {key.lower(): os.environ.get(key, 'unknown') for key in keys}
+          failed = sorted(key for key, value in outcomes.items() if value != 'success')
+          report = {
+              'schema': 'stegverse.core_lite.managed_step_outcomes.v1',
+              'generated_at': datetime.datetime.now(datetime.UTC).isoformat(timespec='seconds'),
+              'repository': os.environ.get('GITHUB_REPOSITORY'),
+              'run_id': os.environ.get('GITHUB_RUN_ID'),
+              'commit_sha': os.environ.get('GITHUB_SHA'),
+              'outcomes': outcomes,
+              'failed_steps': failed,
+              'result': 'pass' if not failed else 'fail_closed'
+          }
+          path = Path('reports/managed_step_outcomes.json')
+          path.parent.mkdir(parents=True, exist_ok=True)
+          path.write_text(json.dumps(report, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          print(json.dumps(report, indent=2, sort_keys=True))
+          PY
+
       - name: Publish managed reports, receipts, task state, and sandbox evidence
+        if: always()
         run: |
           set -euo pipefail
           git config user.name "Data-Continuation Core-Lite Manager"
           git config user.email "core-lite-manager@data-continuation"
-          git add -A reports/ receipts/ core_lite/tasks/ sandbox/intake/relationship_conditioned_execution/ sandbox/archive/relationship_conditioned_execution/ sandbox/quarantine/relationship_conditioned_execution/ sandbox/snapshots/relationship_conditioned_execution/ sandbox/restoration_drills/relationship_conditioned_execution/ || true
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git add -A \
+            reports/ receipts/ core_lite/tasks/ core_lite/reference_loop_state.json \
+            sandbox/intake/relationship_conditioned_execution/ \
+            sandbox/archive/relationship_conditioned_execution/ \
+            sandbox/quarantine/relationship_conditioned_execution/ \
+            sandbox/snapshots/relationship_conditioned_execution/ \
+            sandbox/restoration_drills/relationship_conditioned_execution/ || true
           if git diff --staged --quiet; then
             echo "No managed state changed."
           else
@@ -166,6 +235,7 @@ jobs:
           fi
 
       - name: Upload workstream and management artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: core-lite-workstream-status
@@ -173,6 +243,12 @@ jobs:
             reports/workstream_status.md
             reports/workstream_status.json
             receipts/workstream_receipts.jsonl
+            reports/reference_loop_status.json
+            reports/reference_loop_escalation.json
+            reports/reference_loop_workflow_outcome.json
+            reports/managed_step_outcomes.json
+            receipts/reference_loop_receipts.jsonl
+            core_lite/reference_loop_state.json
             reports/stegclaw_target_intake.json
             reports/ecosystem_maintainer_scan.md
             reports/ecosystem_maintainer_scan.json
@@ -220,8 +296,9 @@ jobs:
             sandbox/quarantine/relationship_conditioned_execution/divergence_alert.json
           if-no-files-found: warn
 
-      - name: Enforce RCE managed results
-        if: ${{ steps.rce.outcome != 'success' || steps.rce_custody.outcome != 'success' || steps.rce_lifecycle_tests.outcome != 'success' || steps.rce_lifecycle.outcome != 'success' || steps.rce_lease_tests.outcome != 'success' || steps.rce_lease.outcome != 'success' || steps.rce_index_tests.outcome != 'success' || steps.rce_index.outcome != 'success' || steps.rce_snapshot_tests.outcome != 'success' || steps.rce_snapshot.outcome != 'success' || steps.rce_restore_tests.outcome != 'success' || steps.rce_restore.outcome != 'success' || steps.rce_equivalence_tests.outcome != 'success' || steps.rce_equivalence.outcome != 'success' || steps.rce_guard_tests.outcome != 'success' || steps.rce_guard.outcome != 'success' }}
+      - name: Enforce managed results
+        if: ${{ steps.reference_loop_tests.outcome != 'success' || steps.reference_loop.outcome != 'success' || steps.rce.outcome != 'success' || steps.rce_custody.outcome != 'success' || steps.rce_lifecycle_tests.outcome != 'success' || steps.rce_lifecycle.outcome != 'success' || steps.rce_lease_tests.outcome != 'success' || steps.rce_lease.outcome != 'success' || steps.rce_index_tests.outcome != 'success' || steps.rce_index.outcome != 'success' || steps.rce_snapshot_tests.outcome != 'success' || steps.rce_snapshot.outcome != 'success' || steps.rce_restore_tests.outcome != 'success' || steps.rce_restore.outcome != 'success' || steps.rce_equivalence_tests.outcome != 'success' || steps.rce_equivalence.outcome != 'success' || steps.rce_guard_tests.outcome != 'success' || steps.rce_guard.outcome != 'success' }}
         run: |
-          echo "RCE managed verification failed closed after state persistence."
+          echo "Managed verification failed closed after state and outcome persistence."
+          cat reports/managed_step_outcomes.json
           exit 1
