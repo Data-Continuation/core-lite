@@ -10,9 +10,11 @@ on:
       - 'tools/run_reference_loop.py'
       - 'tools/build_reference_loop_receipt_contract.py'
       - 'tools/build_reference_loop_site_status.py'
+      - 'tools/build_reference_loop_portability_manifest.py'
       - 'tests/test_run_reference_loop.py'
       - 'tests/test_build_reference_loop_receipt_contract.py'
       - 'tests/test_build_reference_loop_site_status.py'
+      - 'tests/test_build_reference_loop_portability_manifest.py'
       - '.github/workflows/reference-loop.yml'
   push:
     paths:
@@ -20,9 +22,11 @@ on:
       - 'tools/run_reference_loop.py'
       - 'tools/build_reference_loop_receipt_contract.py'
       - 'tools/build_reference_loop_site_status.py'
+      - 'tools/build_reference_loop_portability_manifest.py'
       - 'tests/test_run_reference_loop.py'
       - 'tests/test_build_reference_loop_receipt_contract.py'
       - 'tests/test_build_reference_loop_site_status.py'
+      - 'tests/test_build_reference_loop_portability_manifest.py'
       - '.github/workflows/reference-loop.yml'
 
 permissions:
@@ -45,7 +49,12 @@ jobs:
       - name: Install verification dependencies
         run: python -m pip install pyyaml pytest
       - name: Verify reference-loop implementation
-        run: python -m pytest -q tests/test_run_reference_loop.py tests/test_build_reference_loop_receipt_contract.py tests/test_build_reference_loop_site_status.py
+        run: >-
+          python -m pytest -q
+          tests/test_run_reference_loop.py
+          tests/test_build_reference_loop_receipt_contract.py
+          tests/test_build_reference_loop_site_status.py
+          tests/test_build_reference_loop_portability_manifest.py
 
   close-next-local-task:
     if: ${{ github.event_name != 'pull_request' }}
@@ -101,6 +110,7 @@ jobs:
             reports/reference_loop_workflow_outcome.json \
             reports/reference_loop_receipt_contract.json \
             reports/reference_loop_site_status.json \
+            reports/reference_loop_portability_manifest.json \
             receipts/reference_loop_receipts.jsonl \
             reports/workstream_status.json \
             reports/workstream_status.md \
@@ -125,6 +135,7 @@ jobs:
             reports/reference_loop_workflow_outcome.json
             reports/reference_loop_receipt_contract.json
             reports/reference_loop_site_status.json
+            reports/reference_loop_portability_manifest.json
             receipts/reference_loop_receipts.jsonl
           if-no-files-found: warn
       - name: Enforce fail-closed result after evidence persistence

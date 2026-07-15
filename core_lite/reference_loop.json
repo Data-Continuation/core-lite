@@ -26,7 +26,7 @@
     {"repository": "BCAT-GCAT-Engine/core-lite-prod", "relationship": "production-class_successor", "relative_stage": "behind_reference_loop", "parallel_posture": "compatibility_only", "responsibility": "consume a proven loop under a separate production authority boundary"},
     {"repository": "StegVerse-Labs/Site", "relationship": "bundle_and_status_surface", "relative_stage": "parallel_interface_candidate", "parallel_posture": "receipts_and_status_contracts", "responsibility": "accept and display verified state without controlling repository mutation"},
     {"repository": "StegGhost/entity-sandbox", "relationship": "sandbox_replication_candidate", "relative_stage": "after_reference_activation", "parallel_posture": "observe", "responsibility": "reuse loop mechanics with sandbox-specific authority"},
-    {"repository": "StegVerse-org/demo_ingest_engine", "relationship": "portability_validation_target", "relative_stage": "after_reference_activation", "parallel_posture": "observe", "responsibility": "demonstrate portable intake and receipt compatibility"},
+    {"repository": "StegVerse-org/demo_ingest_engine", "relationship": "portability_validation_target", "relative_stage": "read_only_contract_active", "parallel_posture": "compatibility_contract", "responsibility": "verify portable intake compatibility without installation or mutation authority"},
     {"repository": "StegVerse-Labs/StegAgents", "relationship": "future_worker_consumer", "relative_stage": "dependent", "parallel_posture": "interface_observation", "responsibility": "consume task, lease, evidence, and escalation contracts"},
     {"repository": "StegVerse-Labs/StegVerse-Healer", "relationship": "future_remediation_consumer", "relative_stage": "dependent", "parallel_posture": "interface_observation", "responsibility": "consume bounded failure classification and remediation contracts"},
     {"repository": "BCAT-GCAT-Engine/Publisher", "relationship": "downstream_publication_obligation", "relative_stage": "notification_only", "parallel_posture": "deferred", "responsibility": "publish only verified release information"},
@@ -42,13 +42,16 @@
     "build_receipt_contract": ["python", "tools/build_reference_loop_receipt_contract.py"],
     "verify_receipt_contract": ["python", "tools/build_reference_loop_receipt_contract.py", "--verify"],
     "build_site_status_contract": ["python", "tools/build_reference_loop_site_status.py"],
-    "verify_site_status_contract": ["python", "tools/build_reference_loop_site_status.py", "--verify"]
+    "verify_site_status_contract": ["python", "tools/build_reference_loop_site_status.py", "--verify"],
+    "build_portability_manifest": ["python", "tools/build_reference_loop_portability_manifest.py"],
+    "verify_portability_manifest": ["python", "tools/build_reference_loop_portability_manifest.py", "--verify"]
   },
   "tasks": [
     {"id": "REF-LOOP-001", "status": "ready", "priority": 1, "command": "validate_workstreams", "verification_command": "validate_workstreams", "remediation": {"strategy": "rerun_once", "eligible_exit_codes": [1, 2]}, "done_when": "verification exits zero and a chained completion receipt is written", "next_task": "REF-LOOP-002"},
     {"id": "REF-LOOP-002", "status": "blocked", "priority": 2, "blocked_by": ["REF-LOOP-001"], "command": "scan_repository", "verification_command": "plan_auto_fix", "remediation": {"strategy": "none", "eligible_exit_codes": []}, "done_when": "repository scan and bounded auto-fix eligibility plan both exit zero", "next_task": "REF-LOOP-003"},
     {"id": "REF-LOOP-003", "status": "blocked", "priority": 3, "blocked_by": ["REF-LOOP-002"], "command": "validate_stegclaw_intake", "verification_command": "validate_stegclaw_intake", "remediation": {"strategy": "rerun_once", "eligible_exit_codes": [1, 2]}, "done_when": "the repository-local intake boundary validates twice and a chained completion receipt is written", "next_task": "REF-LOOP-004"},
     {"id": "REF-LOOP-004", "status": "blocked", "priority": 4, "blocked_by": ["REF-LOOP-003"], "command": "build_receipt_contract", "verification_command": "verify_receipt_contract", "remediation": {"strategy": "none", "eligible_exit_codes": []}, "done_when": "a read-only master-records receipt contract is built from the verified chain and independently matches it", "next_task": "REF-LOOP-005"},
-    {"id": "REF-LOOP-005", "status": "blocked", "priority": 5, "blocked_by": ["REF-LOOP-004"], "command": "build_site_status_contract", "verification_command": "verify_site_status_contract", "remediation": {"strategy": "none", "eligible_exit_codes": []}, "done_when": "a read-only Site status contract is built from completed reference state and independently matches it", "next_task": null}
+    {"id": "REF-LOOP-005", "status": "blocked", "priority": 5, "blocked_by": ["REF-LOOP-004"], "command": "build_site_status_contract", "verification_command": "verify_site_status_contract", "remediation": {"strategy": "none", "eligible_exit_codes": []}, "done_when": "a read-only Site status contract is built from completed reference state and independently matches it", "next_task": "REF-LOOP-006"},
+    {"id": "REF-LOOP-006", "status": "blocked", "priority": 6, "blocked_by": ["REF-LOOP-005"], "command": "build_portability_manifest", "verification_command": "verify_portability_manifest", "remediation": {"strategy": "none", "eligible_exit_codes": []}, "done_when": "a read-only demo-ingest portability manifest is built from verified local evidence and independently matches it", "next_task": null}
   ]
 }
