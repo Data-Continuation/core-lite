@@ -40,12 +40,15 @@
     "scan_repository": ["python", "tools/ecosystem_maintainer.py", "--root", "."],
     "plan_auto_fix": ["python", "tools/auto_fix_eligibility.py", "--root", "."],
     "build_receipt_contract": ["python", "tools/build_reference_loop_receipt_contract.py"],
-    "verify_receipt_contract": ["python", "tools/build_reference_loop_receipt_contract.py", "--verify"]
+    "verify_receipt_contract": ["python", "tools/build_reference_loop_receipt_contract.py", "--verify"],
+    "build_site_status_contract": ["python", "tools/build_reference_loop_site_status.py"],
+    "verify_site_status_contract": ["python", "tools/build_reference_loop_site_status.py", "--verify"]
   },
   "tasks": [
     {"id": "REF-LOOP-001", "status": "ready", "priority": 1, "command": "validate_workstreams", "verification_command": "validate_workstreams", "remediation": {"strategy": "rerun_once", "eligible_exit_codes": [1, 2]}, "done_when": "verification exits zero and a chained completion receipt is written", "next_task": "REF-LOOP-002"},
     {"id": "REF-LOOP-002", "status": "blocked", "priority": 2, "blocked_by": ["REF-LOOP-001"], "command": "scan_repository", "verification_command": "plan_auto_fix", "remediation": {"strategy": "none", "eligible_exit_codes": []}, "done_when": "repository scan and bounded auto-fix eligibility plan both exit zero", "next_task": "REF-LOOP-003"},
     {"id": "REF-LOOP-003", "status": "blocked", "priority": 3, "blocked_by": ["REF-LOOP-002"], "command": "validate_stegclaw_intake", "verification_command": "validate_stegclaw_intake", "remediation": {"strategy": "rerun_once", "eligible_exit_codes": [1, 2]}, "done_when": "the repository-local intake boundary validates twice and a chained completion receipt is written", "next_task": "REF-LOOP-004"},
-    {"id": "REF-LOOP-004", "status": "blocked", "priority": 4, "blocked_by": ["REF-LOOP-003"], "command": "build_receipt_contract", "verification_command": "verify_receipt_contract", "remediation": {"strategy": "none", "eligible_exit_codes": []}, "done_when": "a read-only master-records receipt contract is built from the verified chain and independently matches it", "next_task": null}
+    {"id": "REF-LOOP-004", "status": "blocked", "priority": 4, "blocked_by": ["REF-LOOP-003"], "command": "build_receipt_contract", "verification_command": "verify_receipt_contract", "remediation": {"strategy": "none", "eligible_exit_codes": []}, "done_when": "a read-only master-records receipt contract is built from the verified chain and independently matches it", "next_task": "REF-LOOP-005"},
+    {"id": "REF-LOOP-005", "status": "blocked", "priority": 5, "blocked_by": ["REF-LOOP-004"], "command": "build_site_status_contract", "verification_command": "verify_site_status_contract", "remediation": {"strategy": "none", "eligible_exit_codes": []}, "done_when": "a read-only Site status contract is built from completed reference state and independently matches it", "next_task": null}
   ]
 }
