@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "record_id": "invalid-private-public-record",
+  "record_type": "evidence_intake",
+  "subject_class": "automotive_service_and_recall",
+  "status": "UNVERIFIED",
+  "claim_posture": "POTENTIAL",
+  "assertions": [
+    {
+      "id": "a1",
+      "classification": "observation",
+      "text": "A public fixture improperly includes a private identifier.",
+      "provenance": "negative test fixture",
+      "verification_state": "unverified",
+      "evidence_refs": []
+    }
+  ],
+  "ownership": {"fixture": "Data-Continuation/core-lite"},
+  "privacy": {"publication_class": "public_safe"},
+  "permitted_continuation": ["negative validation only"],
+  "vin": "5TFEX5DB0PX000000",
+  "conclusions": []
+}

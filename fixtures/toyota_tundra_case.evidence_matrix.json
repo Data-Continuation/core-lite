@@ -1,0 +1,27 @@
+{
+  "questions": [
+    {
+      "evidence_refs": [],
+      "owner": "vehicle lessee",
+      "question": "Was tire rotation requested, authorized, billed, or represented as completed?",
+      "question_id": "q1",
+      "status": "missing"
+    },
+    {
+      "evidence_refs": [],
+      "owner": "vehicle lessee",
+      "question": "Which recalls are open for the VIN and what remedies apply?",
+      "question_id": "q2",
+      "status": "pending"
+    },
+    {
+      "evidence_refs": [],
+      "owner": "vehicle lessee",
+      "question": "Did the inspection record abnormal tire wear or a safety recommendation?",
+      "question_id": "q3",
+      "status": "missing"
+    }
+  ],
+  "record_id": "toyota-tundra-2023-service-recall-intake",
+  "schema_version": "1.0"
+}

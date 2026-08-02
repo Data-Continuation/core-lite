@@ -1,0 +1,30 @@
+{
+  "events": [
+    {
+      "classification": "reported",
+      "event_id": "e1",
+      "evidence_refs": [],
+      "sequence": 1,
+      "summary": "Dealership service visit was understood to include oil change, tire rotation, and inspection.",
+      "verification_state": "unverified"
+    },
+    {
+      "classification": "observed",
+      "event_id": "e2",
+      "evidence_refs": [],
+      "sequence": 2,
+      "summary": "Left-rear tire appeared to remain in the same position after service.",
+      "verification_state": "unverified"
+    },
+    {
+      "classification": "observed",
+      "event_id": "e3",
+      "evidence_refs": [],
+      "sequence": 3,
+      "summary": "Outer tread was described as nearly bald and no related warning was reported as communicated.",
+      "verification_state": "unverified"
+    }
+  ],
+  "record_id": "toyota-tundra-2023-service-recall-intake",
+  "schema_version": "1.0"
+}

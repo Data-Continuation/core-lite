@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "assertions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "classification": {
+            "enum": [
+              "observation",
+              "representation",
+              "inference",
+              "hypothesis",
+              "verified_fact"
+            ]
+          },
+          "evidence_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "id": {
+            "type": "string"
+          },
+          "provenance": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "text": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "verification_state": {
+            "enum": [
+              "unverified",
+              "pending",
+              "verified",
+              "contradicted",
+              "inaccessible"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "classification",
+          "text",
+          "provenance",
+          "verification_state"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "claim_posture": {
+      "enum": [
+        "POTENTIAL",
+        "SUPPORTED",
+        "CONTRADICTED",
+        "WITHDRAWN"
+      ]
+    },
+    "conclusions": {
+      "items": {
+        "properties": {
+          "support_state": {
+            "enum": [
+              "unsupported",
+              "verified_evidence_required",
+              "supported"
+            ]
+          },
+          "text": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "factual",
+              "legal",
+              "safety",
+              "recall_applicability",
+              "liability",
+              "damages",
+              "entitlement"
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "text",
+          "support_state"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "ownership": {
+      "type": "object"
+    },
+    "permitted_continuation": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "privacy": {
+      "properties": {
+        "publication_class": {
+          "enum": [
+            "public_safe",
+            "private",
+            "restricted"
+          ]
+        }
+      },
+      "required": [
+        "publication_class"
+      ],
+      "type": "object"
+    },
+    "record_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "record_type": {
+      "const": "evidence_intake"
+    },
+    "schema_version": {
+      "const": "1.0"
+    },
+    "status": {
+      "enum": [
+        "UNVERIFIED",
+        "PARTIALLY_VERIFIED",
+        "VERIFIED",
+        "DISPUTED",
+        "CLOSED"
+      ]
+    },
+    "subject_class": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "record_id",
+    "record_type",
+    "subject_class",
+    "status",
+    "claim_posture",
+    "assertions",
+    "ownership",
+    "privacy",
+    "permitted_continuation"
+  ],
+  "title": "Evidence Intake",
+  "type": "object"
+}

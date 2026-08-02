@@ -1,0 +1,79 @@
+name: Evidence Intake Verify
+
+on:
+  pull_request:
+    paths:
+      - "schemas/**"
+      - "fixtures/**"
+      - "tools/validate_evidence_intake.py"
+      - "tools/run_evidence_intake_suite.py"
+      - "tests/test_evidence_intake.py"
+      - "receipts/evidence_intake_validation.receipt.json"
+      - "README.md"
+      - "CORE_LITE_MIRROR_HANDOFF.md"
+      - ".github/workflows/evidence-intake-verify.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "schemas/**"
+      - "fixtures/**"
+      - "tools/validate_evidence_intake.py"
+      - "tools/run_evidence_intake_suite.py"
+      - "tests/test_evidence_intake.py"
+      - "README.md"
+      - "CORE_LITE_MIRROR_HANDOFF.md"
+      - ".github/workflows/evidence-intake-verify.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile validators and tests
+        run: |
+          python -m py_compile tools/validate_evidence_intake.py
+          python -m py_compile tools/run_evidence_intake_suite.py
+          python -m py_compile tests/test_evidence_intake.py
+
+      - name: Run owned unit tests
+        run: python -m unittest tests.test_evidence_intake -v
+
+      - name: Generate commit-bound validation receipt
+        run: python tools/run_evidence_intake_suite.py
+
+      - name: Verify receipt posture
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          receipt = json.loads(Path("receipts/evidence_intake_validation.receipt.json").read_text())
+          assert receipt["result"] == "PASS"
+          assert receipt["claim_posture_upgraded"] is False
+          assert receipt["legal_conclusion_emitted"] is False
+          assert receipt["safety_conclusion_emitted"] is False
+          assert receipt["recall_applicability_determined"] is False
+          assert receipt["private_evidence_included"] is False
+          assert receipt["source_commit"]
+          assert receipt["source_hashes"]
+          PY
+
+      - name: Upload validation evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-intake-validation
+          path: receipts/evidence_intake_validation.receipt.json
+          retention-days: 90

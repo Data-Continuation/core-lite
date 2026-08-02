@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "task_id": "CORE-LITE-SECURITY-FEDERAL-PLUS-001",
+  "originating_goal": "Federal requirements are the minimum; exceed them for evidence-intake security.",
+  "repository": "Data-Continuation/core-lite",
+  "branch": "docs/core-lite-mirror-handoff",
+  "surfaces": [
+    "docs/FEDERAL_PLUS_SECURITY_BASELINE.md",
+    "schemas/security_profile.schema.json",
+    "fixtures/security_profile.federal_plus.json",
+    "tools/validate_security_profile.py",
+    "tests/test_security_profile.py",
+    ".github/workflows/security-profile-verify.yml"
+  ],
+  "claimant": "repository-native security hardening lane",
+  "role": "CLAIMED_FOR_VALIDATION",
+  "claim_created_at": "2026-08-02T17:20:00-05:00",
+  "release_condition": "Release when the exact PR head has a passing Security Profile Verify run, artifacts or logs are inspected, and the canonical handoff records the result.",
+  "expected_evidence": [
+    "workflow run URL",
+    "commit SHA",
+    "job and step outcomes",
+    "security profile validation output",
+    "unit test output"
+  ],
+  "collision_boundaries": [
+    "Do not change Toyota factual assertions or private evidence custody.",
+    "Do not merge or release without evidence-intake validation and separate authority.",
+    "Do not claim federal certification or compliance from repository validation."
+  ],
+  "next_task_after_release": "Current-main validation and independent reproduction before release review.",
+  "status": "CLAIMED_FOR_VALIDATION"
+}

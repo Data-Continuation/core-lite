@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "events": {
+      "items": {
+        "properties": {
+          "classification": {
+            "enum": ["reported", "observed", "documented", "inferred", "verified"]
+          },
+          "event_id": {"type": "string"},
+          "evidence_refs": {"items": {"type": "string"}, "type": "array"},
+          "sequence": {"minimum": 1, "type": "integer"},
+          "summary": {"type": "string"},
+          "verification_state": {
+            "enum": ["unverified", "pending", "verified", "contradicted", "inaccessible"]
+          }
+        },
+        "required": ["event_id", "sequence", "classification", "summary", "verification_state"],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "record_id": {"type": "string"},
+    "schema_version": {"const": "1.0"}
+  },
+  "required": ["schema_version", "record_id", "events"],
+  "title": "Claim Chronology",
+  "type": "object"
+}

@@ -177,3 +177,45 @@ receipts/capability_gap_receipts.jsonl
 
 The report detects when a repository is clean but underbuilt relative to its inferred product role.
 
+## Bounded evidence intake
+
+Core-Lite also provides a privacy-safe evidence-intake and reconstruction layer for potential claims or disputed events. It preserves reported observations, representations, inferences, hypotheses, verified facts, missing evidence, contradictory evidence, ownership, and continuation scope without automatically converting them into conclusions.
+
+This layer is governed by `CORE_LITE_MIRROR_HANDOFF.md` and currently uses Issue #3 as its canonical non-sensitive example.
+
+### Included surfaces
+
+```text
+schemas/evidence_intake.schema.json
+schemas/claim_chronology.schema.json
+schemas/evidence_matrix.schema.json
+fixtures/toyota_tundra_case.intake.json
+fixtures/toyota_tundra_case.chronology.json
+fixtures/toyota_tundra_case.evidence_matrix.json
+tools/validate_evidence_intake.py
+tools/run_evidence_intake_suite.py
+tests/test_evidence_intake.py
+receipts/evidence_intake_validation.receipt.json
+.github/workflows/evidence-intake-verify.yml
+```
+
+### Local validation
+
+```bash
+python -m unittest discover -s tests
+python tools/run_evidence_intake_suite.py
+```
+
+The suite regenerates `receipts/evidence_intake_validation.receipt.json` with:
+
+- the checked-out commit and branch when available;
+- SHA-256 hashes for every governed source file;
+- expected and observed results for valid and fail-closed fixtures;
+- deterministic receipt linkage data;
+- explicit proof that validation did not upgrade claim posture or emit legal, safety, recall-applicability, liability, damages, or entitlement conclusions.
+
+### Authority boundary
+
+Evidence-intake validation establishes structural consistency only. It does not establish truth, legal standing, liability, vehicle safety, recall applicability, damages, entitlement, or third-party endorsement.
+
+Public fixtures must not contain VINs, addresses, signatures, account numbers, private repair documents, or equivalent sensitive evidence. Private source evidence remains in user-controlled storage and may be represented publicly only by non-sensitive references or hashes under separately authorized custody rules.

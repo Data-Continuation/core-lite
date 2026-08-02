@@ -1,0 +1,62 @@
+{
+  "assertions": [
+    {
+      "classification": "representation",
+      "evidence_refs": [],
+      "id": "a1",
+      "provenance": "vehicle lessee report",
+      "text": "The service visit was understood to include an oil change, tire rotation, and multi-point inspection.",
+      "verification_state": "unverified"
+    },
+    {
+      "classification": "observation",
+      "evidence_refs": [],
+      "id": "a2",
+      "provenance": "vehicle lessee visual observation",
+      "text": "The left-rear passenger-side tire appeared to remain in the same position after service.",
+      "verification_state": "unverified"
+    },
+    {
+      "classification": "observation",
+      "evidence_refs": [],
+      "id": "a3",
+      "provenance": "vehicle lessee visual observation",
+      "text": "The tire was described as nearly bald on the outer tread.",
+      "verification_state": "unverified"
+    },
+    {
+      "classification": "representation",
+      "evidence_refs": [],
+      "id": "a4",
+      "provenance": "vehicle lessee report",
+      "text": "Three open recalls were reported, including one understood to involve engine lock-up and possible engine replacement.",
+      "verification_state": "pending"
+    }
+  ],
+  "claim_posture": "POTENTIAL",
+  "conclusions": [],
+  "ownership": {
+    "factual_confirmation": "vehicle lessee",
+    "repository_implementation": "Data-Continuation/core-lite"
+  },
+  "permitted_continuation": [
+    "attach privacy-safe evidence references",
+    "verify official recall status",
+    "build chronology and evidence matrix"
+  ],
+  "privacy": {
+    "excluded_fields": [
+      "VIN",
+      "address",
+      "signature",
+      "account_number",
+      "private_document_contents"
+    ],
+    "publication_class": "public_safe"
+  },
+  "record_id": "toyota-tundra-2023-service-recall-intake",
+  "record_type": "evidence_intake",
+  "schema_version": "1.0",
+  "status": "UNVERIFIED",
+  "subject_class": "automotive_service_and_recall"
+}

@@ -1,0 +1,17 @@
+{
+  "receipt_type": "core_lite.evidence_intake_validation",
+  "validator_version": "1.0.0",
+  "validation_scope": "local_precommit_reference",
+  "command": "python -m unittest discover -s tests",
+  "result": "PASS",
+  "test_count": 10,
+  "branch": "docs/core-lite-mirror-handoff",
+  "validated_through_commit": "c59a4d9170382cca37505f9b063d6a1b35cc8a08",
+  "source_hash_status": "PENDING_COMMIT_BOUND_REGENERATION",
+  "prior_receipt": null,
+  "limitations": [
+    "GitHub Actions or independent reproduction has not yet been observed.",
+    "Commit-bound per-file source hashes must be generated after the branch file set is stable.",
+    "No private evidence or VIN-specific recall determination is included."
+  ]
+}
