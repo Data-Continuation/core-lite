@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse.org/schemas/security_profile.schema.json",
+  "title": "Core-Lite Security Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile_id", "assurance_posture", "compliance_claim", "baseline_references", "controls", "release_gate"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "profile_id": {"type": "string", "minLength": 1},
+    "assurance_posture": {"enum": ["federal_plus"]},
+    "compliance_claim": {"const": "NONE"},
+    "baseline_references": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "source_authority", "status"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "source_authority": {"enum": ["NIST", "CISA"]},
+          "status": {"enum": ["current", "deployment_conditional"]}
+        }
+      }
+    },
+    "controls": {
+      "type": "array",
+      "minItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["control_id", "category", "requirement", "evidence", "enforcement", "status"],
+        "properties": {
+          "control_id": {"type": "string", "pattern": "^[A-Z0-9_-]+$"},
+          "category": {"type": "string"},
+          "requirement": {"type": "string", "minLength": 10},
+          "evidence": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "enforcement": {"enum": ["fail_closed", "release_block", "deployment_block"]},
+          "status": {"enum": ["implemented", "pending_validation", "deployment_conditional", "blocked"]}
+        }
+      }
+    },
+    "release_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requires_commit_bound_validation", "requires_independent_reproduction", "requires_current_main_validation", "release_authority"],
+      "properties": {
+        "requires_commit_bound_validation": {"const": true},
+        "requires_independent_reproduction": {"const": true},
+        "requires_current_main_validation": {"const": true},
+        "release_authority": {"const": "SEPARATE_AUTHORIZATION_REQUIRED"}
+      }
+    }
+  }
+}
