@@ -44,7 +44,9 @@
     "build_site_status_contract": ["python", "tools/build_reference_loop_site_status.py"],
     "verify_site_status_contract": ["python", "tools/build_reference_loop_site_status.py", "--verify"],
     "build_portability_manifest": ["python", "tools/build_reference_loop_portability_manifest.py"],
-    "verify_portability_manifest": ["python", "tools/build_reference_loop_portability_manifest.py", "--verify"]
+    "verify_portability_manifest": ["python", "tools/build_reference_loop_portability_manifest.py", "--verify"],
+    "reconcile_rce_canonical_workstream": ["python", "tools/reconcile_rce_canonical_workstream.py"],
+    "verify_rce_canonical_workstream": ["python", "tools/reconcile_rce_canonical_workstream.py", "--verify"]
   },
   "tasks": [
     {"id": "REF-LOOP-001", "status": "ready", "priority": 1, "command": "validate_workstreams", "verification_command": "validate_workstreams", "remediation": {"strategy": "rerun_once", "eligible_exit_codes": [1, 2]}, "done_when": "verification exits zero and a chained completion receipt is written", "next_task": "REF-LOOP-002"},
@@ -52,6 +54,7 @@
     {"id": "REF-LOOP-003", "status": "blocked", "priority": 3, "blocked_by": ["REF-LOOP-002"], "command": "validate_stegclaw_intake", "verification_command": "validate_stegclaw_intake", "remediation": {"strategy": "rerun_once", "eligible_exit_codes": [1, 2]}, "done_when": "the repository-local intake boundary validates twice and a chained completion receipt is written", "next_task": "REF-LOOP-004"},
     {"id": "REF-LOOP-004", "status": "blocked", "priority": 4, "blocked_by": ["REF-LOOP-003"], "command": "build_receipt_contract", "verification_command": "verify_receipt_contract", "remediation": {"strategy": "none", "eligible_exit_codes": []}, "done_when": "a read-only master-records receipt contract is built from the verified chain and independently matches it", "next_task": "REF-LOOP-005"},
     {"id": "REF-LOOP-005", "status": "blocked", "priority": 5, "blocked_by": ["REF-LOOP-004"], "command": "build_site_status_contract", "verification_command": "verify_site_status_contract", "remediation": {"strategy": "none", "eligible_exit_codes": []}, "done_when": "a read-only Site status contract is built from completed reference state and independently matches it", "next_task": "REF-LOOP-006"},
-    {"id": "REF-LOOP-006", "status": "blocked", "priority": 6, "blocked_by": ["REF-LOOP-005"], "command": "build_portability_manifest", "verification_command": "verify_portability_manifest", "remediation": {"strategy": "none", "eligible_exit_codes": []}, "done_when": "a read-only demo-ingest portability manifest is built from verified local evidence and independently matches it", "next_task": null}
+    {"id": "REF-LOOP-006", "status": "blocked", "priority": 6, "blocked_by": ["REF-LOOP-005"], "command": "build_portability_manifest", "verification_command": "verify_portability_manifest", "remediation": {"strategy": "none", "eligible_exit_codes": []}, "done_when": "a read-only demo-ingest portability manifest is built from verified local evidence and independently matches it", "next_task": "REF-LOOP-007"},
+    {"id": "REF-LOOP-007", "status": "blocked", "priority": 7, "blocked_by": ["REF-LOOP-006"], "command": "reconcile_rce_canonical_workstream", "verification_command": "verify_rce_canonical_workstream", "remediation": {"strategy": "none", "eligible_exit_codes": []}, "done_when": "RCE-P0-007 through RCE-P0-014 complete under one repository-local canonical owner, all authoritative receipts verify, no manual action remains, and no external or production mutation occurs", "next_task": null}
   ]
 }
