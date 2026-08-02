@@ -1,0 +1,48 @@
+name: Security Profile Verify
+
+on:
+  pull_request:
+    paths:
+      - "docs/FEDERAL_PLUS_SECURITY_BASELINE.md"
+      - "schemas/security_profile.schema.json"
+      - "fixtures/security_profile.federal_plus.json"
+      - "tools/validate_security_profile.py"
+      - "tests/test_security_profile.py"
+      - "claims/security-hardening.claim.json"
+      - ".github/workflows/security-profile-verify.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile security validator and tests
+        run: python -m py_compile tools/validate_security_profile.py tests/test_security_profile.py
+      - name: Run security profile tests
+        run: python -m unittest tests.test_security_profile -v
+      - name: Validate federal-plus profile
+        run: python tools/validate_security_profile.py fixtures/security_profile.federal_plus.json | tee security-profile-validation.json
+      - name: Assert bounded posture
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('security-profile-validation.json').read_text())
+          assert report['result'] == 'PASS'
+          assert report['release_readiness'] == 'BLOCKED'
+          assert 'INDEPENDENT_REPRODUCTION' in report['blocking_controls']
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: security-profile-validation
+          path: security-profile-validation.json
+          retention-days: 90
