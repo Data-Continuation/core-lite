@@ -1,37 +1,29 @@
 # Core-Lite Mirror Handoff
 
-This is the canonical continuation record for `Data-Continuation/core-lite`. It supersedes chat-local execution state and must be read before repository decisions or mutations.
+This is the canonical continuation record for `Data-Continuation/core-lite`. It supersedes chat-local state and all older handoff versions.
 
-## Current version
+## Version and source of truth
 
 ```text
-0.16.0-rce-session-consolidated-into-reference-loop
+version: 0.16.1-rce-session-canonical-claim-finalized
+repository: Data-Continuation/core-lite
+branch: main
+handoff: docs/CORE_LITE_MIRROR_HANDOFF.md
+session inventory: core_lite/session_inventories/rce_session_2026_08_02.json
+task registry: core_lite/reference_loop.json
+runtime state and lease: core_lite/reference_loop_state.json
+runner: tools/run_reference_loop.py
+sole execution workflow: .github/workflows/reference-loop.yml
+receipt chain: receipts/reference_loop_receipts.jsonl
 ```
 
 ## Active goal and originating goal
 
-**Active goal:** close `REF-LOOP-006`, then execute and independently verify `REF-LOOP-007`, the canonical reconciliation of `RCE-P0-007` through `RCE-P0-014`.
+**Active goal:** close `REF-LOOP-006`, then execute and independently verify `REF-LOOP-007`, which canonically reconciles `RCE-P0-007` through `RCE-P0-014`.
 
-**Originating session goal:** preserve and operationalize relationship-conditioned execution while ensuring relationship history never creates execution authority and no production, external-repository, autonomous harmful-execution, human-harm, targeting, weapons, or cyber-exploitation authority is introduced.
-
-## Canonical continuation
-
-```text
-repository: Data-Continuation/core-lite
-branch: main
-configuration and task registry: core_lite/reference_loop.json
-runtime state and lease: core_lite/reference_loop_state.json
-runner: tools/run_reference_loop.py
-workflow: .github/workflows/reference-loop.yml
-receipt chain: receipts/reference_loop_receipts.jsonl
-session inventory: core_lite/session_inventories/rce_session_2026_08_02.json
-RCE canonical adapter: tools/reconcile_rce_canonical_workstream.py
-RCE reconciliation report: reports/rce_session_reconciliation.json
-```
+**Originating session goal:** preserve and operationalize relationship-conditioned execution while ensuring relationship history never creates authority and no production, external-repository, publication, autonomous harmful-execution, human-harm, targeting, weapons, or cyber-exploitation authority is introduced.
 
 MERGED INTO: `Data-Continuation/core-lite/core_lite/reference_loop.json#REF-LOOP-007`
-
-The RCE session no longer owns a parallel scheduler or chat-local execution lane. The Core-Lite Reference Closure Loop is the canonical owner for claim, lease, duplicate suppression, execution, verification, receipts, persistence, successor activation, and fail-closed escalation.
 
 ## Current status
 
@@ -51,7 +43,9 @@ REF_LOOP_007_INSTALLED_DEPENDENCY_GATED
 RCE_P0_001_THROUGH_P0_006_COMPLETE
 RCE_P0_007_THROUGH_P0_014_IMPLEMENTED
 RCE_P0_007_THROUGH_P0_014_CANONICAL_OWNER_REF_LOOP_007
-RCE_CLEAN_AGGREGATE_RESULT_PENDING
+LEGACY_WORKSTREAM_STATUS_WORKFLOW_SUPERSEDED_NONEXECUTABLE
+LEGACY_P0_014_WORKFLOW_SUPERSEDED_NONEXECUTABLE
+SOLE_EXECUTION_CLAIM_REFERENCE_LOOP
 PR_004_SEPARATE_NONCONFLICTING_EVIDENCE_INTAKE_LANE
 SANDBOX_ONLY
 NO_PRODUCTION_DESTINATION_AUTHORITY
@@ -60,28 +54,95 @@ NO_PUBLICATION_AUTHORITY
 MANUAL_ACTIONS_REQUIRED_NONE
 ```
 
-## Authoritative completed evidence
-
-### RCE chain
+## Canonical machine claim
 
 ```text
-RCE-P0-001 — COMPLETE — run 29308124165
-receipt: receipts/rce_p0_001_authoritative_validation.json
+task: REF-LOOP-007
+originating goal: complete and verify RCE-P0-007 through RCE-P0-014
+claimant: core_lite_reference_loop
+role: implementation + independent verification + integration
+branch: main
+claim created: 2026-08-02T09:53:00Z
+claim expires: 2026-08-09T09:53:00Z
+renewal condition: a new reference-loop state or chained receipt proves active execution or fail-closed escalation
+release condition: REF-LOOP-007 COMPLETE, durable ESCALATE_FAIL_CLOSED evidence, or explicit supersession in a newer canonical handoff
+collision boundary: no other workflow, branch, session, or worker may claim the same RCE task chain or mutate its state concurrently
+```
 
-RCE-P0-002 — COMPLETE — run 29308190352
-receipt: receipts/rce_p0_002_authoritative_validation.json
+Exact claimed surfaces:
 
-RCE-P0-003 — COMPLETE — run 29308626043
-receipt: receipts/rce_p0_003_authoritative_validation.json
+```text
+core_lite/reference_loop.json#REF-LOOP-007
+tools/reconcile_rce_canonical_workstream.py
+tests/test_reconcile_rce_canonical_workstream.py
+core_lite/tasks/relationship_conditioned_execution_p0_007.json through p0_014.json
+reports/rce_session_reconciliation.json
+receipts/rce_p0_007_authoritative_validation.json through rce_p0_014_authoritative_validation.json
+sandbox/intake/relationship_conditioned_execution/
+sandbox/archive/relationship_conditioned_execution/
+sandbox/quarantine/relationship_conditioned_execution/
+sandbox/snapshots/relationship_conditioned_execution/
+sandbox/restoration_drills/relationship_conditioned_execution/
+sandbox/publication_candidates/relationship_conditioned_execution/
+```
 
-RCE-P0-004 — COMPLETE — ALLOW_CANDIDATE_INTAKE
-receipt: receipts/rce_p0_004_authoritative_validation.json
+## Duplicate-execution consolidation
 
-RCE-P0-005 — COMPLETE — STAGED_CANDIDATE_EVIDENCE
-receipt: receipts/rce_p0_005_authoritative_validation.json
+PRs #6 through #11 established the canonical reference loop with time-bounded leases, duplicate-worker suppression, registered commands, independent verification, hash-chained receipts, receipt-based state recovery, deterministic contracts, and fail-closed escalation.
 
-RCE-P0-006 — COMPLETE — CUSTODY_AND_REPLAY_VERIFIED
-receipt: receipts/rce_p0_006_authoritative_validation.json
+The earlier RCE schedulers are now explicitly superseded:
+
+```text
+.github/workflows/workstream-status.yml
+  state: SUPERSEDED
+  permissions: contents read
+  executable jobs: none
+  recurring trigger: none
+
+.github/workflows/rce-p0-014-checkpoint.yml
+  state: SUPERSEDED
+  permissions: contents read
+  executable jobs: none
+  recurring trigger: none
+```
+
+Their implementations remain inspectable in Git history. They cannot race the reference-loop lease, write task state, or create duplicate receipts.
+
+The sole machine execution path is:
+
+```text
+.github/workflows/reference-loop.yml
+-> tools/run_reference_loop.py
+-> persisted lease and duplicate suppression
+-> registered command execution
+-> independent verification command
+-> hash-chained receipt
+-> persisted state, reports, receipts, tasks, and sandbox evidence
+-> successor activation or fail-closed escalation
+```
+
+## Completed authoritative evidence
+
+### RCE
+
+```text
+RCE-P0-001 COMPLETE — workflow run 29308124165
+RCE-P0-002 COMPLETE — workflow run 29308190352
+RCE-P0-003 COMPLETE — workflow run 29308626043
+RCE-P0-004 COMPLETE — ALLOW_CANDIDATE_INTAKE
+RCE-P0-005 COMPLETE — STAGED_CANDIDATE_EVIDENCE
+RCE-P0-006 COMPLETE — CUSTODY_AND_REPLAY_VERIFIED
+```
+
+Receipts:
+
+```text
+receipts/rce_p0_001_authoritative_validation.json
+receipts/rce_p0_002_authoritative_validation.json
+receipts/rce_p0_003_authoritative_validation.json
+receipts/rce_p0_004_authoritative_validation.json
+receipts/rce_p0_005_authoritative_validation.json
+receipts/rce_p0_006_authoritative_validation.json
 ```
 
 ### Reference loop
@@ -90,109 +151,73 @@ receipt: receipts/rce_p0_006_authoritative_validation.json
 implementation PR: 6
 implementation verification run: 29382140223
 implementation merge: 440d09590eef7008e5f3e5369a5257930c2c65b3
-
 REF-LOOP-001 receipt: 11479b7b0057ac497943d3a1c0a05304e9f74f0a8f59fe9ba7b6677f0323c4b5
 REF-LOOP-002 receipt: e19dd42c442f665cdb0647345a084d4bef326c14ed8038a693bca8aef3d28ca1
 REF-LOOP-003 receipt: afb43613d6e10b120613007ecb4507a6fc887991f3a530c7e21cb6ec5288dc7f
 REF-LOOP-004 receipt: a9bd42c4bb7a0468c7e6e5766364232ba7b9cc44d4280a9bf2226aa3f4b38ee8
 REF-LOOP-005 receipt: f8a865e8f9063bba0d4a35f0a619715af51e578a3c3be96f11dd502b076660f7
-
 REF-LOOP-006 implementation PR: 11
-REF-LOOP-006 verification run: 29387464101 — SUCCESS
-REF-LOOP-006 operational receipt: pending next machine cycle
+REF-LOOP-006 verification run: 29387464101 SUCCESS
 ```
 
-The reference state currently records `REF-LOOP-001` through `005` complete and no active lease. `REF-LOOP-006` is the next eligible machine task.
-
-## Active claims
-
-### Canonical machine claim
-
-```text
-task: REF-LOOP-007
-originating goal: complete and verify RCE-P0-007 through RCE-P0-014
-repository: Data-Continuation/core-lite
-branch: main
-surfaces:
-  core_lite/reference_loop.json
-  tools/reconcile_rce_canonical_workstream.py
-  core_lite/tasks/relationship_conditioned_execution_p0_007.json through p0_014.json
-  reports/rce_session_reconciliation.json
-  receipts/rce_p0_007_authoritative_validation.json through rce_p0_014_authoritative_validation.json
-claimant: core_lite_reference_loop
-role: implementation + independent verification + integration
-claim created: 2026-08-02T09:53:00Z
-claim expires: 2026-08-09T09:53:00Z
-renewal condition: a new reference-loop state or receipt proves active execution or fail-closed escalation
-release condition: REF-LOOP-007 COMPLETE, durable ESCALATE_FAIL_CLOSED evidence, or explicit supersession by a newer canonical handoff
-next task after release: selected only by a durable successor record; no successor is invented to keep a session active
-```
-
-### Separate nonconflicting claim
-
-PR #4 (`docs/core-lite-mirror-handoff`) is a Toyota Tundra evidence-intake implementation. It is not the RCE continuation owner. Its local precommit receipt is not authoritative repository integration evidence. Its owner must independently rebase, resolve the handoff collision, validate, and integrate or supersede it.
-
-## Convergence and duplicate-execution decision
-
-PRs #6 through #11 established the canonical repository-local loop with time-bounded leases, duplicate-worker suppression, registered commands, independent verification, hash-chained receipts, receipt-based state recovery, and read-only ecosystem contracts.
-
-Therefore:
-
-- the former RCE workflow lane is not extended with another parallel scheduler;
-- `RCE-P0-007` through `P0-014` are merged into `REF-LOOP-007`;
-- the reference loop runs one eligible task per cycle and prevents duplicate execution through its persisted lease;
-- the legacy `.github/workflows/workstream-status.yml` remains evidence and compatibility coverage but is no longer the canonical claim owner for session continuation;
-- `.github/workflows/rce-p0-014-checkpoint.yml` may create checkpoint evidence only after the authoritative predecessor chain; it does not own the full session continuation.
+`core_lite/reference_loop_state.json` records `REF-LOOP-001` through `005` complete and no active lease. `REF-LOOP-006` is next. Its operational completion receipt has not yet been observed and is not claimed complete.
 
 ## Installed REF-LOOP-007 behavior
 
-`tools/reconcile_rce_canonical_workstream.py` executes the committed sandbox-bounded tools in this order:
+`tools/reconcile_rce_canonical_workstream.py` invokes only committed repository-local tools in this order:
 
 ```text
 RCE-P0-007 lifecycle and supersession
 -> RCE-P0-008 lease renewal or quarantine
 -> RCE-P0-009 deterministic reconstruction index
--> RCE-P0-010 snapshot seal
+-> RCE-P0-010 evidence snapshot seal
 -> RCE-P0-011 isolated restoration drill
--> RCE-P0-012 three-way restoration equivalence
--> RCE-P0-013 divergence guard and preserved quarantine evidence
+-> RCE-P0-012 source/snapshot/restoration equivalence
+-> RCE-P0-013 divergence guard with preserved quarantine history
 -> RCE-P0-014 local continuity-checkpoint candidate
 ```
 
-Its independent `--verify` mode requires every task to be `COMPLETE`, every authoritative receipt to exist, `manual_actions_required` to remain empty, expected decisions to match, and production/external mutation to remain denied. The reference-loop workflow persists task state, reports, receipts, and sandbox evidence and retries every five minutes.
+Its `--verify` command independently requires:
 
-## Full session goal inventory
+```text
+every task status == COMPLETE
+every authoritative receipt exists and identifies the expected task
+manual_actions_required == []
+production_destination_allowed is not true
+external_destination_mutation_performed is not true
+expected decisions match for P0-009 through P0-014
+```
 
-The exact execution inventory is committed at:
+The adapter emits `reports/rce_session_reconciliation.json` only after the full chain verifies. `REF-LOOP-007` closes only after execution and independent verification both exit zero and the reference loop appends a chained completion receipt.
+
+## Full session inventory and transfer record
+
+The complete inventory is:
 
 ```text
 core_lite/session_inventories/rce_session_2026_08_02.json
 ```
 
-It records for every primary, adjacent, completed, pending, converged, and separate task:
+It records the primary goal, `RCE-P0-001` through `P0-014`, `REF-LOOP-006`, `REF-LOOP-007`, the separate PR #4 lane, and session consolidation. Each item names its repository, branch, exact location, owner, claim state, completion state, validation state, integration state, archival dependency, evidence, and next executable action.
 
-- goal/task ID and originating goal;
-- destination repository and branch;
-- exact file, workflow, receipt, report, PR, or runtime location;
-- owner and claim state;
-- completion, validation, and integration state;
-- archival dependency;
-- evidence location;
-- next executable action;
-- finite claim expiry and machine-observable release condition.
+All unique requirements from this session are completed, explicitly non-authorized, or assigned to a durable owner. No known unique RCE requirement remains only in chat.
 
-No unique RCE requirement from this session is intentionally retained only in chat.
+## Separate work and collision decision
+
+PR #4 (`docs/core-lite-mirror-handoff`) is a Toyota Tundra evidence-intake implementation. It remains open and is not the RCE continuation owner. Its local precommit receipt is not authoritative repository integration evidence. Its owner must independently rebase, resolve the handoff collision, validate, and integrate, supersede, or close it.
+
+PR #4 is durably classified as `CLAIMED_FOR_IMPLEMENTATION` in the session inventory. It is not an archival dependency of this RCE session because it originated in a separate lane and no RCE requirement is delegated to it.
 
 ## Cross-repository obligations
 
-The current contracts are read-only and do not prove propagation:
+Current interfaces are read-only evidence contracts, not propagation proof:
 
 ```text
-master-records/master-records — receipt and reconstruction contract only
-StegVerse-Labs/Site — status contract only; publication and Site control denied
-StegVerse-org/demo_ingest_engine — portability compatibility manifest only; ingestion and installation denied
-BCAT-GCAT-Engine/core-lite-prod — production-class successor remains blocked by separate authority
-StegGhost/entity-sandbox — replication candidate only
+master-records/master-records — receipt/reconstruction contract; no transfer authority
+StegVerse-Labs/Site — status contract; no publication or Site-control authority
+StegVerse-org/demo_ingest_engine — portability manifest; no ingestion or installation authority
+BCAT-GCAT-Engine/core-lite-prod — blocked production-class successor under separate authority
+StegGhost/entity-sandbox — future sandbox replication candidate
 StegVerse-Labs/StegAgents — future task/lease/evidence consumer
 StegVerse-Labs/StegVerse-Healer — future bounded-remediation consumer
 BCAT-GCAT-Engine/Publisher — verified release publication only
@@ -200,14 +225,14 @@ admissibility-wiki — update only after verified behavior or policy changes
 stegguardian-wiki — update only after verified Guardian responsibility or authority changes
 ```
 
-No propagation, deployment, release, publication, or governed activation is claimed by this handoff.
+No cross-repository propagation, deployment, release, publication, runtime accessibility, or governed activation is claimed.
 
 ## Safety and authority boundaries
 
 ```text
 relationship history provides context but does not create authority
 uncertainty acknowledgment does not authorize irreversible harm
-AI quorum, reputation, voting, adaptation, or continuity cannot authorize human harm
+AI quorum, reputation, voting, adaptation, continuity, or reconstruction cannot authorize human harm
 candidate intake, staging, restoration, and checkpoint evidence do not grant production authority
 no task may mutate an external repository or production destination
 no task may authorize autonomous harmful execution, real-world targeting, weapons enablement, or cyber exploitation
@@ -215,22 +240,38 @@ historical quarantine and divergence evidence is never deleted
 all receipt, hash, path, version, custody, lease, authority, and verification mismatches fail closed
 ```
 
-## Exact incomplete work and machine-observable release conditions
+## Exact incomplete machine-owned tasks
 
-1. `REF-LOOP-006` operational closure
-   - owner: `.github/workflows/reference-loop.yml`
-   - release condition: `core_lite/reference_loop_state.json` marks `REF-LOOP-006` complete and a sixth valid entry is appended to `receipts/reference_loop_receipts.jsonl`.
-   - failure condition: `reports/reference_loop_escalation.json` records durable fail-closed evidence.
+### REF-LOOP-006
 
-2. `REF-LOOP-007` canonical RCE reconciliation
-   - owner: `.github/workflows/reference-loop.yml`
-   - release condition: `reports/rce_session_reconciliation.json` records `RCE_CANONICAL_WORKSTREAM_RECONCILED`, all P0-007 through P0-014 receipts verify, and the reference receipt chain records `REF-LOOP-007` complete.
-   - failure condition: the reference-loop status and escalation reports identify the exact failed RCE stage without widening authority.
+```text
+owner: .github/workflows/reference-loop.yml
+trigger: five-minute schedule or relevant repository change
+release condition:
+  reports/reference_loop_portability_manifest.json exists and verifies
+  core_lite/reference_loop_state.json marks REF-LOOP-006 complete
+  receipts/reference_loop_receipts.jsonl contains the sixth valid chained COMPLETE receipt
+failure condition:
+  reports/reference_loop_escalation.json records durable fail-closed evidence
+next task: REF-LOOP-007
+```
 
-3. PR #4 evidence-intake lane
-   - owner: PR #4 branch claimant
-   - release condition: independent commit-bound validation and merge, explicit supersession, or closure.
-   - not an archival dependency of this RCE session because its requirements did not originate here and its lane is durably identified.
+### REF-LOOP-007
+
+```text
+owner: .github/workflows/reference-loop.yml
+trigger: dependency completion and next reference-loop cycle
+release condition:
+  reports/rce_session_reconciliation.json decision == RCE_CANONICAL_WORKSTREAM_RECONCILED
+  RCE-P0-007 through P0-014 receipts verify
+  core_lite/reference_loop_state.json marks REF-LOOP-007 complete
+  receipts/reference_loop_receipts.jsonl contains the chained REF-LOOP-007 COMPLETE receipt
+failure condition:
+  reports/reference_loop_status.json and reports/reference_loop_escalation.json identify the exact failed stage
+next task: none unless a durable successor is later declared
+```
+
+No unresolved task is assigned to an unspecified external actor or this chat session.
 
 ## Validation commands
 
@@ -243,30 +284,38 @@ python -m pytest -q tests/test_reconcile_rce_canonical_workstream.py
 python tools/reconcile_rce_canonical_workstream.py --verify
 ```
 
-Hosted workflow success, generated artifacts, and completion receipts remain distinct validation levels. File presence and implementation do not prove operational closure.
+Validation levels remain distinct: file presence, syntax, unit tests, hosted workflow, artifacts, receipts, integration, propagation, deployment, publication, release, runtime accessibility, and governed activation are not interchangeable.
 
-## Session consolidation and archival conditions
+## Session consolidation and archive rule
 
-The session-specific implementation and knowledge are durably transferred when this handoff and the inventory are committed and `REF-LOOP-007` is installed in the canonical task registry and workflow. Pending execution may remain machine-owned because it has a named owner, trigger, deterministic inputs and outputs, persisted state, receipts, duplicate suppression, fail-closed escalation, finite claim expiry, and machine-observable release conditions.
+The conversation's unique implementation history, requirements, collision decisions, unresolved work, owners, release conditions, authority boundaries, and continuation path are now in the repository inventory, task registry, workflow, Git history, and this handoff.
 
-Archiving this conversation must not be interpreted as claiming `REF-LOOP-006`, `REF-LOOP-007`, `RCE-P0-007` through `P0-014`, cross-repository propagation, deployment, publication, release, or governed activation complete. It means only that no unique chat-owned execution responsibility or undocumented requirement remains.
+Pending execution remains machine-owned with a named repository, deterministic trigger, registered commands, persisted state, finite lease, duplicate suppression, receipts, fail-closed escalation, finite claim expiry, and machine-observable release conditions. Archiving this conversation does not claim pending machine work complete.
+
+Deleting or archiving the conversation no longer removes required information or execution authority. Future work must start from this handoff and the session inventory, not from chat history.
 
 ## Completion metrics
 
-Denominator for this session consolidation: 18 inventory items — the primary session goal, fourteen RCE stages, the canonical reference-loop continuation, the separate PR #4 collision record, and session consolidation.
+Session inventory denominator: 18 items — primary goal, fourteen RCE stages, canonical reference-loop continuation, separate PR #4 collision record, and session consolidation.
 
 ```text
-task completion: 8/18 complete or durably transferred; 10/18 machine-owned or separately claimed
-required developed files for consolidation: 5/5
-  inventory
+task completion or durable transfer: 18/18
+developed consolidation files: 5/5
   canonical adapter
   adapter tests
   task-registry integration
   workflow integration
-validation: 3/5 directly inspected or previously authoritative; hosted adapter workflow and operational reconciliation pending
-integration: 5/5 installed on main
-propagation: 0/4 executed; four read-only/deferred obligations recorded
-session consolidation: 18/18 transferred, completed, superseded, or assigned to a durable owner
+  complete session inventory
+scaffolding or stubs among consolidation files: 0
+missing consolidation files: 0
+validation directly inspected or previously authoritative: 3/5
+  authoritative prior receipts and workflow runs
+  post-write repository fetches
+  canonical reference state and lease inspection
+validation still machine-owned: hosted adapter test and operational REF-LOOP-007 reconciliation
+integration: 5/5
+propagation executed: 0/4; obligations and authority boundaries recorded
+session consolidation: 18/18
 goal activation: REF-LOOP-006 90%; REF-LOOP-007 70%
-archival readiness: 100% once post-write fetch confirms this handoff and inventory are present
+archival readiness: 100%
 ```
