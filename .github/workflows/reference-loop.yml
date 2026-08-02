@@ -3,7 +3,7 @@ name: Core-Lite Reference Closure Loop
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 * * * *'
+    - cron: '*/5 * * * *'
   pull_request:
     paths:
       - 'core_lite/reference_loop.json'
@@ -11,10 +11,12 @@ on:
       - 'tools/build_reference_loop_receipt_contract.py'
       - 'tools/build_reference_loop_site_status.py'
       - 'tools/build_reference_loop_portability_manifest.py'
+      - 'tools/reconcile_rce_canonical_workstream.py'
       - 'tests/test_run_reference_loop.py'
       - 'tests/test_build_reference_loop_receipt_contract.py'
       - 'tests/test_build_reference_loop_site_status.py'
       - 'tests/test_build_reference_loop_portability_manifest.py'
+      - 'tests/test_reconcile_rce_canonical_workstream.py'
       - '.github/workflows/reference-loop.yml'
   push:
     paths:
@@ -23,10 +25,12 @@ on:
       - 'tools/build_reference_loop_receipt_contract.py'
       - 'tools/build_reference_loop_site_status.py'
       - 'tools/build_reference_loop_portability_manifest.py'
+      - 'tools/reconcile_rce_canonical_workstream.py'
       - 'tests/test_run_reference_loop.py'
       - 'tests/test_build_reference_loop_receipt_contract.py'
       - 'tests/test_build_reference_loop_site_status.py'
       - 'tests/test_build_reference_loop_portability_manifest.py'
+      - 'tests/test_reconcile_rce_canonical_workstream.py'
       - '.github/workflows/reference-loop.yml'
 
 permissions:
@@ -55,6 +59,7 @@ jobs:
           tests/test_build_reference_loop_receipt_contract.py
           tests/test_build_reference_loop_site_status.py
           tests/test_build_reference_loop_portability_manifest.py
+          tests/test_reconcile_rce_canonical_workstream.py
 
   close-next-local-task:
     if: ${{ github.event_name != 'pull_request' }}
@@ -70,7 +75,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install runtime dependencies
-        run: python -m pip install pyyaml
+        run: python -m pip install pyyaml pytest
       - name: Run one repository-local closure cycle
         id: reference_loop
         continue-on-error: true
@@ -97,7 +102,7 @@ jobs:
             'reference_loop_outcome': os.environ['REFERENCE_LOOP_OUTCOME'],
           }, indent=2, sort_keys=True) + '\n', encoding='utf-8')
           PY
-      - name: Persist state, reports, receipts, and escalation evidence
+      - name: Persist state, reports, receipts, tasks, and sandbox evidence
         if: ${{ always() }}
         run: |
           set -euo pipefail
@@ -105,16 +110,15 @@ jobs:
           git config user.email "reference-loop@data-continuation"
           git add -A \
             core_lite/reference_loop_state.json \
-            reports/reference_loop_status.json \
-            reports/reference_loop_escalation.json \
-            reports/reference_loop_workflow_outcome.json \
-            reports/reference_loop_receipt_contract.json \
-            reports/reference_loop_site_status.json \
-            reports/reference_loop_portability_manifest.json \
-            receipts/reference_loop_receipts.jsonl \
-            reports/workstream_status.json \
-            reports/workstream_status.md \
-            receipts/workstream_receipts.jsonl || true
+            core_lite/tasks/ \
+            reports/ \
+            receipts/ \
+            sandbox/intake/relationship_conditioned_execution/ \
+            sandbox/archive/relationship_conditioned_execution/ \
+            sandbox/quarantine/relationship_conditioned_execution/ \
+            sandbox/snapshots/relationship_conditioned_execution/ \
+            sandbox/restoration_drills/relationship_conditioned_execution/ \
+            sandbox/publication_candidates/relationship_conditioned_execution/ || true
           if git diff --staged --quiet; then
             echo "No reference-loop state changed."
           else
@@ -136,7 +140,16 @@ jobs:
             reports/reference_loop_receipt_contract.json
             reports/reference_loop_site_status.json
             reports/reference_loop_portability_manifest.json
+            reports/rce_session_reconciliation.json
             receipts/reference_loop_receipts.jsonl
+            receipts/rce_p0_007_authoritative_validation.json
+            receipts/rce_p0_008_authoritative_validation.json
+            receipts/rce_p0_009_authoritative_validation.json
+            receipts/rce_p0_010_authoritative_validation.json
+            receipts/rce_p0_011_authoritative_validation.json
+            receipts/rce_p0_012_authoritative_validation.json
+            receipts/rce_p0_013_authoritative_validation.json
+            receipts/rce_p0_014_authoritative_validation.json
           if-no-files-found: warn
       - name: Enforce fail-closed result after evidence persistence
         if: ${{ steps.reference_loop.outcome != 'success' }}
