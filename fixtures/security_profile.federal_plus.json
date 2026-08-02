@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "core-lite-federal-plus-v1",
+  "assurance_posture": "federal_plus",
+  "compliance_claim": "NONE",
+  "baseline_references": [
+    {"id": "NIST-SP-800-53r5-release-5.2.0", "title": "Security and Privacy Controls for Information Systems and Organizations", "source_authority": "NIST", "status": "current"},
+    {"id": "NIST-SP-800-218-v1.1", "title": "Secure Software Development Framework", "source_authority": "NIST", "status": "current"},
+    {"id": "FIPS-140-3", "title": "Security Requirements for Cryptographic Modules", "source_authority": "NIST", "status": "deployment_conditional"},
+    {"id": "CISA-SECURE-BY-DESIGN", "title": "Secure by Design", "source_authority": "CISA", "status": "current"}
+  ],
+  "controls": [
+    {"control_id": "AC_LEAST_PRIVILEGE", "category": "access_control", "requirement": "Repository, workflow, artifact, and deployment authority must use least privilege.", "evidence": ["repository permissions", "workflow permissions"], "enforcement": "release_block", "status": "pending_validation"},
+    {"control_id": "IA_PHISHING_RESISTANT_MFA", "category": "identity", "requirement": "Privileged operators must use phishing-resistant MFA where platform support exists.", "evidence": ["organization security settings"], "enforcement": "deployment_block", "status": "deployment_conditional"},
+    {"control_id": "SC_ENCRYPT_TRANSIT", "category": "communications", "requirement": "Private evidence and operational secrets must be encrypted in transit.", "evidence": ["deployment transport configuration"], "enforcement": "deployment_block", "status": "deployment_conditional"},
+    {"control_id": "SC_ENCRYPT_REST", "category": "storage", "requirement": "Private evidence and operational secrets must be encrypted at rest.", "evidence": ["private custody configuration"], "enforcement": "deployment_block", "status": "deployment_conditional"},
+    {"control_id": "CRYPTO_FIPS_BOUNDARY", "category": "cryptography", "requirement": "FIPS-validated modules are required where the deployment assurance boundary requires them.", "evidence": ["cryptographic module inventory"], "enforcement": "deployment_block", "status": "deployment_conditional"},
+    {"control_id": "AU_TAMPER_EVIDENT", "category": "audit", "requirement": "Security-relevant decisions and receipts must be tamper-evident and reconstructable.", "evidence": ["receipt digests", "source hashes"], "enforcement": "fail_closed", "status": "implemented"},
+    {"control_id": "CM_PROTECTED_CHANGE", "category": "configuration", "requirement": "Changes require reviewed branches and passing status checks before merge.", "evidence": ["pull request", "required checks"], "enforcement": "release_block", "status": "pending_validation"},
+    {"control_id": "SSDF_DEPENDENCY_INTEGRITY", "category": "software_supply_chain", "requirement": "Dependencies and release inputs must be pinned, reviewed, and provenance-bound.", "evidence": ["dependency inventory", "release provenance"], "enforcement": "release_block", "status": "blocked"},
+    {"control_id": "SSDF_NEGATIVE_TESTS", "category": "verification", "requirement": "Negative tests must reject privacy leakage, malformed input, and unsupported conclusions.", "evidence": ["tests/test_evidence_intake.py", "negative fixtures"], "enforcement": "fail_closed", "status": "implemented"},
+    {"control_id": "PRIVACY_MINIMIZATION", "category": "privacy", "requirement": "Public records must exclude sensitive identifiers and private-document contents.", "evidence": ["public-safe fixtures", "privacy validator"], "enforcement": "fail_closed", "status": "implemented"},
+    {"control_id": "AUTHORITY_NON_MINTING", "category": "governance", "requirement": "Validation must never mint legal, safety, recall, liability, or execution authority.", "evidence": ["claim posture assertions", "handoff authority boundary"], "enforcement": "fail_closed", "status": "implemented"},
+    {"control_id": "RECOVERY_TESTED", "category": "contingency", "requirement": "Authoritative records require backup ownership and tested restoration before release.", "evidence": ["restore test receipt"], "enforcement": "release_block", "status": "blocked"},
+    {"control_id": "CLAIM_EXPIRATION", "category": "coordination", "requirement": "Implementation and validation claims require explicit release or expiration conditions.", "evidence": ["claims/security-hardening.claim.json"], "enforcement": "fail_closed", "status": "implemented"},
+    {"control_id": "INDEPENDENT_REPRODUCTION", "category": "assurance", "requirement": "Independent reproduction is required before release readiness.", "evidence": ["independent validation receipt"], "enforcement": "release_block", "status": "blocked"}
+  ],
+  "release_gate": {
+    "requires_commit_bound_validation": true,
+    "requires_independent_reproduction": true,
+    "requires_current_main_validation": true,
+    "release_authority": "SEPARATE_AUTHORIZATION_REQUIRED"
+  }
+}
