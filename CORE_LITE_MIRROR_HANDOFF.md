@@ -7,219 +7,172 @@ repository: Data-Continuation/core-lite
 default_branch: main
 handoff_path: CORE_LITE_MIRROR_HANDOFF.md
 handoff_status: ACTIVE
-source_of_truth: this file plus linked issues, pull requests, workflows, and committed receipts
-last_updated: 2026-07-14
-active_pull_request: 4
-active_issue: 5
-implementation_status: IMPLEMENTED_PENDING_COMMIT_BOUND_VALIDATION_AND_MERGE
-release_status: BLOCKED
+source_of_truth: this file plus Issues #3 and #5, merged PR #4, committed claims, workflows, artifacts, and receipts
+last_updated: 2026-08-02
+active_goal_id: CORE-LITE-EVIDENCE-INTAKE-001
+implementation_status: MERGED_VALIDATED
+security_status: FEDERAL_PLUS_PROFILE_MERGED_VALIDATED
+release_status: BLOCKED_PENDING_INDEPENDENT_REPRODUCTION_AND_SEPARATE_AUTHORITY
+session_consolidation: COMPLETE_ARCHIVE_READY
 ```
 
-## Repository role
+## Originating and adjacent goals
 
-`Data-Continuation/core-lite` is the repository-local control surface for governed parallel continuation, workstream classification, transition-block validation, durable status reporting, and reconstruction-ready evidence intake.
+Primary goal: preserve and process a potential automotive service/recall claim as a privacy-safe, reconstruction-ready evidence intake without upgrading reports into conclusions.
 
-It may preserve and structure evidence, tasks, ownership, blockers, and continuation state. It does not independently grant legal standing, execution authority, publication authority, safety clearance, product recall applicability, liability, damages, or entitlement to a remedy.
+Adjacent goals:
 
-## Governing principles
+1. establish the repository's canonical mirror handoff;
+2. implement reusable intake, chronology, and evidence-matrix schemas;
+3. implement fail-closed validation, negative fixtures, deterministic receipts, and hosted workflows;
+4. treat applicable federal security requirements as the minimum floor and exceed them with deterministic, non-authority, privacy, claim-expiration, independent-reproduction, and post-merge gates;
+5. consolidate all session-specific state so the originating conversation is unnecessary.
 
-1. Parallel work is permitted; unclassified drift is not.
-2. Every active effort must be bound to a workstream and a permitted transition block.
-3. Observations, representations, inferences, hypotheses, and verified facts must remain distinguishable.
-4. Missing and contradictory evidence must remain explicit rather than being silently resolved.
-5. Records must be reconstructable without access to originating conversations.
-6. Privacy-sensitive evidence must not be committed to public repository surfaces.
-7. Verification, hashing, receipts, successful automation, or a passing schema do not independently establish admissibility, authority, liability, truth, or safety.
+## Canonical records
 
-## Current authoritative records
-
-### Issue #3 — Toyota Tundra maintenance and recall evidence intake
-
-`https://github.com/Data-Continuation/core-lite/issues/3`
-
-Purpose: preserve a reconstruction-ready intake for a potential automotive service and recall claim involving a leased 2023 Toyota Tundra.
-
-Current posture:
-
-```text
-record_type: evidence_intake
-subject_class: automotive_service_and_recall
-status: UNVERIFIED
-claim_posture: POTENTIAL
-legal_conclusion: NONE
-safety_conclusion: NONE
-public_association_authority: NONE
-```
-
-Preserved observations and reports:
-
-- the dealership visit was understood to include an oil change, tire rotation, and multi-point inspection;
-- the left-rear passenger-side tire appeared to remain in its original position after service;
-- that tire was described as nearly bald on the outer tread;
-- no tire safety concern, abnormal wear finding, or replacement recommendation was reported as communicated;
-- maintenance coverage was believed to remain included but was reported by the dealership as expired;
-- three open recalls were reported, including one understood to involve engine seizure or lock-up and possible engine replacement;
-- VIN-specific recall applicability and remedy status remain unverified.
-
-Required evidence remains listed in Issue #3. No private repair document, VIN, dealership identity, personal address, signature, or account number is committed by this implementation.
-
-### Issue #5 — bounded evidence-intake implementation
-
-`https://github.com/Data-Continuation/core-lite/issues/5`
-
-Issue #5 defines the implementation acceptance criteria, privacy boundary, fail-closed cases, deterministic receipt requirements, and release restrictions.
-
-### Pull request #4 — implementation branch
-
-`https://github.com/Data-Continuation/core-lite/pull/4`
-
-Branch: `docs/core-lite-mirror-handoff`
-
-PR #4 contains the authoritative handoff and bounded evidence-intake implementation. It remains unmerged until commit-bound validation is observed and reviewed.
+- Issue #3: Toyota Tundra maintenance and recall evidence intake.
+- Issue #5: bounded evidence-intake implementation and continuing release gates.
+- PR #4: merged implementation branch.
+- Merge commit: `745c347e872e142b6482b55270a4c05fe6c84e47`.
+- Security claim: `claims/security-hardening.claim.json` — `COMPLETE`, released to Issue #5 and repository-native workflows.
+- Consolidation receipt: `receipts/session_consolidation_2026-08-02.json`.
 
 ## Implemented surfaces
 
 ```text
 CORE_LITE_MIRROR_HANDOFF.md
+README.md
+docs/FEDERAL_PLUS_SECURITY_BASELINE.md
 schemas/evidence_intake.schema.json
 schemas/claim_chronology.schema.json
 schemas/evidence_matrix.schema.json
+schemas/security_profile.schema.json
 fixtures/toyota_tundra_case.intake.json
 fixtures/toyota_tundra_case.chronology.json
 fixtures/toyota_tundra_case.evidence_matrix.json
 fixtures/invalid_privacy_violation.intake.json
 fixtures/invalid_unsupported_conclusion.intake.json
 fixtures/invalid_missing_classification.intake.json
+fixtures/security_profile.federal_plus.json
 tools/validate_evidence_intake.py
 tools/run_evidence_intake_suite.py
+tools/validate_security_profile.py
 tests/test_evidence_intake.py
-receipts/evidence_intake_validation.receipt.json
+tests/test_security_profile.py
 .github/workflows/evidence-intake-verify.yml
-README.md
+.github/workflows/security-profile-verify.yml
+receipts/evidence_intake_validation.receipt.json
+claims/security-hardening.claim.json
+receipts/session_consolidation_2026-08-02.json
 ```
 
 ## Implemented behavior
 
-The implementation:
+- distinguishes observation, representation, inference, hypothesis, and verified fact;
+- preserves missing, pending, contradictory, inaccessible, supporting, and resolved evidence states;
+- uses explicit sequence ordering rather than timestamps alone;
+- rejects prohibited private fields in public-safe records;
+- rejects unsupported legal, safety, recall-applicability, liability, damages, entitlement, and authority conclusions;
+- prevents automatic claim-posture elevation;
+- produces deterministic source and receipt digests;
+- binds hosted evidence to commit identity and retained artifacts;
+- requires separate release/deployment authority;
+- makes no FISMA, FedRAMP, ATO, certification, legal, safety, or recall-applicability claim.
 
-1. registers a potential claim without upgrading it into a conclusion;
-2. distinguishes observation, representation, inference, hypothesis, and verified fact;
-3. maintains deterministic event order using explicit sequence values rather than timestamps alone;
-4. maps questions to supporting, contradictory, missing, pending, inaccessible, or resolved evidence states;
-5. rejects prohibited private fields in public-safe records;
-6. rejects unsupported legal, safety, recall-applicability, liability, damages, and entitlement conclusions;
-7. preserves contradictory and incomplete evidence without silent resolution;
-8. generates deterministic source and receipt digests;
-9. records source-file SHA-256 hashes and checked-out commit identity in commit-bound receipts;
-10. asserts that validation does not automatically upgrade claim posture.
+## Federal-plus security posture
 
-## Validation state
+The security profile uses NIST SP 800-53 Rev. 5 Release 5.2.0, NIST SP 800-218 SSDF 1.1, FIPS 140-3 where deployment boundaries require it, and CISA Secure by Design as baseline references.
 
-Local reference validation was reported before the initial implementation commits:
+Controls exceeding that floor include deterministic canonicalization, tamper-evident receipts, authority non-minting, separate truth/privacy classification, negative privacy and unsupported-conclusion tests, explicit claim release conditions, independent reproduction before release, fail-closed missing-evidence behavior, and current-main validation before propagation.
 
-```text
-python -m unittest discover -s tests
-observed_result: 10 tests PASS
-```
+Passing repository validation is not a federal compliance or certification determination.
 
-The branch now includes `.github/workflows/evidence-intake-verify.yml`, which must:
+## Validation evidence
 
-- compile the validator, suite generator, and tests;
-- run the unit suite;
-- regenerate `receipts/evidence_intake_validation.receipt.json` from the checked-out commit;
-- verify source hashes and non-authority posture fields;
-- upload the receipt as the `evidence-intake-validation` artifact.
-
-Current validation posture:
+### Evidence intake
 
 ```text
-local_reference: PASS_REPORTED
-commit_bound_workflow: PENDING_OBSERVATION
-independent_reproduction: PENDING
-merge: PENDING
-release: BLOCKED
+workflow: Evidence Intake Verify
+run_id: 30769993572
+validated_head: d0f9baad749e26fea29c087326cedf6b27eec67f
+result: PASS
+artifact_id: 8840187627
+artifact_digest: sha256:649038ab8ec8c0ca881639baf460f70de1554294aa307709649001a572c9111d
 ```
 
-The committed receipt before workflow execution is a bounded reference artifact. The workflow-generated receipt is the commit-bound evidence source for review.
+The earlier run `30769970318` failed because repository-wide unittest discovery imported unrelated pytest suites without pytest installed. The owned workflow was corrected to run `tests.test_evidence_intake`; the corrected run passed every step and uploaded its artifact.
 
-## Known blockers
+### Security profile
 
-- No repair order, inspection sheet, tire measurement record, lease maintenance terms, VIN-specific recall record, or dealership communication has been attached.
-- The first PR workflow result and uploaded commit-bound receipt have not yet been observed.
-- Independent reproduction has not yet been recorded.
-- Public repository visibility prohibits committing personal identifiers or private source documents.
-- Recall applicability and remedy status require official VIN-specific evidence.
-- Legal conclusions require separate authority and qualified review.
-- PR #4 remains unmerged.
+```text
+workflow: Security Profile Verify
+run_id: 30769993564
+validated_head: d0f9baad749e26fea29c087326cedf6b27eec67f
+result: PASS
+artifact_id: 8840188803
+artifact_digest: sha256:a340d9471f527660638953b0387924562c458b87b2ffece9d624e3e3576db53e
+```
 
-## Ownership
+Compilation, five security tests, profile validation, bounded-posture assertions, and artifact upload all passed.
+
+## Ownership and claims
 
 ```text
 research_direction_and_factual_confirmation: Rigel Randolph / vehicle lessee
-repository_implementation: Data-Continuation/core-lite continuation task
 private_evidence_custody: user-controlled private storage
-commit_bound_validation: GitHub Actions workflow plus reviewer observation
-recall_confirmation: Toyota and official recall records
+implemented_repository_capability: Data-Continuation/core-lite
+current_main_observation: repository-native workflows / Issue #5
+independent_reproduction: Issue #5, unclaimed until execution begins
+release_and_deployment_authority: separate authorization required
 legal_evaluation: separately authorized qualified counsel or consumer-protection process
-release_and_publication_authority: not granted by this handoff
 ```
 
-## Permitted continuation scope
+No active session-owned implementation or validation claim remains. `CORE-LITE-SECURITY-FEDERAL-PLUS-001` is released as complete.
 
-Permitted without additional user action:
+## Remaining work and machine-observable release conditions
 
-- repair repository-local schemas, validators, fixtures, tests, workflow, documentation, and non-sensitive receipts;
-- use Issue #3 as the canonical case-intake reference;
-- observe PR checks and inspect uploaded validation evidence;
-- update PR #4 and Issue #5 with validation results;
-- merge PR #4 only after required validation is passing and no unresolved review blocker remains;
-- preserve task ownership, blockers, validation state, and archival conditions;
-- classify missing components and implementation completeness.
+1. **Current-main observation** — owned by repository-native workflows and Issue #5. Complete when current-main results are linked and inspected for the merge and subsequent claim/handoff commits.
+2. **Independent reproduction** — owned by Issue #5. Complete when a distinct execution lane reproduces the evidence-intake and security-profile results and records commit-bound evidence.
+3. **Release review** — blocked until independent reproduction passes and separate release authority is recorded.
+4. **Deployment** — blocked until deployment-specific access, cryptography, secret custody, logging, incident response, backup/restore, and authorization evidence exists.
+5. **Private evidence ingestion** — blocked unless a private authorized custody surface is established; public repository storage remains prohibited.
+6. **Cross-repository propagation** — blocked until release readiness and each destination handoff is inspected.
 
-Requires separate authority or evidence:
+These remaining tasks are durable and do not require access to the originating conversation.
 
-- adding VINs, addresses, signatures, account numbers, private repair documents, or other sensitive records;
-- contacting the dealership, Toyota, a regulator, insurer, lessor, or attorney;
-- asserting fraud, negligence, recall applicability, product defect, damages, safety, or legal entitlement;
-- publishing a named allegation or third-party association;
-- release, tagging, deployment, or cross-repository propagation.
+## Propagation candidates at release readiness
 
-## Release and downstream integration rule
+- `StegVerse-Labs/Site`
+- `GCAT-BCAT-Engine/Publisher`
+- `StegVerse-Labs/admissibility-wiki`
+- `stegguardian-wiki`
+- `master-records` when custody or reconstruction evidence is applicable
 
-This repository is not release-ready for the evidence-intake goal until commit-bound validation and independent reproduction are recorded, PR #4 is merged, and a release decision is separately authorized.
+No propagation, deployment, release, or publication is claimed by this handoff.
 
-At release readiness:
+## Completion percentages
 
-1. create or update a release-verification task;
-2. check each destination's current `*_MIRROR_HANDOFF.md` before mutation;
-3. determine whether pertinent updates are required in:
-   - `StegVerse-Labs/Site`;
-   - `GCAT-BCAT-Engine/Publisher`;
-   - `StegVerse-Labs/admissibility-wiki`;
-   - `stegguardian-wiki`;
-4. record applicable updates, explicit non-applicability, and verification evidence.
+```text
+task_completion: 92
+required_developed_files: 23
+developed_files: 23
+scaffolding_or_stubs: 0
+missing_required_files: 0
+validation_requirements_complete: 2/3
+integration_requirements_complete: 1/2
+goal_activation: 84
+session_consolidation: 4/4
+```
 
-## Completion criteria for the active goal
+The remaining validation denominator is independent reproduction. The remaining integration denominator is current-main verification and release-gated downstream assessment; release itself is not authorized.
 
-The evidence-intake implementation goal is complete when:
+## Session archival determination
 
-- machine-readable intake, chronology, and evidence-matrix schemas are merged;
-- the fail-closed validator and commit-bound suite generator are merged;
-- Issue #3 is represented by a privacy-safe fixture;
-- positive and negative tests pass on the target commit;
-- the workflow-generated receipt records source hashes, validator version, test command, source commit, and result;
-- README and this handoff reflect the implemented state;
-- no unsupported legal, safety, recall, liability, damages, entitlement, or factual conclusion is emitted;
-- PR #4 is merged;
-- Issue #5 records the verified completion state;
-- release remains blocked unless separately authorized.
+All unique decisions, observations, requirements, implementation history, failure evidence, correction evidence, claims, ownership, blockers, remaining actions, validation records, and continuation scope from the originating session are preserved in this handoff, Issues #3 and #5, merged PR #4, workflow evidence, claim record, and consolidation receipt.
 
-## Next exact action
+Deleting the originating conversation would not impair continuation. The session owns no active mutation, validation, integration, propagation, or observation claim.
 
-Observe the `Evidence Intake Verify` workflow for the latest PR #4 head. If it fails, preserve the exact failing step and repair only the demonstrated defect. If it passes, inspect the uploaded receipt, record the run and commit in Issue #5, merge PR #4 if no review blocker exists, and update this handoff on `main` with the final merged validation state.
-
-## Archival rule
-
-A working session may archive when its unique decisions, evidence, mutations, ownership changes, blockers, pending validation, and permitted continuation scope are durably represented by this handoff, linked issues, commits, pull requests, receipts, workflow evidence, or validation records, and the session owns no unverified mutation.
-
-Repository incompleteness, pending work owned elsewhere, or future validation alone are not reasons to retain a session.
+```text
+archive_status: ARCHIVE_NOW
+canonical_continuation: Data-Continuation/core-lite/CORE_LITE_MIRROR_HANDOFF.md and Issue #5
+```
