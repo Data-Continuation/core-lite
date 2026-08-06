@@ -1,0 +1,62 @@
+{
+  "schema": "stegverse.master_records.typed_custody_evidence.v1",
+  "record_type": "typed_custody_evidence_chain",
+  "source_repository": "master-records/core-lite",
+  "destination_repository": "Data-Continuation/core-lite",
+  "authority_boundary": {
+    "execution_activated": false,
+    "execution_authority_granted": false,
+    "repository_binding_granted": false,
+    "runtime_activation": false,
+    "policy_published": false,
+    "public_publication_authorized": false,
+    "occurrence_proven": false,
+    "phenomenal_status_inferred": false
+  },
+  "evidence": [
+    {
+      "type": "file_digest",
+      "repository": "master-records/core-lite",
+      "path": "schemas/typed_custody_evidence.schema.json",
+      "value": "1111111111111111111111111111111111111111111111111111111111111111",
+      "required_for_decision": true
+    },
+    {
+      "type": "record_self_hash",
+      "repository": "master-records/core-lite",
+      "path": "records/custody_chain_hash_transition_registry_001.json",
+      "field": "registry_hash",
+      "value": "2222222222222222222222222222222222222222222222222222222222222222",
+      "required_for_decision": true
+    },
+    {
+      "type": "canonical_object_digest",
+      "repository": "StegVerse-002/core-lite",
+      "name": "runtime_candidate",
+      "value": "3333333333333333333333333333333333333333333333333333333333333333",
+      "required_for_decision": true
+    },
+    {
+      "type": "git_object_id",
+      "repository": "StegVerse-Labs/StegCore",
+      "object_kind": "commit",
+      "value": "4444444444444444444444444444444444444444",
+      "required_for_decision": true
+    },
+    {
+      "type": "external_artifact",
+      "provider": "github_actions",
+      "repository": "GCAT-BCAT-Engine/core-lite-prod",
+      "artifact_id": 8956139144,
+      "digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "availability": "MIRRORED",
+      "expires_at": "2026-09-05T04:52:38Z",
+      "mirror_status": "REPOSITORY_RESIDENT",
+      "mirror_repository": "GCAT-BCAT-Engine/core-lite-prod",
+      "mirror_path": "evidence/artifact-mirrors/8956139144.json",
+      "mirror_commit": "f5fed7a887de924236392f1e51a90da7f7fbef9a",
+      "mirror_hash": "fdbc83289999bbe6a4c65f7f1c33717d3f60de6cdc439dc4d1baba8c0fa1106a",
+      "required_for_decision": true
+    }
+  ]
+}
