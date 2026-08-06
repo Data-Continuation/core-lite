@@ -7,30 +7,36 @@ on:
   pull_request:
     paths:
       - 'core_lite/reference_loop.json'
+      - 'fixtures/typed_custody/**'
       - 'tools/run_reference_loop.py'
       - 'tools/build_reference_loop_receipt_contract.py'
       - 'tools/build_reference_loop_site_status.py'
       - 'tools/build_reference_loop_portability_manifest.py'
       - 'tools/reconcile_rce_canonical_workstream.py'
+      - 'tools/validate_typed_custody_evidence.py'
       - 'tests/test_run_reference_loop.py'
       - 'tests/test_build_reference_loop_receipt_contract.py'
       - 'tests/test_build_reference_loop_site_status.py'
       - 'tests/test_build_reference_loop_portability_manifest.py'
       - 'tests/test_reconcile_rce_canonical_workstream.py'
+      - 'tests/test_validate_typed_custody_evidence.py'
       - '.github/workflows/reference-loop.yml'
   push:
     paths:
       - 'core_lite/reference_loop.json'
+      - 'fixtures/typed_custody/**'
       - 'tools/run_reference_loop.py'
       - 'tools/build_reference_loop_receipt_contract.py'
       - 'tools/build_reference_loop_site_status.py'
       - 'tools/build_reference_loop_portability_manifest.py'
       - 'tools/reconcile_rce_canonical_workstream.py'
+      - 'tools/validate_typed_custody_evidence.py'
       - 'tests/test_run_reference_loop.py'
       - 'tests/test_build_reference_loop_receipt_contract.py'
       - 'tests/test_build_reference_loop_site_status.py'
       - 'tests/test_build_reference_loop_portability_manifest.py'
       - 'tests/test_reconcile_rce_canonical_workstream.py'
+      - 'tests/test_validate_typed_custody_evidence.py'
       - '.github/workflows/reference-loop.yml'
 
 permissions:
@@ -60,6 +66,35 @@ jobs:
           tests/test_build_reference_loop_site_status.py
           tests/test_build_reference_loop_portability_manifest.py
           tests/test_reconcile_rce_canonical_workstream.py
+          tests/test_validate_typed_custody_evidence.py
+      - name: Validate canonical typed custody fixture
+        run: python tools/validate_typed_custody_evidence.py fixtures/typed_custody/canonical_chain.json
+      - name: Record exact-head validation identity
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          path = Path('reports/typed_custody_exact_head_validation.json')
+          path.parent.mkdir(parents=True, exist_ok=True)
+          path.write_text(json.dumps({
+            'decision': 'COMPLETE',
+            'source_sha': os.environ['SOURCE_SHA'],
+            'run_id': int(os.environ['RUN_ID']),
+            'authority_effect': 'NONE',
+            'next_task': 'MERGE_AND_EXACT_MAIN_VALIDATION',
+          }, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          PY
+      - name: Upload typed custody validation evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: typed-custody-ingestion-validation
+          path: |
+            fixtures/typed_custody/canonical_chain.json
+            reports/typed_custody_exact_head_validation.json
+          if-no-files-found: error
 
   close-next-local-task:
     if: ${{ github.event_name != 'pull_request' }}
@@ -141,6 +176,7 @@ jobs:
             reports/reference_loop_site_status.json
             reports/reference_loop_portability_manifest.json
             reports/rce_session_reconciliation.json
+            reports/typed_custody_exact_head_validation.json
             receipts/reference_loop_receipts.jsonl
             receipts/rce_p0_007_authoritative_validation.json
             receipts/rce_p0_008_authoritative_validation.json
