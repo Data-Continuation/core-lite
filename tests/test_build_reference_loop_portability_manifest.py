@@ -38,6 +38,30 @@ def test_builds_read_only_portability_manifest() -> None:
     }
 
 
+def test_declares_typed_custody_contract_and_consumer_capabilities() -> None:
+    result = manifest_for(_state(), _receipt_contract(), _site_status())
+    assert result["typed_custody_contract"] == {
+        "owner_repository": "master-records/core-lite",
+        "schema_path": "schemas/typed_custody_evidence.schema.json",
+        "reference_validator": "Data-Continuation/core-lite/tools/validate_typed_custody_evidence.py",
+        "required_evidence_types": [
+            "file_digest",
+            "record_self_hash",
+            "canonical_object_digest",
+            "git_object_id",
+            "external_artifact",
+        ],
+    }
+    required = set(result["required_consumer_capabilities"])
+    assert {
+        "validate_typed_custody_evidence",
+        "distinguish_digest_semantics_by_evidence_type",
+        "require_repository_mirror_for_expired_required_artifacts",
+        "preserve_append_only_hash_transitions",
+        "deny_authority_expansion_from_evidence",
+    } <= required
+
+
 def test_is_deterministic() -> None:
     assert manifest_for(_state(), _receipt_contract(), _site_status()) == manifest_for(
         _state(), _receipt_contract(), _site_status()
