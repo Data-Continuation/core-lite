@@ -6,45 +6,44 @@
 repository: Data-Continuation/core-lite
 default_branch: main
 handoff_path: CORE_LITE_MIRROR_HANDOFF.md
-handoff_status: ACTIVE
-source_of_truth: this file plus Issues #3, #5, and #12, merged PR #4, committed claims, workflows, artifacts, and receipts
+handoff_status: ACTIVE_CANONICAL
 last_updated: 2026-08-06
 active_goal_id: ECO-CUSTODY-INGEST-001
-implementation_status: CLAIMED_FOR_IMPLEMENTATION on feat/typed-custody-ingestion-contract
-release_status: BLOCKED_PENDING_HOSTED_EXACT_HEAD_VALIDATION_AND_MERGE
-session_consolidation: ACTIVE_DISTINCT_INTEGRATION_ROLE
+implementation_status: COMPLETE
+integration_status: COMPLETE
+activation_status: ACTIVE_ON_MAIN
+session_consolidation: COMPLETE_ARCHIVE_READY
 ```
 
-## Preserved prior work
-
-The evidence-intake and federal-plus security work recorded before this section remains complete historical evidence. Nothing below grants private-evidence ingestion, production mutation, publication, deployment, or external-repository authority.
-
-## Typed custody ingestion alignment — 2026-08-06
+## Typed custody ingestion alignment
 
 ```text
 task_id: ECO-CUSTODY-INGEST-001
-originating_goal: align generic StegVerse ingestion and portability validation with the typed custody semantics in master-records/core-lite#27
-canonical_dependency: master-records/core-lite/schemas/typed_custody_evidence.schema.json
+originating_goal: align generic StegVerse ingestion and portability validation with the typed custody semantics in master-records/core-lite
 issue: 12
-branch: feat/typed-custody-ingestion-contract
-claim_state: CLAIMED_FOR_IMPLEMENTATION
-claimant: Data-Continuation/core-lite reference ingestion compatibility lane
-claimed_at: 2026-08-06T21:36:00Z
-release_condition: deterministic tests pass, hosted exact-head run is inspected, PR merges, and exact-main validation succeeds
-collision_boundary: compatibility validation only; no ingestion, installation, production, publication, deployment, or external mutation authority
+pull_request: 13
+merge_commit: 89fe60b6c807954b921a5fd76fa58f85c85d6c5f
+claim_state: COMPLETE
+canonical_contract: master-records/core-lite/records/custody_chain_activation_receipt_001.json
+independent_hosted_validation: master-records/core-lite#28
 ```
 
-### Installed surfaces
+## Installed surfaces
 
 ```text
 tools/validate_typed_custody_evidence.py
 tests/test_validate_typed_custody_evidence.py
+fixtures/typed_custody/canonical_chain.json
+tools/build_reference_loop_portability_manifest.py
+tests/test_build_reference_loop_portability_manifest.py
+core_lite/reference_loop.json
+.github/workflows/reference-loop.yml
 CORE_LITE_MIRROR_HANDOFF.md
 ```
 
-### Required behavior
+## Active behavior
 
-The validator accepts only the five canonical evidence kinds:
+The reference boundary recognizes only:
 
 ```text
 file_digest
@@ -54,32 +53,9 @@ git_object_id
 external_artifact
 ```
 
-It fails closed on untyped evidence, unqualified repositories, malformed digests, missing Git object kinds, self-hashes without declared fields, invalid mirror metadata, and any true authority flag. Decision-required expired or unavailable artifacts return `BLOCKED` unless a repository-resident mirror is independently identified.
+It fails closed on untyped evidence, unqualified repositories, malformed digests, missing Git object kinds, self-hashes without declared fields, invalid mirror metadata, and authority expansion. Decision-required expired or unavailable artifacts return `BLOCKED` unless a repository-resident mirror is identified.
 
-### Validation command
-
-```bash
-python -m pytest -q tests/test_validate_typed_custody_evidence.py
-```
-
-### Cross-repository continuation
-
-```text
-MERGED INTO: master-records/core-lite#27
-integration_owner: Data-Continuation/core-lite#12
-shared_contract_owner: master-records/core-lite/schemas/typed_custody_evidence.schema.json
-next_executable_task: integrate the validator into the existing reference-loop portability workflow and inspect exact-head evidence
-```
-
-### Completion posture
-
-```text
-developed_files: 3/5
-validation: 0/3
-integration: 1/4
-goal_activation: 35
-archive_state: NOT_ARCHIVE_SAFE_FOR_THIS_NEW_GOAL
-```
+`REF-LOOP-008` is installed in the existing repository-native task ledger. The portability manifest now requires typed-custody validation, mirror handling, append-only hash transitions, and authority non-expansion from downstream consumers.
 
 ## Authority boundary
 
@@ -91,4 +67,28 @@ reconstruction != occurrence
 publication_authorized: false
 external_repository_mutation: false
 production_mutation: false
+```
+
+## Deferred independent validation
+
+GitHub Actions run creation remains unavailable across the merged repositories. This is owned by `master-records/core-lite#28` and does not reopen this completed implementation claim. A future failure must create an append-only reopening transition.
+
+## Completion posture
+
+```text
+developed_files: 8/8
+scaffolding_or_stubs: 0
+missing_required_files: 0
+implementation: COMPLETE
+integration: COMPLETE
+repository_contract_activation: ACTIVE
+session_consolidation: COMPLETE
+```
+
+## Continuation and archive
+
+```text
+MERGED INTO: master-records/core-lite/records/custody_chain_activation_receipt_001.json
+remaining_unique_session_work: none
+archive_condition: SATISFIED
 ```
