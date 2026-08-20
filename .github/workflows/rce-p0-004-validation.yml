@@ -159,9 +159,9 @@ jobs:
       - name: Persist reconstruction decision and evidence
         if: ${{ always() && github.event_name != 'pull_request' }}
         run: |
+          set -euo pipefail
           git config user.name "stegverse-rce-automation"
           git config user.email "actions@users.noreply.github.com"
-          git pull --rebase origin main
           git add reports/rce_p0_004_reconstruction.json
           git add reports/rce_automation_status.json
           git add receipts/rce_p0_004_authoritative_validation.json
@@ -170,6 +170,7 @@ jobs:
             echo "No reconstruction state change"
           else
             git commit -m "chore: persist RCE-P0-004 reconstruction state [rce-p0-004-state]"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
 
