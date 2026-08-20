@@ -18,11 +18,16 @@ RECEIPT = ROOT / "receipts" / "rce_p0_003_authoritative_validation.json"
 def restore_state():
     build()
     original_receipt = RECEIPT.read_bytes()
+    original_report = REPORT.read_bytes() if REPORT.exists() else None
     yield
     RECEIPT.write_bytes(original_receipt)
     build()
-    if REPORT.exists():
-        REPORT.unlink()
+    if original_report is None:
+        if REPORT.exists():
+            REPORT.unlink()
+    else:
+        REPORT.parent.mkdir(parents=True, exist_ok=True)
+        REPORT.write_bytes(original_report)
 
 
 def test_independent_reconstruction_allows_candidate_intake():
