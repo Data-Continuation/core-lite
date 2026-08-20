@@ -161,9 +161,9 @@ jobs:
       - name: Persist sandbox staging state
         if: always()
         run: |
+          set -euo pipefail
           git config user.name "stegverse-rce-automation"
           git config user.email "actions@users.noreply.github.com"
-          git pull --rebase origin main
           git add sandbox/intake/relationship_conditioned_execution
           git add receipts/rce_p0_005_authoritative_validation.json
           git add reports/rce_automation_status.json
@@ -172,6 +172,7 @@ jobs:
             echo "No sandbox staging state change"
           else
             git commit -m "chore: persist RCE-P0-005 sandbox staging state [rce-p0-005-state]"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
 
