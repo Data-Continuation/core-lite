@@ -51,6 +51,7 @@ def test_declares_typed_custody_contract_and_consumer_capabilities() -> None:
             "git_object_id",
             "external_artifact",
         ],
+        "authority_effect": "NONE",
     }
     required = set(result["required_consumer_capabilities"])
     assert {
