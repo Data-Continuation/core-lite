@@ -56,8 +56,8 @@ def test_declares_typed_custody_contract_and_consumer_capabilities() -> None:
     required = set(result["required_consumer_capabilities"])
     assert {
         "validate_typed_custody_evidence",
-        "distinguish_digest_semantics_by_evidence_type",
-        "require_repository_mirror_for_expired_required_artifacts",
+        "distinguish_file_record_object_git_and_external_digests",
+        "require_repository_resident_mirror_for_expired_required_artifacts",
         "preserve_append_only_hash_transitions",
         "deny_authority_expansion_from_evidence",
     } <= required
