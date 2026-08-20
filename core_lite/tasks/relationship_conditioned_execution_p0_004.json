@@ -21,7 +21,9 @@
     "workflow_loop_guard": "[rce-p0-004-state]",
     "workflow_persists_report_receipt_and_task_state": true
   },
-  "blocked_by": [],
+  "blocked_by": [
+    "reconstruction_or_policy_validation_failed"
+  ],
   "completed_at": "2026-07-14T07:35:53.984170+00:00",
   "goal": "Independently reconstruct the sandbox-only RCE package from canonical sources, compare it byte-for-byte with the committed package, and emit an automated candidate-intake decision without mutating a destination.",
   "invariants": [
@@ -63,17 +65,20 @@
   ],
   "schema": "stegverse.core_lite.task.v1",
   "source_handoff": "docs/CORE_LITE_MIRROR_HANDOFF.md",
-  "status": "COMPLETE",
+  "status": "VALIDATION_FAILED",
   "successor_task": "RCE-P0-005",
   "task_id": "RCE-P0-004",
   "title": "Independently reconstruct bundle and automate sandbox-intake decision",
   "validation": {
-    "authoritative_completion_evidence": true,
+    "status": "FAIL",
+    "workflow": ".github/workflows/rce-p0-004-validation.yml",
+    "authoritative_run_id": 32401442946,
+    "authoritative_run_number": 534,
+    "authoritative_run_commit": "b78f1d7502f63c5a6e08b1c730a07148f3ed1052",
     "authoritative_receipt": "receipts/rce_p0_004_authoritative_validation.json",
-    "decision": "ALLOW_CANDIDATE_INTAKE",
+    "authoritative_completion_evidence": false,
+    "decision": "DENY_CANDIDATE_INTAKE",
     "destination_mutation_performed": false,
-    "manual_actions_required": [],
-    "reconciler": "tools/reconcile_relationship_conditioned_execution.py",
-    "status": "PASS"
+    "manual_actions_required": []
   }
 }

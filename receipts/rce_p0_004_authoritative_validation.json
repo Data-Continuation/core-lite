@@ -1,19 +1,22 @@
 {
-  "authoritative_completion_evidence": true,
-  "commit_sha": "ee81f1c362c33cc58e3cdcbce9fb4900b8c10f30",
-  "decision": "ALLOW_CANDIDATE_INTAKE",
+  "authoritative_completion_evidence": false,
+  "commit_sha": "b78f1d7502f63c5a6e08b1c730a07148f3ed1052",
+  "decision": "DENY_CANDIDATE_INTAKE",
   "destination_mutation_performed": false,
   "event": "push",
   "manual_actions_required": [],
-  "observed_at": "2026-07-14T07:35:53.984170+00:00",
-  "receipt_id": "rce-p0-004-reconciler-29315085748",
+  "observed_at": "2026-08-20T18:07:35.995741+00:00",
+  "outcomes": {
+    "focused_tests": "success",
+    "independent_reconstruction": "success"
+  },
+  "receipt_id": "rce-p0-004-github-actions-32401442946-1",
   "ref": "refs/heads/main",
-  "report": "reports/rce_p0_004_reconstruction.json",
-  "report_sha256": "762017abe3c1eb214f77ab64724cee184b0c1df8f6f7fbf51c754e1865c8254a",
+  "report_sha256": null,
   "repository": "Data-Continuation/core-lite",
-  "run_id": "29315085748",
-  "run_number": "78",
+  "run_attempt": "1",
+  "run_id": "32401442946",
   "schema": "stegverse.validation.receipt.v1",
   "task_id": "RCE-P0-004",
-  "validation_class": "CORE_LITE_MANAGEMENT_WORKFLOW_RECONSTRUCTION"
+  "validation_class": "GITHUB_ACTIONS_AUTHORITATIVE_RECONSTRUCTION_REVIEW"
 }
