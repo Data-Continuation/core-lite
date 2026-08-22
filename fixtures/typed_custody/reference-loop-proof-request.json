@@ -1,0 +1,8 @@
+{
+  "schema": "stegverse.reference-loop-proof-request/v1",
+  "requested_proof": "EXISTING_REFERENCE_LOOP_PULL_REQUEST_VALIDATION",
+  "target": "REF-LOOP-006_OPERATIONAL_CONTINUATION",
+  "authority_effect": "NONE",
+  "production_destination_allowed": false,
+  "external_repository_mutation_allowed": false
+}
