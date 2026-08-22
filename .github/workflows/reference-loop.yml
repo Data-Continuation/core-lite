@@ -7,7 +7,11 @@ on:
   pull_request:
     paths:
       - 'core_lite/reference_loop.json'
+      - 'core_lite/reference_loop_state.json'
       - 'fixtures/typed_custody/**'
+      - 'receipts/rce_p0_004_authoritative_validation.json'
+      - 'receipts/rce_p0_005_authoritative_validation.json'
+      - 'receipts/rce_p0_006_authoritative_validation.json'
       - 'tools/run_reference_loop.py'
       - 'tools/build_reference_loop_receipt_contract.py'
       - 'tools/build_reference_loop_site_status.py'
@@ -24,7 +28,11 @@ on:
   push:
     paths:
       - 'core_lite/reference_loop.json'
+      - 'core_lite/reference_loop_state.json'
       - 'fixtures/typed_custody/**'
+      - 'receipts/rce_p0_004_authoritative_validation.json'
+      - 'receipts/rce_p0_005_authoritative_validation.json'
+      - 'receipts/rce_p0_006_authoritative_validation.json'
       - 'tools/run_reference_loop.py'
       - 'tools/build_reference_loop_receipt_contract.py'
       - 'tools/build_reference_loop_site_status.py'
