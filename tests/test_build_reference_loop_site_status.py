@@ -19,6 +19,10 @@ def _state() -> dict:
             "REF-LOOP-002": {"status": "complete"},
             "REF-LOOP-003": {"status": "complete"},
             "REF-LOOP-004": {"status": "complete"},
+            "REF-LOOP-005": {"status": "complete"},
+            "REF-LOOP-006": {"status": "complete"},
+            "REF-LOOP-007": {"status": "complete"},
+            "REF-LOOP-008": {"status": "complete"},
         },
     }
 
@@ -35,7 +39,7 @@ def _contract() -> dict:
 def test_builds_read_only_site_status_contract() -> None:
     result = status_for(_state(), _contract())
     assert result["decision"] == "SITE_STATUS_CONTRACT_VERIFIED"
-    assert result["completed_task_count"] == 4
+    assert result["completed_task_count"] == 8
     assert result["target_repository"] == "StegVerse-Labs/Site"
     assert result["authority"] == {
         "read_only_status": True,
@@ -52,7 +56,7 @@ def test_is_deterministic() -> None:
 
 def test_fails_closed_on_incomplete_task() -> None:
     state = _state()
-    state["tasks"]["REF-LOOP-004"]["status"] = "ready"
+    state["tasks"]["REF-LOOP-008"]["status"] = "ready"
     with pytest.raises(SiteStatusError, match="incomplete tasks"):
         status_for(state, _contract())
 
