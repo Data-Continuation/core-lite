@@ -1,0 +1,25 @@
+{
+  "authoritative_completion_evidence": true,
+  "commit_sha": "835e312570478a26f1535b43002ce90b5014681e",
+  "event": "push",
+  "observed_at": "2026-07-14T05:26:54.466432+00:00",
+  "outcomes": {
+    "canonical_validator": "success",
+    "focused_tests": "success"
+  },
+  "receipt_id": "rce-p0-001-github-actions-29308544087-1",
+  "ref": "refs/heads/stegops/rce-handoff-clean",
+  "repository": "Data-Continuation/core-lite",
+  "run_attempt": "1",
+  "run_id": "29308544087",
+  "schema": "stegverse.validation.receipt.v1",
+  "source_sha256": {
+    "docs/RELATIONSHIP_CONDITIONED_HUMAN_DECISION_POLICY.md": "5d5ded6e06fa91767b7f61762b25e6d12817b959323e5f0509228624c34f9f7b",
+    "samples/relationship_conditioned_human_decision_policy.example.json": "150742d82c2a2663aabeb82a9f1d04a34dc4c24c5a00144fd51dd492730c96f6",
+    "schemas/relationship_conditioned_human_decision_policy.schema.json": "f3e3d7bcdc6dd73336caf5b125e6c4e843b647e65d25b867990625a4495110ea",
+    "tests/test_relationship_conditioned_human_decision_policy.py": "b7e92121667f98d2da37a261845a38d845105e59e1a24b80770642b3c8bd149d",
+    "tools/validate_relationship_conditioned_human_decision_policy.py": "2a60c797a7c76236f9f8461e135a6c9d8e773d8fdac3a7500f324eae578acdef"
+  },
+  "task_id": "RCE-P0-001",
+  "validation_class": "GITHUB_ACTIONS_AUTHORITATIVE_VALIDATION"
+}

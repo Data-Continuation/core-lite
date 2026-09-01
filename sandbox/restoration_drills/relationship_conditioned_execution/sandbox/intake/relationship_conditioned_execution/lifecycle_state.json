@@ -1,0 +1,23 @@
+{
+  "active_version": "1.0.0-sandbox-candidate",
+  "archive_path": null,
+  "autonomous_execution_authority": false,
+  "content_sha256": {
+    "bundle_manifest_sha256": "9ad26b19a5a9f97f28653c42f2de9b31a4fd40141323f84af4e6447f30df9973",
+    "install_plan_sha256": "f931712398d4663bf39fe226d77a9ac9cfb8420ec6784cd5c788d8236e892bb2",
+    "source_inventory_sha256": "01a929d1a96e0aa1863cda96ecd153042033d4a7c3154da37a1f44367a314972",
+    "staging_manifest_sha256": "e6f1e16d9054286f88302ed8551221aa86bd79d8b000d24e0c753f5a37e0b958"
+  },
+  "decision": "ACTIVATE_INITIAL_SANDBOX_CANDIDATE",
+  "external_destination_mutation_performed": false,
+  "human_harm_authority": false,
+  "manual_actions_required": [],
+  "observed_at": "2026-09-01T23:17:57.980192+00:00",
+  "package_id": "relationship-conditioned-execution",
+  "production_destination_allowed": false,
+  "sandbox_only": true,
+  "schema": "stegverse.rce.sandbox_lifecycle.v1",
+  "source_receipt": "receipts/rce_p0_006_authoritative_validation.json",
+  "source_receipt_sha256": "b837b6f6f657ac5230fc626c42731549738a624314f6444ad4a0bde635e67547",
+  "task_id": "RCE-P0-007"
+}

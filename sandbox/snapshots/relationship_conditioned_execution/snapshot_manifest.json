@@ -1,0 +1,146 @@
+{
+  "autonomous_execution_authority": false,
+  "candidate_evidence_only": true,
+  "decision": "SANDBOX_EVIDENCE_SNAPSHOT_SEALED",
+  "entries": [
+    {
+      "bytes": 839,
+      "evidence_class": "source_package",
+      "path": "bundles/relationship_conditioned_execution/bundle_manifest.json",
+      "sha256": "9ad26b19a5a9f97f28653c42f2de9b31a4fd40141323f84af4e6447f30df9973"
+    },
+    {
+      "bytes": 4015,
+      "evidence_class": "source_package",
+      "path": "bundles/relationship_conditioned_execution/install_plan.json",
+      "sha256": "f931712398d4663bf39fe226d77a9ac9cfb8420ec6784cd5c788d8236e892bb2"
+    },
+    {
+      "bytes": 3527,
+      "evidence_class": "source_package",
+      "path": "bundles/relationship_conditioned_execution/source_inventory.json",
+      "sha256": "01a929d1a96e0aa1863cda96ecd153042033d4a7c3154da37a1f44367a314972"
+    },
+    {
+      "bytes": 1329,
+      "evidence_class": "authoritative_receipt",
+      "path": "receipts/rce_p0_001_authoritative_validation.json",
+      "sha256": "383fb7cd3194c11ece8f4341b6dd3844b3d64543ded115bad69472cc71ab1f13"
+    },
+    {
+      "bytes": 1570,
+      "evidence_class": "authoritative_receipt",
+      "path": "receipts/rce_p0_002_authoritative_validation.json",
+      "sha256": "03551909b2b7d2120014e1f56c41b18592ba4898147229d0c370d03c64a1cff6"
+    },
+    {
+      "bytes": 1513,
+      "evidence_class": "authoritative_receipt",
+      "path": "receipts/rce_p0_003_authoritative_validation.json",
+      "sha256": "8924479e33dfe3a49ae2e02c20af234c3d67387b69543c64ef5ce3469cbace75"
+    },
+    {
+      "bytes": 817,
+      "evidence_class": "authoritative_receipt",
+      "path": "receipts/rce_p0_004_authoritative_validation.json",
+      "sha256": "12adf682ad2733ec9e26bd2e28b62d95b2da713f29861262977a1ec882acb808"
+    },
+    {
+      "bytes": 885,
+      "evidence_class": "authoritative_receipt",
+      "path": "receipts/rce_p0_005_authoritative_validation.json",
+      "sha256": "6a3458fd191122b32fdb214ffb8cf05e750b8031e1348474bc73d82b4c160146"
+    },
+    {
+      "bytes": 944,
+      "evidence_class": "authoritative_receipt",
+      "path": "receipts/rce_p0_006_authoritative_validation.json",
+      "sha256": "b837b6f6f657ac5230fc626c42731549738a624314f6444ad4a0bde635e67547"
+    },
+    {
+      "bytes": 900,
+      "evidence_class": "authoritative_receipt",
+      "path": "receipts/rce_p0_007_authoritative_validation.json",
+      "sha256": "0c80ad8395ccd78daeac05d07ccbed71aee962a08bf224ee4ea4046f2b28c26b"
+    },
+    {
+      "bytes": 865,
+      "evidence_class": "authoritative_receipt",
+      "path": "receipts/rce_p0_008_authoritative_validation.json",
+      "sha256": "dd8839d9dad9fcfa346d570c98ae7be3dd18ca231110a25a28f1f97751af1ae6"
+    },
+    {
+      "bytes": 599,
+      "evidence_class": "verification_report",
+      "path": "reports/rce_p0_004_reconstruction.json",
+      "sha256": "762017abe3c1eb214f77ab64724cee184b0c1df8f6f7fbf51c754e1865c8254a"
+    },
+    {
+      "bytes": 1387,
+      "evidence_class": "verification_report",
+      "path": "reports/rce_p0_006_custody_replay.json",
+      "sha256": "0ed1fbd0872dc5b8bff71eba52da1f2c393d4ac09957c786c17bfbf654c367e1"
+    },
+    {
+      "bytes": 1236,
+      "evidence_class": "verification_report",
+      "path": "reports/rce_p0_007_lifecycle.json",
+      "sha256": "4ebf5f618d8baf17a1300205ca95c28ad5da97588b8fd2fb56d31979668b3798"
+    },
+    {
+      "bytes": 1178,
+      "evidence_class": "verification_report",
+      "path": "reports/rce_p0_008_lease.json",
+      "sha256": "2e480f3ea825cb00e5a4fd0b2d28b1db1537ff9bf8dff36c7d09d032aca5f395"
+    },
+    {
+      "bytes": 839,
+      "evidence_class": "active_sandbox_evidence",
+      "path": "sandbox/intake/relationship_conditioned_execution/bundle_manifest.json",
+      "sha256": "9ad26b19a5a9f97f28653c42f2de9b31a4fd40141323f84af4e6447f30df9973"
+    },
+    {
+      "bytes": 4015,
+      "evidence_class": "active_sandbox_evidence",
+      "path": "sandbox/intake/relationship_conditioned_execution/install_plan.json",
+      "sha256": "f931712398d4663bf39fe226d77a9ac9cfb8420ec6784cd5c788d8236e892bb2"
+    },
+    {
+      "bytes": 1178,
+      "evidence_class": "active_sandbox_evidence",
+      "path": "sandbox/intake/relationship_conditioned_execution/lease_state.json",
+      "sha256": "2e480f3ea825cb00e5a4fd0b2d28b1db1537ff9bf8dff36c7d09d032aca5f395"
+    },
+    {
+      "bytes": 1123,
+      "evidence_class": "active_sandbox_evidence",
+      "path": "sandbox/intake/relationship_conditioned_execution/lifecycle_state.json",
+      "sha256": "3cf472f932cf5c8bf3525d43e9e52e1e88a702ca19f596d10c8a9293a361928b"
+    },
+    {
+      "bytes": 3527,
+      "evidence_class": "active_sandbox_evidence",
+      "path": "sandbox/intake/relationship_conditioned_execution/source_inventory.json",
+      "sha256": "01a929d1a96e0aa1863cda96ecd153042033d4a7c3154da37a1f44367a314972"
+    },
+    {
+      "bytes": 1611,
+      "evidence_class": "active_sandbox_evidence",
+      "path": "sandbox/intake/relationship_conditioned_execution/staging_manifest.json",
+      "sha256": "e6f1e16d9054286f88302ed8551221aa86bd79d8b000d24e0c753f5a37e0b958"
+    }
+  ],
+  "entry_count": 21,
+  "external_destination_mutation_performed": false,
+  "human_harm_authority": false,
+  "manual_actions_required": [],
+  "production_destination_allowed": false,
+  "reconstruction_index": "reports/rce_p0_009_reconstruction_index.json",
+  "reconstruction_index_sha256": "97d4b8d3d3a59a4d023722a6054b0b801545a7874ee4ec291b7850c47ac103ad",
+  "sandbox_only": true,
+  "schema": "stegverse.rce.snapshot_manifest.v1",
+  "snapshot_root_sha256": "378d9274369068f2f7fb858568d32aa15ddacbd859d9b546021d69250e704a4f",
+  "source_receipt": "receipts/rce_p0_009_authoritative_validation.json",
+  "source_receipt_sha256": "298a991341fd267bde39456b137f4bd2a44798a591ed7bbf11b2f26006772c6b",
+  "task_id": "RCE-P0-010"
+}

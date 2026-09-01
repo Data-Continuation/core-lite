@@ -1,26 +1,4 @@
 {
-  "schema": "stegverse.core_lite.task.v1",
-  "task_id": "RCE-P0-013",
-  "title": "Automate divergence alert and quarantine evidence",
-  "status": "WAITING_AUTOMATED_PREDECESSOR",
-  "priority": "P0",
-  "owner_repo": "Data-Continuation/core-lite",
-  "owner": "core_lite_management_workflow",
-  "activation_dependency": {
-    "task_id": "RCE-P0-012",
-    "required_status": "COMPLETE",
-    "required_evidence": "receipts/rce_p0_012_authoritative_validation.json",
-    "required_decision": "RESTORATION_EQUIVALENCE_ATTESTED",
-    "satisfied": false
-  },
-  "goal": "Continuously compare the attested restoration evidence against the sealed snapshot and live source set, publish a machine-readable clean-status record when equivalent, and preserve sandbox quarantine evidence and an alert record on divergence without deleting evidence or mutating production or external destinations.",
-  "required_outputs": [
-    "tools/guard_relationship_conditioned_execution_restoration.py",
-    "tests/test_guard_relationship_conditioned_execution_restoration.py",
-    "reports/rce_p0_013_divergence_guard.json",
-    "receipts/rce_p0_013_authoritative_validation.json",
-    "sandbox/quarantine/relationship_conditioned_execution/divergence_alert.json"
-  ],
   "acceptance_criteria": [
     "P0-012 authoritative receipt is present and true",
     "P0-012 decision is RESTORATION_EQUIVALENCE_ATTESTED",
@@ -31,6 +9,16 @@
     "production and external destinations remain prohibited",
     "manual_actions_required remains empty"
   ],
+  "activation_dependency": {
+    "required_decision": "RESTORATION_EQUIVALENCE_ATTESTED",
+    "required_evidence": "receipts/rce_p0_012_authoritative_validation.json",
+    "required_status": "COMPLETE",
+    "satisfied": true,
+    "task_id": "RCE-P0-012"
+  },
+  "blocked_by": [],
+  "completed_at": "2026-09-01T23:17:58.244302+00:00",
+  "goal": "Continuously compare the attested restoration evidence against the sealed snapshot and live source set, publish a machine-readable clean-status record when equivalent, and preserve sandbox quarantine evidence and an alert record on divergence without deleting evidence or mutating production or external destinations.",
   "invariants": [
     "continuous_equivalence_guard",
     "machine_readable_alerts",
@@ -42,10 +30,9 @@
     "no_autonomous_execution_authority",
     "manual_actions_required_is_empty"
   ],
-  "blocked_by": [
-    "RCE-P0-012 authoritative equivalence receipt not yet persisted"
-  ],
   "manual_actions_required": [],
+  "owner": "core_lite_management_workflow",
+  "owner_repo": "Data-Continuation/core-lite",
   "permitted_scope": [
     "equivalence monitoring",
     "sandbox quarantine evidence",
@@ -55,6 +42,7 @@
     "receipts",
     "automatic task-state persistence"
   ],
+  "priority": "P0",
   "prohibited_scope": [
     "production installation",
     "external destination mutation",
@@ -64,5 +52,25 @@
     "real-world target data",
     "weapons enablement",
     "cyber exploitation instructions"
-  ]
+  ],
+  "required_outputs": [
+    "tools/guard_relationship_conditioned_execution_restoration.py",
+    "tests/test_guard_relationship_conditioned_execution_restoration.py",
+    "reports/rce_p0_013_divergence_guard.json",
+    "receipts/rce_p0_013_authoritative_validation.json",
+    "sandbox/quarantine/relationship_conditioned_execution/divergence_alert.json"
+  ],
+  "schema": "stegverse.core_lite.task.v1",
+  "status": "COMPLETE",
+  "successor_task": "RCE-P0-014 automated continuity checkpoint publication candidate",
+  "task_id": "RCE-P0-013",
+  "title": "Automate divergence alert and quarantine evidence",
+  "validation": {
+    "authoritative_completion_evidence": true,
+    "authoritative_receipt": "receipts/rce_p0_013_authoritative_validation.json",
+    "decision": "DIVERGENCE_GUARD_ARMED",
+    "manual_actions_required": [],
+    "prior_quarantine_alert_preserved": false,
+    "status": "PASS"
+  }
 }

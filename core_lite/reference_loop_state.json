@@ -41,10 +41,10 @@
       "status": "complete"
     },
     "REF-LOOP-007": {
-      "attempts": 0,
+      "attempts": 1,
       "completed_at": null,
-      "last_result": null,
-      "status": "ready"
+      "last_result": "ESCALATE_FAIL_CLOSED",
+      "status": "escalated"
     },
     "REF-LOOP-008": {
       "attempts": 0,
@@ -53,5 +53,5 @@
       "status": "blocked"
     }
   },
-  "updated_at": "2026-09-01T23:15:45+00:00"
+  "updated_at": "2026-09-01T23:17:58+00:00"
 }

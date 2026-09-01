@@ -1,0 +1,21 @@
+{
+  "authoritative_completion_evidence": true,
+  "commit_sha": "ee81f1c362c33cc58e3cdcbce9fb4900b8c10f30",
+  "decision": "CUSTODY_AND_REPLAY_VERIFIED",
+  "event": "push",
+  "external_destination_mutation_performed": false,
+  "manual_actions_required": [],
+  "observed_at": "2026-07-14T07:35:54.042240+00:00",
+  "receipt_id": "rce-p0-006-custody-replay-29315085748",
+  "ref": "refs/heads/main",
+  "report": "reports/rce_p0_006_custody_replay.json",
+  "report_sha256": "0ed1fbd0872dc5b8bff71eba52da1f2c393d4ac09957c786c17bfbf654c367e1",
+  "repository": "Data-Continuation/core-lite",
+  "run_id": "29315085748",
+  "run_number": "78",
+  "schema": "stegverse.validation.receipt.v1",
+  "source_receipt": "receipts/rce_p0_005_authoritative_validation.json",
+  "source_receipt_sha256": "9c067d9411266c8a44a77fa07db0c71d5e76dee21cb1fa7033a36069df07c548",
+  "task_id": "RCE-P0-006",
+  "validation_class": "CORE_LITE_MANAGEMENT_WORKFLOW_CUSTODY_REPLAY"
+}

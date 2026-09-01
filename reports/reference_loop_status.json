@@ -103,57 +103,45 @@
       "responsibility": "update only after verified responsibility or authority changes"
     }
   ],
-  "generated_at": "2026-09-01T23:15:45+00:00",
+  "generated_at": "2026-09-01T23:17:58+00:00",
   "mode": "repository_local_reference_loop",
   "receipt": {
-    "attempt_id": "0a20fd66-2e09-425e-bc9e-d4255de6d623",
-    "decision": "COMPLETE",
-    "execution_exit_code": 0,
-    "hash": "655f26246fc42d17ee229a2e8b23fbf4d898eeab2ef984cfb8f6c1d8ffa26958",
-    "previous_hash": "f8a865e8f9063bba0d4a35f0a619715af51e578a3c3be96f11dd502b076660f7",
+    "attempt_id": "31eb80eb-6a46-44e8-8f28-cc0fb9cb3f20",
+    "decision": "ESCALATE_FAIL_CLOSED",
+    "execution_exit_code": 1,
+    "hash": "3a4ea703b3135ff4455eb3f646449042707173dedf939957477c5416a732b74e",
+    "previous_hash": "655f26246fc42d17ee229a2e8b23fbf4d898eeab2ef984cfb8f6c1d8ffa26958",
     "receipt_type": "core_lite.reference_loop.task_closure",
     "remediation_exit_code": null,
     "repository": "Data-Continuation/core-lite",
-    "task_id": "REF-LOOP-006",
-    "timestamp": "2026-09-01T23:15:45+00:00",
-    "verification_exit_code": 0
+    "task_id": "REF-LOOP-007",
+    "timestamp": "2026-09-01T23:17:58+00:00",
+    "verification_exit_code": null
   },
   "repository": "Data-Continuation/core-lite",
   "result": {
-    "attempt_id": "0a20fd66-2e09-425e-bc9e-d4255de6d623",
-    "closed": true,
-    "completed_at": "2026-09-01T23:15:45+00:00",
-    "decision": "COMPLETE",
-    "done_when": "a read-only demo-ingest portability manifest is built from verified local evidence and independently matches it",
+    "attempt_id": "31eb80eb-6a46-44e8-8f28-cc0fb9cb3f20",
+    "closed": false,
+    "completed_at": "2026-09-01T23:17:58+00:00",
+    "decision": "ESCALATE_FAIL_CLOSED",
+    "done_when": "RCE-P0-007 through RCE-P0-014 complete under one repository-local canonical owner, all authoritative receipts verify, no manual action remains, and no external or production mutation occurs",
     "execution": {
       "argv": [
         "python",
-        "tools/build_reference_loop_portability_manifest.py"
+        "tools/reconcile_rce_canonical_workstream.py"
       ],
-      "ended_at": "2026-09-01T23:15:45+00:00",
-      "exit_code": 0,
-      "name": "build_portability_manifest",
-      "started_at": "2026-09-01T23:15:45+00:00",
+      "ended_at": "2026-09-01T23:17:58+00:00",
+      "exit_code": 1,
+      "name": "reconcile_rce_canonical_workstream",
+      "started_at": "2026-09-01T23:17:57+00:00",
       "stderr": "",
-      "stdout": "{\"decision\": \"PORTABILITY_MANIFEST_VERIFIED\", \"target_repository\": \"StegVerse-org/demo_ingest_engine\"}\n"
+      "stdout": "{\"decision\": \"ESCALATE_RCE_RECONCILIATION_FAIL_CLOSED\", \"error\": \"RCE-P0-014 failed closed with exit code 1\", \"external_repository_mutation\": false, \"manual_actions_required\": []}\n"
     },
     "remediation": null,
-    "task_id": "REF-LOOP-006",
-    "verification": {
-      "argv": [
-        "python",
-        "tools/build_reference_loop_portability_manifest.py",
-        "--verify"
-      ],
-      "ended_at": "2026-09-01T23:15:45+00:00",
-      "exit_code": 0,
-      "name": "verify_portability_manifest",
-      "started_at": "2026-09-01T23:15:45+00:00",
-      "stderr": "",
-      "stdout": "{\"decision\": \"PORTABILITY_MANIFEST_VERIFIED\", \"target_repository\": \"StegVerse-org/demo_ingest_engine\"}\n"
-    }
+    "task_id": "REF-LOOP-007",
+    "verification": null
   },
-  "selected_task": "REF-LOOP-006",
+  "selected_task": "REF-LOOP-007",
   "state": {
     "lease": null,
     "recovered_from_receipts": true,
@@ -197,10 +185,10 @@
         "status": "complete"
       },
       "REF-LOOP-007": {
-        "attempts": 0,
+        "attempts": 1,
         "completed_at": null,
-        "last_result": null,
-        "status": "ready"
+        "last_result": "ESCALATE_FAIL_CLOSED",
+        "status": "escalated"
       },
       "REF-LOOP-008": {
         "attempts": 0,
@@ -209,6 +197,6 @@
         "status": "blocked"
       }
     },
-    "updated_at": "2026-09-01T23:15:45+00:00"
+    "updated_at": "2026-09-01T23:17:58+00:00"
   }
 }

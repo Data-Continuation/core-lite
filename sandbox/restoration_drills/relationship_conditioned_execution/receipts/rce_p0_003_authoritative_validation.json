@@ -1,0 +1,28 @@
+{
+  "authoritative_completion_evidence": true,
+  "commit_sha": "1df36d1e0760e1cfd60eca0fff9a2ee99f3366cf",
+  "event": "push",
+  "manual_actions_required": [],
+  "observed_at": "2026-07-14T05:28:46.630768+00:00",
+  "outcomes": {
+    "bundle_build": "success",
+    "bundle_validation": "success",
+    "focused_tests": "success"
+  },
+  "output_sha256": {
+    "bundles/relationship_conditioned_execution/bundle_manifest.json": "9ad26b19a5a9f97f28653c42f2de9b31a4fd40141323f84af4e6447f30df9973",
+    "bundles/relationship_conditioned_execution/install_plan.json": "f931712398d4663bf39fe226d77a9ac9cfb8420ec6784cd5c788d8236e892bb2",
+    "bundles/relationship_conditioned_execution/source_inventory.json": "01a929d1a96e0aa1863cda96ecd153042033d4a7c3154da37a1f44367a314972",
+    "tests/test_relationship_conditioned_execution_bundle.py": "e49b70975700c6b412fa4e9b9b3597128dde5918e7d701b96beca651f5b43093",
+    "tools/build_relationship_conditioned_execution_bundle.py": "7f70170aa340cc97f9fdb0d1f86d36fadc258d38a45458f9d58b6fa3f032fd33",
+    "tools/validate_relationship_conditioned_execution_bundle.py": "a1aa6f5c46f1360f25aed81c45eb4832b5b9d0e6fff8cf1e287aa9ae7aa0c073"
+  },
+  "receipt_id": "rce-p0-003-github-actions-29308626043-1",
+  "ref": "refs/heads/stegops/rce-handoff-clean",
+  "repository": "Data-Continuation/core-lite",
+  "run_attempt": "1",
+  "run_id": "29308626043",
+  "schema": "stegverse.validation.receipt.v1",
+  "task_id": "RCE-P0-003",
+  "validation_class": "GITHUB_ACTIONS_AUTHORITATIVE_VALIDATION"
+}

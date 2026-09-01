@@ -1,0 +1,19 @@
+{
+  "autonomous_execution_authority": false,
+  "checked_entry_count": 21,
+  "decision": "DIVERGENCE_GUARD_ARMED",
+  "divergence_count": 0,
+  "divergences": [],
+  "evidence_deleted": false,
+  "external_destination_mutation_performed": false,
+  "human_harm_authority": false,
+  "manual_actions_required": [],
+  "observed_at": "2026-09-01T23:17:58.244302+00:00",
+  "prior_quarantine_alert_preserved": false,
+  "production_destination_allowed": false,
+  "sandbox_only": true,
+  "schema": "stegverse.rce.divergence_guard.v1",
+  "snapshot_root_sha256": "378d9274369068f2f7fb858568d32aa15ddacbd859d9b546021d69250e704a4f",
+  "source_evidence_modified": false,
+  "task_id": "RCE-P0-013"
+}

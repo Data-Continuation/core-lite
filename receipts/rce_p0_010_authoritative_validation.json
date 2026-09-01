@@ -1,0 +1,22 @@
+{
+  "authoritative_completion_evidence": true,
+  "commit_sha": "584787b2e92181aee32d50bc398cf121136a69f5",
+  "decision": "SANDBOX_EVIDENCE_SNAPSHOT_SEALED",
+  "event": "push",
+  "external_destination_mutation_performed": false,
+  "manual_actions_required": [],
+  "observed_at": "2026-09-01T23:17:58.111040+00:00",
+  "production_destination_allowed": false,
+  "receipt_id": "rce-p0-010-snapshot-33570348313",
+  "ref": "refs/heads/main",
+  "repository": "Data-Continuation/core-lite",
+  "run_id": "33570348313",
+  "run_number": "1037",
+  "sandbox_only": true,
+  "schema": "stegverse.validation.receipt.v1",
+  "snapshot_manifest": "sandbox/snapshots/relationship_conditioned_execution/snapshot_manifest.json",
+  "snapshot_manifest_sha256": "d9035135fcb65040ed38c337f7ba7952dd734f134637f4d1b3faf944638a1952",
+  "snapshot_root_sha256": "378d9274369068f2f7fb858568d32aa15ddacbd859d9b546021d69250e704a4f",
+  "task_id": "RCE-P0-010",
+  "validation_class": "CORE_LITE_MANAGEMENT_WORKFLOW_SNAPSHOT_SEAL"
+}

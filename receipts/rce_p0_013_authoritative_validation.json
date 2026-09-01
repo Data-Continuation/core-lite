@@ -1,0 +1,23 @@
+{
+  "authoritative_completion_evidence": true,
+  "commit_sha": "584787b2e92181aee32d50bc398cf121136a69f5",
+  "decision": "DIVERGENCE_GUARD_ARMED",
+  "event": "push",
+  "evidence_deleted": false,
+  "external_destination_mutation_performed": false,
+  "manual_actions_required": [],
+  "observed_at": "2026-09-01T23:17:58.244302+00:00",
+  "prior_quarantine_alert_preserved": false,
+  "production_destination_allowed": false,
+  "receipt_id": "rce-p0-013-guard-33570348313",
+  "ref": "refs/heads/main",
+  "report": "reports/rce_p0_013_divergence_guard.json",
+  "report_sha256": "df31c6201a61acb945261d64db62927be1f72fad8b66fffb7cb260da8c34a602",
+  "repository": "Data-Continuation/core-lite",
+  "run_id": "33570348313",
+  "run_number": "1037",
+  "sandbox_only": true,
+  "schema": "stegverse.validation.receipt.v1",
+  "task_id": "RCE-P0-013",
+  "validation_class": "CORE_LITE_MANAGEMENT_WORKFLOW_DIVERGENCE_GUARD"
+}
