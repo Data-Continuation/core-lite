@@ -1,4 +1,5 @@
 name: RCE P0-005 Automated Sandbox Staging
+# reference-loop admission bridge: successful completion is consumed by the existing Core-Lite Reference Closure Loop
 
 on:
   workflow_run:
