@@ -141,11 +141,40 @@ def dependencies_complete(task: dict[str, Any], state: dict[str, Any]) -> bool:
     return all(state["tasks"].get(dep, {}).get("status") == "complete" for dep in task.get("blocked_by", []))
 
 
+def evidence_fingerprint(task: dict[str, Any]) -> str | None:
+    paths = task.get("retry_watch_paths", [])
+    if not task.get("retry_on_evidence_change") or not isinstance(paths, list) or not paths:
+        return None
+    evidence: list[dict[str, Any]] = []
+    for raw in paths:
+        if not isinstance(raw, str) or not raw:
+            raise ValueError(f"Invalid retry watch path for {task.get('id')}: {raw!r}")
+        path = Path(raw)
+        if not path.is_absolute():
+            path = ROOT / path
+        if path.is_file():
+            evidence.append({
+                "path": raw,
+                "exists": True,
+                "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                "bytes": path.stat().st_size,
+            })
+        else:
+            evidence.append({"path": raw, "exists": False})
+    return digest(evidence)
+
+
 def select_task(config: dict[str, Any], state: dict[str, Any]) -> dict[str, Any] | None:
     for task in config["tasks"]:
         current = state["tasks"][task["id"]]
         if current["status"] == "blocked" and dependencies_complete(task, state):
             current["status"] = "ready"
+        elif current["status"] == "escalated" and dependencies_complete(task, state):
+            fingerprint = evidence_fingerprint(task)
+            previous = current.get("retry_evidence_fingerprint")
+            if fingerprint is not None and (previous is None or fingerprint != previous):
+                current["status"] = "retry"
+                current["retry_evidence_fingerprint"] = fingerprint
     eligible = [
         task for task in config["tasks"]
         if state["tasks"][task["id"]]["status"] in {"ready", "retry"}
