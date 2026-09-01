@@ -1,15 +1,5 @@
 {
-  "authority": {
-    "allowed_roots": [
-      "core_lite",
-      "reports",
-      "receipts",
-      "sandbox"
-    ],
-    "external_repository_mutation": false,
-    "production_mutation": false,
-    "source_patch_from_command_output": false
-  },
+  "decision": "NO_ELIGIBLE_TASK",
   "ecosystem": [
     {
       "parallel_posture": "active",
@@ -103,58 +93,8 @@
       "responsibility": "update only after verified responsibility or authority changes"
     }
   ],
-  "generated_at": "2026-09-01T23:28:39+00:00",
-  "mode": "repository_local_reference_loop",
-  "receipt": {
-    "attempt_id": "4891d5b9-bdea-46c7-b06b-9c8cd0b33205",
-    "decision": "COMPLETE",
-    "execution_exit_code": 0,
-    "hash": "6d04cc920bf3bc5736db7f73e67b5e97a8235ea9360374a92b0f681e3c028ac8",
-    "previous_hash": "7f861d2e5d52dcffa46a5f7a8532e5857116c98c66253bbd6bb262aef71bb1c6",
-    "receipt_type": "core_lite.reference_loop.task_closure",
-    "remediation_exit_code": null,
-    "repository": "Data-Continuation/core-lite",
-    "task_id": "REF-LOOP-008",
-    "timestamp": "2026-09-01T23:28:39+00:00",
-    "verification_exit_code": 0
-  },
+  "generated_at": "2026-09-01T23:56:22+00:00",
   "repository": "Data-Continuation/core-lite",
-  "result": {
-    "attempt_id": "4891d5b9-bdea-46c7-b06b-9c8cd0b33205",
-    "closed": true,
-    "completed_at": "2026-09-01T23:28:39+00:00",
-    "decision": "COMPLETE",
-    "done_when": "the canonical five-type custody fixture validates twice, authority remains unchanged, and a chained completion receipt is written",
-    "execution": {
-      "argv": [
-        "python",
-        "tools/validate_typed_custody_evidence.py",
-        "fixtures/typed_custody/canonical_chain.json"
-      ],
-      "ended_at": "2026-09-01T23:28:39+00:00",
-      "exit_code": 0,
-      "name": "validate_typed_custody_evidence",
-      "started_at": "2026-09-01T23:28:39+00:00",
-      "stderr": "",
-      "stdout": "{\"authority_effect\":\"NONE\",\"decision\":\"COMPLETE\",\"errors\":[],\"next_task\":\"PORTABILITY_CONTRACT_INTEGRATION\"}\n"
-    },
-    "remediation": null,
-    "task_id": "REF-LOOP-008",
-    "verification": {
-      "argv": [
-        "python",
-        "tools/validate_typed_custody_evidence.py",
-        "fixtures/typed_custody/canonical_chain.json"
-      ],
-      "ended_at": "2026-09-01T23:28:39+00:00",
-      "exit_code": 0,
-      "name": "validate_typed_custody_evidence",
-      "started_at": "2026-09-01T23:28:39+00:00",
-      "stderr": "",
-      "stdout": "{\"authority_effect\":\"NONE\",\"decision\":\"COMPLETE\",\"errors\":[],\"next_task\":\"PORTABILITY_CONTRACT_INTEGRATION\"}\n"
-    }
-  },
-  "selected_task": "REF-LOOP-008",
   "state": {
     "lease": null,
     "recovered_from_receipts": true,
@@ -211,6 +151,6 @@
         "status": "complete"
       }
     },
-    "updated_at": "2026-09-01T23:28:39+00:00"
+    "updated_at": "2026-09-01T23:56:22+00:00"
   }
 }
