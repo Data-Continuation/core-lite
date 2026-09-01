@@ -1,0 +1,55 @@
+{
+  "authority": {
+    "external_repository_mutation": false,
+    "ingestion_authorized": false,
+    "installation_authorized": false,
+    "production_mutation": false,
+    "publication_authorized": false,
+    "read_only_manifest": true
+  },
+  "completed_tasks": [
+    "REF-LOOP-001",
+    "REF-LOOP-002",
+    "REF-LOOP-003",
+    "REF-LOOP-004",
+    "REF-LOOP-005"
+  ],
+  "decision": "PORTABILITY_MANIFEST_VERIFIED",
+  "manual_actions_required": [],
+  "relationship": "read_only_portability_and_intake_compatibility_contract",
+  "required_consumer_capabilities": [
+    "accept_manifest_without_execution",
+    "verify_source_evidence_digests",
+    "preserve_origin_repository_identity",
+    "preserve_receipt_chain_head",
+    "validate_typed_custody_evidence",
+    "distinguish_file_record_object_git_and_external_digests",
+    "require_repository_resident_mirror_for_expired_required_artifacts",
+    "preserve_append_only_hash_transitions",
+    "deny_authority_expansion_from_evidence",
+    "deny_installation_without_separate_authority"
+  ],
+  "schema": "stegverse.core_lite.reference_portability_manifest.v1",
+  "source_evidence": {
+    "receipt_chain_head": "afb43613d6e10b120613007ecb4507a6fc887991f3a530c7e21cb6ec5288dc7f",
+    "receipt_chain_sha256": "f420636289033afc43e1de9bffe695680aae820e4cfb2be5894c41e095d9f596",
+    "receipt_contract_sha256": "4507bc968d74308eb3c3b08ff35d7a9e0174d0dfc746cf86fa77ff32bd5c064b",
+    "reference_state_sha256": "14a2e9d721fe9caf818ad5d0cf814bc797fc05837ca05724aef8f01dfdc7298e",
+    "site_status_sha256": "b4f587d1a0a17a106a047f85011899f6d3e54d4896b84888af3713424b175237"
+  },
+  "source_repository": "Data-Continuation/core-lite",
+  "target_repository": "StegVerse-org/demo_ingest_engine",
+  "typed_custody_contract": {
+    "authority_effect": "NONE",
+    "owner_repository": "master-records/core-lite",
+    "reference_validator": "Data-Continuation/core-lite/tools/validate_typed_custody_evidence.py",
+    "required_evidence_types": [
+      "file_digest",
+      "record_self_hash",
+      "canonical_object_digest",
+      "git_object_id",
+      "external_artifact"
+    ],
+    "schema_path": "schemas/typed_custody_evidence.schema.json"
+  }
+}

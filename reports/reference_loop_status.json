@@ -1,0 +1,214 @@
+{
+  "authority": {
+    "allowed_roots": [
+      "core_lite",
+      "reports",
+      "receipts",
+      "sandbox"
+    ],
+    "external_repository_mutation": false,
+    "production_mutation": false,
+    "source_patch_from_command_output": false
+  },
+  "ecosystem": [
+    {
+      "parallel_posture": "active",
+      "relationship": "reference_implementation",
+      "relative_stage": "lead",
+      "repository": "Data-Continuation/core-lite",
+      "responsibility": "repository-local claim, execute, verify, receipt, and continuation"
+    },
+    {
+      "parallel_posture": "contract_consumption",
+      "relationship": "typed_custody_contract_owner",
+      "relative_stage": "active_dependency",
+      "repository": "master-records/core-lite",
+      "responsibility": "publish the canonical typed custody schema, hash-transition registry, and custody records"
+    },
+    {
+      "parallel_posture": "contract_work_only",
+      "relationship": "durable_receipt_and_reconstruction_target",
+      "relative_stage": "interface_alignment_needed",
+      "repository": "master-records/master-records",
+      "responsibility": "retain authoritative hashes, receipts, and reconstruction evidence"
+    },
+    {
+      "parallel_posture": "compatibility_only",
+      "relationship": "production-class_successor",
+      "relative_stage": "behind_reference_loop",
+      "repository": "GCAT-BCAT-Engine/core-lite-prod",
+      "responsibility": "consume a proven loop under a separate production authority boundary"
+    },
+    {
+      "parallel_posture": "receipts_and_status_contracts",
+      "relationship": "bundle_and_status_surface",
+      "relative_stage": "parallel_interface_candidate",
+      "repository": "StegVerse-Labs/Site",
+      "responsibility": "accept and display verified state without controlling repository mutation"
+    },
+    {
+      "parallel_posture": "observe",
+      "relationship": "sandbox_replication_candidate",
+      "relative_stage": "after_reference_activation",
+      "repository": "StegGhost/entity-sandbox",
+      "responsibility": "reuse loop mechanics with sandbox-specific authority"
+    },
+    {
+      "parallel_posture": "compatibility_contract",
+      "relationship": "portability_validation_target",
+      "relative_stage": "read_only_contract_active",
+      "repository": "StegVerse-org/demo_ingest_engine",
+      "responsibility": "verify portable intake compatibility without installation or mutation authority"
+    },
+    {
+      "parallel_posture": "interface_observation",
+      "relationship": "future_worker_consumer",
+      "relative_stage": "dependent",
+      "repository": "StegVerse-Labs/StegAgents",
+      "responsibility": "consume task, lease, evidence, and escalation contracts"
+    },
+    {
+      "parallel_posture": "interface_observation",
+      "relationship": "future_remediation_consumer",
+      "relative_stage": "dependent",
+      "repository": "StegVerse-Labs/StegVerse-Healer",
+      "responsibility": "consume bounded failure classification and remediation contracts"
+    },
+    {
+      "parallel_posture": "deferred",
+      "relationship": "downstream_publication_obligation",
+      "relative_stage": "notification_only",
+      "repository": "GCAT-BCAT-Engine/Publisher",
+      "responsibility": "publish only verified release information"
+    },
+    {
+      "parallel_posture": "deferred",
+      "relationship": "downstream_update_verification",
+      "relative_stage": "notification_only",
+      "repository": "StegVerse-Labs/Site",
+      "responsibility": "verify pertinent ecosystem state is reflected after release"
+    },
+    {
+      "parallel_posture": "deferred",
+      "relationship": "downstream_governance_documentation",
+      "relative_stage": "notification_only",
+      "repository": "StegVerse-Labs/admissibility-wiki",
+      "responsibility": "update only after verified behavior or policy changes"
+    },
+    {
+      "parallel_posture": "deferred",
+      "relationship": "downstream_guardian_documentation",
+      "relative_stage": "notification_only",
+      "repository": "stegguardian-wiki",
+      "responsibility": "update only after verified responsibility or authority changes"
+    }
+  ],
+  "generated_at": "2026-09-01T23:15:45+00:00",
+  "mode": "repository_local_reference_loop",
+  "receipt": {
+    "attempt_id": "0a20fd66-2e09-425e-bc9e-d4255de6d623",
+    "decision": "COMPLETE",
+    "execution_exit_code": 0,
+    "hash": "655f26246fc42d17ee229a2e8b23fbf4d898eeab2ef984cfb8f6c1d8ffa26958",
+    "previous_hash": "f8a865e8f9063bba0d4a35f0a619715af51e578a3c3be96f11dd502b076660f7",
+    "receipt_type": "core_lite.reference_loop.task_closure",
+    "remediation_exit_code": null,
+    "repository": "Data-Continuation/core-lite",
+    "task_id": "REF-LOOP-006",
+    "timestamp": "2026-09-01T23:15:45+00:00",
+    "verification_exit_code": 0
+  },
+  "repository": "Data-Continuation/core-lite",
+  "result": {
+    "attempt_id": "0a20fd66-2e09-425e-bc9e-d4255de6d623",
+    "closed": true,
+    "completed_at": "2026-09-01T23:15:45+00:00",
+    "decision": "COMPLETE",
+    "done_when": "a read-only demo-ingest portability manifest is built from verified local evidence and independently matches it",
+    "execution": {
+      "argv": [
+        "python",
+        "tools/build_reference_loop_portability_manifest.py"
+      ],
+      "ended_at": "2026-09-01T23:15:45+00:00",
+      "exit_code": 0,
+      "name": "build_portability_manifest",
+      "started_at": "2026-09-01T23:15:45+00:00",
+      "stderr": "",
+      "stdout": "{\"decision\": \"PORTABILITY_MANIFEST_VERIFIED\", \"target_repository\": \"StegVerse-org/demo_ingest_engine\"}\n"
+    },
+    "remediation": null,
+    "task_id": "REF-LOOP-006",
+    "verification": {
+      "argv": [
+        "python",
+        "tools/build_reference_loop_portability_manifest.py",
+        "--verify"
+      ],
+      "ended_at": "2026-09-01T23:15:45+00:00",
+      "exit_code": 0,
+      "name": "verify_portability_manifest",
+      "started_at": "2026-09-01T23:15:45+00:00",
+      "stderr": "",
+      "stdout": "{\"decision\": \"PORTABILITY_MANIFEST_VERIFIED\", \"target_repository\": \"StegVerse-org/demo_ingest_engine\"}\n"
+    }
+  },
+  "selected_task": "REF-LOOP-006",
+  "state": {
+    "lease": null,
+    "recovered_from_receipts": true,
+    "repository": "Data-Continuation/core-lite",
+    "schema_version": 1,
+    "tasks": {
+      "REF-LOOP-001": {
+        "attempts": 1,
+        "completed_at": "2026-07-15T01:56:07+00:00",
+        "last_result": "COMPLETE",
+        "status": "complete"
+      },
+      "REF-LOOP-002": {
+        "attempts": 1,
+        "completed_at": "2026-07-15T01:57:55+00:00",
+        "last_result": "COMPLETE",
+        "status": "complete"
+      },
+      "REF-LOOP-003": {
+        "attempts": 1,
+        "completed_at": "2026-07-15T01:57:55+00:00",
+        "last_result": "COMPLETE",
+        "status": "complete"
+      },
+      "REF-LOOP-004": {
+        "attempts": 1,
+        "completed_at": "2026-07-15T02:28:00+00:00",
+        "last_result": "COMPLETE",
+        "status": "complete"
+      },
+      "REF-LOOP-005": {
+        "attempts": 1,
+        "completed_at": "2026-07-15T03:44:00+00:00",
+        "last_result": "COMPLETE",
+        "status": "complete"
+      },
+      "REF-LOOP-006": {
+        "attempts": 1,
+        "completed_at": "2026-09-01T23:15:45+00:00",
+        "last_result": "COMPLETE",
+        "status": "complete"
+      },
+      "REF-LOOP-007": {
+        "attempts": 0,
+        "completed_at": null,
+        "last_result": null,
+        "status": "ready"
+      },
+      "REF-LOOP-008": {
+        "attempts": 0,
+        "completed_at": null,
+        "last_result": null,
+        "status": "blocked"
+      }
+    },
+    "updated_at": "2026-09-01T23:15:45+00:00"
+  }
+}
