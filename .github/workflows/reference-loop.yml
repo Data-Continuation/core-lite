@@ -106,7 +106,7 @@ jobs:
           if-no-files-found: error
 
   close-next-local-task:
-    if: ${{ github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') }}
+    if: ${{ github.event_name != 'pull_request' && (github.event_name != 'push' || github.ref == 'refs/heads/main') && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') }}
     needs: verify-implementation
     runs-on: ubuntu-latest
     steps:
