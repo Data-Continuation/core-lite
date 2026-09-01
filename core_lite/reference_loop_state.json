@@ -1,5 +1,6 @@
 {
   "lease": null,
+  "recovered_from_receipts": true,
   "repository": "Data-Continuation/core-lite",
   "schema_version": 1,
   "tasks": {
@@ -32,7 +33,25 @@
       "completed_at": "2026-07-15T03:44:00+00:00",
       "last_result": "COMPLETE",
       "status": "complete"
+    },
+    "REF-LOOP-006": {
+      "attempts": 1,
+      "completed_at": "2026-09-01T23:15:45+00:00",
+      "last_result": "COMPLETE",
+      "status": "complete"
+    },
+    "REF-LOOP-007": {
+      "attempts": 0,
+      "completed_at": null,
+      "last_result": null,
+      "status": "ready"
+    },
+    "REF-LOOP-008": {
+      "attempts": 0,
+      "completed_at": null,
+      "last_result": null,
+      "status": "blocked"
     }
   },
-  "updated_at": "2026-07-15T03:44:00+00:00"
+  "updated_at": "2026-09-01T23:15:45+00:00"
 }
