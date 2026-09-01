@@ -319,3 +319,34 @@ session consolidation: 18/18
 goal activation: REF-LOOP-006 90%; REF-LOOP-007 70%
 archival readiness: 100%
 ```
+
+
+## Canonical RCE reconciliation closure — 2026-09-01
+
+Repository-owned Reference Closure Loop run `33571060388` completed `REF-LOOP-007`
+on `main` after evidence-lineage and retry-idempotency repairs.
+
+```text
+REF-LOOP-007: COMPLETE
+attempts: 2
+completion_receipt: 7f861d2e5d52dcffa46a5f7a8532e5857116c98c66253bbd6bb262aef71bb1c6
+previous_receipt: 3a4ea703b3135ff4455eb3f646449042707173dedf939957477c5416a732b74e
+execution_exit_code: 0
+verification_exit_code: 0
+reconciliation: RCE_CANONICAL_WORKSTREAM_RECONCILED
+verified_stages: RCE-P0-007 through RCE-P0-014 (8/8)
+RCE-P0-014: CONTINUITY_CHECKPOINT_CANDIDATE_READY
+checkpoint_root_sha256: c12eafbeb5852cb54164429bcac4ce34c4fefe585496328448157368eb9c7594
+manual_actions_required: []
+production_mutation: false
+external_repository_mutation: false
+publication_performed: false
+REF-LOOP-008: READY
+```
+
+The earlier REF-LOOP-007 fail-closed receipt remains in the chain as evidence of the
+rejected pre-repair attempt. The successful receipt chains through it rather than
+rewriting history.
+
+Remaining repository-local machine execution is `REF-LOOP-008`, which requires the
+canonical five-type typed-custody fixture to validate twice under unchanged authority.
