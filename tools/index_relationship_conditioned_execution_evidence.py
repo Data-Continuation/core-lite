@@ -57,8 +57,17 @@ def _candidate_paths(root: Path) -> list[Path]:
         path = root / f"receipts/rce_p0_{task_no:03d}_authoritative_validation.json"
         if path.is_file():
             paths.add(path)
+    # Only bind report evidence that already exists before P0-009. Downstream
+    # P0-010+ reports are products of the same reconciliation cycle and must
+    # never become source inputs on a retry, or the snapshot becomes
+    # self-referential and non-idempotent.
+    for task_no in range(1, 9):
+        paths.update(
+            path
+            for path in root.glob(f"reports/rce_p0_{task_no:03d}_*.json")
+            if path.is_file()
+        )
     for pattern in (
-        "reports/rce_p0_*.json",
         "bundles/relationship_conditioned_execution/*.json",
         "sandbox/intake/relationship_conditioned_execution/*.json",
         "sandbox/archive/relationship_conditioned_execution/**/*.json",
