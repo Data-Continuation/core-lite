@@ -75,3 +75,14 @@ def test_does_not_delete_existing_evidence(tmp_path):
     _write(evidence, {"preserved": True})
     build_index(root)
     assert evidence.is_file()
+
+
+def test_excludes_downstream_reports_from_retry_source_set(tmp_path):
+    root = _fixture_root(tmp_path)
+    upstream = root / "reports/rce_p0_008_lease.json"
+    downstream = root / "reports/rce_p0_010_snapshot_seal.json"
+    _write(downstream, {"decision": "OLD_DOWNSTREAM_OUTPUT"})
+    result = build_index(root)
+    indexed = {entry["path"] for entry in result["entries"]}
+    assert str(upstream.relative_to(root)) in indexed
+    assert str(downstream.relative_to(root)) not in indexed
