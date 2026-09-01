@@ -2,6 +2,11 @@ name: Core-Lite Reference Closure Loop
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - "RCE P0-005 Automated Sandbox Staging"
+    types:
+      - completed
   schedule:
     - cron: '*/5 * * * *'
   pull_request:
@@ -105,7 +110,7 @@ jobs:
           if-no-files-found: error
 
   close-next-local-task:
-    if: ${{ github.event_name != 'pull_request' }}
+    if: ${{ github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') }}
     needs: verify-implementation
     runs-on: ubuntu-latest
     steps:
