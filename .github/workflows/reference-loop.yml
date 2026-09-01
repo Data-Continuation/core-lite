@@ -11,6 +11,8 @@ on:
     - cron: '*/5 * * * *'
   pull_request:
     paths:
+      - 'CORE_LITE_MIRROR_HANDOFF.md'
+      - 'docs/CORE_LITE_MIRROR_HANDOFF.md'
       - 'core_lite/reference_loop.json'
       - 'core_lite/reference_loop_state.json'
       - 'fixtures/typed_custody/**'
@@ -30,6 +32,8 @@ on:
       - '.github/workflows/reference-loop.yml'
   push:
     paths:
+      - 'CORE_LITE_MIRROR_HANDOFF.md'
+      - 'docs/CORE_LITE_MIRROR_HANDOFF.md'
       - 'core_lite/reference_loop.json'
       - 'core_lite/reference_loop_state.json'
       - 'fixtures/typed_custody/**'
