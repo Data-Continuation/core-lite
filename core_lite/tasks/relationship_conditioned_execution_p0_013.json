@@ -17,7 +17,7 @@
     "task_id": "RCE-P0-012"
   },
   "blocked_by": [],
-  "completed_at": "2026-09-01T23:17:58.244302+00:00",
+  "completed_at": "2026-09-01T23:27:19.416959+00:00",
   "goal": "Continuously compare the attested restoration evidence against the sealed snapshot and live source set, publish a machine-readable clean-status record when equivalent, and preserve sandbox quarantine evidence and an alert record on divergence without deleting evidence or mutating production or external destinations.",
   "invariants": [
     "continuous_equivalence_guard",

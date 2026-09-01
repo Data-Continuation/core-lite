@@ -1,26 +1,4 @@
 {
-  "schema": "stegverse.core_lite.task.v1",
-  "task_id": "RCE-P0-014",
-  "title": "Build continuity checkpoint publication candidate",
-  "status": "WAITING_AUTOMATED_PREDECESSOR",
-  "priority": "P0",
-  "owner_repo": "Data-Continuation/core-lite",
-  "owner": "core_lite_management_workflow",
-  "activation_dependency": {
-    "task_id": "RCE-P0-013",
-    "required_status": "COMPLETE",
-    "required_evidence": "receipts/rce_p0_013_authoritative_validation.json",
-    "required_decision": "DIVERGENCE_GUARD_ARMED",
-    "satisfied": false
-  },
-  "goal": "Build a deterministic local continuity-checkpoint candidate that binds the clean divergence-guard receipt, snapshot root, restoration equivalence, and authoritative receipt chain without publishing externally or granting installation or execution authority.",
-  "required_outputs": [
-    "tools/build_relationship_conditioned_execution_checkpoint.py",
-    "tests/test_build_relationship_conditioned_execution_checkpoint.py",
-    "sandbox/publication_candidates/relationship_conditioned_execution/checkpoint.json",
-    "reports/rce_p0_014_checkpoint_candidate.json",
-    "receipts/rce_p0_014_authoritative_validation.json"
-  ],
   "acceptance_criteria": [
     "P0-013 authoritative receipt is present and true",
     "P0-013 decision is DIVERGENCE_GUARD_ARMED",
@@ -31,6 +9,16 @@
     "production installation and autonomous execution remain prohibited",
     "manual_actions_required remains empty"
   ],
+  "activation_dependency": {
+    "required_decision": "DIVERGENCE_GUARD_ARMED",
+    "required_evidence": "receipts/rce_p0_013_authoritative_validation.json",
+    "required_status": "COMPLETE",
+    "satisfied": true,
+    "task_id": "RCE-P0-013"
+  },
+  "blocked_by": [],
+  "completed_at": "2026-09-01T23:27:19.454532+00:00",
+  "goal": "Build a deterministic local continuity-checkpoint candidate that binds the clean divergence-guard receipt, snapshot root, restoration equivalence, and authoritative receipt chain without publishing externally or granting installation or execution authority.",
   "invariants": [
     "local_candidate_only",
     "deterministic_checkpoint",
@@ -42,10 +30,9 @@
     "no_autonomous_execution_authority",
     "manual_actions_required_is_empty"
   ],
-  "blocked_by": [
-    "RCE-P0-013 authoritative clean divergence-guard receipt not yet persisted"
-  ],
   "manual_actions_required": [],
+  "owner": "core_lite_management_workflow",
+  "owner_repo": "Data-Continuation/core-lite",
   "permitted_scope": [
     "local sandbox publication candidate",
     "checkpoint digest calculation",
@@ -54,6 +41,7 @@
     "receipts",
     "automatic task-state persistence"
   ],
+  "priority": "P0",
   "prohibited_scope": [
     "external publication",
     "production installation",
@@ -63,5 +51,25 @@
     "real-world target data",
     "weapons enablement",
     "cyber exploitation instructions"
-  ]
+  ],
+  "required_outputs": [
+    "tools/build_relationship_conditioned_execution_checkpoint.py",
+    "tests/test_build_relationship_conditioned_execution_checkpoint.py",
+    "sandbox/publication_candidates/relationship_conditioned_execution/checkpoint.json",
+    "reports/rce_p0_014_checkpoint_candidate.json",
+    "receipts/rce_p0_014_authoritative_validation.json"
+  ],
+  "schema": "stegverse.core_lite.task.v1",
+  "status": "COMPLETE",
+  "successor_task": "RCE-P0-015 automated checkpoint verification and release-readiness boundary",
+  "task_id": "RCE-P0-014",
+  "title": "Build continuity checkpoint publication candidate",
+  "validation": {
+    "authoritative_completion_evidence": true,
+    "authoritative_receipt": "receipts/rce_p0_014_authoritative_validation.json",
+    "checkpoint_root_sha256": "c12eafbeb5852cb54164429bcac4ce34c4fefe585496328448157368eb9c7594",
+    "decision": "CONTINUITY_CHECKPOINT_CANDIDATE_READY",
+    "manual_actions_required": [],
+    "status": "PASS"
+  }
 }

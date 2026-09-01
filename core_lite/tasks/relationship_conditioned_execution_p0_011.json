@@ -17,7 +17,7 @@
     "task_id": "RCE-P0-010"
   },
   "blocked_by": [],
-  "completed_at": "2026-09-01T23:17:58.162997+00:00",
+  "completed_at": "2026-09-01T23:27:19.338667+00:00",
   "goal": "Restore the sealed RCE evidence snapshot into an isolated sandbox drill directory, verify every reconstructed byte against the snapshot manifest, and emit authoritative restoration evidence without production or external destination mutation.",
   "invariants": [
     "isolated_sandbox_restoration",

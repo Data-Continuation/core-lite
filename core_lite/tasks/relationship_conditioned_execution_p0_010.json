@@ -17,7 +17,7 @@
     "task_id": "RCE-P0-009"
   },
   "blocked_by": [],
-  "completed_at": "2026-09-01T23:17:58.111040+00:00",
+  "completed_at": "2026-09-01T23:27:19.286527+00:00",
   "goal": "Create a deterministic sandbox-only evidence snapshot whose root digest binds the verified RCE reconstruction index and authoritative receipt chain without deleting evidence or granting production, execution, or destination-mutation authority.",
   "invariants": [
     "deterministic_snapshot_root",
@@ -70,7 +70,7 @@
     "authoritative_receipt": "receipts/rce_p0_010_authoritative_validation.json",
     "decision": "SANDBOX_EVIDENCE_SNAPSHOT_SEALED",
     "manual_actions_required": [],
-    "snapshot_root_sha256": "378d9274369068f2f7fb858568d32aa15ddacbd859d9b546021d69250e704a4f",
+    "snapshot_root_sha256": "49cd4094ffe14bbb83c87f9af7d11c03ded17381ce703ee2ed2a4790d8b6c7ae",
     "status": "PASS"
   }
 }

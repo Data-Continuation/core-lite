@@ -1,18 +1,25 @@
 {
-  "activation_precondition_satisfied": true,
-  "authoritative_completion_evidence": false,
-  "commit_sha": "835e312570478a26f1535b43002ce90b5014681e",
-  "event": "push",
-  "observed_at": "2026-07-14T05:26:54.466432+00:00",
+  "authoritative_completion_evidence": true,
+  "commands": [
+    "python tools/validate_execution_candidate_manifest.py samples/execution_candidate_manifest.allow.example.json",
+    "python tools/validate_execution_candidate_manifest.py samples/execution_candidate_manifest.stale_state.example.json",
+    "python tools/validate_execution_candidate_manifest.py samples/execution_candidate_manifest.scope_leakage.example.json",
+    "python -m pytest -q tests/test_execution_candidate_manifest.py"
+  ],
+  "commit_sha": "7b2329065d8893f73beeeab3535e670cf9886624",
+  "event": "pull_request",
+  "observed_at": "2026-07-14T05:19:00.058893+00:00",
   "outcomes": {
-    "focused_tests": "skipped",
-    "manifest_validator": "failure"
+    "allow_fixture": "success",
+    "focused_tests": "success",
+    "scope_leakage_fixture": "success",
+    "stale_state_fixture": "success"
   },
-  "receipt_id": "rce-p0-002-github-actions-29308544087-1",
-  "ref": "refs/heads/stegops/rce-handoff-clean",
+  "receipt_id": "rce-p0-002-github-actions-29308190352-1",
+  "ref": "refs/pull/2/merge",
   "repository": "Data-Continuation/core-lite",
   "run_attempt": "1",
-  "run_id": "29308544087",
+  "run_id": "29308190352",
   "schema": "stegverse.validation.receipt.v1",
   "source_sha256": {
     "docs/RCE_P0_002_MANIFEST_AND_FIXTURES.md": "1eaebea95bc35d31c9819b109232ce31a5daab8fe287f0e9ea2da23268ebacb1",

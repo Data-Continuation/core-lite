@@ -18,7 +18,7 @@
     "task_id": "RCE-P0-006"
   },
   "blocked_by": [],
-  "completed_at": "2026-09-01T23:17:57.980192+00:00",
+  "completed_at": "2026-09-01T23:27:19.169767+00:00",
   "goal": "Maintain one authoritative sandbox candidate, prevent downgrade or silent replacement, archive superseded evidence deterministically, and emit lifecycle receipts without production or external destination mutation.",
   "invariants": [
     "single_authoritative_sandbox_candidate",
@@ -67,7 +67,7 @@
   "validation": {
     "authoritative_completion_evidence": true,
     "authoritative_receipt": "receipts/rce_p0_007_authoritative_validation.json",
-    "decision": "ACTIVATE_INITIAL_SANDBOX_CANDIDATE",
+    "decision": "NO_CHANGE_ACTIVE_CANDIDATE",
     "manual_actions_required": [],
     "status": "PASS"
   }

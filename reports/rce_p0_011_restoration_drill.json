@@ -31,10 +31,10 @@
       "source_path": "receipts/rce_p0_001_authoritative_validation.json"
     },
     {
-      "bytes": 1570,
+      "bytes": 2041,
       "evidence_class": "authoritative_receipt",
       "restored_path": "sandbox/restoration_drills/relationship_conditioned_execution/receipts/rce_p0_002_authoritative_validation.json",
-      "sha256": "03551909b2b7d2120014e1f56c41b18592ba4898147229d0c370d03c64a1cff6",
+      "sha256": "a68a2c175e3ff0fcd6f3c00050067dbf7848f6d85c0ab47d9a7100a6694779cf",
       "source_path": "receipts/rce_p0_002_authoritative_validation.json"
     },
     {
@@ -66,17 +66,17 @@
       "source_path": "receipts/rce_p0_006_authoritative_validation.json"
     },
     {
-      "bytes": 900,
+      "bytes": 892,
       "evidence_class": "authoritative_receipt",
       "restored_path": "sandbox/restoration_drills/relationship_conditioned_execution/receipts/rce_p0_007_authoritative_validation.json",
-      "sha256": "0c80ad8395ccd78daeac05d07ccbed71aee962a08bf224ee4ea4046f2b28c26b",
+      "sha256": "967cda9dbbf1537169c1abd1da526eff587e165615e16c6cc508d16af9484c9e",
       "source_path": "receipts/rce_p0_007_authoritative_validation.json"
     },
     {
       "bytes": 865,
       "evidence_class": "authoritative_receipt",
       "restored_path": "sandbox/restoration_drills/relationship_conditioned_execution/receipts/rce_p0_008_authoritative_validation.json",
-      "sha256": "dd8839d9dad9fcfa346d570c98ae7be3dd18ca231110a25a28f1f97751af1ae6",
+      "sha256": "6464d92c0c4bb302b7b377c9b0f02918fedc93fc9c3a13b41e4929414495406c",
       "source_path": "receipts/rce_p0_008_authoritative_validation.json"
     },
     {
@@ -94,17 +94,17 @@
       "source_path": "reports/rce_p0_006_custody_replay.json"
     },
     {
-      "bytes": 1236,
+      "bytes": 1227,
       "evidence_class": "verification_report",
       "restored_path": "sandbox/restoration_drills/relationship_conditioned_execution/reports/rce_p0_007_lifecycle.json",
-      "sha256": "4ebf5f618d8baf17a1300205ca95c28ad5da97588b8fd2fb56d31979668b3798",
+      "sha256": "71a265f2d9703401b660ecc97dbcf1d9f27db93188ff6e87945b4fe219c6f8b0",
       "source_path": "reports/rce_p0_007_lifecycle.json"
     },
     {
       "bytes": 1178,
       "evidence_class": "verification_report",
       "restored_path": "sandbox/restoration_drills/relationship_conditioned_execution/reports/rce_p0_008_lease.json",
-      "sha256": "2e480f3ea825cb00e5a4fd0b2d28b1db1537ff9bf8dff36c7d09d032aca5f395",
+      "sha256": "966695f9764a5ae050bc12757a64374eefef8d5255fc11b32d944b4a37b0ad84",
       "source_path": "reports/rce_p0_008_lease.json"
     },
     {
@@ -125,14 +125,14 @@
       "bytes": 1178,
       "evidence_class": "active_sandbox_evidence",
       "restored_path": "sandbox/restoration_drills/relationship_conditioned_execution/sandbox/intake/relationship_conditioned_execution/lease_state.json",
-      "sha256": "2e480f3ea825cb00e5a4fd0b2d28b1db1537ff9bf8dff36c7d09d032aca5f395",
+      "sha256": "966695f9764a5ae050bc12757a64374eefef8d5255fc11b32d944b4a37b0ad84",
       "source_path": "sandbox/intake/relationship_conditioned_execution/lease_state.json"
     },
     {
-      "bytes": 1123,
+      "bytes": 1115,
       "evidence_class": "active_sandbox_evidence",
       "restored_path": "sandbox/restoration_drills/relationship_conditioned_execution/sandbox/intake/relationship_conditioned_execution/lifecycle_state.json",
-      "sha256": "3cf472f932cf5c8bf3525d43e9e52e1e88a702ca19f596d10c8a9293a361928b",
+      "sha256": "703ddbd4b5560623d7e4f0c8524e65513fddf8cfec16c26d7d7fc02776287417",
       "source_path": "sandbox/intake/relationship_conditioned_execution/lifecycle_state.json"
     },
     {
@@ -153,16 +153,16 @@
   "external_destination_mutation_performed": false,
   "human_harm_authority": false,
   "manual_actions_required": [],
-  "observed_at": "2026-09-01T23:17:58.162997+00:00",
+  "observed_at": "2026-09-01T23:27:19.338667+00:00",
   "production_destination_allowed": false,
   "restoration_manifest": "sandbox/restoration_drills/relationship_conditioned_execution/restoration_manifest.json",
-  "restoration_manifest_sha256": "ad5195ad69d424bcfc2f21a4de69c98dd67257c91f267d60b8a28a8f46c489c2",
+  "restoration_manifest_sha256": "8d65fcfd74fab5d8d3d8c7700dd079d0a9ec0ab0f7aca7e0956e005dfa2b3c87",
   "restored_entry_count": 21,
   "sandbox_only": true,
   "schema": "stegverse.rce.restoration_drill.v1",
   "snapshot_manifest": "sandbox/snapshots/relationship_conditioned_execution/snapshot_manifest.json",
-  "snapshot_manifest_sha256": "d9035135fcb65040ed38c337f7ba7952dd734f134637f4d1b3faf944638a1952",
-  "snapshot_root_sha256": "378d9274369068f2f7fb858568d32aa15ddacbd859d9b546021d69250e704a4f",
+  "snapshot_manifest_sha256": "25ee8199afce12c7ea67c50224c04807497941d52c70b4120de75a2e2d3e541e",
+  "snapshot_root_sha256": "49cd4094ffe14bbb83c87f9af7d11c03ded17381ce703ee2ed2a4790d8b6c7ae",
   "source_evidence_modified": false,
   "task_id": "RCE-P0-011"
 }

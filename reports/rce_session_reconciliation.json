@@ -1,0 +1,66 @@
+{
+  "autonomous_execution_authority": false,
+  "canonical_owner": "core_lite_reference_loop",
+  "canonical_task": "REF-LOOP-007",
+  "decision": "RCE_CANONICAL_WORKSTREAM_RECONCILED",
+  "executions": [],
+  "external_repository_mutation": false,
+  "human_harm_authority": false,
+  "manual_actions_required": [],
+  "observed_at": "2026-09-01T23:27:19.505514+00:00",
+  "production_mutation": false,
+  "publication_performed": false,
+  "repository": "Data-Continuation/core-lite",
+  "sandbox_only": true,
+  "schema": "stegverse.core_lite.rce_session_reconciliation.v1",
+  "verified_stages": [
+    {
+      "decision": "NO_CHANGE_ACTIVE_CANDIDATE",
+      "receipt": "receipts/rce_p0_007_authoritative_validation.json",
+      "status": "COMPLETE",
+      "task_id": "RCE-P0-007"
+    },
+    {
+      "decision": "RENEW_SANDBOX_LEASE",
+      "receipt": "receipts/rce_p0_008_authoritative_validation.json",
+      "status": "COMPLETE",
+      "task_id": "RCE-P0-008"
+    },
+    {
+      "decision": "RECONSTRUCTION_INDEX_VERIFIED",
+      "receipt": "receipts/rce_p0_009_authoritative_validation.json",
+      "status": "COMPLETE",
+      "task_id": "RCE-P0-009"
+    },
+    {
+      "decision": "SANDBOX_EVIDENCE_SNAPSHOT_SEALED",
+      "receipt": "receipts/rce_p0_010_authoritative_validation.json",
+      "status": "COMPLETE",
+      "task_id": "RCE-P0-010"
+    },
+    {
+      "decision": "SEALED_SNAPSHOT_RESTORATION_VERIFIED",
+      "receipt": "receipts/rce_p0_011_authoritative_validation.json",
+      "status": "COMPLETE",
+      "task_id": "RCE-P0-011"
+    },
+    {
+      "decision": "RESTORATION_EQUIVALENCE_ATTESTED",
+      "receipt": "receipts/rce_p0_012_authoritative_validation.json",
+      "status": "COMPLETE",
+      "task_id": "RCE-P0-012"
+    },
+    {
+      "decision": "DIVERGENCE_GUARD_ARMED",
+      "receipt": "receipts/rce_p0_013_authoritative_validation.json",
+      "status": "COMPLETE",
+      "task_id": "RCE-P0-013"
+    },
+    {
+      "decision": "CONTINUITY_CHECKPOINT_CANDIDATE_READY",
+      "receipt": "receipts/rce_p0_014_authoritative_validation.json",
+      "status": "COMPLETE",
+      "task_id": "RCE-P0-014"
+    }
+  ]
+}

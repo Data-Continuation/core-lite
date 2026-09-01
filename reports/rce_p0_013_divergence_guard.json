@@ -8,12 +8,12 @@
   "external_destination_mutation_performed": false,
   "human_harm_authority": false,
   "manual_actions_required": [],
-  "observed_at": "2026-09-01T23:17:58.244302+00:00",
+  "observed_at": "2026-09-01T23:27:19.416959+00:00",
   "prior_quarantine_alert_preserved": false,
   "production_destination_allowed": false,
   "sandbox_only": true,
   "schema": "stegverse.rce.divergence_guard.v1",
-  "snapshot_root_sha256": "378d9274369068f2f7fb858568d32aa15ddacbd859d9b546021d69250e704a4f",
+  "snapshot_root_sha256": "49cd4094ffe14bbb83c87f9af7d11c03ded17381ce703ee2ed2a4790d8b6c7ae",
   "source_evidence_modified": false,
   "task_id": "RCE-P0-013"
 }

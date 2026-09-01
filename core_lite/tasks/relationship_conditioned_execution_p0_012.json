@@ -16,7 +16,7 @@
     "task_id": "RCE-P0-011"
   },
   "blocked_by": [],
-  "completed_at": "2026-09-01T23:17:58.203948+00:00",
+  "completed_at": "2026-09-01T23:27:19.378391+00:00",
   "goal": "Independently compare the restored sandbox evidence set with the sealed snapshot and live source evidence, detect any divergence, and emit an authoritative equivalence attestation without production or external destination mutation.",
   "invariants": [
     "three_way_equivalence",

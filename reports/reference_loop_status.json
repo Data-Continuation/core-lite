@@ -1,5 +1,15 @@
 {
-  "decision": "NO_ELIGIBLE_TASK",
+  "authority": {
+    "allowed_roots": [
+      "core_lite",
+      "reports",
+      "receipts",
+      "sandbox"
+    ],
+    "external_repository_mutation": false,
+    "production_mutation": false,
+    "source_patch_from_command_output": false
+  },
   "ecosystem": [
     {
       "parallel_posture": "active",
@@ -93,8 +103,57 @@
       "responsibility": "update only after verified responsibility or authority changes"
     }
   ],
-  "generated_at": "2026-09-01T23:20:36+00:00",
+  "generated_at": "2026-09-01T23:27:19+00:00",
+  "mode": "repository_local_reference_loop",
+  "receipt": {
+    "attempt_id": "3ab72312-91b0-4540-8582-11d279ef45f9",
+    "decision": "COMPLETE",
+    "execution_exit_code": 0,
+    "hash": "7f861d2e5d52dcffa46a5f7a8532e5857116c98c66253bbd6bb262aef71bb1c6",
+    "previous_hash": "3a4ea703b3135ff4455eb3f646449042707173dedf939957477c5416a732b74e",
+    "receipt_type": "core_lite.reference_loop.task_closure",
+    "remediation_exit_code": null,
+    "repository": "Data-Continuation/core-lite",
+    "task_id": "REF-LOOP-007",
+    "timestamp": "2026-09-01T23:27:19+00:00",
+    "verification_exit_code": 0
+  },
   "repository": "Data-Continuation/core-lite",
+  "result": {
+    "attempt_id": "3ab72312-91b0-4540-8582-11d279ef45f9",
+    "closed": true,
+    "completed_at": "2026-09-01T23:27:19+00:00",
+    "decision": "COMPLETE",
+    "done_when": "RCE-P0-007 through RCE-P0-014 complete under one repository-local canonical owner, all authoritative receipts verify, no manual action remains, and no external or production mutation occurs",
+    "execution": {
+      "argv": [
+        "python",
+        "tools/reconcile_rce_canonical_workstream.py"
+      ],
+      "ended_at": "2026-09-01T23:27:19+00:00",
+      "exit_code": 0,
+      "name": "reconcile_rce_canonical_workstream",
+      "started_at": "2026-09-01T23:27:19+00:00",
+      "stderr": "",
+      "stdout": "{\"decision\": \"RCE_CANONICAL_WORKSTREAM_RECONCILED\", \"manual_actions_required\": [], \"verified_stage_count\": 8}\n"
+    },
+    "remediation": null,
+    "task_id": "REF-LOOP-007",
+    "verification": {
+      "argv": [
+        "python",
+        "tools/reconcile_rce_canonical_workstream.py",
+        "--verify"
+      ],
+      "ended_at": "2026-09-01T23:27:19+00:00",
+      "exit_code": 0,
+      "name": "verify_rce_canonical_workstream",
+      "started_at": "2026-09-01T23:27:19+00:00",
+      "stderr": "",
+      "stdout": "{\"decision\": \"RCE_CANONICAL_WORKSTREAM_RECONCILED\", \"manual_actions_required\": [], \"verified_stage_count\": 8}\n"
+    }
+  },
+  "selected_task": "REF-LOOP-007",
   "state": {
     "lease": null,
     "recovered_from_receipts": true,
@@ -138,18 +197,19 @@
         "status": "complete"
       },
       "REF-LOOP-007": {
-        "attempts": 1,
-        "completed_at": null,
-        "last_result": "ESCALATE_FAIL_CLOSED",
-        "status": "escalated"
+        "attempts": 2,
+        "completed_at": "2026-09-01T23:27:19+00:00",
+        "last_result": "COMPLETE",
+        "retry_evidence_fingerprint": "afacf4836056581bc3bcdccf2bb6560d3873328644707db00fa98067249997e8",
+        "status": "complete"
       },
       "REF-LOOP-008": {
         "attempts": 0,
         "completed_at": null,
         "last_result": null,
-        "status": "blocked"
+        "status": "ready"
       }
     },
-    "updated_at": "2026-09-01T23:20:36+00:00"
+    "updated_at": "2026-09-01T23:27:19+00:00"
   }
 }

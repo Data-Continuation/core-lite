@@ -16,7 +16,7 @@
     "task_id": "RCE-P0-007"
   },
   "blocked_by": [],
-  "completed_at": "2026-09-01T23:17:58.020301+00:00",
+  "completed_at": "2026-09-01T23:27:19.207923+00:00",
   "goal": "Maintain a bounded sandbox lease, renew it automatically only while custody, lifecycle, content, and authority evidence remain valid, and quarantine expired or invalid candidates without production or external destination mutation.",
   "invariants": [
     "bounded_sandbox_lease",
@@ -65,7 +65,7 @@
   "validation": {
     "authoritative_completion_evidence": true,
     "authoritative_receipt": "receipts/rce_p0_008_authoritative_validation.json",
-    "decision": "ISSUE_SANDBOX_LEASE",
+    "decision": "RENEW_SANDBOX_LEASE",
     "manual_actions_required": [],
     "status": "PASS"
   }

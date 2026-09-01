@@ -8,11 +8,11 @@
     "source_inventory_sha256": "01a929d1a96e0aa1863cda96ecd153042033d4a7c3154da37a1f44367a314972",
     "staging_manifest_sha256": "e6f1e16d9054286f88302ed8551221aa86bd79d8b000d24e0c753f5a37e0b958"
   },
-  "decision": "ACTIVATE_INITIAL_SANDBOX_CANDIDATE",
+  "decision": "NO_CHANGE_ACTIVE_CANDIDATE",
   "external_destination_mutation_performed": false,
   "human_harm_authority": false,
   "manual_actions_required": [],
-  "observed_at": "2026-09-01T23:17:57.980192+00:00",
+  "observed_at": "2026-09-01T23:27:19.169767+00:00",
   "package_id": "relationship-conditioned-execution",
   "production_destination_allowed": false,
   "sandbox_only": true,

@@ -1,0 +1,23 @@
+{
+  "authoritative_completion_evidence": true,
+  "checkpoint": "sandbox/publication_candidates/relationship_conditioned_execution/checkpoint.json",
+  "checkpoint_root_sha256": "c12eafbeb5852cb54164429bcac4ce34c4fefe585496328448157368eb9c7594",
+  "checkpoint_sha256": "2a45f62ddfceb31f357ee33681fb45bd9fa5f2d9fd6da1fb11dd8ac320484e7d",
+  "commit_sha": "e65a6a398a8cb5e176984a2d0e9893b50c819902",
+  "decision": "CONTINUITY_CHECKPOINT_CANDIDATE_READY",
+  "event": "push",
+  "external_destination_mutation_performed": false,
+  "manual_actions_required": [],
+  "observed_at": "2026-09-01T23:27:19.454532+00:00",
+  "production_destination_allowed": false,
+  "publication_performed": false,
+  "receipt_id": "rce-p0-014-checkpoint-33571060388",
+  "ref": "refs/heads/main",
+  "repository": "Data-Continuation/core-lite",
+  "run_id": "33571060388",
+  "run_number": "1052",
+  "sandbox_only": true,
+  "schema": "stegverse.validation.receipt.v1",
+  "task_id": "RCE-P0-014",
+  "validation_class": "CORE_LITE_MANAGEMENT_WORKFLOW_CONTINUITY_CHECKPOINT_CANDIDATE"
+}

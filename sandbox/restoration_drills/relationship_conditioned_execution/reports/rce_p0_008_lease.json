@@ -7,11 +7,11 @@
     "source_inventory_sha256": "01a929d1a96e0aa1863cda96ecd153042033d4a7c3154da37a1f44367a314972",
     "staging_manifest_sha256": "e6f1e16d9054286f88302ed8551221aa86bd79d8b000d24e0c753f5a37e0b958"
   },
-  "decision": "ISSUE_SANDBOX_LEASE",
-  "expires_at": "2026-09-02T23:17:58.020301+00:00",
+  "decision": "RENEW_SANDBOX_LEASE",
+  "expires_at": "2026-09-02T23:27:19.207923+00:00",
   "external_destination_mutation_performed": false,
   "human_harm_authority": false,
-  "issued_at": "2026-09-01T23:17:58.020301+00:00",
+  "issued_at": "2026-09-01T23:27:19.207923+00:00",
   "lease_hours": 24,
   "manual_actions_required": [],
   "package_id": "relationship-conditioned-execution",
@@ -20,6 +20,6 @@
   "sandbox_only": true,
   "schema": "stegverse.rce.sandbox_lease.v1",
   "source_receipt": "receipts/rce_p0_007_authoritative_validation.json",
-  "source_receipt_sha256": "0c80ad8395ccd78daeac05d07ccbed71aee962a08bf224ee4ea4046f2b28c26b",
+  "source_receipt_sha256": "967cda9dbbf1537169c1abd1da526eff587e165615e16c6cc508d16af9484c9e",
   "task_id": "RCE-P0-008"
 }
