@@ -203,3 +203,49 @@ def test_invalid_receipt_chain_fails_closed_without_execution(tmp_path: Path) ->
     assert escalation["decision"] == "ESCALATE_FAIL_CLOSED"
     assert "Receipt hash mismatch" in escalation["reason"]
     assert not (tmp_path / "state.json").exists()
+
+
+def test_escalated_task_retries_once_when_evidence_changes(tmp_path: Path) -> None:
+    config = tmp_path / "config.json"
+    watch = tmp_path / "watch.json"
+    watch.write_text('{"version":1}', encoding="utf-8")
+    write_config(config, [sys.executable, "-c", "raise SystemExit(1)"])
+    value = json.loads(config.read_text(encoding="utf-8"))
+    value["tasks"][0]["retry_on_evidence_change"] = True
+    value["tasks"][0]["retry_watch_paths"] = [str(watch)]
+    config.write_text(json.dumps(value), encoding="utf-8")
+    state = {
+        "schema_version": 1,
+        "repository": "Data-Continuation/core-lite",
+        "updated_at": "2026-09-01T00:00:00+00:00",
+        "lease": None,
+        "tasks": {
+            "TEST-001": {
+                "status": "escalated",
+                "attempts": 1,
+                "last_result": "ESCALATE_FAIL_CLOSED",
+                "completed_at": None,
+            }
+        },
+    }
+    (tmp_path / "state.json").write_text(json.dumps(state), encoding="utf-8")
+
+    first = invoke(tmp_path, config)
+    assert first.returncode == 1
+    first_state = json.loads((tmp_path / "state.json").read_text(encoding="utf-8"))
+    assert first_state["tasks"]["TEST-001"]["attempts"] == 2
+    fingerprint = first_state["tasks"]["TEST-001"]["retry_evidence_fingerprint"]
+
+    second = invoke(tmp_path, config)
+    assert second.returncode == 0
+    assert "No eligible task." in second.stdout
+    second_state = json.loads((tmp_path / "state.json").read_text(encoding="utf-8"))
+    assert second_state["tasks"]["TEST-001"]["attempts"] == 2
+    assert second_state["tasks"]["TEST-001"]["retry_evidence_fingerprint"] == fingerprint
+
+    watch.write_text('{"version":2}', encoding="utf-8")
+    third = invoke(tmp_path, config)
+    assert third.returncode == 1
+    third_state = json.loads((tmp_path / "state.json").read_text(encoding="utf-8"))
+    assert third_state["tasks"]["TEST-001"]["attempts"] == 3
+    assert third_state["tasks"]["TEST-001"]["retry_evidence_fingerprint"] != fingerprint
