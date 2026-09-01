@@ -160,13 +160,19 @@ jobs:
             core_lite/reference_loop_state.json \
             core_lite/tasks/ \
             reports/ \
-            receipts/ \
+            receipts/
+          for path in \
             sandbox/intake/relationship_conditioned_execution/ \
             sandbox/archive/relationship_conditioned_execution/ \
             sandbox/quarantine/relationship_conditioned_execution/ \
             sandbox/snapshots/relationship_conditioned_execution/ \
             sandbox/restoration_drills/relationship_conditioned_execution/ \
-            sandbox/publication_candidates/relationship_conditioned_execution/ || true
+            sandbox/publication_candidates/relationship_conditioned_execution/
+          do
+            if [ -e "$path" ]; then
+              git add -A "$path"
+            fi
+          done
           if git diff --staged --quiet; then
             echo "No reference-loop state changed."
           else
