@@ -108,6 +108,18 @@
       "public_name": "StegVerse-Ops",
       "authority_type": "governed_operational_execution",
       "primary_question": "What action should be performed, under what authority, with what receipt, and after what review?"
+    },
+    {
+      "sequence_id": "011",
+      "operational_name": "SV-011",
+      "public_name": "SV-011",
+      "authority_type": "experimental_transition_derived_entity",
+      "primary_question": "Can an entity's capabilities be derived from a first transition element through declared standing, role escalation, commit-time admission, and reconstructable receipts rather than inferred post hoc?",
+      "canonical_repo": "SV-011/entity",
+      "status": "planned_external_construction",
+      "execution_authorized": false,
+      "publication_authorized": false,
+      "proofs_accepted": false
     }
   ],
   "shared_decision_vocabulary": [

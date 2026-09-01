@@ -92,3 +92,17 @@ MERGED INTO: master-records/core-lite/records/custody_chain_activation_receipt_0
 remaining_unique_session_work: none
 archive_condition: SATISFIED
 ```
+
+## SV-011 external entity preparation — 2026-09-01
+
+Target organization: `SV-011`  
+Expected canonical repository: `SV-011/entity`
+
+Prepared on `prep/sv-011-external-integration`:
+
+- `entity-architecture.json` now contains planned sequence `011`.
+- `docs/SV_011_ENTITY_SLOT_INTEGRATION.md` records the authority-false construction boundary and external dependency set.
+- This registration creates no standing, execution, publication, proof-acceptance, runtime, or release authority.
+- Activation remains blocked until the target repository exists and produces its own commit-zero first-element, authority-boundary, and ledger evidence.
+
+This is a distinct integration lane and does not reopen the completed ECO-CUSTODY-INGEST-001 implementation claim.
