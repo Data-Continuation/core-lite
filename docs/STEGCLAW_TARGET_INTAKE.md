@@ -37,15 +37,17 @@ reports/stegclaw_target_intake.json
 
 ## Workflow artifact coverage
 
-The workflow path is displayed here without the leading dot: `github/workflows/workstream-status.yml`. The actual path is `.github/workflows/workstream-status.yml`.
+The earlier `.github/workflows/workstream-status.yml` path is superseded and non-executable under the canonical Reference Closure Loop handoff. It must not be used as a StegClaw artifact source.
 
-The workflow now runs the StegClaw intake validator and uploads:
+Canonical validation-only artifact producer:
 
 ```text
-reports/stegclaw_target_intake.json
+.github/workflows/stegclaw-intake-validation.yml
+artifact: core-lite-stegclaw-intake
+report: reports/stegclaw_target_intake.json
 ```
 
-inside the `core-lite-workstream-status` artifact.
+This workflow validates only the static target-intake declaration and uploads its report. It does not execute or mutate RCE lifecycle state, leases, reference-loop state, receipts, sandbox state, production state, external repositories, or publication state.
 
 ## Boundary
 
@@ -53,4 +55,4 @@ This intake declaration is local-only. It validates that the expected StegClaw h
 
 ## Next step
 
-Inspect the next visible `core-lite-workstream-status` workflow artifact and confirm the StegClaw intake report is present.
+Inspect the next visible completed `core-lite-stegclaw-intake` artifact and confirm `reports/stegclaw_target_intake.json` is present and ALLOW.
