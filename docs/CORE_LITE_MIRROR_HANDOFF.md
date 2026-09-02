@@ -350,3 +350,27 @@ rewriting history.
 
 Remaining repository-local machine execution is `REF-LOOP-008`, which requires the
 canonical five-type typed-custody fixture to validate twice under unchanged authority.
+
+
+## StegClaw P1 authority decision closure — 2026-09-02
+
+Target-local StegClaw predicate P1 `live_ingestion_authority` has a completed durable decision:
+
+```text
+issue: #27 CLOSED_COMPLETED
+pull request: #28
+decision: UNAVAILABLE_UNDER_CURRENT_AUTHORITY
+merge: 811d294bade4db64e2c915a92c20f715578698f7
+satisfied: false
+runtime_proven: false
+authority_effect: NONE
+```
+
+Canonical decision evidence:
+
+```text
+docs/STEGCLAW_P1_LIVE_INGESTION_AUTHORITY_MIRROR_HANDOFF.md
+evidence/stegclaw-p1-live-ingestion-authority-decision.json
+```
+
+This decision does not modify the canonical Reference Closure Loop and does not grant production/live-ingestion authority. Future P1 satisfaction requires new canonical authority plus runtime/receipt evidence; waiting for such evidence is not work.
