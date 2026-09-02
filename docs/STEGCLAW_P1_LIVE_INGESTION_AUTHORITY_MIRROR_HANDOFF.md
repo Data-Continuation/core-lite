@@ -4,7 +4,7 @@ Updated: 2026-09-02
 Repository: `Data-Continuation/core-lite`
 Issue: #27
 Branch: `docs/stegclaw-p1-decision-27`
-State: DECISION_IMPLEMENTATION_ACTIVE
+State: DECISION_COMPLETE_MERGED_NO_GO
 
 ## Authority
 
@@ -46,3 +46,18 @@ runtime_proven: false
 ## Completion boundary
 
 This lane completes when the target-local decision record is merged. It must not modify the canonical Reference Closure Loop or grant production/runtime authority.
+
+
+## Completion evidence
+
+```text
+issue: #27 CLOSED_COMPLETED
+pull request: #28
+decision: UNAVAILABLE_UNDER_CURRENT_AUTHORITY
+merge: 811d294bade4db64e2c915a92c20f715578698f7
+satisfied: false
+runtime_proven: false
+authority_effect: NONE
+```
+
+This closes the P1 decision task only. It does not grant live-ingestion authority.
