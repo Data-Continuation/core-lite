@@ -22,7 +22,7 @@
     "workflow_persists_report_receipt_and_task_state": true
   },
   "blocked_by": [],
-  "completed_at": "2026-09-02T05:51:53.370559+00:00",
+  "completed_at": "2026-09-02T11:23:37.661522+00:00",
   "goal": "Independently reconstruct the sandbox-only RCE package from canonical sources, compare it byte-for-byte with the committed package, and emit an automated candidate-intake decision without mutating a destination.",
   "invariants": [
     "independent_reconstruction",
@@ -70,9 +70,9 @@
   "validation": {
     "status": "PASS",
     "workflow": ".github/workflows/rce-p0-004-validation.yml",
-    "authoritative_run_id": 33596394529,
-    "authoritative_run_number": 694,
-    "authoritative_run_commit": "bf3f643f214476aafcbaff3c4baa9a1c9762abca",
+    "authoritative_run_id": 33624335451,
+    "authoritative_run_number": 695,
+    "authoritative_run_commit": "e8aca7b3d5f801fcebbe4abf189bea0bb66793cc",
     "authoritative_receipt": "receipts/rce_p0_004_authoritative_validation.json",
     "authoritative_completion_evidence": true,
     "decision": "ALLOW_CANDIDATE_INTAKE",
