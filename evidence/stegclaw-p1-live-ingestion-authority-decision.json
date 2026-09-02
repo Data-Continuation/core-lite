@@ -1,0 +1,29 @@
+{
+  "schema": "core_lite.stegclaw_live_ingestion_authority_decision/v1",
+  "repository": "Data-Continuation/core-lite",
+  "predicate_id": "P1",
+  "predicate_name": "live_ingestion_authority",
+  "observed_at": "2026-09-02T19:20:00Z",
+  "canonical_handoff": "docs/CORE_LITE_MIRROR_HANDOFF.md",
+  "observed_boundaries": [
+    "SANDBOX_ONLY",
+    "NO_PRODUCTION_DESTINATION_AUTHORITY",
+    "NO_EXTERNAL_REPOSITORY_MUTATION_AUTHORITY",
+    "NO_PUBLICATION_AUTHORITY"
+  ],
+  "existing_compatibility_evidence": [
+    "docs/STEGCLAW_TARGET_INTAKE.md",
+    "docs/STEGCLAW_INTAKE_ARTIFACT_MIRROR_HANDOFF.md"
+  ],
+  "decision": "UNAVAILABLE_UNDER_CURRENT_AUTHORITY",
+  "satisfied": false,
+  "missing_required_evidence": [
+    "explicit target-local live-ingestion authority",
+    "durable runtime/receipt evidence explicitly admitting the StegClaw connector"
+  ],
+  "production_authority_granted": false,
+  "external_repository_mutation_authorized": false,
+  "runtime_proven": false,
+  "authority_effect": "NONE",
+  "manual_user_action_required": false
+}
