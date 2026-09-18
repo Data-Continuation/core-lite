@@ -31,7 +31,7 @@
   "source_package_id": "relationship-conditioned-execution",
   "source_package_version": "1.0.0-sandbox-candidate",
   "source_receipt": "receipts/rce_p0_004_authoritative_validation.json",
-  "source_receipt_sha256": "4e9196e8f8a44a3b2f939b74f094601ba046e8c46011848f3b04fe6514df8196",
+  "source_receipt_sha256": "640bd94cf3720fd6b9f3c17202cbd38e925c9c6b55ce3c962fbf9a90f65ba2b6",
   "source_task": "RCE-P0-004",
   "task_id": "RCE-P0-005"
 }
