@@ -1,20 +1,29 @@
 {
+  "attempt_count": 9,
+  "attempt_history_preserved": true,
   "authority": {
     "external_repository_mutation": false,
     "production_mutation": false,
     "read_only_contract": true,
     "transfer_authorized": false
   },
-  "chain_head": "afb43613d6e10b120613007ecb4507a6fc887991f3a530c7e21cb6ec5288dc7f",
-  "chain_sha256": "f420636289033afc43e1de9bffe695680aae820e4cfb2be5894c41e095d9f596",
+  "chain_head": "6d04cc920bf3bc5736db7f73e67b5e97a8235ea9360374a92b0f681e3c028ac8",
+  "chain_sha256": "fd0afdd63574771db4e6866fe34fb5afa01c665d7e17ba724137b89656493efb",
+  "completed_task_count": 8,
   "completed_tasks": [
     "REF-LOOP-001",
     "REF-LOOP-002",
-    "REF-LOOP-003"
+    "REF-LOOP-003",
+    "REF-LOOP-004",
+    "REF-LOOP-005",
+    "REF-LOOP-006",
+    "REF-LOOP-007",
+    "REF-LOOP-008"
   ],
   "decision": "RECEIPT_CONTRACT_VERIFIED",
+  "failed_closed_attempt_count": 1,
   "manual_actions_required": [],
-  "receipt_count": 3,
+  "receipt_count": 9,
   "relationship": "durable_receipt_and_reconstruction_contract",
   "repository": "Data-Continuation/core-lite",
   "schema": "stegverse.core_lite.reference_receipt_contract.v1",

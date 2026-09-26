@@ -12,7 +12,10 @@
     "REF-LOOP-002",
     "REF-LOOP-003",
     "REF-LOOP-004",
-    "REF-LOOP-005"
+    "REF-LOOP-005",
+    "REF-LOOP-006",
+    "REF-LOOP-007",
+    "REF-LOOP-008"
   ],
   "decision": "PORTABILITY_MANIFEST_VERIFIED",
   "manual_actions_required": [],
@@ -31,11 +34,11 @@
   ],
   "schema": "stegverse.core_lite.reference_portability_manifest.v1",
   "source_evidence": {
-    "receipt_chain_head": "afb43613d6e10b120613007ecb4507a6fc887991f3a530c7e21cb6ec5288dc7f",
-    "receipt_chain_sha256": "f420636289033afc43e1de9bffe695680aae820e4cfb2be5894c41e095d9f596",
-    "receipt_contract_sha256": "4507bc968d74308eb3c3b08ff35d7a9e0174d0dfc746cf86fa77ff32bd5c064b",
-    "reference_state_sha256": "14a2e9d721fe9caf818ad5d0cf814bc797fc05837ca05724aef8f01dfdc7298e",
-    "site_status_sha256": "b4f587d1a0a17a106a047f85011899f6d3e54d4896b84888af3713424b175237"
+    "receipt_chain_head": "6d04cc920bf3bc5736db7f73e67b5e97a8235ea9360374a92b0f681e3c028ac8",
+    "receipt_chain_sha256": "fd0afdd63574771db4e6866fe34fb5afa01c665d7e17ba724137b89656493efb",
+    "receipt_contract_sha256": "923fffa9a6b957ed100ba5603738735b51ca788852918951caec456e553d6dcf",
+    "reference_state_sha256": "866ef69bf139a18d8738e9953e4c90376a3aa147079f7a8986d4b86e01d5c4d4",
+    "site_status_sha256": "655316d5dc1c5d57820cb393db97e8227e194e296a46f6ee8466f656d6a3b05c"
   },
   "source_repository": "Data-Continuation/core-lite",
   "target_repository": "StegVerse-org/demo_ingest_engine",
