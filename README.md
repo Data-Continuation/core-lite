@@ -219,3 +219,7 @@ The suite regenerates `receipts/evidence_intake_validation.receipt.json` with:
 Evidence-intake validation establishes structural consistency only. It does not establish truth, legal standing, liability, vehicle safety, recall applicability, damages, entitlement, or third-party endorsement.
 
 Public fixtures must not contain VINs, addresses, signatures, account numbers, private repair documents, or equivalent sensitive evidence. Private source evidence remains in user-controlled storage and may be represented publicly only by non-sensitive references or hashes under separately authorized custody rules.
+
+## Exact pinned-source licensing audit (source-only, 2026-09-25)
+
+For the SDK's existing optional `governed-test` dependency at Core-Lite commit `72bdb0f110031ccc2cd98b8ebb7c22b1ab7326f8`, see [the source-owned evidence and owner decision form](docs/CORE_LITE_PINNED_RIGHTS_OWNER_DECISIONS_20260925.md) and [issue #34](https://github.com/Data-Continuation/core-lite/issues/34). The pinned `pyproject.toml` has no declared license, requires Python >=3.11 and declares setuptools>=68 for builds. Source license, contributor chain and complete dependency provenance remain non-ALLOW; no license grant or release is implied. Existing README functionality and authority boundaries are unchanged.
