@@ -137,3 +137,9 @@ rewriting history.
 
 Remaining repository-local machine execution is `REF-LOOP-008`, which requires the
 canonical five-type typed-custody fixture to validate twice under unchanged authority.
+
+## 2026-09-25 — source-owned open-source rights audit continuation (#34)
+
+Under the separate canonical central goal `ECOSYSTEM-OPEN-SOURCE-STRATEGY-001`, COSV `20010010100000`, the exact SDK-pinned Core-Lite v0.9.0 source remains under [issue #34](https://github.com/Data-Continuation/core-lite/issues/34). Evidence and blank rights-holder approval fields are captured in `docs/CORE_LITE_PINNED_RIGHTS_OWNER_DECISIONS_20260925.md`. Pinned `pyproject.toml` independently confirms Python >=3.11, setuptools>=68 and absent declared license; existing SDK `governed-test` pin and >=3.9 base metadata remain unchanged. Prior source-owner audit's 335-tree-entry inventory, 351 commit attribution records and 20 inspected top-level package modules are bounded evidence only, not legal title, third-party rights or full SBOM proof.
+
+Current explicit non-ALLOW dispositions: `DENY:SOURCE_LICENSE_SCOPE_UNVERIFIED`, `DENY:CONTRIBUTOR_CHAIN_UNVERIFIED`, `DENY:DEPENDENCY_PROVENANCE_PARTIAL`, `DENY:OPTIONAL_PYTHON_COMPATIBILITY_REVIEW`, `DENY:RELEASE_NOT_AUTHORIZED`. Owner evidence and independently authorized review are required before changing any of these. This documentation branch creates no package mutation, license grant, SDK pin update, source release, runtime authority, InTr admission or Master Records closure; the repository's existing Core-Lite operational handoff above remains authoritative for its separate task.
