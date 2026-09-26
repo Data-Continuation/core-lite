@@ -223,3 +223,8 @@ Public fixtures must not contain VINs, addresses, signatures, account numbers, p
 ## Exact pinned-source licensing audit (source-only, 2026-09-25)
 
 For the SDK's existing optional `governed-test` dependency at Core-Lite commit `72bdb0f110031ccc2cd98b8ebb7c22b1ab7326f8`, see [the source-owned evidence and owner decision form](docs/CORE_LITE_PINNED_RIGHTS_OWNER_DECISIONS_20260925.md) and [issue #34](https://github.com/Data-Continuation/core-lite/issues/34). The pinned `pyproject.toml` has no declared license, requires Python >=3.11 and declares setuptools>=68 for builds. Source license, contributor chain and complete dependency provenance remain non-ALLOW; no license grant or release is implied. Existing README functionality and authority boundaries are unchanged.
+
+
+## September 26 — exact pinned-source machine inventory candidate
+
+Existing `ECOSYSTEM-OPEN-SOURCE-STRATEGY-001` / COSV `20010010100000`; Core-Lite #34 remains OPEN. Read-only `tools/audit_pinned_source_rights.py` inspects the exact SDK-pinned original commit through local Git (all tracked blob hashes, nested Python AST imports, dynamic-call markers, initial source copyright/SPDX markers, declared build/runtime dependencies, reachable Git author/coauthor trailer strings). Focused synthetic tests and the *existing* Evidence Intake Verify workflow produce `reports/core_lite_pinned_sbom_candidate.json` as a 90-day review-only artifact after exact-head CI. A candidate import inventory is not a complete lockfile-backed SBOM, copyright assignment, legal permission, SDK Python optional-extra test or authorization to relicense or redistribute. No source package or existing SDK pin changed.
