@@ -34,14 +34,15 @@ def status_for(state: dict[str, Any], contract: dict[str, Any]) -> dict[str, Any
     tasks = state.get("tasks")
     if not isinstance(tasks, dict) or not tasks:
         raise SiteStatusError("reference-loop task state is missing")
-    incomplete = sorted(task_id for task_id, value in tasks.items() if value.get("status") != "complete")
+    required = [f"REF-LOOP-{index:03d}" for index in range(1, 9)]
+    incomplete = sorted(task_id for task_id in required if tasks.get(task_id, {}).get("status") != "complete")
     if incomplete:
         raise SiteStatusError(f"incomplete tasks: {incomplete}")
     if contract.get("decision") != "RECEIPT_CONTRACT_VERIFIED":
         raise SiteStatusError("receipt contract is not verified")
     if contract.get("authority", {}).get("external_repository_mutation") is not False:
         raise SiteStatusError("receipt contract authority is not read-only")
-    completed = sorted(tasks)
+    completed = required
     payload = {
         "schema": "stegverse.core_lite.site_status_contract.v1",
         "source_repository": "Data-Continuation/core-lite",

@@ -3,7 +3,7 @@ from tools.build_reference_loop_portability_manifest import PortabilityManifestE
 
 def _state() -> dict:
     return {
-        "tasks": {f"REF-LOOP-{index:03d}": {"status": "complete"} for index in range(1, 6)},
+        "tasks": {f"REF-LOOP-{index:03d}": {"status": "complete"} for index in range(1, 9)},
         "lease": None,
     }
 
@@ -71,7 +71,7 @@ def test_is_deterministic() -> None:
 
 def test_fails_closed_on_incomplete_source_task() -> None:
     state = _state()
-    state["tasks"]["REF-LOOP-005"]["status"] = "ready"
+    state["tasks"]["REF-LOOP-008"]["status"] = "ready"
     try:
         manifest_for(state, _receipt_contract(), _site_status())
     except PortabilityManifestError as exc:

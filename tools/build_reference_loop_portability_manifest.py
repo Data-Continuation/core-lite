@@ -38,7 +38,7 @@ def manifest_for(state: dict[str, Any], receipt_contract: dict[str, Any], site_s
     tasks = state.get("tasks")
     if not isinstance(tasks, dict):
         raise PortabilityManifestError("reference state has no task ledger")
-    required = [f"REF-LOOP-{index:03d}" for index in range(1, 6)]
+    required = [f"REF-LOOP-{index:03d}" for index in range(1, 9)]
     incomplete = [task_id for task_id in required if tasks.get(task_id, {}).get("status") != "complete"]
     if incomplete:
         raise PortabilityManifestError(f"incomplete tasks: {', '.join(incomplete)}")

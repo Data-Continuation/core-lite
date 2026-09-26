@@ -179,6 +179,10 @@
       "python",
       "tools/validate_typed_custody_evidence.py",
       "fixtures/typed_custody/canonical_chain.json"
+    ],
+    "refresh_terminal_portability_contracts": [
+      "python",
+      "tools/refresh_reference_loop_portability_contracts.py"
     ]
   },
   "tasks": [
@@ -322,6 +326,22 @@
         ]
       },
       "done_when": "the canonical five-type custody fixture validates twice, authority remains unchanged, and a chained completion receipt is written",
+      "next_task": "REF-LOOP-009"
+    },
+    {
+      "id": "REF-LOOP-009",
+      "status": "blocked",
+      "priority": 9,
+      "blocked_by": [
+        "REF-LOOP-008"
+      ],
+      "command": "refresh_terminal_portability_contracts",
+      "verification_command": "refresh_terminal_portability_contracts",
+      "remediation": {
+        "strategy": "none",
+        "eligible_exit_codes": []
+      },
+      "done_when": "terminal receipt, Site status, and demo-ingest portability contracts rebuild from completed REF-LOOP-001..008, preserve failed-attempt history, verify deterministically, and retain authority_effect NONE",
       "next_task": null
     }
   ]
