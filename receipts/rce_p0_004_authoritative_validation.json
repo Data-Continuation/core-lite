@@ -1,21 +1,21 @@
 {
   "authoritative_completion_evidence": true,
-  "commit_sha": "8b8bc8713972006d7254eb6ee359a78ff9814f83",
+  "commit_sha": "75cf63082077f55e7b17ae961101be2ee817aa13",
   "decision": "ALLOW_CANDIDATE_INTAKE",
   "destination_mutation_performed": false,
   "event": "schedule",
   "manual_actions_required": [],
-  "observed_at": "2026-09-30T00:30:41.958362+00:00",
+  "observed_at": "2026-09-30T06:46:30.444931+00:00",
   "outcomes": {
     "focused_tests": "success",
     "independent_reconstruction": "success"
   },
-  "receipt_id": "rce-p0-004-github-actions-36650673209-1",
+  "receipt_id": "rce-p0-004-github-actions-36679981233-1",
   "ref": "refs/heads/main",
   "report_sha256": "762017abe3c1eb214f77ab64724cee184b0c1df8f6f7fbf51c754e1865c8254a",
   "repository": "Data-Continuation/core-lite",
   "run_attempt": "1",
-  "run_id": "36650673209",
+  "run_id": "36679981233",
   "schema": "stegverse.validation.receipt.v1",
   "task_id": "RCE-P0-004",
   "validation_class": "GITHUB_ACTIONS_AUTHORITATIVE_RECONSTRUCTION_REVIEW"
