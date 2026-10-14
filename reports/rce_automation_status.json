@@ -3,7 +3,7 @@
   "event": "push",
   "manual_actions_required": [],
   "next_goal_candidate": "RCE-P0-006 sandbox custody and supersession ledger",
-  "observed_at": "2026-10-14T01:15:28.070402+00:00",
+  "observed_at": "2026-10-14T02:07:09.014480+00:00",
   "rce_p0_001": {
     "receipt": "receipts/rce_p0_001_authoritative_validation.json",
     "status": "COMPLETE"
@@ -32,8 +32,8 @@
   "ref": "refs/heads/main",
   "repository": "Data-Continuation/core-lite",
   "run_attempt": "1",
-  "run_id": "38494703014",
+  "run_id": "38499335383",
   "run_number": "78",
   "schema": "stegverse.rce.automation_status.v1",
-  "source_commit_sha": "a8b11dcfee9ab7bbf7d11c43abec3abe29d0a975"
+  "source_commit_sha": "04b9c4b83c57380c6e2f88323ec71c8da2d58835"
 }
