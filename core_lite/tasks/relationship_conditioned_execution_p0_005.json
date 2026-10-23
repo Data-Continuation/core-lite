@@ -7,7 +7,7 @@
     "task_id": "RCE-P0-004"
   },
   "blocked_by": [],
-  "completed_at": "2026-10-23T16:47:02.454302+00:00",
+  "completed_at": "2026-10-23T17:27:04.917201+00:00",
   "goal": "Stage only the independently reconstructed, validated candidate package into a non-production sandbox intake path and emit chained staging evidence without destination or production mutation.",
   "invariants": [
     "sandbox_only",
@@ -52,9 +52,9 @@
   "validation": {
     "status": "PASS",
     "workflow": ".github/workflows/rce-p0-005-sandbox-staging.yml",
-    "authoritative_run_id": 39989609855,
-    "authoritative_run_number": 2055,
-    "authoritative_run_commit": "cf1c637845d137bdd39abff3d5701d92429f2a26",
+    "authoritative_run_id": 39995138561,
+    "authoritative_run_number": 2056,
+    "authoritative_run_commit": "b76a0b81e90e32d4f597b3e2a617d169b0ed47f5",
     "authoritative_receipt": "receipts/rce_p0_005_authoritative_validation.json",
     "authoritative_completion_evidence": true,
     "manual_actions_required": []
