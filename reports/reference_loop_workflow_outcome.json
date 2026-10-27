@@ -1,7 +1,7 @@
 {
-  "event_name": "workflow_run",
-  "generated_at": "2026-10-27T03:36:16+00:00",
+  "event_name": "schedule",
+  "generated_at": "2026-10-27T03:46:35+00:00",
   "reference_loop_outcome": "success",
-  "run_id": 40445054918,
-  "source_sha": "0e70c4e88a46c9ebbcacc64df13980e9d74a0e5d"
+  "run_id": 40446012845,
+  "source_sha": "403a8d2b7fec6f9325e26929e71e6bc60d1aa750"
 }
