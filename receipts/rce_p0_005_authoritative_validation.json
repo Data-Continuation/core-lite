@@ -1,24 +1,24 @@
 {
   "authoritative_completion_evidence": true,
-  "commit_sha": "8a894c193b8ab8d1b6ec49941807d09531b30cc6",
+  "commit_sha": "8f5d9eef98e07df0a1c58d039417538954f40168",
   "decision": "STAGED_CANDIDATE_EVIDENCE",
-  "event": "schedule",
+  "event": "workflow_run",
   "external_destination_mutation_performed": false,
   "manual_actions_required": [],
-  "observed_at": "2026-11-03T08:39:14.903596+00:00",
+  "observed_at": "2026-11-03T09:22:17.300222+00:00",
   "outcomes": {
     "focused_tests": "success",
     "sandbox_staging": "success"
   },
   "production_destination_allowed": false,
-  "receipt_id": "rce-p0-005-github-actions-41604857207-1",
+  "receipt_id": "rce-p0-005-github-actions-41610438966-1",
   "ref": "refs/heads/main",
   "repository": "Data-Continuation/core-lite",
   "run_attempt": "1",
-  "run_id": "41604857207",
+  "run_id": "41610438966",
   "sandbox_only": true,
   "schema": "stegverse.validation.receipt.v1",
-  "staging_manifest_sha256": "69019f614d38ed3f72f8bc8ad0d96893889b6a2657922fa2bea02ac6962e23c3",
+  "staging_manifest_sha256": "551cd9affed0758ff345d635027bcd82da0299c90af1e15bdc6e95962bc236fa",
   "task_id": "RCE-P0-005",
   "validation_class": "GITHUB_ACTIONS_AUTHORITATIVE_SANDBOX_STAGING"
 }
