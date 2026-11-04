@@ -2,8 +2,8 @@
   "commit_sha": "ee81f1c362c33cc58e3cdcbce9fb4900b8c10f30",
   "event": "push",
   "manual_actions_required": [],
-  "next_goal_candidate": "RCE-P0-005 automated sandbox intake staging",
-  "observed_at": "2026-11-04T00:38:41.917095+00:00",
+  "next_goal_candidate": "RCE-P0-006 sandbox custody and supersession ledger",
+  "observed_at": "2026-11-04T00:39:00.375194+00:00",
   "rce_p0_001": {
     "receipt": "receipts/rce_p0_001_authoritative_validation.json",
     "status": "COMPLETE"
@@ -32,8 +32,8 @@
   "ref": "refs/heads/main",
   "repository": "Data-Continuation/core-lite",
   "run_attempt": "1",
-  "run_id": "41748337052",
+  "run_id": "41748376690",
   "run_number": "78",
   "schema": "stegverse.rce.automation_status.v1",
-  "source_commit_sha": "3205963cc9b5bf3eea48fca39642a6bbb9e23902"
+  "source_commit_sha": "f0f514db7593266e5bc4c1f5e835e163e867fa91"
 }
